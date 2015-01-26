@@ -1,0 +1,22 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #000000;
+}
+
+.jumbotron {
+  background: #222222;
+  text-align: center;
+  float: center;
+}
+
+.breadcrumb {
+  margin: 20px;
+  margin-left: 290px;
+  width: 45%;
+  text-align: center;
+  background: #000000;
+}
+
+a {
+  color: #00B7FF;
+}
