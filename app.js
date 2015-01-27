@@ -6,17 +6,16 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var app = express();
+var app = module.exports = express();
 
 // render without jade for templating
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(path.join(__dirname, 'views')));
 
 // TODO: https://github.com/sedge/opendojo/issues/10
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -51,5 +50,16 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+// FOR MOCHA TESTING:
+// If we're running as a child process, let our parent know we're ready.
+if (process.send) {
+  try {
+    process.send("serverStarted");
+  } catch ( e ) {
+    // exit the worker if master is gone
+    process.exit(1);
+  }
+}
 
 module.exports = app;

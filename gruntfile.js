@@ -3,18 +3,14 @@ module.exports = function(grunt){
     pkg: grunt.file.readJSON('package.json'),
 
     //test suite
-    mocha: {
-      all: {
-        src: ['tests/*.js'],
-      },
-      options: {
-        run: true
-      }
+    simplemocha: {
+        all: {
+          src: 'tests/*.js'
+        }
     }
   });
 
-  // Load grunt mocha task
-  grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
-  grunt.registerTask('default', ['mocha']);
+  grunt.registerTask('default', 'simplemocha');
 };
