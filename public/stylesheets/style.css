@@ -1,17 +1,71 @@
+html {
+    height: 100%;
+}
+
 body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(to top, #0F0F0F 0%, #000000 100%);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.navbar {
   background: #000000;
+  color: #444444;
+  border: none;
+  margin: 0px;
+}
+
+.dropdown-menu {
+  margin-left: 15%;
+  background: #000000;
+  color: #000000;
+  border-color: #222222;
+}
+
+.navbar-default .navbar-nav>.open>
+a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: #444444;
+  background-color: #000000;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #000000;
+}
+
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+  background-image: none;
+  background-color: #000000;
+}
+
+.dropdown-menu .divider {
+  background: #222222;
+}
+
+#top {
+  font-weight: bold;
+  color: #000000;
+}
+
+#sub {
+  color: #444444;
+}
+
+.glyphicon {
+  font-size: 16px;
 }
 
 .jumbotron {
-  background: #222222;
+  background: linear-gradient(to right, #f85032 0%,#000000 0%,#540000 26%,#540000 26%,#841f0d 71%,#721313 100%);
   text-align: center;
   float: center;
 }
 
 .breadcrumb {
   margin: 20px;
-  margin-left: 290px;
+  margin-left: 27.5%;
   width: 45%;
   text-align: center;
   background: #000000;

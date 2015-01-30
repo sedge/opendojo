@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var routes = require('./routes/index');
 
 var app = module.exports = express();
 
@@ -18,9 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/', function(req, res, next) {
-  res.status(200).send("Test route works");
-});
+// Connect to the dynamic routes file
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,5 +50,3 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-module.exports = app;
