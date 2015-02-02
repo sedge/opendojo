@@ -33,7 +33,7 @@ function camelCasedFunctionNames() {
    */
   if (failCondition) {
     // Conditional logic here
-  }  else {
+  }  else if(!otherCondition) {
     // Conditional logic here
   }
 }
