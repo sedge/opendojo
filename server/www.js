@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('nariyuki:server');
 var http = require('http');
