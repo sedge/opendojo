@@ -1,6 +1,7 @@
-module.exports = function() {
-  var router = require('express').Router();
+var log = require('../lib/logger');
+var router = require('express').Router();
 
+module.exports = function() {
   router.route('/students')
     .get(function(req, res, next) {
       /* GET '/students' accepts:
@@ -12,6 +13,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
     })
     .post(function(req, res, next) {
       /* POST '/students' accepts:
@@ -24,6 +26,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
   });
 
   router.route('/student/:id')
@@ -38,6 +41,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
     })
     .put(function(req, res, next) {
       /* PUT '/student/:id' accepts:
@@ -51,6 +55,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
     })
     .delete(function(req, res, next) {
       /* DELETE '/student/:id' accepts:
@@ -62,6 +67,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
   });
 
   router.get('/students/rank/:colour', function(req, res, next) {
@@ -75,6 +81,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
   });
 
   router.get('/students/member/:status', function(req, res, next) {
@@ -88,6 +95,7 @@ module.exports = function() {
       */
 
       res.status(500).send("Not yet implemented...");
+      log.info({ req: req, res: res });
   });
 
   return router;

@@ -2,13 +2,13 @@
  * Module dependencies.
  */
 var app = require('../app');
-var debug = require('debug')('nariyuki:server');
 var http = require('http');
+var log = require('../lib/logger');
+var env = require('../lib/environment');
 
 /**
  * Get port from environment and store in Express.
  */
-var env = require('../lib/environment');
 var port = env.get('PORT') || '3000';
 app.set('port', port);
 
@@ -21,7 +21,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 server.listen(port, function(){
-  console.log('Express running and listening on port', port);
+  log.info('Express running and listening on port ' + port);
 });
 
 /**
@@ -37,11 +37,11 @@ server.on('error', function(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      log.fatal(bind + ' requires elevated privileges');
       process.exit(1);
       break;
       case 'EADDRINUSE':
-        console.error(bind + ' is already in use');
+        log.fatal(bind + ' is already in use');
         process.exit(1);
         break;
         default:
@@ -67,5 +67,5 @@ server.on('listening', function() {
     }
   }
 
-  debug('Listening on ' + bind);
+  log.info('Listening on ' + bind);
 });

@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
+var log = require('./lib/logger');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
@@ -14,7 +14,6 @@ app.use(express.static(__dirname + '/public'));
 app.disable("x-powered-by");
 
 // TODO: Add favicon. See https://github.com/sedge/opendojo/issues/10
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -29,24 +28,22 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.send({
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+  if (err.status === 404) {
+    log.warn({
+      req: req,
+      res: res
+    });
+  } else {
+    log.error({
+      err: err,
+      req: req,
+      res: res
+    });
+  }
+
   res.status(err.status || 500);
   res.send({
-    message: err.message,
-    error: {}
+    message: "Internal server error. See server logs for details."
   });
 });

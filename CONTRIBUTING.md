@@ -4,7 +4,8 @@
 
 ## TOC
 1. Patch Requirements
-2. Style Guide
+2. Logging
+3. Style Guide
 
 
 ### Final Patch Requirements
@@ -31,6 +32,44 @@ And this when tests have passed:
 ![screen shot 2015-02-03 at 12 16 52 am](https://cloud.githubusercontent.com/assets/1616860/6014881/84f4eb88-ab3a-11e4-9853-f53721897fb3.png)
 
 -----------------------
+
+### Logging
+
+Our logging module provides four logging methods:
+
+```js
+var log = require('./bin/logger');
+
+log.info(...);
+log.warn(...);
+log.error(...);
+log.fatal(...);
+```
+
+Whenever a successful `request` occurs, after a response is sent, log the `req`,
+`res` and data objects using `info`:
+
+```js
+res.status(200).send(student);
+log.info({
+  req: req,
+  res: res,
+  student: student
+});
+```
+
+If a request is unsuccessful, our error handling middleware will catch and log
+it with `warn` on a 404, or `error` on anything else.
+
+If you are programming an error case that is guaranteed to crash the program,
+or should cause the server to abort, log the error with `fatal`:
+
+```js
+case 'EADDRINUSE':
+  log.fatal(bind + ' is already in use');
+  process.exit(1);
+  break;
+```
 
 
 ### Style-guide
