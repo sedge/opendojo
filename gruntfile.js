@@ -10,7 +10,7 @@ module.exports = function(grunt){
         reporter: 'spec'
       },
       all: {
-        src: 'tests/*.js'
+        src: 'tests/index.js'
       }
     }
   });

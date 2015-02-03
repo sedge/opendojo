@@ -1,9 +1,9 @@
-var   fork = require("child_process").fork,
-      child,
-      env = require('../lib/environment'),
-      request = require('request'),
-      expect = require('chai').expect,
-      fullUrl = env.get('HOST') + ':' + env.get('PORT');
+var fork = require("child_process").fork,
+        child,
+        env = require('../lib/environment'),
+        request = require('request'),
+        expect = require('chai').expect,
+        fullUrl = env.get('HOST') + ':' + env.get('PORT');
 
 module.exports = {
   initServer: function(done){
