@@ -1,4 +1,37 @@
+![Test status](https://magnum.travis-ci.com/sedge/opendojo.svg?token=Pq9BJTQsrUUEcKjEssNY&branch=master)
+
 ## CONTRIBUTING.md
+
+## TOC
+1. Patch Requirements
+2. Style Guide
+
+
+### Final Patch Requirements
+
+1. 1 commit per issue PR.
+2. Tests pass locally on your machine. See the README for the most up-to-date way to run tests
+2. Confirm that travis-ci is passing
+
+#### Travis-ci states
+
+In the PR, confirm that travis-ci has passed the tests. In every pull request, you'll see this when travis-ci is running:
+
+![screen shot 2015-02-03 at 12 17 22 am](https://cloud.githubusercontent.com/assets/1616860/6014882/84f60162-ab3a-11e4-8fd4-5c959c0c41f9.png)
+
+---------------------------
+![screen shot 2015-02-03 at 12 17 16 am](https://cloud.githubusercontent.com/assets/1616860/6014880/84f31ca4-ab3a-11e4-8c25-09e0ccb634ae.png)
+---------------------------
+
+And this when tests have passed:
+
+![screen shot 2015-02-03 at 12 16 43 am](https://cloud.githubusercontent.com/assets/1616860/6014883/84f77bfa-ab3a-11e4-8b98-f90ca7810a46.png)
+
+----------------------------
+![screen shot 2015-02-03 at 12 16 52 am](https://cloud.githubusercontent.com/assets/1616860/6014881/84f4eb88-ab3a-11e4-9853-f53721897fb3.png)
+
+-----------------------
+
 
 ### Style-guide
 
