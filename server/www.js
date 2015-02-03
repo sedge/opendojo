@@ -8,7 +8,7 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-var env = new require('habitat')();
+var env = require('../lib/environment');
 var port = env.get('PORT') || '3000';
 app.set('port', port);
 
