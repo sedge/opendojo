@@ -1,7 +1,6 @@
-var fork = require("child_process").fork,
+var   fork = require("child_process").fork,
       child,
-      habitat = require('habitat'),
-      env = habitat.load('.env'),
+      env = new require('habitat')(),
       request = require('request'),
       expect = require('chai').expect,
       fullUrl = env.get('HOST') + ':' + env.get('PORT');
