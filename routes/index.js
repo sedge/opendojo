@@ -1,5 +1,8 @@
-var log = require('../lib/logger');
-var router = require('express').Router();
+module.exports = function() {
+  var router = require('express').Router();
+  var env = require('../lib/environment');
+  var log = require('../lib/logger');
+  var db = require('../db');
 
 module.exports = function() {
   router.route('/students')
@@ -12,8 +15,27 @@ module.exports = function() {
             - The entire student list via an array of JSON objects bearing every student stored in DB
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        db.mongoose.models.Student.find({}, function(err, students){
+          if(err) {
+            res.send('Database Error!', err);
+            return err;
+          }
+
+            res.status(200).json(students);
+        });
+      }
     })
     .post(function(req, res, next) {
       /* POST '/students' accepts:
@@ -25,8 +47,44 @@ module.exports = function() {
             - If successful, the new student object data passed in by the request
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(!req.body || req.body == {}) {
+        res.status(400).send('Request body has no valid data!');
+
+        return;
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      var student = db.mongoose.models.Student;
+
+      var newStud = new student({
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "gender": req.body.gender,
+        "rankId": req.body.rankId,
+        "healthInformation": req.body.healthInformation,
+        "guardianInformation": req.body.guardianInformation,
+        "email": req.body.email, //this is an array and should be passed in as such on the client request
+        "membershipStatus": req.body.membershipStatus,
+        "membershipExpiry": req.body.membershipExpiry,
+        "phone": req.body.phone,
+        "birthDate": req.body.birthDate
+      });
+
+      newStud.save(function (err, newStud) {
+        if (err) {
+          return next(err);
+        }
+
+        res.status(201).json(newStud);
+      });
+
+>>>>>>> Added database infra and route logic
   });
 
   router.route('/student/:id')
@@ -40,8 +98,37 @@ module.exports = function() {
             - The student object bearing the given ID and all of its associated properties and values
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 400) {
+        res.status(400).send('Invalid request body!');
+      }
+
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        var id = req.body.id || req.params.id;
+
+        db.mongoose.models.Student.findById(id, function(err, student) {
+          console.log('are we in findById');
+          if (err) {
+            return next(err);
+          }
+
+          if (typeof(student) === undefined) {
+            return "Student ID invalid!";
+          }
+
+          res.status(200).json(student);
+        });
+      }
     })
     .put(function(req, res, next) {
       /* PUT '/student/:id' accepts:
@@ -54,8 +141,36 @@ module.exports = function() {
             - If successful, the altered student data object passed in by the request
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 400) {
+        res.status(400).send('Invalid request body!');
+      }
+
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        var id = req.body.id || req.params.id;
+
+        db.mongoose.models.Student.findOneAndUpdate({"_id": id}, req.body, {new: true}, function(err, student) {
+          if(err) {
+              return next(err);
+          }
+
+          // if((!student && student !== false) || !(student.length>0)) {
+          //   throw new Error('No student matches that ID in the database!');
+          // }
+
+          res.status(200).json(student);
+        });
+      }
     })
     .delete(function(req, res, next) {
       /* DELETE '/student/:id' accepts:
@@ -66,8 +181,67 @@ module.exports = function() {
             - A status code of success/failure
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 400) {
+        res.status(400).send('Invalid request body!');
+      }
+
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        var id = req.body.id || req.params.id;
+
+        db.mongoose.models.Student.remove({_id: id}, function(err){
+            if(err){
+              return next(err);
+            }
+            res.status(204).send('Success');
+        });
+      }
+  });
+
+  router.get('/rank', function(req, res, next) {
+    /* GET '/rank' accepts:
+          - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
+
+        GET '/rank' returns:
+          - A status code of success/failure
+          - All rank objects in the database
+    */
+
+    if(res.status == 400) {
+      res.status(400).send('Invalid request body!');
+    }
+
+    if(res.status == 401) {
+      res.status(401).send('Invalid login credentials');
+    }
+
+    if(res.status == 500) {
+      log.error({
+        req: req,
+        res: res
+      });
+    }
+
+    else {
+      db.mongoose.models.Rank.find({}, function(err, ranks){
+        if(err) {
+          res.send('Database Error!', err);
+          return err;
+        }
+
+        res.status(200).json(ranks);
+      });
+    }
   });
 
   router.get('/students/rank/:colour', function(req, res, next) {
@@ -80,8 +254,36 @@ module.exports = function() {
             - All student objects bearing the given rank values
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 400) {
+        res.status(400).send('Invalid request body!');
+      }
+
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        var rId = req.body.colour || req.params.colour;
+
+        db.mongoose.models.Student.find({rankId: rId}, function(err, students) {
+          if (err) {
+            return next(err);
+          }
+
+          if (typeof(students) === undefined) {
+            return "Rank reference invalid!";
+          }
+
+          res.status(200).json(students);
+        });
+      }
   });
 
   router.get('/students/member/:status', function(req, res, next) {
@@ -94,8 +296,36 @@ module.exports = function() {
             - All student objects bearing the specified status
       */
 
-      res.status(500).send("Not yet implemented...");
-      log.info({ req: req, res: res });
+      if(res.status == 400) {
+        res.status(400).send('Invalid request body!');
+      }
+
+      if(res.status == 401) {
+        res.status(401).send('Invalid login credentials');
+      }
+
+      if(res.status == 500) {
+        log.error({
+          req: req,
+          res: res
+        });
+      }
+
+      else {
+        var status = req.body.status || req.params.status;
+
+        db.mongoose.models.Student.find({membershipStatus: status}, function(err, students) {
+          if (err) {
+            return next(err);
+          }
+
+          if (typeof(students) === undefined) {
+            return "Membership status invalid!";
+          }
+
+          res.status(200).json(students);
+        });
+      }
   });
 
   return router;
