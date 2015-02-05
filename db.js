@@ -105,7 +105,7 @@ module.exports= function(env) {//Create connection
 			FirstName :String,
 			LastName :String,
 			Gender:String,
-			RankId : {type: mongoose.Schema.Types.ObjectId, ref: ‘Rank’},
+			RankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
 			HealthInformation:String,
 			GuardianInformation:String, 
 			Email: {type: [String]}, 
