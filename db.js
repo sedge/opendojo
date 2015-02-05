@@ -101,7 +101,7 @@ module.exports= function(env) {//Create connection
 		rank = mongoose.model('Rank', rankSchema);
 
 		//Student entity
-		studentSchema = new Schema({
+		studentSchema = new schema({
 			FirstName :String,
 			LastName :String,
 			Gender:String,
@@ -118,7 +118,7 @@ module.exports= function(env) {//Create connection
 		student = mongoose.model('Student', studentSchema);
 
 	    //Class entity
-		classSchema = new Schema({
+		classSchema = new schema({
 			class_title: String,
 			start_date : Date,
 			end_date: Date,
@@ -126,13 +126,13 @@ module.exports= function(env) {//Create connection
 			start_time: Date,
 			end_time: Date,
 			classType: String, 
-			RanksAllowed: {type: [Schema.ObjectId], ref:'Rank'}
+			RanksAllowed: {type: [mongoose.Schema.ObjectId], ref:'Rank'}
 		});
 
 		course= mongoose.model('Class', classSchema);
 
 		//Attendance entity
-		attendanceSchema = new Schema({
+		attendanceSchema = new schema({
 			student_id: {type: mongoose.Schema.Types.ObjectId, ref:'Student'},
 	    	classDate: Date,
 	    	classTime: Date,
