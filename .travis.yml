@@ -9,3 +9,4 @@ notifications:
   irc: "irc.mozilla.org#filer"
 env:
   - "HOST=\"http://127.0.0.1\" PORT=\"6565\""
+  - "DBHOST=\"mongodb://localhost/studentDB\"
