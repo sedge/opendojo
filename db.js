@@ -21,13 +21,16 @@ var db;
 //data=Student object, callback: function (err, StudentObject)
 function createStudent(data, callback) {
  //if Student exists then add it to db
-  if (!data) throw "No data passed to the createStudent call";
-   var newStudent = new student(data);
-   newStudent.save(function (err, newStudent){
-    if (err) return console.error(err);
-    callback(null, newStudent);
-    return;
-   });
+    if (!data) throw "No data passed to the createStudent call";
+       var newStudent = new student(data);
+       newStudent.save(function (err, newStudent){
+       if (err){
+    	 console.log(err);
+    	 return "Can't create student";
+        } 
+        callback(null, newStudent);
+        return;
+     });
 }
 
 //callback: function(err, users)
@@ -85,7 +88,28 @@ module.exports= function(env) {//Create connection
 
 	db = mongoose.connection;
 
-	db.on('error', console.error.bind(console, 'connection error:'));
+	//Event listeners
+
+	//On disconnect
+	db.on('disconnected', function () {
+  		console.log('Mongoose default connection disconnected');
+	});
+
+	//On error
+	db.on('error', function(error) {
+		console.log('Mongoose default connection error: '+error);
+    	throw error;
+    });
+	//db.on('error', console.error.bind(console, 'connection error:'));
+
+	// If the Node process ends, close the Mongoose connection
+	process.on('SIGINT', function() {
+	  db.close(function () {
+	    console.log('Mongoose default connection disconnected through app termination');
+	    process.exit(0);
+	  });
+	});
+ 
 
 	db.once('open', function (callback) {
 		 //Presumably connected
