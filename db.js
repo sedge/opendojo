@@ -24,6 +24,11 @@ db = mongoose.connection;
 
 //On disconnect
 db.on('disconnected', function () {
+    rank.remove({}, function(err){
+      if(err){
+        return "Error";
+      }
+    });
     console.log('Mongoose default connection disconnected');
     health.connected = false;       
 });
@@ -62,22 +67,20 @@ db.once('open', function (callback) {
 
     //Student entity
     studentSchema = new schema({
-        FirstName :String,
-        LastName :String,
-        Gender:String,
-        RankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
-        HealthInformation:String,
-        GuardianInformation:String, 
-        Email: {type: [String]}, 
+        firstName :String,
+        lastName :String,
+        gender:String,
+        rankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
+        healthInformation:String,
+        guardianInformation:String, 
+        email: {type: [String]}, 
         membershipStatus: Boolean,
         membershipExpiry:Date,
         phone:String,
-        BirthDate:Date
+        birthDate:Date
     }); 
 
     student = mongoose.model('Student', studentSchema);
-
-    console.log('what is student here? ', student);
 
     //Class entity
     classSchema = new schema({
@@ -103,22 +106,22 @@ db.once('open', function (callback) {
 
     attendance= mongoose.model('Attendance', attendanceSchema);
 
-    //Create two Rank entities
     var blackBelt = new rank({
       "name": "Black Belt",
       "sequence": 1,
       "color": "Black"
     });
+
     blackBelt.save(function (err, blackBelt){
       if (err) return console.error(err);
     });
-
 });//Populate with a couple of entities
 
 mongoose.connect(env.get("DBHOST"));
-console.log('MONGOOSE.MODELS.MYUH: ', mongoose.models.Student);
+
 module.exports = {
   "mongoose": mongoose,
+  "studentSchema": studentSchema,
   "student": mongoose.models.Student,
   "rank": mongoose.models.Rank,
   "course": mongoose.models.Course,
