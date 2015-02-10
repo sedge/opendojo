@@ -4,7 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
-
 var app = module.exports = express();
 
 // render without jade for templating

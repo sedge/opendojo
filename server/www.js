@@ -12,9 +12,6 @@ var env = require('../lib/environment');
 var port = env.get('PORT') || '3000';
 app.set('port', port);
 
-//Database related
-var db = require('../db')(env);
-
 /**
  * Create HTTP server.
  */

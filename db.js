@@ -1,3 +1,4 @@
+var env = require('./lib/environment');
 var mongoose = require('mongoose');
 
 //Variables for the schemas
@@ -12,176 +13,126 @@ var attendanceSchema;
 var attendance;
 var db;
 
-	/*Mongo sends the complete document as a callbackobject so you can simply get it from there only.
-    for example n.save(function(err,room){
-  var newRoomId = room._id;
-  }); http://stackoverflow.com/questions/6854431/how-do-i-get-the-objectid-after-i-save-an-object-in-mongoose*/
- 
+//Variable for connection condition
+var health = {
+  connected: false,
+  err: null
+};
 
-//data=Student object, callback: function (err, StudentObject)
-function createStudent(data, callback) {
- //if Student exists then add it to db
-    if (!data) throw "No data passed to the createStudent call";
-       var newStudent = new student(data);
-       newStudent.save(function (err, newStudent){
-       if (err){
-    	 console.log(err);
-    	 return "Can't create student";
-        } 
-        callback(null, newStudent);
-        return;
-     });
-}
+//Create connection
+db = mongoose.connection;
 
-//callback: function(err, users)
-function getAllStudents( callback) {
-	student.find({}, callback);
-}
+//On disconnect
+db.on('disconnected', function () {
+    console.log('Mongoose default connection disconnected');
+    health.connected = false;       
+});
 
-//Will have to pass Student.ID, updated Student as Object function (err, StudentObject)
-function updateStudent (id, updatedStudent, callback) {
-	//from Mongoose: A.findByIdAndUpdate(id, update, callback) // executes
-	student.findByIdAndUpdate(id, updatedStudent, callback);
-}
+//On error
+db.on('error', function(error) {
+    health.connected =  false;
+    health.err = error;
+    console.log('Mongoose default connection error: '+error);
+});
+//db.on('error', console.error.bind(console, 'connection error:'));
 
-/*frm mongoose --> find adventure by id and execute immediately
-Adventure.findById(id, function (err, adventure) {});*/
-//Call getStudentsById(Student.ID, function (err, StudentObject))
-function getStudentById(id, callback) {	
-	student.findById(id, callback);
-}
-
-/*from mongoose --> // executes immediately, passing results to callback
-MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
-*///am assuming it wants an empty student object
-//getStudentsByName(student first name, student last name, function (err, student))
-function getStudentByName(stFName, stLName, callback) {
-	student.find({FirstName: stFName, LastName: stLName}, callback);
-}
-/*from mongoose --> // executes immediately, passing results to callback
-MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
-*///am assuming it wants an empty array of students
-//getStudentsByGender(student gender, function (err, students))
-function getStudentsByGender(stGender, callback) {
-	student.find({Gender: stGender}, callback);
-}
-
-/*from mongoose --> // executes immediately, passing results to callback
-MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
-*///am assuming it wants an empty array of students
-//the ranks would have to be searched by color?  And the id of an appropriate rank
-//would have to be pulled to pas sto this fcn
-//getStudentsByRank(student rank, function (err, student))
-function getStudentsByRank(stRank, callback) {
-	student.find({RankId: stRank}, callback);
-}
-/*from mongoose --> // executes immediately, passing results to callback
-MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
-*///am assuming it wants an empty array of students
-//getStudentsByStatus(student status, function (err, students))
-function getStudentsByStatus(stStatus, callback) {
-	student.find({membershipStatus: stStatus}, callback);
-}
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+  db.close(function () {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
 
 
-module.exports= function(env) {//Create connection
-
-	db = mongoose.connection;
-
-	//Event listeners
-
-	//On disconnect
-	db.on('disconnected', function () {
-  		console.log('Mongoose default connection disconnected');
-	});
-
-	//On error
-	db.on('error', function(error) {
-		console.log('Mongoose default connection error: '+error);
-    	throw error;
-    });
-	//db.on('error', console.error.bind(console, 'connection error:'));
-
-	// If the Node process ends, close the Mongoose connection
-	process.on('SIGINT', function() {
-	  db.close(function () {
-	    console.log('Mongoose default connection disconnected through app termination');
-	    process.exit(0);
-	  });
-	});
- 
-
-	db.once('open', function (callback) {
-		 //Presumably connected
-		 schema = mongoose.Schema;
-		
-		//Rank entity
-		rankSchema = new schema({
-			name: String,
-			sequence: Number,
-			color: String
-		});
-
-		rank = mongoose.model('Rank', rankSchema);
-
-		//Student entity
-		studentSchema = new schema({
-			FirstName :String,
-			LastName :String,
-			Gender:String,
-			RankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
-			HealthInformation:String,
-			GuardianInformation:String, 
-			Email: {type: [String]}, 
-			membershipStatus: Boolean,
-			membershipExpiry:Date,
-			phone:String,
-			BirthDate:Date
-		}); 
-
-		student = mongoose.model('Student', studentSchema);
-
-	    //Class entity
-		classSchema = new schema({
-			class_title: String,
-			start_date : Date,
-			end_date: Date,
-			day_of_week: Number,
-			start_time: Date,
-			end_time: Date,
-			classType: String, 
-			RanksAllowed: {type: [mongoose.Schema.ObjectId], ref:'Rank'}
-		});
-
-		course= mongoose.model('Class', classSchema);
-
-		//Attendance entity
-		attendanceSchema = new schema({
-			student_id: {type: mongoose.Schema.Types.ObjectId, ref:'Student'},
-	    	classDate: Date,
-	    	classTime: Date,
-	    	classID: {type: mongoose.Schema.Types.ObjectId, ref: 'Class'}
-		});
-
-	    attendance= mongoose.model('Attendance', attendanceSchema);
-
-
-	});//Populate with a couple of entities
-
-	mongoose.connect(env.get("DBHOST"));
+db.once('open', function (callback) {
+    health.connected = true;
+    console.log("connected");
+     //Presumably connected
+     schema = mongoose.Schema;
     
-    return {
-		createStudent: createStudent,
-		getAllStudents: getAllStudents,
-		updateStudent: updateStudent,
-		getStudentById: getStudentById,
-		getStudentByName: getStudentByName,
-		getStudentsByGender: getStudentsByGender,
-		getStudentsByRank: getStudentsByRank,
-		getStudentsByStatus: getStudentsByStatus
-	}
+    //Rank entity
+    rankSchema = new schema({
+        name: String,
+        sequence: Number,
+        color: String
+    });
 
-}
+    rank = mongoose.model('Rank', rankSchema);
+
+    //Student entity
+    studentSchema = new schema({
+        FirstName :String,
+        LastName :String,
+        Gender:String,
+        RankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
+        HealthInformation:String,
+        GuardianInformation:String, 
+        Email: {type: [String]}, 
+        membershipStatus: Boolean,
+        membershipExpiry:Date,
+        phone:String,
+        BirthDate:Date
+    }); 
+
+    student = mongoose.model('Student', studentSchema);
+
+    console.log('what is student here? ', student);
+
+    //Class entity
+    classSchema = new schema({
+        class_title: String,
+        start_date : Date,
+        end_date: Date,
+        day_of_week: Number,
+        start_time: Date,
+        end_time: Date,
+        classType: String, 
+        RanksAllowed: {type: [mongoose.Schema.ObjectId], ref:'Rank'}
+    });
+
+    course= mongoose.model('Class', classSchema);
+
+    //Attendance entity
+    attendanceSchema = new schema({
+        student_id: {type: mongoose.Schema.Types.ObjectId, ref:'Student'},
+        classDate: Date,
+        classTime: Date,
+        classID: {type: mongoose.Schema.Types.ObjectId, ref: 'Class'}
+    });
+
+    attendance= mongoose.model('Attendance', attendanceSchema);
+
+    //Create two Rank entities
+    var blackBelt = new rank({
+      "name": "Black Belt",
+      "sequence": 1,
+      "color": "Black"
+    });
+    blackBelt.save(function (err, blackBelt){
+      if (err) return console.error(err);
+    });
+
+});//Populate with a couple of entities
+
+mongoose.connect(env.get("DBHOST"));
+console.log('MONGOOSE.MODELS.MYUH: ', mongoose.models.Student);
+module.exports = {
+  "mongoose": mongoose,
+  "student": mongoose.models.Student,
+  "rank": mongoose.models.Rank,
+  "course": mongoose.models.Course,
+  "attendance": mongoose.models.Attendance,
+  "healthCheck": function (req, res, next){
+      if (health.connected)
+      {
+        next();
+      }
+      else{
+         next( new Error( "MongoDB: No connection found!" ) );
+      }
+  }
+};
 //methods that I need
 /*Student
 createStudent() done

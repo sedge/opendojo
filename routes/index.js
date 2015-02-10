@@ -1,5 +1,7 @@
 module.exports = function() {
   var router = require('express').Router();
+  var env = require('../lib/environment');
+  var db = require('../db');
 
   router.route('/students')
     .get(function(req, res, next) {
@@ -9,9 +11,30 @@ module.exports = function() {
           GET '/students' returns:
             - A status code of success/failure
             - The entire student list via an array of JSON objects bearing every student stored in DB
-      */
+      */console.log('db is', db);
+        db.mongoose.models.Student.find({}, function(err, students){
+        if(err) {
+          res.send('Database Error!', err);
+          return err;
+        }
 
-      res.status(500).send("Not yet implemented...");
+        if(res.status == 400) {
+          res.status(400).send('Invalid request body!');
+        }
+
+        if(res.status == 401) {
+          res.status(401).send('Invalid login credentials');
+        }
+
+        if(res.status == 500) {
+          // Inject logger info call here...
+        }
+
+        else {
+          res.status(200).json(students);
+        }
+
+      });
     })
     .post(function(req, res, next) {
       /* POST '/students' accepts:
