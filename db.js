@@ -24,13 +24,26 @@ db = mongoose.connection;
 
 //On disconnect
 db.on('disconnected', function () {
+    console.log('Mongoose default connection disconnected');
+    health.connected = false;       
+});
+
+db.on('disconnecting', function() {
     rank.remove({}, function(err){
       if(err){
         return "Error";
+      }else{
+        console.log("rank removed");
       }
     });
-    console.log('Mongoose default connection disconnected');
-    health.connected = false;       
+
+    student.remove({}, function(err){
+      if(err){
+        return "Error";
+      }else{
+        console.log("student removed");
+      }
+    });
 });
 
 //On error
@@ -108,12 +121,62 @@ db.once('open', function (callback) {
 
     var blackBelt = new rank({
       "name": "Black Belt",
-      "sequence": 1,
+      "sequence": 2,
       "color": "Black"
     });
 
     blackBelt.save(function (err, blackBelt){
       if (err) return console.error(err);
+    });
+
+    var whiteBelt = new rank({
+      "name": "White Belt",
+      "sequence": 1,
+      "color": "White"
+    });
+
+    whiteBelt.save(function (err, whiteBelt){
+      if (err) return console.error(err);
+    });
+
+    var newStud = new student({
+          "firstName": "Damon",
+          "lastName": "Salvatore",
+          "gender": "M",
+           "rankId": "54da74e15fac9fec3c848fab",
+           "healthInformation":"healthy",
+          "guardianInformation": "stephan", 
+           "email": "damon@salvatore.com", 
+          "membershipStatus": true,
+          "membershipExpiry": "2009-04-12T20:44:55",
+          "phone": "444-333-3333",
+          "birthDate": "2009-04-12T20:44:55"
+        });
+
+    newStud.save(function (err, newStud) {
+      if (err) { 
+        return console.log(err);
+      };
+    });
+
+    var newStud2 = new student({
+          "firstName": "Billy",
+          "lastName": "Madison",
+          "gender": "F",
+           "rankId": "54da74e15fac9fec3c848fab",
+           "healthInformation":"dead",
+          "guardianInformation": "bob", 
+           "email": "example@myface.com", 
+          "membershipStatus": false,
+          "membershipExpiry": "2009-04-12T20:44:55",
+          "phone": "454-323-3312",
+          "birthDate": "2004-04-12T20:44:55"
+        });
+
+    newStud2.save(function (err, newStud2) {
+      if (err) { 
+        return console.log(err);
+      };
     });
 });//Populate with a couple of entities
 
