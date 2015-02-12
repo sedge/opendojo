@@ -3,15 +3,30 @@ var assert = require('assert'),
   utils = require('../utils');
 
 describe('The GET \'/students/\' route', function(){
+  before(function(done){
+    // Because dry runs to spin up the server sometimes take more than 2s
+    this.timeout(5000);
+
+    utils.initServer(done);
+  });
+
+  after(function(done){
+    utils.killServer(done);
+  });
+
   it('should return a 200 status code and all the students when invoked with proper credentials', function(done){
-    done();
+    utils.apiSetup('get', '/students', 200, function(){
+      expect(body).to.exist;
+
+      done();
+    });
   });
 
   it('should return a 400 status code and a custom \'bad request\' error message when invoked with any invalid request body data', function(done){
     done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
@@ -25,7 +40,7 @@ describe('The POST \'/students/\' route', function(){
     done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
