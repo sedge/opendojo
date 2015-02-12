@@ -2,10 +2,10 @@ var env = require('./lib/environment');
 var mongoose = require('mongoose');
 
 //Variables for the schemas
-var schema; 
+var schema;
 var rankSchema;
-var rank; 
-var studentSchema; 
+var rank;
+var studentSchema;
 var student;
 var classSchema;
 var course;
@@ -25,23 +25,19 @@ db = mongoose.connection;
 //On disconnect
 db.on('disconnected', function () {
     console.log('Mongoose default connection disconnected');
-    health.connected = false;       
+    health.connected = false;
 });
 
 db.on('disconnecting', function() {
     rank.remove({}, function(err){
       if(err){
         return "Error";
-      }else{
-        console.log("rank removed");
       }
     });
 
     student.remove({}, function(err){
       if(err){
         return "Error";
-      }else{
-        console.log("student removed");
       }
     });
 });
@@ -68,7 +64,7 @@ db.once('open', function (callback) {
     console.log("connected");
      //Presumably connected
      schema = mongoose.Schema;
-    
+
     //Rank entity
     rankSchema = new schema({
         name: String,
@@ -85,13 +81,13 @@ db.once('open', function (callback) {
         gender:String,
         rankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
         healthInformation:String,
-        guardianInformation:String, 
-        email: {type: [String]}, 
+        guardianInformation:String,
+        email: {type: [String]},
         membershipStatus: Boolean,
         membershipExpiry:Date,
         phone:String,
         birthDate:Date
-    }); 
+    });
 
     student = mongoose.model('Student', studentSchema);
 
@@ -103,7 +99,7 @@ db.once('open', function (callback) {
         day_of_week: Number,
         start_time: Date,
         end_time: Date,
-        classType: String, 
+        classType: String,
         RanksAllowed: {type: [mongoose.Schema.ObjectId], ref:'Rank'}
     });
 
@@ -145,8 +141,8 @@ db.once('open', function (callback) {
           "gender": "M",
            "rankId": "54da74e15fac9fec3c848fab",
            "healthInformation":"healthy",
-          "guardianInformation": "stephan", 
-           "email": "damon@salvatore.com", 
+          "guardianInformation": "stephan",
+           "email": "damon@salvatore.com",
           "membershipStatus": true,
           "membershipExpiry": "2009-04-12T20:44:55",
           "phone": "444-333-3333",
@@ -154,7 +150,7 @@ db.once('open', function (callback) {
         });
 
     newStud.save(function (err, newStud) {
-      if (err) { 
+      if (err) {
         return console.log(err);
       };
     });
@@ -165,8 +161,8 @@ db.once('open', function (callback) {
           "gender": "F",
            "rankId": "54da74e15fac9fec3c848fab",
            "healthInformation":"dead",
-          "guardianInformation": "bob", 
-           "email": "example@myface.com", 
+          "guardianInformation": "bob",
+           "email": "example@myface.com",
           "membershipStatus": false,
           "membershipExpiry": "2009-04-12T20:44:55",
           "phone": "454-323-3312",
@@ -174,7 +170,7 @@ db.once('open', function (callback) {
         });
 
     newStud2.save(function (err, newStud2) {
-      if (err) { 
+      if (err) {
         return console.log(err);
       };
     });

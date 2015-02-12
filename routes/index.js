@@ -4,7 +4,6 @@ module.exports = function() {
   var log = require('../lib/logger');
   var db = require('../db');
 
-module.exports = function() {
   router.route('/students')
     .get(function(req, res, next) {
       /* GET '/students' accepts:
@@ -83,8 +82,6 @@ module.exports = function() {
 
         res.status(201).json(newStud);
       });
-
->>>>>>> Added database infra and route logic
   });
 
   router.route('/student/:id')
@@ -163,10 +160,6 @@ module.exports = function() {
           if(err) {
               return next(err);
           }
-
-          // if((!student && student !== false) || !(student.length>0)) {
-          //   throw new Error('No student matches that ID in the database!');
-          // }
 
           res.status(200).json(student);
         });
@@ -270,18 +263,24 @@ module.exports = function() {
       }
 
       else {
-        var rId = req.body.colour || req.params.colour;
+        var colour = req.body.colour || req.params.colour;
 
-        db.mongoose.models.Student.find({rankId: rId}, function(err, students) {
+        db.mongoose.models.Rank.find({color: colour}, function(err, rank){
           if (err) {
             return next(err);
           }
 
-          if (typeof(students) === undefined) {
-            return "Rank reference invalid!";
-          }
+          db.mongoose.models.Student.find({rankId: rank._id}, function(err, students) {
+            if (err) {
+              return next(err);
+            }
 
-          res.status(200).json(students);
+            if (typeof(students) === undefined) {
+              return "Rank reference invalid!";
+            }
+
+            res.status(200).json(students);
+          });
         });
       }
   });
