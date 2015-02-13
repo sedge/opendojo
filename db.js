@@ -53,6 +53,17 @@ db.on('error', function(error) {
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', function() {
   db.close(function () {
+    rank.remove({}, function(err){
+        if(err){
+          return "Error";
+        }
+      });
+
+    student.remove({}, function(err){
+      if(err){
+        return "Error";
+      }
+    });
     console.log('Mongoose default connection disconnected through app termination');
     process.exit(0);
   });
@@ -174,6 +185,17 @@ db.once('open', function (callback) {
         return console.log(err);
       };
     });
+
+    // FOR MOCHA TESTING:
+    // If we're running as a child process, let our parent know we're ready.
+    if (process.send) {
+      try {
+        process.send("serverStarted");
+      } catch ( e ) {
+        // exit the worker if master is gone
+        process.exit(1);
+      }
+    }
 });//Populate with a couple of entities
 
 mongoose.connect(env.get("DBHOST"));

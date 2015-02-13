@@ -4,7 +4,7 @@
  */
 
 // Host API
-require('./api/host');
+//require('./api/host');
 
 // Student API
 require('./api/student');

@@ -5,7 +5,7 @@ var assert = require('assert'),
 describe('The GET \'/students/\' route', function(){
   before(function(done){
     // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(5000);
+    this.timeout(6000);
 
     utils.initServer(done);
   });
@@ -15,8 +15,11 @@ describe('The GET \'/students/\' route', function(){
   });
 
   it('should return a 200 status code and all the students when invoked with proper credentials', function(done){
-    utils.apiSetup('get', '/students', 200, function(){
+    utils.apiSetup('get', '/students', 200, function(err, res, body){
+      expect(err).to.not.exist;
+
       expect(body).to.exist;
+      expect(body).to.be.an('array');
 
       done();
     });
@@ -54,7 +57,7 @@ describe('The GET \'/student/:id\' route', function(){
     done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
@@ -68,7 +71,7 @@ describe('The PUT \'/student/:id\' route', function(){
     done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
@@ -82,7 +85,7 @@ describe('The DELETE \'/student/:id\' route', function(){
     done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
@@ -96,7 +99,7 @@ describe('The GET \'/students/rank/:colour\' route', function(){
   done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
@@ -110,7 +113,7 @@ describe('The GET \'/students/member/:status\' route', function(){
   done();
   });
 
-  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
+  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done){
     done();
   });
 });
