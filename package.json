@@ -24,6 +24,7 @@
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-exec": "^0.4.6",
     "grunt-simple-mocha": "^0.4.0",
+    "less": "^2.4.0",
     "mocha": "^2.1.0",
     "request": "^2.51.0"
   }
