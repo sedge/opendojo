@@ -6,7 +6,7 @@
 1. Patch Requirements
 2. Logging
 3. Style Guide
-
+4. Unit Tests
 
 ### Final Patch Requirements
 
@@ -147,3 +147,6 @@ function blah() {
 }
 
 ```
+### Unit tests
+
+Prior to running unit tests _dbSamplesDel.js and _dbSamplesGen.js should be run as some of the tests require previously generated entities.
