@@ -1,31 +1,27 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
-var debug = require('debug')('nariyuki:server');
 var http = require('http');
+var log = require('../lib/logger');
+var env = require('../lib/environment');
 
 /**
  * Get port from environment and store in Express.
  */
-var habitat = require('habitat');
-var env = habitat.load('.env');
 var port = env.get('PORT') || '3000';
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port, function(){
-  console.log('Express running and listening on port', port);
+  log.info('Express running and listening on port ' + port);
 });
 
 /**
@@ -36,18 +32,16 @@ server.on('error', function(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-  ? 'Pipe ' + port
-  : 'Port ' + port
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      log.fatal(bind + ' requires elevated privileges');
       process.exit(1);
       break;
       case 'EADDRINUSE':
-        console.error(bind + ' is already in use');
+        log.fatal(bind + ' is already in use');
         process.exit(1);
         break;
         default:
@@ -60,9 +54,7 @@ server.on('error', function(error) {
  */
 server.on('listening', function() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-  ? 'pipe ' + addr
-  : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
 
   // FOR MOCHA TESTING:
   // If we're running as a child process, let our parent know we're ready.
@@ -75,5 +67,5 @@ server.on('listening', function() {
     }
   }
 
-  debug('Listening on ' + bind);
+  log.info('Listening on ' + bind);
 });

@@ -1,8 +1,9 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
+var log = require('./lib/logger');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var routes = require('./routes/index');
 
 var app = module.exports = express();
 
@@ -13,42 +14,36 @@ app.use(express.static(__dirname + '/public'));
 app.disable("x-powered-by");
 
 // TODO: Add favicon. See https://github.com/sedge/opendojo/issues/10
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/', function(req, res, next) {
-  res.status(200).send("Test route works");
-});
+// Connect to the dynamic routes file
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.send({
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.send({
-        message: err.message,
-        error: {}
+  if (err.status === 404) {
+    log.warn({
+      req: req,
+      res: res
     });
-});
+  } else {
+    log.error({
+      err: err,
+      req: req,
+      res: res
+    });
+  }
 
-module.exports = app;
+  res.status(err.status || 500);
+  res.send({
+    message: "Internal server error. See server logs for details."
+  });
+});

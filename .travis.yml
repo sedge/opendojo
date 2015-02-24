@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "0.10"
+before_install: npm install -g grunt-cli
+services:
+  - mongodb
+notifications:
+  email: false
+  irc: "irc.mozilla.org#filer"
+env:
+  - "HOST=\"http://127.0.0.1\" PORT=\"6565\""

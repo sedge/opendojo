@@ -1,6 +1,6 @@
 var assert = require('assert'),
   expect = require('chai').expect,
-  utils = require('./utils');
+  utils = require('../utils');
 
 describe('The parent route', function(){
   before(function(done){
@@ -19,7 +19,6 @@ describe('The parent route', function(){
   });
 
   it('should return a 404 status upon an incompatible verb request (post)', function(done){
-    utils.apiSetup('post', '/', 404, { stuff: "things" }, done);
+    utils.apiSetup('post', '/', 404, {stuff: "things"}, done);
   });
-
 });

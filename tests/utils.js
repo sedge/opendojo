@@ -1,10 +1,10 @@
-var fork = require("child_process").fork,
-      child,
-      habitat = require('habitat'),
-      env = habitat.load('.env'),
-      request = require('request'),
-      expect = require('chai').expect,
-      fullUrl = env.get('HOST') + ':' + env.get('PORT');
+var fork = require("child_process").fork;
+var child;
+var env = require('../lib/environment');
+var request = require('request');
+var expect = require('chai').expect;
+var fullUrl = env.get('HOST') + ':' + env.get('PORT');
+var log = require("../lib/logger");
 
 module.exports = {
   initServer: function(done){
@@ -19,7 +19,7 @@ module.exports = {
       throw "What happened with the fork?";
     });
     child.on('error', function(err) {
-      console.error(err);
+      log.error(err);
       child.kill();
     });
   },
