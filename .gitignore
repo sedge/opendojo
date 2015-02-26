@@ -30,3 +30,6 @@ node_modules
 
 # Database
 data/
+
+# Dist file for front end single page application
+public/app.js
