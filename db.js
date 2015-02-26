@@ -16,28 +16,16 @@ var student;
 var course;
 var attendance;
 
-// Variable for connection condition
-var health = {
-  connected: false,
-  err: null
-};
-
-
 var connection = mongoose.connection;
-
 
 connection.on('disconnected', function () {
     log.info('Mongoose default connection disconnected');
-    health.connected = false;
 });
 
 connection.on('error', function(error) {
-    health.connected =  false;
-    health.err = error;
-    log.error({
-            message: "Mongoose default connection error:",
-            err: error
-    });
+    var port = env.get("DBHOST");
+    log.fatal(port + ' connection error--'+error);
+    process.exit(1);
 });
 
 // If the Node process ends, close the Mongoose connection
@@ -49,7 +37,6 @@ process.on('SIGINT', function() {
 });
 
 connection.once('open', function (callback) {
-  health.connected = true;
   log.info('connected');
   schema = mongoose.Schema;
 
@@ -144,13 +131,5 @@ module.exports = {
   "rank": mongoose.models.Rank,
   "course": mongoose.models.Course,
   "attendance": mongoose.models.Attendance,
-  "healthCheck": function (req, res, next) {
-    if (!health.connected) {
-      return next( new Error( "MongoDB: No connection found!" ) );
-    }
-    else {
-       next();
-    }
-  }
 };
 

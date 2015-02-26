@@ -147,6 +147,3 @@ function blah() {
 }
 
 ```
-### Unit tests
-
-Prior to running unit tests _dbSamplesDel.js and _dbSamplesGen.js should be run as some of the tests require previously generated entities.
