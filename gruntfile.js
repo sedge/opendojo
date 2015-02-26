@@ -1,4 +1,15 @@
 module.exports = function(grunt){
+  // Make grunt auto-load 3rd party tasks
+  // and show the elapsed time of each task when
+  // it runs
+  require('time-grunt')(grunt);
+  require('jit-grunt')(grunt, {
+    jshint: "grunt-jsxhint"
+  });
+
+  var reactify = require('grunt-react').browserify;
+  var babelify = require('babelify');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
@@ -6,7 +17,13 @@ module.exports = function(grunt){
         'Gruntfile.js',
         'server/**/*.js',
         'server/*.js'
-      ]
+        '!public/app.js',
+        'react/*.jsx',
+        'react/**/*.jsx'
+      ],
+      options: {
+        esnext: true
+      }
     },
     //test suite
     exec: {
@@ -23,13 +40,37 @@ module.exports = function(grunt){
         stdout: true,
         stderr: true
       }
-    }
+    },
+    browserify: {
+      dev: {
+        files: {
+          'public/app.js': ['react/index.jsx']
+        },
+        options: {
+          alias: [
+            "react:react", "React:react"
+          ],
+          transform: [reactify, babelify],
+          watch: true,
+          keepAlive: true
+        }
+      }
+    },
+    clean: ['dist/app.js']
   });
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-exec');
 
   // Default is the same as test, for travis-ci
   grunt.registerTask('default', 'test');
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
+  grunt.registerTask('build', function(env) {
+    var tasks;
+
+    if (env === "prod") {
+      tasks = ['jshint', 'browserify:prod'];
+    } else {
+      tasks = ['jshint', 'browserify:dev'];
+    }
+
+    grunt.task.run(tasks);
+  });
 };
