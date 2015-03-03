@@ -14,7 +14,6 @@ function hooks() {
   });
 }
 
-//Before the scripts are run the _dbSamplesGen should be ran to generate rank ids
 describe('The GET \'/students/\' route', function() {
   
   hooks();
