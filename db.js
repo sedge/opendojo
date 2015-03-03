@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 var env = require('./lib/environment');
 var mongoose = require('mongoose');
 var log = require('./lib/logger');
+var idValidator = require('mongoose-id-validator');
 var dbHealth = new EventEmitter();
 
 dbHealth.connected = false;
@@ -28,7 +29,7 @@ connection.on('disconnected', function () {
 
 connection.on('error', function(error) {
     var port = env.get("DBHOST");
-    log.fatal(port + ' connection error--'+error);
+    log.fatal(port + ' connection error--'+ error);
     process.exit(1);
 });
 
@@ -48,9 +49,18 @@ connection.once('open', function (callback) {
   * Rank entity definition
   */
   rankSchema = new schema({
-    name: String,
-    sequence: Number,
-    color: String
+    name: {
+      type: String,
+      required: true
+    },
+    sequence: {
+      type: Number,
+      required: true
+    },
+    color: {
+      type: String,
+      required: true
+    }
   });
 
   rank = mongoose.model('Rank', rankSchema);
@@ -59,9 +69,18 @@ connection.once('open', function (callback) {
   * Student entity definition
   */
   studentSchema = new schema({
-    firstName: String,
-    lastName: String,
-    gender: String,
+    firstName: { 
+      type: String, 
+      required: true 
+    },
+    lastName: { 
+      type: String, 
+      required: true 
+    },
+    gender: { 
+      type: String, 
+      required: true 
+    },
     rankId : {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Rank'
@@ -69,26 +88,55 @@ connection.once('open', function (callback) {
     healthInformation: String,
     guardianInformation: String,
     email: {
-      type: [String]
+      type: [String], 
+      required: true
     },
     membershipStatus: Boolean,
     membershipExpiry: Date,
-    phone: String,
-    birthDate: Date
+    phone: { 
+      type: String, 
+      required: true 
+    },
+    birthDate: {
+      type: Date,
+      required: true
+    }
   });
 
+  //The mongoose-id-validator verifies that the rank ID assigned
+  //to the student actually exists
+  studentSchema.plugin(idValidator);
+  
   student = mongoose.model('Student', studentSchema);
 
   /**
   * Class entity definition
   */
   classSchema = new schema({
-    class_title: String,
-    start_date : Date,
-    end_date: Date,
-    day_of_week: Number,
-    start_time: Date,
-    end_time: Date,
+    classTitle: {
+      type: String,
+      required: true
+    },
+    startDate : {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date,
+      required: true
+    },
+    dayOFWeek: {
+      type: Number,
+      required: true
+    },
+    startTime: {
+      type: Date,
+      required: true
+    },
+    endTime: {
+      type: Date,
+      required: true
+    },
     classType: String,
     RanksAllowed: {
       type: [mongoose.Schema.ObjectId],
@@ -96,26 +144,39 @@ connection.once('open', function (callback) {
     }
   });
 
+  //validates that the RanksAllowed holds actual rank Ids
+  classSchema.plugin(idValidator);
+
   course= mongoose.model('Class', classSchema);
 
   /**
   * Attendance entity definition
   */
   attendanceSchema = new schema({
-    student_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref:'Student'
+    studentID: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref:'Student',
+      required: true
     },
-    classDate: Date,
-    classTime: Date,
+    classDate: {
+      type: Date,
+      required: true
+    },
+    classTime: {
+      type: Date,
+      required: true
+    },
     classID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Class'
+      ref: 'Class',
+      required: true
     }
   });
 
+  //Validates that the classID, studentID are correct 
+  attendanceSchema.plugin(idValidator);
   attendance = mongoose.model('Attendance', attendanceSchema);
-
+  
   dbHealth.connected = true;
   dbHealth.emit("connected");
 });

@@ -8,3 +8,6 @@ require('./api/host');
 
 // Student API
 require('./api/student');
+
+// Rank API
+require('./api/rank');
