@@ -19,7 +19,7 @@ describe('The GET \'/ranks/\' route', function() {
   hooks();
   
   it('should return a 200 status code and all the ranks when invoked with proper credentials', function(done) {
-    
+    var idToDelete;
     var newRank = {
         "name": "Black",
         "sequence": 1,
@@ -38,12 +38,16 @@ describe('The GET \'/ranks/\' route', function() {
           return;
         } 
         expect(body).to.have.property(prop).deep.equal(newRank[prop]);
+        idToDelete=body._id;
       });
       utils.apiSetup('get', '/ranks', 200, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
         expect(body).to.be.an('array');
-        done();
+        utils.apiSetup('delete', '/rank/' + idToDelete, 204, function(err, res, body) {
+          expect(err).to.not.exist;
+          done();
+        });
       });
     });
   });

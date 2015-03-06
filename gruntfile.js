@@ -7,7 +7,7 @@ module.exports = function(grunt){
     //test suite
     exec: {
       run_mocha: {
-        command: 'mocha --timeout 1000 --recursive --reporter spec tests',
+        command: 'mocha --timeout 1000 --recursive --reporter spec tests/index.js',
         options: {
           // Use the env from the process, but alter a few things for logging
           env: (function(env) {
