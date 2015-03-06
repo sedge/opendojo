@@ -12,4 +12,7 @@ require('./api/student');
 // Rank API
 require('./api/rank');
 
+// Class Api
+require('./api/course')
+
 
