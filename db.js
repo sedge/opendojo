@@ -1,6 +1,7 @@
 var env = require('./lib/environment');
 var mongoose = require('mongoose');
 var log = require('./lib/logger');
+var idValidator = require('mongoose-id-validator');
 
 // Variables for the schemas
 var schema;
@@ -16,28 +17,16 @@ var student;
 var course;
 var attendance;
 
-// Variable for connection condition
-var health = {
-  connected: false,
-  err: null
-};
-
-
 var connection = mongoose.connection;
-
 
 connection.on('disconnected', function () {
     log.info('Mongoose default connection disconnected');
-    health.connected = false;
 });
 
 connection.on('error', function(error) {
-    health.connected =  false;
-    health.err = error;
-    log.error({
-            message: "Mongoose default connection error:",
-            err: error
-    });
+    var port = env.get("DBHOST");
+    log.fatal(port + ' connection error--'+error);
+    process.exit(1);
 });
 
 // If the Node process ends, close the Mongoose connection
@@ -49,7 +38,6 @@ process.on('SIGINT', function() {
 });
 
 connection.once('open', function (callback) {
-  health.connected = true;
   log.info('connected');
   schema = mongoose.Schema;
 
@@ -57,10 +45,21 @@ connection.once('open', function (callback) {
   * Rank entity definition
   */
   rankSchema = new schema({
-    name: String,
-    sequence: Number,
-    color: String
+    name: {
+      type: String,
+      required: true
+    },
+    sequence: {
+      type: Number,
+      required: true
+    },
+    color: {
+      type: String,
+      required: true
+    }
   });
+
+  rankSchema.plugin(idValidator);
 
   rank = mongoose.model('Rank', rankSchema);
 
@@ -68,9 +67,18 @@ connection.once('open', function (callback) {
   * Student entity definition
   */
   studentSchema = new schema({
-    firstName: String,
-    lastName: String,
-    gender: String,
+    firstName: { 
+      type: String, 
+      required: true 
+    },
+    lastName: { 
+      type: String, 
+      required: true 
+    },
+    gender: { 
+      type: String, 
+      required: true 
+    },
     rankId : {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Rank'
@@ -78,32 +86,61 @@ connection.once('open', function (callback) {
     healthInformation: String,
     guardianInformation: String,
     email: {
-      type: [String]
+      type: [String], 
+      required: true
     },
     membershipStatus: Boolean,
     membershipExpiry: Date,
-    phone: String,
-    birthDate: Date
+    phone: { 
+      type: String, 
+      required: true 
+    },
+    birthDate: {
+      type: Date,
+      required: true
+    }
   });
 
+  studentSchema.plugin(idValidator);
+  
   student = mongoose.model('Student', studentSchema);
 
   /**
   * Class entity definition
   */
   classSchema = new schema({
-    class_title: String,
-    start_date : Date,
-    end_date: Date,
-    day_of_week: Number,
-    start_time: Date,
-    end_time: Date,
+    class_title: {
+      type: String,
+      required: true
+    },
+    start_date : {
+      type: Date,
+      required: true
+    },
+    end_date: {
+      type: Date,
+      required: true
+    },
+    day_of_week: {
+      type: Number,
+      required: true
+    },
+    start_time: {
+      type: Date,
+      required: true
+    },
+    end_time: {
+      type: Date,
+      required: true
+    },
     classType: String,
     RanksAllowed: {
       type: [mongoose.Schema.ObjectId], 
       ref:'Rank'
     }
   });
+
+  classSchema.plugin(idValidator);
 
   course= mongoose.model('Class', classSchema);
 
@@ -113,15 +150,25 @@ connection.once('open', function (callback) {
   attendanceSchema = new schema({
     student_id: {
       type: mongoose.Schema.Types.ObjectId, 
-      ref:'Student'
+      ref:'Student',
+      required: true
     },
-    classDate: Date,
-    classTime: Date,
+    classDate: {
+      type: Date,
+      required: true
+    },
+    classTime: {
+      type: Date,
+      required: true
+    },
     classID: {
       type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Class'
+      ref: 'Class',
+      required: true
     }
   });
+
+  attendanceSchema.plugin(idValidator);
 
   attendance= mongoose.model('Attendance', attendanceSchema);
   // FOR MOCHA TESTING:
@@ -144,13 +191,5 @@ module.exports = {
   "rank": mongoose.models.Rank,
   "course": mongoose.models.Course,
   "attendance": mongoose.models.Attendance,
-  "healthCheck": function (req, res, next) {
-    if (!health.connected) {
-      return next( new Error( "MongoDB: No connection found!" ) );
-    }
-    else {
-       next();
-    }
-  }
 };
 

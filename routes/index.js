@@ -49,10 +49,7 @@ module.exports = function() {
             - If successful, the new student object data passed in by the request
     */
     .post(function(req, res, next) {
-      var validData = true;
-      var status=false;
-      var expiry="";
-
+    
       if(!req.body) {
         log.warn({
           req: req,
@@ -62,19 +59,6 @@ module.exports = function() {
         return;
       }
       
-      if ((!req.body.firstName) || (!req.body.lastName) || (!req.body.gender) || (!req.body.email) || (!req.body.phone) || (!req.body.birthDate)) {
-        validData = false;
-      }
-
-      if (req.body.membershipStatus) {
-        status = req.body.membershipStatus;
-      }
-
-      if (req.body.membershipExpiry ) {
-        expiry = req.body.membershipExpiry;
-      }
-
-      if (validData) {
         var student = db.mongoose.models.Student;
 
         var newStud = new student({
@@ -98,18 +82,14 @@ module.exports = function() {
               req: req,
               res: res
             });
+            if (err.name ==="ValidationError") {
+               res.status(400).send('Invalid data!');
+               return;
+            }
             return next(err);
           }
           res.status(201).json(newStud);
         });
-      }
-      else {
-        log.warn({
-          req: req,
-          res: res
-        });
-        res.status(400).send('Invalid request body!');
-      }
   });
 
   router.route('/student/:id')
@@ -259,10 +239,7 @@ module.exports = function() {
     })
   
     .post(function(req, res, next) {
-      var validData = true;
-      var status=false;
-      var expiry="";
-
+  
       if(!req.body) {
         log.warn({
           req: req,
@@ -272,11 +249,6 @@ module.exports = function() {
         return;
       }
       
-      if ((!req.body.name) || (!req.body.sequence) || (!req.body.color)) {
-        validData = false;
-      }
-
-      if (validData) {
         var rank = db.mongoose.models.Rank;
 
         var newRank = new rank({
@@ -292,19 +264,13 @@ module.exports = function() {
               req: req,
               res: res
             });
+            if (err.name === "ValidationError") {
+              res.status(400).send('Invalid data!');
+            }
             return next(err);
           }
           res.status(201).json(newRank);
         });
-      }
-      else {
-        log.warn({
-          req: req,
-          res: res
-        });
-        res.status(400).send('Invalid request body!');
-      }
-  
    });
 
 router.route('/rank/:id')
