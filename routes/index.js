@@ -197,13 +197,13 @@ module.exports = function() {
             res: res,
             err: err
           });
-          res.status(204).send('Operation completed');
+          return res.status(204).send('Operation completed');
         }
       log.info({
         req: req,
         res: res
       });
-      res.status(204).send('Operation completed');
+      return res.status(204).send('Operation completed');
     });
   });
 
@@ -375,13 +375,13 @@ router.route('/rank/:id')
             res: res,
             err: err
           });
-          res.status(204).send('Operation completed');
+          return res.status(204).send('Operation completed');
         }
       log.info({
         req: req,
         res: res
       });
-      res.status(204).send('Operation completed');
+      return res.status(204).send('Operation completed');
     });
   });
 
