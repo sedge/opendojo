@@ -180,11 +180,7 @@ describe('The GET \'/student/:id\' route', function() {
 
   it('should return a 200 status code and the corresponding student object when invoked with proper credentials, and a valid id string', function(done) {
     var rankId;
-    var newRank = {
-        "name": "GrayTest",
-        "sequence": 2,
-        "color": "grayTest"
-    };
+
     utils.apiSetup('post', '/ranks', 201, newRank, function(err, res, body) {
       var emailArr = ["damon@salvatore.com"];
       var newRank = {
