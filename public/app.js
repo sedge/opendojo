@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/k.sedge/Documents/Projects/opendojo/node_modules/grunt-browserify/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -57,7 +57,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],2:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Accordion.js":[function(require,module,exports){
 var React = require('react');
 var PanelGroup = require('./PanelGroup');
 
@@ -72,7 +72,7 @@ var Accordion = React.createClass({displayName: "Accordion",
 });
 
 module.exports = Accordion;
-},{"./PanelGroup":39,"react":"react"}],3:[function(require,module,exports){
+},{"./PanelGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Affix.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var AffixMixin = require('./AffixMixin');
@@ -96,7 +96,7 @@ var Affix = React.createClass({displayName: "Affix",
 });
 
 module.exports = Affix;
-},{"./AffixMixin":4,"./utils/domUtils":60,"./utils/joinClasses":61,"react":"react"}],4:[function(require,module,exports){
+},{"./AffixMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js":[function(require,module,exports){
 /* global window, document */
 
 var React = require('react');
@@ -228,7 +228,7 @@ var AffixMixin = {
 };
 
 module.exports = AffixMixin;
-},{"./utils/EventListener":53,"./utils/domUtils":60,"react":"react"}],5:[function(require,module,exports){
+},{"./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Alert.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -288,7 +288,7 @@ var Alert = React.createClass({displayName: "Alert",
 });
 
 module.exports = Alert;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],6:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Badge.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var ValidComponentChildren = require('./utils/ValidComponentChildren');
@@ -322,7 +322,7 @@ var Badge = React.createClass({displayName: "Badge",
 
 module.exports = Badge;
 
-},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],7:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js":[function(require,module,exports){
 var React = require('react');
 var constants = require('./constants');
 
@@ -358,7 +358,7 @@ var BootstrapMixin = {
 };
 
 module.exports = BootstrapMixin;
-},{"./constants":50,"react":"react"}],8:[function(require,module,exports){
+},{"./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -447,7 +447,7 @@ var Button = React.createClass({displayName: "Button",
 
 module.exports = Button;
 
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],9:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -485,7 +485,7 @@ var ButtonGroup = React.createClass({displayName: "ButtonGroup",
 });
 
 module.exports = ButtonGroup;
-},{"./BootstrapMixin":7,"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],10:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonToolbar.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -516,7 +516,7 @@ var ButtonToolbar = React.createClass({displayName: "ButtonToolbar",
 });
 
 module.exports = ButtonToolbar;
-},{"./BootstrapMixin":7,"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],11:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Carousel.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -806,7 +806,7 @@ var Carousel = React.createClass({displayName: "Carousel",
 });
 
 module.exports = Carousel;
-},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],12:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CarouselItem.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -900,7 +900,7 @@ var CarouselItem = React.createClass({displayName: "CarouselItem",
 });
 
 module.exports = CarouselItem;
-},{"./utils/TransitionEvents":55,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],13:[function(require,module,exports){
+},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Col.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -975,7 +975,7 @@ var Col = React.createClass({displayName: "Col",
 });
 
 module.exports = Col;
-},{"./constants":50,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],14:[function(require,module,exports){
+},{"./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js":[function(require,module,exports){
 var React = require('react');
 var TransitionEvents = require('./utils/TransitionEvents');
 
@@ -1097,7 +1097,7 @@ var CollapsableMixin = {
 
 module.exports = CollapsableMixin;
 
-},{"./utils/TransitionEvents":55,"react":"react"}],15:[function(require,module,exports){
+},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownButton.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1224,7 +1224,7 @@ var DropdownButton = React.createClass({displayName: "DropdownButton",
 
 module.exports = DropdownButton;
 
-},{"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./DropdownMenu":16,"./DropdownStateMixin":17,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],16:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1271,7 +1271,7 @@ var DropdownMenu = React.createClass({displayName: "DropdownMenu",
 });
 
 module.exports = DropdownMenu;
-},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],17:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js":[function(require,module,exports){
 var React = require('react');
 var EventListener = require('./utils/EventListener');
 
@@ -1352,7 +1352,7 @@ var DropdownStateMixin = {
 };
 
 module.exports = DropdownStateMixin;
-},{"./utils/EventListener":53,"react":"react"}],18:[function(require,module,exports){
+},{"./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js":[function(require,module,exports){
 /*global document */
 // TODO: listen for onTransitionEnd to remove el
 function getElementsAndSelf (root, classes){
@@ -1423,7 +1423,7 @@ module.exports = {
   }
 };
 
-},{}],19:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Glyphicon.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1457,7 +1457,7 @@ var Glyphicon = React.createClass({displayName: "Glyphicon",
 });
 
 module.exports = Glyphicon;
-},{"./BootstrapMixin":7,"./constants":50,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],20:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Grid.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -1488,7 +1488,7 @@ var Grid = React.createClass({displayName: "Grid",
 });
 
 module.exports = Grid;
-},{"./utils/joinClasses":61,"react":"react"}],21:[function(require,module,exports){
+},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Input.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1746,7 +1746,7 @@ var Input = React.createClass({displayName: "Input",
 
 module.exports = Input;
 
-},{"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],22:[function(require,module,exports){
+},{"./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js":[function(require,module,exports){
 // https://www.npmjs.org/package/react-interpolate-component
 'use strict';
 
@@ -1830,7 +1830,7 @@ var Interpolate = React.createClass({
 
 module.exports = Interpolate;
 
-},{"./utils/Object.assign":54,"./utils/ValidComponentChildren":56,"react":"react"}],23:[function(require,module,exports){
+},{"./utils/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Jumbotron.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -1846,7 +1846,7 @@ var Jumbotron = React.createClass({displayName: "Jumbotron",
 });
 
 module.exports = Jumbotron;
-},{"./utils/joinClasses":61,"react":"react"}],24:[function(require,module,exports){
+},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Label.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1874,7 +1874,7 @@ var Label = React.createClass({displayName: "Label",
 });
 
 module.exports = Label;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],25:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroup.js":[function(require,module,exports){
 var React = require('react');
 var classSet = require('./utils/classSet');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -1906,7 +1906,7 @@ var ListGroup = React.createClass({displayName: "ListGroup",
 
 module.exports = ListGroup;
 
-},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"react":"react"}],26:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroupItem.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2003,7 +2003,7 @@ var ListGroupItem = React.createClass({displayName: "ListGroupItem",
 
 module.exports = ListGroupItem;
 
-},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],27:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2063,7 +2063,7 @@ var MenuItem = React.createClass({displayName: "MenuItem",
 });
 
 module.exports = MenuItem;
-},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],28:[function(require,module,exports){
+},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Modal.js":[function(require,module,exports){
 /* global document:false */
 
 var React = require('react');
@@ -2227,7 +2227,7 @@ var Modal = React.createClass({displayName: "Modal",
 
 module.exports = Modal;
 
-},{"./BootstrapMixin":7,"./FadeMixin":18,"./utils/EventListener":53,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],29:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./FadeMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js","./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ModalTrigger.js":[function(require,module,exports){
 var React = require('react');
 var OverlayMixin = require('./OverlayMixin');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -2290,7 +2290,7 @@ var ModalTrigger = React.createClass({displayName: "ModalTrigger",
 });
 
 module.exports = ModalTrigger;
-},{"./OverlayMixin":33,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"react":"react"}],30:[function(require,module,exports){
+},{"./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2404,7 +2404,7 @@ var Nav = React.createClass({displayName: "Nav",
 
 module.exports = Nav;
 
-},{"./BootstrapMixin":7,"./CollapsableMixin":14,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/domUtils":60,"./utils/joinClasses":61,"react":"react"}],31:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2469,7 +2469,7 @@ var NavItem = React.createClass({displayName: "NavItem",
 });
 
 module.exports = NavItem;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],32:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Navbar.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2610,7 +2610,7 @@ var Navbar = React.createClass({displayName: "Navbar",
 
 module.exports = Navbar;
 
-},{"./BootstrapMixin":7,"./Nav":30,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],33:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js":[function(require,module,exports){
 var React = require('react');
 var CustomPropTypes = require('./utils/CustomPropTypes');
 
@@ -2696,7 +2696,7 @@ module.exports = {
   }
 };
 
-},{"./utils/CustomPropTypes":52,"react":"react"}],34:[function(require,module,exports){
+},{"./utils/CustomPropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/CustomPropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayTrigger.js":[function(require,module,exports){
 var React = require('react');
 var OverlayMixin = require('./OverlayMixin');
 var domUtils = require('./utils/domUtils');
@@ -2924,7 +2924,7 @@ var OverlayTrigger = React.createClass({displayName: "OverlayTrigger",
 });
 
 module.exports = OverlayTrigger;
-},{"./OverlayMixin":33,"./utils/Object.assign":54,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/domUtils":60,"react":"react"}],35:[function(require,module,exports){
+},{"./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./utils/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageHeader.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -2940,7 +2940,7 @@ var PageHeader = React.createClass({displayName: "PageHeader",
 });
 
 module.exports = PageHeader;
-},{"./utils/joinClasses":61,"react":"react"}],36:[function(require,module,exports){
+},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageItem.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2998,7 +2998,7 @@ var PageItem = React.createClass({displayName: "PageItem",
 });
 
 module.exports = PageItem;
-},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],37:[function(require,module,exports){
+},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Pager.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -3035,7 +3035,7 @@ var Pager = React.createClass({displayName: "Pager",
 });
 
 module.exports = Pager;
-},{"./utils/ValidComponentChildren":56,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],38:[function(require,module,exports){
+},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Panel.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3235,7 +3235,7 @@ var Panel = React.createClass({displayName: "Panel",
 
 module.exports = Panel;
 
-},{"./BootstrapMixin":7,"./CollapsableMixin":14,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],39:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3322,7 +3322,7 @@ var PanelGroup = React.createClass({displayName: "PanelGroup",
 });
 
 module.exports = PanelGroup;
-},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],40:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Popover.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3381,7 +3381,7 @@ var Popover = React.createClass({displayName: "Popover",
 });
 
 module.exports = Popover;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],41:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ProgressBar.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var Interpolate = require('./Interpolate');
@@ -3516,7 +3516,7 @@ var ProgressBar = React.createClass({displayName: "ProgressBar",
 
 module.exports = ProgressBar;
 
-},{"./BootstrapMixin":7,"./Interpolate":22,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],42:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Interpolate":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Row.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -3543,7 +3543,7 @@ var Row = React.createClass({displayName: "Row",
 });
 
 module.exports = Row;
-},{"./utils/joinClasses":61,"react":"react"}],43:[function(require,module,exports){
+},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SplitButton.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3650,7 +3650,7 @@ var SplitButton = React.createClass({displayName: "SplitButton",
 
 module.exports = SplitButton;
 
-},{"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./DropdownMenu":16,"./DropdownStateMixin":17,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],44:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SubNav.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3782,7 +3782,7 @@ var SubNav = React.createClass({displayName: "SubNav",
 
 module.exports = SubNav;
 
-},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],45:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabPane.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3865,7 +3865,7 @@ var TabPane = React.createClass({displayName: "TabPane",
 });
 
 module.exports = TabPane;
-},{"./utils/TransitionEvents":55,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],46:[function(require,module,exports){
+},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabbedArea.js":[function(require,module,exports){
 var React = require('react');
 var BootstrapMixin = require('./BootstrapMixin');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -4005,7 +4005,7 @@ var TabbedArea = React.createClass({displayName: "TabbedArea",
 });
 
 module.exports = TabbedArea;
-},{"./BootstrapMixin":7,"./Nav":30,"./NavItem":31,"./utils/ValidComponentChildren":56,"./utils/cloneWithProps":58,"react":"react"}],47:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Table.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4042,7 +4042,7 @@ var Table = React.createClass({displayName: "Table",
 });
 
 module.exports = Table;
-},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],48:[function(require,module,exports){
+},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Tooltip.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4092,7 +4092,7 @@ var Tooltip = React.createClass({displayName: "Tooltip",
 });
 
 module.exports = Tooltip;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],49:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Well.js":[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4119,7 +4119,7 @@ var Well = React.createClass({displayName: "Well",
 });
 
 module.exports = Well;
-},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],50:[function(require,module,exports){
+},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js":[function(require,module,exports){
 module.exports = {
   CLASSES: {
     'alert': 'alert',
@@ -4422,7 +4422,7 @@ module.exports = {
   ]
 };
 
-},{}],51:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js":[function(require,module,exports){
 module.exports = {
   Accordion: require('./Accordion'),
   Affix: require('./Affix'),
@@ -4474,7 +4474,7 @@ module.exports = {
   Well: require('./Well')
 };
 
-},{"./Accordion":2,"./Affix":3,"./AffixMixin":4,"./Alert":5,"./Badge":6,"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./ButtonToolbar":10,"./Carousel":11,"./CarouselItem":12,"./Col":13,"./CollapsableMixin":14,"./DropdownButton":15,"./DropdownMenu":16,"./DropdownStateMixin":17,"./FadeMixin":18,"./Glyphicon":19,"./Grid":20,"./Input":21,"./Interpolate":22,"./Jumbotron":23,"./Label":24,"./ListGroup":25,"./ListGroupItem":26,"./MenuItem":27,"./Modal":28,"./ModalTrigger":29,"./Nav":30,"./NavItem":31,"./Navbar":32,"./OverlayMixin":33,"./OverlayTrigger":34,"./PageHeader":35,"./PageItem":36,"./Pager":37,"./Panel":38,"./PanelGroup":39,"./Popover":40,"./ProgressBar":41,"./Row":42,"./SplitButton":43,"./SubNav":44,"./TabPane":45,"./TabbedArea":46,"./Table":47,"./Tooltip":48,"./Well":49}],52:[function(require,module,exports){
+},{"./Accordion":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Accordion.js","./Affix":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Affix.js","./AffixMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js","./Alert":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Alert.js","./Badge":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Badge.js","./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./ButtonToolbar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonToolbar.js","./Carousel":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Carousel.js","./CarouselItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CarouselItem.js","./Col":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Col.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./DropdownButton":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownButton.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./FadeMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js","./Glyphicon":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Glyphicon.js","./Grid":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Grid.js","./Input":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Input.js","./Interpolate":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js","./Jumbotron":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Jumbotron.js","./Label":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Label.js","./ListGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroup.js","./ListGroupItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroupItem.js","./MenuItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js","./Modal":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Modal.js","./ModalTrigger":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ModalTrigger.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","./Navbar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Navbar.js","./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./OverlayTrigger":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayTrigger.js","./PageHeader":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageHeader.js","./PageItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageItem.js","./Pager":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Pager.js","./Panel":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Panel.js","./PanelGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js","./Popover":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Popover.js","./ProgressBar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ProgressBar.js","./Row":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Row.js","./SplitButton":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SplitButton.js","./SubNav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SubNav.js","./TabPane":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabPane.js","./TabbedArea":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabbedArea.js","./Table":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Table.js","./Tooltip":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Tooltip.js","./Well":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Well.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/CustomPropTypes.js":[function(require,module,exports){
 var React = require('react');
 
 var ANONYMOUS = '<<anonymous>>';
@@ -4537,7 +4537,7 @@ function createMountableChecker() {
 }
 
 module.exports = CustomPropTypes;
-},{"react":"react"}],53:[function(require,module,exports){
+},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -4593,7 +4593,7 @@ var EventListener = {
 
 module.exports = EventListener;
 
-},{}],54:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -4642,7 +4642,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],55:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -4757,7 +4757,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{}],56:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js":[function(require,module,exports){
 var React = require('react');
 
 /**
@@ -4848,7 +4848,7 @@ module.exports = {
   numberOf: numberOfValidComponents,
   hasValidComponent: hasValidComponent
 };
-},{"react":"react"}],57:[function(require,module,exports){
+},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -4888,7 +4888,7 @@ function cx(classNames) {
 }
 
 module.exports = cx;
-},{}],58:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -5032,7 +5032,7 @@ function cloneWithProps(child, props) {
 }
 
 module.exports = cloneWithProps;
-},{"./Object.assign":54,"./joinClasses":61,"react":"react"}],59:[function(require,module,exports){
+},{"./Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js":[function(require,module,exports){
 /**
  * Safe chained function
  *
@@ -5058,7 +5058,7 @@ function createChainedFunction(one, two) {
 }
 
 module.exports = createChainedFunction;
-},{}],60:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js":[function(require,module,exports){
 
 /**
  * Shortcut to compute element style
@@ -5168,7 +5168,7 @@ module.exports = {
   getPosition: getPosition,
   offsetParent: offsetParent
 };
-},{}],61:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -5210,7 +5210,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],62:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/ButtonLink.js":[function(require,module,exports){
 var React = require('react');
 
 var Button = require('react-bootstrap/lib/Button');
@@ -5250,7 +5250,7 @@ var ButtonLink = React.createClass({displayName: "ButtonLink",
 
 module.exports = ButtonLink;
 
-},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/Button":8,"react-router":94}],63:[function(require,module,exports){
+},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js":[function(require,module,exports){
 var React = require('react');
 var classSet = require('react/lib/cx');
 var assign = require('react/lib/Object.assign');
@@ -5327,7 +5327,7 @@ module.exports = {
   }
 };
 
-},{"react":"react","react/lib/Object.assign":108,"react/lib/cx":109}],64:[function(require,module,exports){
+},{"react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/MenuItemLink.js":[function(require,module,exports){
 var React = require('react');
 var classSet = require('react/lib/cx');
 
@@ -5372,7 +5372,7 @@ var MenuItemLink = React.createClass({displayName: "MenuItemLink",
 
 module.exports = MenuItemLink;
 
-},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/MenuItem":27,"react-bootstrap/lib/utils/joinClasses":61,"react-router":94,"react/lib/cx":109}],65:[function(require,module,exports){
+},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/MenuItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js","react-bootstrap/lib/utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/NavItemLink.js":[function(require,module,exports){
 var React = require('react');
 
 var NavItem = require('react-bootstrap/lib/NavItem');
@@ -5412,7 +5412,7 @@ var NavItemLink = React.createClass({displayName: "NavItemLink",
 
 module.exports = NavItemLink;
 
-},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/NavItem":31,"react-router":94}],66:[function(require,module,exports){
+},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/index.js":[function(require,module,exports){
 var ButtonLink = require('./ButtonLink');
 var MenuItemLink = require('./MenuItemLink');
 var NavItemLink = require('./NavItemLink');
@@ -5423,7 +5423,7 @@ module.exports = {
   NavItemLink: NavItemLink
 };
 
-},{"./ButtonLink":62,"./MenuItemLink":64,"./NavItemLink":65}],67:[function(require,module,exports){
+},{"./ButtonLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/ButtonLink.js","./MenuItemLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/MenuItemLink.js","./NavItemLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/NavItemLink.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js":[function(require,module,exports){
 "use strict";
 
 /**
@@ -5433,7 +5433,7 @@ module.exports = {
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],68:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js":[function(require,module,exports){
 "use strict";
 
 var warning = require("react/lib/warning");
@@ -5466,7 +5466,7 @@ var Configuration = {
 };
 
 module.exports = Configuration;
-},{"react/lib/invariant":111,"react/lib/warning":112}],69:[function(require,module,exports){
+},{"react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js":[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -5497,7 +5497,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],70:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Match.js":[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -5577,7 +5577,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":73}],71:[function(require,module,exports){
+},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js":[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -5652,7 +5652,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":74}],72:[function(require,module,exports){
+},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/NavigationContext.js":[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -5683,7 +5683,7 @@ var NavigationContext = {
 };
 
 module.exports = NavigationContext;
-},{"./PropTypes":74}],73:[function(require,module,exports){
+},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js":[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -5837,7 +5837,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"qs":102,"qs/lib/utils":106,"react/lib/invariant":111}],74:[function(require,module,exports){
+},{"qs":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/index.js","qs/lib/utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js":[function(require,module,exports){
 "use strict";
 
 var assign = require("react/lib/Object.assign");
@@ -5857,7 +5857,7 @@ var PropTypes = assign({
 }, ReactPropTypes);
 
 module.exports = PropTypes;
-},{"react":"react","react/lib/Object.assign":108}],75:[function(require,module,exports){
+},{"react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js":[function(require,module,exports){
 "use strict";
 
 /**
@@ -5870,7 +5870,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],76:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js":[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -6090,7 +6090,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":73,"react/lib/Object.assign":108,"react/lib/invariant":111,"react/lib/warning":112}],77:[function(require,module,exports){
+},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6145,7 +6145,7 @@ var RouteHandlerMixin = {
 };
 
 module.exports = RouteHandlerMixin;
-},{"./PropTypes":74,"react":"react","react/lib/Object.assign":108}],78:[function(require,module,exports){
+},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/ScrollHistory.js":[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -6221,7 +6221,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":93,"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],79:[function(require,module,exports){
+},{"./getWindowScrollPosition":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/getWindowScrollPosition.js","react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js":[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -6301,7 +6301,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":74}],80:[function(require,module,exports){
+},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/StateContext.js":[function(require,module,exports){
 "use strict";
 
 var assign = require("react/lib/Object.assign");
@@ -6398,7 +6398,7 @@ var StateContext = {
 };
 
 module.exports = StateContext;
-},{"./PathUtils":73,"./PropTypes":74,"react/lib/Object.assign":108}],81:[function(require,module,exports){
+},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Transition.js":[function(require,module,exports){
 "use strict";
 
 /* jshint -W058 */
@@ -6474,7 +6474,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":67,"./Redirect":75}],82:[function(require,module,exports){
+},{"./Cancellation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js","./Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js":[function(require,module,exports){
 "use strict";
 
 /**
@@ -6500,7 +6500,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],83:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js":[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -6530,7 +6530,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":82}],84:[function(require,module,exports){
+},{"../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ScrollToTopBehavior.js":[function(require,module,exports){
 "use strict";
 
 /**
@@ -6546,7 +6546,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],85:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6575,7 +6575,7 @@ var DefaultRoute = React.createClass({
 });
 
 module.exports = DefaultRoute;
-},{"../Configuration":68,"../PropTypes":74,"react":"react"}],86:[function(require,module,exports){
+},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Link.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6688,7 +6688,7 @@ var Link = React.createClass({
 });
 
 module.exports = Link;
-},{"../Navigation":71,"../PropTypes":74,"../Route":76,"../State":79,"react":"react","react/lib/Object.assign":108,"react/lib/cx":109}],87:[function(require,module,exports){
+},{"../Navigation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","../Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","../State":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6718,7 +6718,7 @@ var NotFoundRoute = React.createClass({
 });
 
 module.exports = NotFoundRoute;
-},{"../Configuration":68,"../PropTypes":74,"react":"react"}],88:[function(require,module,exports){
+},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6745,7 +6745,7 @@ var Redirect = React.createClass({
 });
 
 module.exports = Redirect;
-},{"../Configuration":68,"../PropTypes":74,"react":"react"}],89:[function(require,module,exports){
+},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Route.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6814,7 +6814,7 @@ var Route = React.createClass({
 });
 
 module.exports = Route;
-},{"../Configuration":68,"../PropTypes":74,"./RouteHandler":90,"react":"react"}],90:[function(require,module,exports){
+},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","./RouteHandler":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6837,7 +6837,7 @@ var RouteHandler = React.createClass({
 });
 
 module.exports = RouteHandler;
-},{"../RouteHandlerMixin":77,"react":"react"}],91:[function(require,module,exports){
+},{"../RouteHandlerMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js":[function(require,module,exports){
 (function (process){
 "use strict";
 
@@ -7296,7 +7296,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":67,"./History":69,"./Match":70,"./NavigationContext":72,"./PathUtils":73,"./PropTypes":74,"./Redirect":75,"./Route":76,"./ScrollHistory":78,"./StateContext":80,"./Transition":81,"./actions/LocationActions":82,"./behaviors/ImitateBrowserBehavior":83,"./createRoutesFromReactChildren":92,"./isReactChildren":95,"./locations/HashLocation":96,"./locations/HistoryLocation":97,"./locations/RefreshLocation":98,"./locations/StaticLocation":99,"./supportsHistory":101,"_process":1,"react":"react","react/lib/ExecutionEnvironment":107,"react/lib/invariant":111,"react/lib/warning":112}],92:[function(require,module,exports){
+},{"./Cancellation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js","./History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./Match":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Match.js","./NavigationContext":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/NavigationContext.js","./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","./Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js","./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./ScrollHistory":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/ScrollHistory.js","./StateContext":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/StateContext.js","./Transition":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Transition.js","./actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js","./behaviors/ImitateBrowserBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js","./createRoutesFromReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js","./isReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/isReactChildren.js","./locations/HashLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js","./locations/HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js","./locations/RefreshLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js","./locations/StaticLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js","./supportsHistory":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/supportsHistory.js","_process":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/grunt-browserify/node_modules/browserify/node_modules/process/browser.js","react":"react","react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js":[function(require,module,exports){
 "use strict";
 
 /* jshint -W084 */
@@ -7379,7 +7379,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":76,"./components/DefaultRoute":85,"./components/NotFoundRoute":87,"./components/Redirect":88,"react":"react","react/lib/Object.assign":108,"react/lib/warning":112}],93:[function(require,module,exports){
+},{"./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./components/DefaultRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js","./components/NotFoundRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js","./components/Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/getWindowScrollPosition.js":[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -7398,7 +7398,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],94:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js":[function(require,module,exports){
 "use strict";
 
 exports.DefaultRoute = require("./components/DefaultRoute");
@@ -7428,7 +7428,7 @@ exports.createRedirect = require("./Route").createRedirect;
 exports.createRoutesFromReactChildren = require("./createRoutesFromReactChildren");
 exports.create = require("./createRouter");
 exports.run = require("./runRouter");
-},{"./History":69,"./Navigation":71,"./Route":76,"./RouteHandlerMixin":77,"./State":79,"./behaviors/ImitateBrowserBehavior":83,"./behaviors/ScrollToTopBehavior":84,"./components/DefaultRoute":85,"./components/Link":86,"./components/NotFoundRoute":87,"./components/Redirect":88,"./components/Route":89,"./components/RouteHandler":90,"./createRouter":91,"./createRoutesFromReactChildren":92,"./locations/HashLocation":96,"./locations/HistoryLocation":97,"./locations/RefreshLocation":98,"./locations/StaticLocation":99,"./runRouter":100}],95:[function(require,module,exports){
+},{"./History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./Navigation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js","./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./RouteHandlerMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js","./State":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js","./behaviors/ImitateBrowserBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js","./behaviors/ScrollToTopBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ScrollToTopBehavior.js","./components/DefaultRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js","./components/Link":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Link.js","./components/NotFoundRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js","./components/Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js","./components/Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Route.js","./components/RouteHandler":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js","./createRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js","./createRoutesFromReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js","./locations/HashLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js","./locations/HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js","./locations/RefreshLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js","./locations/StaticLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js","./runRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/runRouter.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/isReactChildren.js":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -7442,7 +7442,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":"react"}],96:[function(require,module,exports){
+},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js":[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -7561,7 +7561,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":69,"../actions/LocationActions":82}],97:[function(require,module,exports){
+},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js":[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -7654,7 +7654,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":69,"../actions/LocationActions":82}],98:[function(require,module,exports){
+},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js":[function(require,module,exports){
 "use strict";
 
 var HistoryLocation = require("./HistoryLocation");
@@ -7686,7 +7686,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":69,"./HistoryLocation":97}],99:[function(require,module,exports){
+},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js":[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -7739,7 +7739,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":111}],100:[function(require,module,exports){
+},{"react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/runRouter.js":[function(require,module,exports){
 "use strict";
 
 var createRouter = require("./createRouter");
@@ -7790,7 +7790,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":91}],101:[function(require,module,exports){
+},{"./createRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/supportsHistory.js":[function(require,module,exports){
 "use strict";
 
 function supportsHistory() {
@@ -7807,10 +7807,10 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],102:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/index.js":[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":103}],103:[function(require,module,exports){
+},{"./lib/":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/index.js":[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -7827,7 +7827,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":104,"./stringify":105}],104:[function(require,module,exports){
+},{"./parse":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/parse.js","./stringify":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/stringify.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/parse.js":[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -7986,7 +7986,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":106}],105:[function(require,module,exports){
+},{"./utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/stringify.js":[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -8065,7 +8065,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":106}],106:[function(require,module,exports){
+},{"./utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js":[function(require,module,exports){
 // Load modules
 
 
@@ -8199,7 +8199,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],107:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8244,7 +8244,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],108:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -8291,7 +8291,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],109:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8330,7 +8330,7 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],110:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8364,7 +8364,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],111:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js":[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8419,7 +8419,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-},{}],112:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js":[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -8462,7 +8462,7 @@ if ("production" !== "development") {
 
 module.exports = warning;
 
-},{"./emptyFunction":110}],113:[function(require,module,exports){
+},{"./emptyFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/emptyFunction.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js":[function(require,module,exports){
 "use strict";
 
 // This file is a simple temporary data store that
@@ -8533,7 +8533,7 @@ module.exports = {
 	getAllStudents: getAllStudents
 };
 
-},{}],114:[function(require,module,exports){
+},{}],"/Users/k.sedge/Documents/Projects/opendojo/react/bin/routes.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8564,11 +8564,11 @@ var AddStudent = require("../components/studentForm.jsx");
 var routes =
 // Main view, will always be rendered
 //  - `handler` responsible for all permanent UI.
-React.createElement(Route, { name: "app", path: "/", handler: App }, React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }), React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }), React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }), React.createElement(DefaultRoute, { handler: ListStudents }));
+React.createElement(Route, { name: "app", route: "/", handler: App }, React.createElement(Route, { name: "welcome", handler: ViewStudent }), React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }), React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }), React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }), React.createElement(DefaultRoute, { handler: Welcome }));
 
 module.exports = routes;
 
-},{"../components/app.jsx":116,"../components/studentForm.jsx":118,"../components/studentList.jsx":119,"../components/studentView.jsx":120,"../components/welcome.jsx":121,"react":"react","react-router":94}],115:[function(require,module,exports){
+},{"../components/app.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/app.jsx","../components/studentForm.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentForm.jsx","../components/studentList.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentList.jsx","../components/studentView.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentView.jsx","../components/welcome.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/welcome.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/LinkBar.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8608,7 +8608,7 @@ LinkBar.Link = React.createClass({ displayName: "Link",
 	}
 });
 
-},{"react":"react","react-bootstrap":51,"react-router-bootstrap":66}],116:[function(require,module,exports){
+},{"react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/app.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8631,7 +8631,6 @@ var LinkBar = require("./LinkBar.jsx");
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-	"Welcome Page": "app",
 	"Add a Student": "addStudent",
 	"View all Students": "allStudents"
 };
@@ -8655,7 +8654,7 @@ var App = React.createClass({ displayName: "App",
 
 module.exports = App;
 
-},{"./LinkBar.jsx":115,"react":"react","react-bootstrap":51,"react-router":94}],117:[function(require,module,exports){
+},{"./LinkBar.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/LinkBar.jsx","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/input.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8668,7 +8667,7 @@ var Input = module.exports = React.createClass({ displayName: "exports",
 	}
 });
 
-},{"react":"react"}],118:[function(require,module,exports){
+},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentForm.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8707,7 +8706,7 @@ var StudentForm = module.exports = React.createClass({ displayName: "exports",
 	}
 });
 
-},{"../bin/model":113,"./input.jsx":117,"react":"react","react-router":94}],119:[function(require,module,exports){
+},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","./input.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/input.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentList.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8753,7 +8752,7 @@ var StudentList = React.createClass({ displayName: "StudentList",
 
 module.exports = StudentList;
 
-},{"../bin/model":113,"react":"react","react-bootstrap":51,"react-router":94}],120:[function(require,module,exports){
+},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentView.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8787,7 +8786,7 @@ var StudentView = module.exports = React.createClass({ displayName: "exports",
 	}
 });
 
-},{"../bin/model":113,"react":"react","react-bootstrap":51}],121:[function(require,module,exports){
+},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/welcome.jsx":[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8798,7 +8797,7 @@ var Welcome = module.exports = React.createClass({ displayName: "exports",
 	}
 });
 
-},{"react":"react"}],122:[function(require,module,exports){
+},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/react/index.jsx":[function(require,module,exports){
 "use strict";
 
 // Because this is the entry point, we expose React on the
@@ -8819,7 +8818,7 @@ Router.run(routeConfiguration, function (View, routerState) {
 	React.render(React.createElement(View, { routerParams: routerParams }), document.getElementById("main"));
 });
 
-},{"./bin/routes.jsx":114,"react":"react","react-router":94}],"react":[function(require,module,exports){
+},{"./bin/routes.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/routes.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"react":[function(require,module,exports){
 (function (global){
 /**
  * React v0.12.2
@@ -26938,4 +26937,6 @@ module.exports = warning;
 },{"./emptyFunction":107}]},{},[1])(1)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[122]);
+},{}],"react":[function(require,module,exports){
+arguments[4]["react"][0].apply(exports,arguments)
+},{}]},{},["/Users/k.sedge/Documents/Projects/opendojo/react/index.jsx"]);

@@ -20,7 +20,6 @@ var LinkBar = require("./LinkBar.jsx");
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-	"Welcome Page": "app",
 	"Add a Student": "addStudent",
 	"View all Students": "allStudents"
 };
@@ -61,3 +60,4 @@ var App = React.createClass({
 });
 
 module.exports = App;
+
