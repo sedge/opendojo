@@ -8,6 +8,13 @@ var assert = require('assert'),
   newCourse,
   ranksList=[];
 
+var options = {
+  headers: {
+    username: "admin",
+    password: "iliketoSmokeandr1nk"
+  }
+};
+
 function hooks() {
   before(function(done) {
     // Because dry runs to spin up the server sometimes take more than 2s
@@ -54,11 +61,13 @@ function createObjects( callback ) {
     classType: "TestType", 
     RanksAllowed: ranksList
     };
-  utils.apiSetup('post', '/classes', 201, newCourse, function(err, res, body) {
+  utils.apiSetup('post', '/api/classes', 201, {}, newCourse, function(err, res, body) {
     classIdToDelete=body._id;
-    utils.apiSetup('post', '/students', 201, newStud, function(err, res, body) {
-      studentIdToDelete = body._id;
-      callback();
+    utils.jwtSetup(options, function(err, res, body, authInfo){
+      utils.apiSetup('post', '/api/students', 201, authInfo, newStud, function(err, res, body) {
+        studentIdToDelete = body._id;
+        callback();
+      });
     });
   });
 }
@@ -87,9 +96,9 @@ function addRanks( callback ) {
       "color": "white"
   };
  
-  utils.apiSetup('post', '/ranks', 201, newRank, function(err, res, body) {
+  utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
     ranksList.push(body._id);
-    utils.apiSetup('post', '/ranks', 201, newRank2, function(err, res, body) {
+    utils.apiSetup('post', '/api/ranks', 201, {}, newRank2, function(err, res, body) {
       ranksList.push(body._id);
       callback();  
     });
@@ -103,31 +112,33 @@ function deleteObjects( callback ) {
   }
 
   ranksList.forEach( function (rank) {
-    utils.apiSetup('delete', '/rank/' + rank, 204, function(err, res, body) {
+    utils.apiSetup('delete', '/api/rank/' + rank, 204, {}, function(err, res, body) {
       if (--rankCount === 0) {
         ranksList=[];
-        utils.apiSetup('delete', '/student/' + studentIdToDelete, 204, function(err, res, body) { 
-          utils.apiSetup('delete', '/class/' + classIdToDelete, 204, function(err, res, body) {
-            callback();
+        utils.jwtSetup(options, function(err, res, body, authInfo){
+          utils.apiSetup('delete', '/api/student/' + studentIdToDelete, 204, authInfo, function(err, res, body) {
+            utils.apiSetup('delete', '/api/class/' + classIdToDelete, 204, {}, function(err, res, body) {
+              callback();
+            });
           });
-        });  
+        });
       }
     });
   });
 }
 
-describe('The GET \'/records/\' route', function() {
+describe('The GET \'/api/records/\' route', function() {
   hooks();
   
   it('should return a 200 status code and all the records when invoked with proper credentials', function(done) {
     var recordIdToDelete;
-    utils.apiSetup('post', '/records', 201, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       recordIdToDelete = body._id;
-      utils.apiSetup('get', '/records', 200, function(err, res, body) {
+      utils.apiSetup('get', '/api/records', 200, {}, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
         expect(body).to.be.an('array');
-        utils.apiSetup('delete', '/record/' + recordIdToDelete, 204, function(err, res, body) {
+        utils.apiSetup('delete', '/api/record/' + recordIdToDelete, 204, {}, function(err, res, body) {
           expect(err).to.not.exist;
           done();
         });
@@ -140,13 +151,13 @@ describe('The GET \'/records/\' route', function() {
   });
 });
 
-describe('The POST \'/records/\' route', function() {
+describe('The POST \'/api/records/\' route', function() {
   hooks();
 
   it('should return a 201 status code, along with the newly created attendance object when invoked using proper input data and credentials', function(done) {
     var recordIdToDelete;
 
-    utils.apiSetup('post', '/records', 201, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       expect(err).to.not.exist;
       expect(body).to.exist;
       Object.keys(body).forEach(function(prop) { 
@@ -160,7 +171,7 @@ describe('The POST \'/records/\' route', function() {
         expect(body).to.have.property(prop).deep.equal(newRec[prop]);
       });
       recordIdToDelete = body._id;
-      utils.apiSetup('delete', '/record/' + recordIdToDelete, 204, function(err, res, body) {
+      utils.apiSetup('delete', '/api/record/' + recordIdToDelete, 204, {}, function(err, res, body) {
         expect(err).to.not.exist;
         done();
       });
@@ -171,7 +182,7 @@ describe('The POST \'/records/\' route', function() {
     var newRec = {
       starShip:"Enterprise"
     };
-    utils.apiSetup('post', '/records', 400, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 400, {}, newRec, function(err, res, body) {
       done();
       expect(body).to.equal('Invalid data!');
     });
@@ -182,14 +193,14 @@ describe('The POST \'/records/\' route', function() {
   });
 });
 
-describe('The GET \'/record/:id\' route', function() {
+describe('The GET \'/api/record/:id\' route', function() {
   hooks();
 
   it('should return a 200 status code and the corresponding attendance object when invoked with proper credentials, and a valid id string', function(done) {
-    utils.apiSetup('post', '/records', 201, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       expect(err).to.not.exist;
       var id=body._id;
-      utils.apiSetup('get', '/record/' + id, 200, function(err, res, body) {
+      utils.apiSetup('get', '/api/record/' + id, 200, {}, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
         Object.keys(body).forEach(function(prop) { 
@@ -202,7 +213,7 @@ describe('The GET \'/record/:id\' route', function() {
           } 
           expect(body).to.have.property(prop).deep.equal(newRec[prop]);
         });
-        utils.apiSetup('delete', '/record/' + body._id, 204, function(err, res, body) {
+        utils.apiSetup('delete', '/api/record/' + body._id, 204, {}, function(err, res, body) {
           expect(err).to.not.exist;
           done();
         });
@@ -212,12 +223,12 @@ describe('The GET \'/record/:id\' route', function() {
 
   it('should return a 404 status code when invoked without providing an id', function(done) {
     var id="";
-    utils.apiSetup('get', '/record/' + id, 404, done);
+    utils.apiSetup('get', '/api/record/' + id, 404, {}, done);
   });
 
   it('should return a 400 status code and an invalid data message if an id is not found', function(done) {
     var id="abc";
-    utils.apiSetup('get', '/record/' + id, 400, function(err, res, body) {
+    utils.apiSetup('get', '/api/record/' + id, 400, {}, function(err, res, body) {
       expect(body).to.equal('Invalid data!');
       done();
     });
@@ -228,21 +239,21 @@ describe('The GET \'/record/:id\' route', function() {
   });
 });
 
-describe('The PUT \'/record/:id\' route', function() {
+describe('The PUT \'/api/record/:id\' route', function() {
   hooks();
 
   it('should return a 200 status code and the modified attendance object when invoked with proper credentials, and valid data', function(done) {
-    utils.apiSetup('post', '/records', 201, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       expect(err).to.not.exist;
       var id=body._id;
       var modRec = {
         classDate: "2018-08-12T20:44:55.000Z"
       };
-      utils.apiSetup('put', '/record/' + id, 200, modRec, function(err, res, body) {
+      utils.apiSetup('put', '/api/record/' + id, 200, {}, modRec, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
         expect(body).to.have.property('classDate').equal('2018-08-12T20:44:55.000Z');
-        utils.apiSetup('delete', '/record/' + id, 204, function(err, res, body) {
+        utils.apiSetup('delete', '/api/record/' + id, 204, {}, function(err, res, body) {
           expect(err).to.not.exist;
           done();
         });
@@ -255,7 +266,7 @@ describe('The PUT \'/record/:id\' route', function() {
       var modRec = {
         classDate: "2018-08-12T20:44:55.000Z"
       };
-      utils.apiSetup('put', '/record/' + id, 400, modRec, function(err, res, body) {
+      utils.apiSetup('put', '/api/record/' + id, 400, {}, modRec, function(err, res, body) {
           expect(body).to.equal('Invalid data!');
           done();
       });
@@ -266,8 +277,13 @@ describe('The PUT \'/record/:id\' route', function() {
     var modRec = {
       catName:"Ginger"
     };
-    utils.apiSetup('put', '/record/' + id, 400, modRec, function(err, res, body) {
-      done();
+
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
+      expect(err).to.not.exist;
+      var id = body._id;
+      utils.apiSetup('put', '/api/record/' + id, 400, {}, modRec, function (err, res, body) {
+        done();
+      });
     });
   });
 
@@ -276,13 +292,13 @@ describe('The PUT \'/record/:id\' route', function() {
   });
 });
 
-describe('The DELETE \'/record/:id\' route', function() {
+describe('The DELETE \'/api/record/:id\' route', function() {
   hooks();
 
   it('should return a 204 when invoked with the proper credentials, and valid data', function(done) {
-    utils.apiSetup('post', '/records', 201, newRec, function(err, res, body) {
+    utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       expect(err).to.not.exist;
-      utils.apiSetup('delete', '/record/' + body._id, 204, function(err, res, body) {
+      utils.apiSetup('delete', '/api/record/' + body._id, 204, {}, function(err, res, body) {
         expect(err).to.not.exist;
         done();
       });
@@ -290,7 +306,7 @@ describe('The DELETE \'/record/:id\' route', function() {
   });
 
   it('should return a 204 status code in the case of a nonexistent id', function(done) {
-    utils.apiSetup('delete', '/record/' + "abc", 204, function(err, res, body) {
+    utils.apiSetup('delete', '/api/record/' + "abc", 204, {}, function(err, res, body) {
       expect(err).to.not.exist;
       done();
     });

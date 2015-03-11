@@ -1,14 +1,11 @@
-var router;
-var env;
-var log;
-var db;
+var router = require('express').Router(),
+    env = require('../lib/environment'),
+    log = require('../lib/logger'),
+    db = require('../db'),
+    jwtAuth = require('./middleware/jwtAuth'),
+    jwtRegen = require('./middleware/jwtRegen');
 
 module.exports = function() {
-  router = require('express').Router();
-  env = require('../lib/environment');
-  log = require('../lib/logger');
-  db = require('../db');
-
   router.route('/students')
     /* GET '/students' accepts:
             - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
@@ -18,24 +15,17 @@ module.exports = function() {
             - The entire student list via an array of JSON objects bearing every student stored in DB
     */
     .get(function(req, res, next) {
-      // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
-
       db.mongoose.models.Student.find({}, function(err, students) {
         if(err) {
-          res.status(500).send('Database Error!');
-          log.error({
-            err: err,
-            req: req,
-            res: res
-          });
-          return;
+          return next(err);
         }
 
-        res.status(200).json(students);
         log.info({
           req: req,
           res: res
         });
+
+        res.status(200).json(students);
       });
     })
 
@@ -101,7 +91,6 @@ module.exports = function() {
     */
     .get(function(req, res, next) {
       var id = req.params.id;
-      // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
 
       db.mongoose.models.Student.findById(id, function(err, student) {
         if (err) {
@@ -180,8 +169,6 @@ module.exports = function() {
             - A status code of success/failure
     */
     .delete(function(req, res, next) {
-      // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
-      // TODO: Ameliorate test logic for incoming db parse errors: https://github.com/sedge/opendojo/issues/60
       var id = req.params.id;
       db.mongoose.models.Student.remove({_id: id}, function(err) {
         if(err) {
@@ -199,15 +186,15 @@ module.exports = function() {
         return res.status(204).send('Operation completed');
       });
     });
-  
-  router.route('/ranks')
-    /* GET '/ranks' accepts:
-            - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
 
-          GET '/ranks' returns:
-            - A status code of success/failure
-            - All rank objects in the database
-    */
+  /* GET '/ranks' accepts:
+          - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
+
+        GET '/ranks' returns:
+          - A status code of success/failure
+          - All rank objects in the database
+  */
+  router.route('/ranks')
     .get(function(req, res, next) {
       db.mongoose.models.Rank.find({}, function(err, ranks) {
         if(err) {
@@ -729,6 +716,7 @@ module.exports = function() {
         });
         return res.status(204).send('Operation completed');
       });
-    });  
-  return router;
+    });
+
+    return router;
 }();

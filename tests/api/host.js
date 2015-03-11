@@ -15,10 +15,10 @@ describe('The parent route', function(){
   });
 
   it('should return a 200 status upon invocation', function(done){
-    utils.apiSetup('get', '/', 200, done);
+    utils.apiSetup('get', '/', 200, {}, done);
   });
 
   it('should return a 404 status upon an incompatible verb request (post)', function(done){
-    utils.apiSetup('post', '/', 404, {stuff: "things"}, done);
+    utils.apiSetup('post', '/', 404, {}, {stuff: "things"}, done);
   });
 });

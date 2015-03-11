@@ -17,3 +17,6 @@ require('./api/attendance');
 
 // Class API
 require('./api/course.js')
+
+// Auth API
+require('./api/auth');

@@ -16,14 +16,29 @@ mongoose.connection.once('open', function(){
     birthDate:Date
   });
 
-  rankSchema = new mongoose.Schema({
+  var rankSchema = new mongoose.Schema({
     name: String,
     sequence: Number,
     color: String
   });
 
+  var userSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+      index: {
+        unique: true
+      }
+    },
+    password: {
+      type: String,
+      required: true
+    }
+  });
+
   var student = mongoose.model('Student', studentSchema);
   var rank = mongoose.model('Rank', rankSchema);
+  var user = mongoose.model('User', userSchema);
 
   student.remove(function(err){
       if(err){
@@ -39,7 +54,12 @@ mongoose.connection.once('open', function(){
 
         console.log('All rank sample data removed');
 
-        process.kill(process.pid, 'SIGTERM');
+        user.remove(function(err){
+          console.log('All user sample data removed');
+
+          process.exit();
+        });
+
       });
   });
 
