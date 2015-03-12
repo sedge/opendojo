@@ -8564,7 +8564,7 @@ var AddStudent = require("../components/studentForm.jsx");
 var routes =
 // Main view, will always be rendered
 //  - `handler` responsible for all permanent UI.
-React.createElement(Route, { name: "app", route: "/", handler: App }, React.createElement(Route, { name: "welcome", handler: ViewStudent }), React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }), React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }), React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }), React.createElement(DefaultRoute, { handler: Welcome }));
+React.createElement(Route, { name: "app", route: "/", handler: App }, React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }), React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }), React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }), React.createElement(DefaultRoute, { handler: Welcome }));
 
 module.exports = routes;
 
@@ -8819,6 +8819,8 @@ Router.run(routeConfiguration, function (View, routerState) {
 });
 
 },{"./bin/routes.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/routes.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"react":[function(require,module,exports){
+arguments[4]["react"][0].apply(exports,arguments)
+},{}],"react":[function(require,module,exports){
 (function (global){
 /**
  * React v0.12.2
@@ -26937,6 +26939,4 @@ module.exports = warning;
 },{"./emptyFunction":107}]},{},[1])(1)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"react":[function(require,module,exports){
-arguments[4]["react"][0].apply(exports,arguments)
 },{}]},{},["/Users/k.sedge/Documents/Projects/opendojo/react/index.jsx"]);
