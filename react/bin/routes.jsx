@@ -28,7 +28,7 @@ var AddStudent = require('../components/studentForm.jsx');
 var routes = (
 	// Main view, will always be rendered
 	//  - `handler` responsible for all permanent UI.
-	<Route name="app" route="/" handler={App}>
+	<Route name="app" path='/' handler={App}>
 		<Route name="allStudents" path="/students/all" handler={ListStudents} />
 		<Route name="addStudent" path="/students/new" handler={AddStudent} />
 		<Route name="singleStudent" path="/students/:id" handler={ViewStudent} />

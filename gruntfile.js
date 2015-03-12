@@ -52,9 +52,7 @@ module.exports = function(grunt){
           alias: [
             "react:react", "React:react"
           ],
-          transform: [reactify, babelify],
-          watch: true,
-          keepAlive: true
+          transform: [reactify, babelify]
         }
       }
     },
