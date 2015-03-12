@@ -366,7 +366,7 @@ router.route('/rank/:id')
     .delete(function(req, res, next) {
 
       // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
-       
+      console.log("am in rank delete"); 
       var id = req.params.id;
       db.mongoose.models.Rank.remove({_id: id}, function(err) {
         if(err) {
@@ -426,10 +426,7 @@ router.route('/classes')
             - If successful, the new class object data passed in by the request
     */
     .post(function(req, res, next) {
-      var validData = true;
-      var status=false;
-      var expiry="";
-
+    
       if(!req.body) {
         log.warn({
           req: req,
@@ -439,11 +436,6 @@ router.route('/classes')
         return;
       }
       
-      if ((!req.body.class_title) || (!req.body.start_date) || (!req.body.end_date) || (!req.body.day_of_week) || (!req.body.start_time) || (!req.body.end_time) || (!req.body.classType) || (!req.body.RanksAllowed)){
-        validData = false;
-      }
-
-      if (validData) {
         var course = db.mongoose.models.Class;
 
         var newCourse = new course({
@@ -456,26 +448,23 @@ router.route('/classes')
           "classType": req.body.classType, 
           "RanksAllowed": req.body.RanksAllowed
         });
-        
+        console.log("new course: ", newCourse);
+
         newCourse.save(function (err, newCourse) {
           if (err) {
+            console.log("ERROR: ", err);
             log.error({
               err: err,
               req: req,
               res: res
             });
+            if (err.name === "ValidationError") {
+              res.status(400).send('Invalid data!');
+            }
             return next(err);
           }
           res.status(201).json(newCourse);
-        });
-      }
-      else {
-        log.warn({
-          req: req,
-          res: res
-        });
-        res.status(400).send('Invalid request body!');
-      }
+      });
   });
 
   router.route('/class/:id')
@@ -582,13 +571,13 @@ router.route('/classes')
             res: res,
             err: err
           });
-          res.status(204).send('Operation completed');
+          return res.status(204).send('Operation completed');
         }
       log.info({
         req: req,
         res: res
       });
-      res.status(204).send('Operation completed');
+      return res.status(204).send('Operation completed');
     });
   });
 

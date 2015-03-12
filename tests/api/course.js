@@ -1,17 +1,110 @@
 var assert = require('assert'),
   expect = require('chai').expect,
-  utils = require('../utils');
+  utils = require('../utils'),
+  ranksList=[];
 
 function hooks() {
   before(function(done) {
     // Because dry runs to spin up the server sometimes take more than 2s
     this.timeout(6000);
-    utils.initServer(done);
+      utils.initServer( function () {
+         addRanksToArray(done);
+      });  
   });
 
   after(function(done) {
-    utils.killServer(done);
+    deleteRanks( function () {
+      utils.killServer(done);
+    });
   });
+
+}
+
+function addRanksToArray( callback ) {
+  var newRank = {
+      "name": "Black",
+      "sequence": 1,
+      "color": "black"
+  };
+ 
+  var newRank2 = {
+      "name": "White",
+      "sequence": 2,
+      "color": "white"
+  };
+ 
+  utils.apiSetup('post', '/ranks', 201, newRank, function(err, res, body) {
+    expect(err).to.not.exist;
+    expect(body).to.exist;
+ 
+    Object.keys(body).forEach(function(prop) {
+      if (prop === "__v") {
+        return;
+      }
+      if (prop === "_id") {
+        expect(body).property('_id').to.exist;
+        return;
+      }
+      expect(body).to.have.property(prop).deep.equal(newRank[prop]);
+    });
+    
+    ranksList.push(body._id);
+    
+    utils.apiSetup('post', '/ranks', 201, newRank2, function(err, res, body) {
+      expect(err).to.not.exist;
+      expect(body).to.exist;
+      Object.keys(body).forEach(function(prop) {
+        if (prop === "__v") {
+          return;
+        }
+        if (prop === "_id") {
+          expect(body).property('_id').to.exist;
+          return;
+        }
+        expect(body).to.have.property(prop).deep.equal(newRank2[prop]);
+      });
+      ranksList.push(body._id);
+      callback();
+    });
+  });
+}
+
+function deleteRanks( callback ) {
+   var rankCount = ranksList.length;
+
+  if (!rankCount) {
+    return callback();
+  }
+
+  ranksList.forEach( function (rank){
+    utils.apiSetup('delete', '/rank/' + rank, 204, function(err, res, body) {
+      expect(err).to.not.exist; 
+      utils.apiSetup('get', '/ranks', 200, function(err, res, body) { 
+      if (!--rankCount) {
+        callback();
+      }
+    });
+  });
+  ranksList=[];
+  /*console.log("delete ranks ranksList: ", ranksList);
+  console.log("length of array: ", ranksList.length);
+   utils.apiSetup('get', '/ranks', 200, function(err, res, body) {
+  console.log("body is: ", body);
+  for (var i=0; i<ranksList.length; i++) {  
+     console.log("uri string: ", '/rank/' + ranksList[i]);  
+      utils.apiSetup('delete', '/rank/' + ranksList[i], 204, function(err, res, body) {
+        console.log("error is: ", err);
+        expect(err).to.not.exist;
+      });
+      console.log("i is ",i);
+      if (i === ranksList.length -1 )
+      {
+        console.log("finally");
+        ranksList=[];
+        callback();
+      }
+  } 
+  }); */
 }
 
 describe('The GET \'/classes/\' route', function() {
@@ -19,19 +112,18 @@ describe('The GET \'/classes/\' route', function() {
   hooks();
   
   it('should return a 200 status code and all the classes when invoked with proper credentials', function(done) {
-    var d = new Date();
-    var ranksList = ["54da74e15fac9fec3c848fab","54da74e15fac9fec3c848fac"];
-    var newCourse ={
-          "class_title": "TestClass",
-          "start_date": "2015-04-12T20:44:55.000Z",
-          "end_date": "2015-07-12T20:44:55.000Z",
-          "day_of_week": 3, 
-          "start_time": d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
-          "end_time":d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
-          "classType": "TestType", 
-          "RanksAllowed": ranksList
-        };
-
+        
+        var d = new Date();
+        var newCourse ={
+              "class_title": "TestClass",
+              "start_date": "2015-04-12T20:44:55.000Z",
+              "end_date": "2015-04-12T20:44:55.000Z",
+              "day_of_week": 3, 
+              "start_time": d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
+              "end_time":d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
+              "classType": "TestType", 
+              "RanksAllowed": ranksList
+            };
     utils.apiSetup('post', '/classes', 201, newCourse, function(err, res, body) {
       var idToDelete;
       expect(err).to.not.exist;
@@ -55,7 +147,6 @@ describe('The GET \'/classes/\' route', function() {
           expect(err).to.not.exist;
           done();
         });
-        done();
       });
     });
   });
@@ -70,11 +161,11 @@ describe('The POST \'/classes/\' route', function() {
 
   it('should return a 201 status code, along with the newly created class object when invoked using proper input data and credentials', function(done) {
     var d = new Date();
-    var ranksList = ["54da74e15fac9fec3c848fab","54da74e15fac9fec3c848fac"];
+  
     var newCourse = {
           "class_title": "TestClass",
           "start_date": "2015-04-12T20:44:55.000Z",
-          "end_date": "2015-07-12T20:44:55.000Z",
+          "end_date": "2015-04-12T20:44:55.000Z",
           "day_of_week": 3, 
           "start_time": d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
           "end_time":d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
@@ -122,7 +213,6 @@ describe('The GET \'/class/:id\' route', function() {
 
   it('should return a 200 status code and the corresponding class object when invoked with proper credentials, and a valid id string', function(done) {
    var d = new Date();
-   var ranksList = ["54da74e15fac9fec3c848fab","54da74e15fac9fec3c848fac"];
    var newCourse = {
           "class_title": "TestClass",
           "start_date": "2015-04-12T20:44:55.000Z",
@@ -185,7 +275,6 @@ describe('The PUT \'/class/:id\' route', function() {
 
   it('should return a 200 status code and the modified class object when invoked with proper credentials, and valid data', function(done) {
     var d = new Date();
-    var ranksList = ["54da74e15fac9fec3c848fab","54da74e15fac9fec3c848fac"];
     var newCourse = {
           "class_title": "TestClass",
           "start_date": "2015-04-12T20:44:55.000Z",
@@ -262,7 +351,6 @@ describe('The DELETE \'/class/:id\' route', function() {
 
   it('should return a 204 when invoked with the proper credentials, and valid data', function(done) {
     var d = new Date();
-    var ranksList = ["54da74e15fac9fec3c848fab","54da74e15fac9fec3c848fac"];
     var newCourse = {
           "class_title": "TestClass",
           "start_date": "2015-04-12T20:44:55.000Z",

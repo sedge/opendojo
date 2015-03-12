@@ -85,10 +85,10 @@ connection.once('open', function (callback) {
     },
     healthInformation: String,
     guardianInformation: String,
-    email: {
-      type: [String], 
+    email: [{
+      type: String, 
       required: true
-    },
+    }],
     membershipStatus: Boolean,
     membershipExpiry: Date,
     phone: { 
@@ -126,18 +126,18 @@ connection.once('open', function (callback) {
       required: true
     },
     start_time: {
-      type: Date,
+      type: String,
       required: true
     },
     end_time: {
-      type: Date,
+      type: String,
       required: true
     },
     classType: String,
-    RanksAllowed: {
-      type: [mongoose.Schema.ObjectId], 
-      ref:'Rank'
-    }
+    RanksAllowed: [{
+        type: mongoose.Schema.ObjectId, 
+        ref:'Rank'
+    }]
   });
 
   classSchema.plugin(idValidator);

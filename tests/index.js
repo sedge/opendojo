@@ -7,10 +7,10 @@
 require('./api/host');
 
 // Student API
-require('./api/student');
+//require('./api/student');
 
 // Rank API
-require('./api/rank');
+//require('./api/rank');
 
 // Class Api
 require('./api/course')
