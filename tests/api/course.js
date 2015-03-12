@@ -78,8 +78,7 @@ function deleteRanks( callback ) {
 
   ranksList.forEach( function (rank){
     utils.apiSetup('delete', '/rank/' + rank, 204, function(err, res, body) {
-      expect(err).to.not.exist; 
-      utils.apiSetup('get', '/ranks', 200, function(err, res, body) { 
+      expect(err).to.not.exist;  
       if (!--rankCount) {
         callback();
       }
