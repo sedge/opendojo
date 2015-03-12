@@ -1,22 +1,53 @@
 var React = require('react');
-var models = require('../bin/model');
+var action = require('../actions/studentActions.jsx');
 
-var ReactBootstrap = require('react-bootstrap');
-var Alert = ReactBootstrap.Alert;
-var Table = ReactBootstrap.Table;
+var {
+	Alert,
+	Table
+} = require('react-bootstrap');
+var { ListenerMixin } = require('reflux');
+var {	store } = require('../stores/studentStore.jsx');
+var { Navigation } = require('react-router');
 
 var StudentView = module.exports = React.createClass({
+	mixins: [Navigation, ListenerMixin],
+	getInitialState: function() {
+		return {
+			student: null
+		};
+	},
+	componentWillMount: function() {
+		var that = this;
+
+		this.listenTo(store, this.updateStudent, function(students) {
+			var id = that.props.routerParams.id;
+
+			students.forEach(function(student) {
+				if (id == student.id) {
+					that.setState({
+						student: student
+					});
+				}
+			});
+		});
+	},
+
+	deleteStudent: function(e){
+		e.preventDefault();
+		action.deleteStudent(this.props.routerParams.id);
+
+		this.transitionTo('/students/all');
+	},
 	render: function() {
 		var content;
-		var studentId = this.props.routerParams.id;
-		var student = models.getStudentById(studentId);
+		var student = this.state.student;
 
 		var view;
 
 		if (!student) {
 			view = (
 				<Alert bsStyle="danger">
-					The student associated with <strong>ID {this.props.id}</strong> does not exist.
+					The student associated with <strong>ID {this.props.routerParams.id}</strong> does not exist.
 				</Alert>
 			);
 		} else {
@@ -45,6 +76,11 @@ var StudentView = module.exports = React.createClass({
 						<th>Emails:</th>
 						<td colSpan="3">{emails}</td>
 					</tr>
+					<tr>
+						<th></th>
+						<td><button onClick={this.deleteStudent}>Delete</button></td>
+					</tr>
+
 				</Table>
 			);
 		}
