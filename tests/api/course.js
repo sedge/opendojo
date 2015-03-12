@@ -76,12 +76,14 @@ function deleteRanks( callback ) {
     return callback();
   }
 
-  ranksList.forEach( function (rank){
+  ranksList.forEach( function (rank) {
+    console.log("\n\nrank is: ", rank);
     utils.apiSetup('delete', '/rank/' + rank, 204, function(err, res, body) {
-      expect(err).to.not.exist;  
-      if (!--rankCount) {
+      expect(body).to.exist;  
+      /*if (!--rankCount) {
         callback();
-      }
+      }*/
+      console.log("body: ", body);
     });
   });
   ranksList=[];
