@@ -52,11 +52,11 @@ module.exports = function(grunt){
           alias: [
             "react:react", "React:react"
           ],
-          transform: [reactify, babelify]
+          transform: [babelify,reactify]
         }
       }
     },
-    clean: ['dist/app.js']
+    clean: ['public/app.js']
   });
 
   // Default is the same as test, for travis-ci
@@ -66,9 +66,9 @@ module.exports = function(grunt){
     var tasks;
 
     if (env === "prod") {
-      tasks = ['jshint', 'browserify:prod'];
+      tasks = ['jshint', 'clean', 'browserify:prod'];
     } else {
-      tasks = ['jshint', 'browserify:dev'];
+      tasks = ['jshint', 'clean', 'browserify:dev'];
     }
 
     grunt.task.run(tasks);

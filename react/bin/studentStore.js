@@ -27,8 +27,10 @@ var studentStore = Reflux.createStore({
 		this.trigger(students);
 	},
 
-	editStudent: function(id){
+	editStudent: function(data){
+		students[data.id] = data;
 
+		this.trigger(students);
 	},
 
 	deleteStudent: function(id){
@@ -38,22 +40,7 @@ var studentStore = Reflux.createStore({
 				break;
 			}
 		}
-	},
-
-	getAllStudent: function(){
-		return students;
-	},
-
-	getStudentById: function(id){
-		var student;
-
-		students.forEach(function(s) {
-			if (s.id == id) {
-				student = s;
-			}
-		});
-
-		return student;
+		this.trigger(students);
 	},
 
 	getInitialState: function() {

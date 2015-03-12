@@ -1,13 +1,11 @@
 var React = require('react');
-var Reflux = require('reflux');
-var Router = require('react-router');
-
-var { Link } = Router;
 
 var studentActions = require('../bin/studentActions.js');
-var {	store } = require('../bin/studentStore.js');
-
 var ReactBootstrap = require('react-bootstrap');
+
+var { ListenerMixin } = require('reflux');
+var {	store } = require('../bin/studentStore.js');
+var { Link } = require('react-router');
 
 var {
 	Alert,
@@ -15,7 +13,7 @@ var {
 } = ReactBootstrap;
 
 var StudentList = React.createClass({
-	mixins: [Reflux.ListenerMixin],
+	mixins: [ListenerMixin],
 	getInitialState: function(){
 		return {
 			students: null
@@ -33,7 +31,7 @@ var StudentList = React.createClass({
 		this.state.students = students;
 	},
 
-	render: function() { debugger;
+	render: function() {
 		var content;
 		var students = this.state.students;
 

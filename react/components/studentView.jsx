@@ -1,22 +1,46 @@
 var React = require('react');
-var Reflux = require('reflux');
 var action = require('../bin/studentActions');
 
-var ReactBootstrap = require('react-bootstrap');
-var Alert = ReactBootstrap.Alert;
-var Table = ReactBootstrap.Table;
+var {
+	Alert,
+	Table
+} = require('react-bootstrap');
+var { ListenerMixin } = require('reflux');
+var {	store } = require('../bin/studentStore.js');
+var { Navigation } = require('react-router');
 
 var StudentView = module.exports = React.createClass({
-	mixins: [Reflux.ListenerMixin],
+	mixins: [Navigation, ListenerMixin],
+	getInitialState: function() {
+		return {
+			student: null
+		};
+	},
+	componentWillMount: function() {
+		var that = this;
+
+		this.listenTo(store, this.updateStudent, function(students) {
+			var id = that.props.routerParams.id;
+
+			students.forEach(function(student) {
+				if (id == student.id) {
+					that.setState({
+						student: student
+					});
+				}
+			});
+		});
+	},
+
 	deleteStudent: function(e){
 		e.preventDefault();
 		action.deleteStudent(this.props.routerParams.id);
+
 		this.transitionTo('/students/all');
 	},
 	render: function() {
 		var content;
-		var studentId = this.props.routerParams.id;
-		var student = action.getStudentById(studentId);
+		var student = this.state.student;
 
 		var view;
 

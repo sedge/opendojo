@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/k.sedge/Documents/Projects/opendojo/node_modules/grunt-browserify/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -57,7 +57,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Accordion.js":[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 var React = require('react');
 var PanelGroup = require('./PanelGroup');
 
@@ -72,7 +72,7 @@ var Accordion = React.createClass({displayName: "Accordion",
 });
 
 module.exports = Accordion;
-},{"./PanelGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Affix.js":[function(require,module,exports){
+},{"./PanelGroup":39,"react":"react"}],3:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var AffixMixin = require('./AffixMixin');
@@ -96,7 +96,7 @@ var Affix = React.createClass({displayName: "Affix",
 });
 
 module.exports = Affix;
-},{"./AffixMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js":[function(require,module,exports){
+},{"./AffixMixin":4,"./utils/domUtils":60,"./utils/joinClasses":61,"react":"react"}],4:[function(require,module,exports){
 /* global window, document */
 
 var React = require('react');
@@ -228,7 +228,7 @@ var AffixMixin = {
 };
 
 module.exports = AffixMixin;
-},{"./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Alert.js":[function(require,module,exports){
+},{"./utils/EventListener":53,"./utils/domUtils":60,"react":"react"}],5:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -288,7 +288,7 @@ var Alert = React.createClass({displayName: "Alert",
 });
 
 module.exports = Alert;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Badge.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],6:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var ValidComponentChildren = require('./utils/ValidComponentChildren');
@@ -322,7 +322,7 @@ var Badge = React.createClass({displayName: "Badge",
 
 module.exports = Badge;
 
-},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js":[function(require,module,exports){
+},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],7:[function(require,module,exports){
 var React = require('react');
 var constants = require('./constants');
 
@@ -358,7 +358,7 @@ var BootstrapMixin = {
 };
 
 module.exports = BootstrapMixin;
-},{"./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js":[function(require,module,exports){
+},{"./constants":50,"react":"react"}],8:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -447,7 +447,7 @@ var Button = React.createClass({displayName: "Button",
 
 module.exports = Button;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],9:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -485,7 +485,7 @@ var ButtonGroup = React.createClass({displayName: "ButtonGroup",
 });
 
 module.exports = ButtonGroup;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonToolbar.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],10:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -516,7 +516,7 @@ var ButtonToolbar = React.createClass({displayName: "ButtonToolbar",
 });
 
 module.exports = ButtonToolbar;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Carousel.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],11:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -806,7 +806,7 @@ var Carousel = React.createClass({displayName: "Carousel",
 });
 
 module.exports = Carousel;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CarouselItem.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],12:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -900,7 +900,7 @@ var CarouselItem = React.createClass({displayName: "CarouselItem",
 });
 
 module.exports = CarouselItem;
-},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Col.js":[function(require,module,exports){
+},{"./utils/TransitionEvents":55,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],13:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -975,7 +975,7 @@ var Col = React.createClass({displayName: "Col",
 });
 
 module.exports = Col;
-},{"./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js":[function(require,module,exports){
+},{"./constants":50,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],14:[function(require,module,exports){
 var React = require('react');
 var TransitionEvents = require('./utils/TransitionEvents');
 
@@ -1097,7 +1097,7 @@ var CollapsableMixin = {
 
 module.exports = CollapsableMixin;
 
-},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownButton.js":[function(require,module,exports){
+},{"./utils/TransitionEvents":55,"react":"react"}],15:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1224,7 +1224,7 @@ var DropdownButton = React.createClass({displayName: "DropdownButton",
 
 module.exports = DropdownButton;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./DropdownMenu":16,"./DropdownStateMixin":17,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],16:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1271,7 +1271,7 @@ var DropdownMenu = React.createClass({displayName: "DropdownMenu",
 });
 
 module.exports = DropdownMenu;
-},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js":[function(require,module,exports){
+},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],17:[function(require,module,exports){
 var React = require('react');
 var EventListener = require('./utils/EventListener');
 
@@ -1352,7 +1352,7 @@ var DropdownStateMixin = {
 };
 
 module.exports = DropdownStateMixin;
-},{"./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js":[function(require,module,exports){
+},{"./utils/EventListener":53,"react":"react"}],18:[function(require,module,exports){
 /*global document */
 // TODO: listen for onTransitionEnd to remove el
 function getElementsAndSelf (root, classes){
@@ -1423,7 +1423,7 @@ module.exports = {
   }
 };
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Glyphicon.js":[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1457,7 +1457,7 @@ var Glyphicon = React.createClass({displayName: "Glyphicon",
 });
 
 module.exports = Glyphicon;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./constants":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Grid.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./constants":50,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],20:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -1488,7 +1488,7 @@ var Grid = React.createClass({displayName: "Grid",
 });
 
 module.exports = Grid;
-},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Input.js":[function(require,module,exports){
+},{"./utils/joinClasses":61,"react":"react"}],21:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1746,7 +1746,7 @@ var Input = React.createClass({displayName: "Input",
 
 module.exports = Input;
 
-},{"./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js":[function(require,module,exports){
+},{"./Button":8,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],22:[function(require,module,exports){
 // https://www.npmjs.org/package/react-interpolate-component
 'use strict';
 
@@ -1830,7 +1830,7 @@ var Interpolate = React.createClass({
 
 module.exports = Interpolate;
 
-},{"./utils/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Jumbotron.js":[function(require,module,exports){
+},{"./utils/Object.assign":54,"./utils/ValidComponentChildren":56,"react":"react"}],23:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -1846,7 +1846,7 @@ var Jumbotron = React.createClass({displayName: "Jumbotron",
 });
 
 module.exports = Jumbotron;
-},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Label.js":[function(require,module,exports){
+},{"./utils/joinClasses":61,"react":"react"}],24:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -1874,7 +1874,7 @@ var Label = React.createClass({displayName: "Label",
 });
 
 module.exports = Label;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroup.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],25:[function(require,module,exports){
 var React = require('react');
 var classSet = require('./utils/classSet');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -1906,7 +1906,7 @@ var ListGroup = React.createClass({displayName: "ListGroup",
 
 module.exports = ListGroup;
 
-},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroupItem.js":[function(require,module,exports){
+},{"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"react":"react"}],26:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2003,7 +2003,7 @@ var ListGroupItem = React.createClass({displayName: "ListGroupItem",
 
 module.exports = ListGroupItem;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],27:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2063,7 +2063,7 @@ var MenuItem = React.createClass({displayName: "MenuItem",
 });
 
 module.exports = MenuItem;
-},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Modal.js":[function(require,module,exports){
+},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],28:[function(require,module,exports){
 /* global document:false */
 
 var React = require('react');
@@ -2227,7 +2227,7 @@ var Modal = React.createClass({displayName: "Modal",
 
 module.exports = Modal;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./FadeMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js","./utils/EventListener":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ModalTrigger.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./FadeMixin":18,"./utils/EventListener":53,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],29:[function(require,module,exports){
 var React = require('react');
 var OverlayMixin = require('./OverlayMixin');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -2290,7 +2290,7 @@ var ModalTrigger = React.createClass({displayName: "ModalTrigger",
 });
 
 module.exports = ModalTrigger;
-},{"./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js":[function(require,module,exports){
+},{"./OverlayMixin":33,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"react":"react"}],30:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2404,7 +2404,7 @@ var Nav = React.createClass({displayName: "Nav",
 
 module.exports = Nav;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./CollapsableMixin":14,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/domUtils":60,"./utils/joinClasses":61,"react":"react"}],31:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2469,7 +2469,7 @@ var NavItem = React.createClass({displayName: "NavItem",
 });
 
 module.exports = NavItem;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Navbar.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],32:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -2610,7 +2610,7 @@ var Navbar = React.createClass({displayName: "Navbar",
 
 module.exports = Navbar;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Nav":30,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],33:[function(require,module,exports){
 var React = require('react');
 var CustomPropTypes = require('./utils/CustomPropTypes');
 
@@ -2696,7 +2696,7 @@ module.exports = {
   }
 };
 
-},{"./utils/CustomPropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/CustomPropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayTrigger.js":[function(require,module,exports){
+},{"./utils/CustomPropTypes":52,"react":"react"}],34:[function(require,module,exports){
 var React = require('react');
 var OverlayMixin = require('./OverlayMixin');
 var domUtils = require('./utils/domUtils');
@@ -2924,7 +2924,7 @@ var OverlayTrigger = React.createClass({displayName: "OverlayTrigger",
 });
 
 module.exports = OverlayTrigger;
-},{"./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./utils/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/domUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageHeader.js":[function(require,module,exports){
+},{"./OverlayMixin":33,"./utils/Object.assign":54,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/domUtils":60,"react":"react"}],35:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -2940,7 +2940,7 @@ var PageHeader = React.createClass({displayName: "PageHeader",
 });
 
 module.exports = PageHeader;
-},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageItem.js":[function(require,module,exports){
+},{"./utils/joinClasses":61,"react":"react"}],36:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -2998,7 +2998,7 @@ var PageItem = React.createClass({displayName: "PageItem",
 });
 
 module.exports = PageItem;
-},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Pager.js":[function(require,module,exports){
+},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],37:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -3035,7 +3035,7 @@ var Pager = React.createClass({displayName: "Pager",
 });
 
 module.exports = Pager;
-},{"./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Panel.js":[function(require,module,exports){
+},{"./utils/ValidComponentChildren":56,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],38:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3235,7 +3235,7 @@ var Panel = React.createClass({displayName: "Panel",
 
 module.exports = Panel;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./CollapsableMixin":14,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],39:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3322,7 +3322,7 @@ var PanelGroup = React.createClass({displayName: "PanelGroup",
 });
 
 module.exports = PanelGroup;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Popover.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],40:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3381,7 +3381,7 @@ var Popover = React.createClass({displayName: "Popover",
 });
 
 module.exports = Popover;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ProgressBar.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],41:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var Interpolate = require('./Interpolate');
@@ -3516,7 +3516,7 @@ var ProgressBar = React.createClass({displayName: "ProgressBar",
 
 module.exports = ProgressBar;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Interpolate":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Row.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Interpolate":22,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/joinClasses":61,"react":"react"}],42:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 
@@ -3543,7 +3543,7 @@ var Row = React.createClass({displayName: "Row",
 });
 
 module.exports = Row;
-},{"./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SplitButton.js":[function(require,module,exports){
+},{"./utils/joinClasses":61,"react":"react"}],43:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3650,7 +3650,7 @@ var SplitButton = React.createClass({displayName: "SplitButton",
 
 module.exports = SplitButton;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SubNav.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./DropdownMenu":16,"./DropdownStateMixin":17,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],44:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3782,7 +3782,7 @@ var SubNav = React.createClass({displayName: "SubNav",
 
 module.exports = SubNav;
 
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","./utils/createChainedFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabPane.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/ValidComponentChildren":56,"./utils/classSet":57,"./utils/cloneWithProps":58,"./utils/createChainedFunction":59,"./utils/joinClasses":61,"react":"react"}],45:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -3865,7 +3865,7 @@ var TabPane = React.createClass({displayName: "TabPane",
 });
 
 module.exports = TabPane;
-},{"./utils/TransitionEvents":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabbedArea.js":[function(require,module,exports){
+},{"./utils/TransitionEvents":55,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],46:[function(require,module,exports){
 var React = require('react');
 var BootstrapMixin = require('./BootstrapMixin');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -4005,7 +4005,7 @@ var TabbedArea = React.createClass({displayName: "TabbedArea",
 });
 
 module.exports = TabbedArea;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","./utils/ValidComponentChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js","./utils/cloneWithProps":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Table.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./Nav":30,"./NavItem":31,"./utils/ValidComponentChildren":56,"./utils/cloneWithProps":58,"react":"react"}],47:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4042,7 +4042,7 @@ var Table = React.createClass({displayName: "Table",
 });
 
 module.exports = Table;
-},{"./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Tooltip.js":[function(require,module,exports){
+},{"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],48:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4092,7 +4092,7 @@ var Tooltip = React.createClass({displayName: "Tooltip",
 });
 
 module.exports = Tooltip;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Well.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],49:[function(require,module,exports){
 var React = require('react');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
@@ -4119,7 +4119,7 @@ var Well = React.createClass({displayName: "Well",
 });
 
 module.exports = Well;
-},{"./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./utils/classSet":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js","./utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/constants.js":[function(require,module,exports){
+},{"./BootstrapMixin":7,"./utils/classSet":57,"./utils/joinClasses":61,"react":"react"}],50:[function(require,module,exports){
 module.exports = {
   CLASSES: {
     'alert': 'alert',
@@ -4422,7 +4422,7 @@ module.exports = {
   ]
 };
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js":[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = {
   Accordion: require('./Accordion'),
   Affix: require('./Affix'),
@@ -4474,7 +4474,7 @@ module.exports = {
   Well: require('./Well')
 };
 
-},{"./Accordion":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Accordion.js","./Affix":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Affix.js","./AffixMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/AffixMixin.js","./Alert":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Alert.js","./Badge":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Badge.js","./BootstrapMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/BootstrapMixin.js","./Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","./ButtonGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonGroup.js","./ButtonToolbar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ButtonToolbar.js","./Carousel":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Carousel.js","./CarouselItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CarouselItem.js","./Col":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Col.js","./CollapsableMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/CollapsableMixin.js","./DropdownButton":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownButton.js","./DropdownMenu":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownMenu.js","./DropdownStateMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/DropdownStateMixin.js","./FadeMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/FadeMixin.js","./Glyphicon":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Glyphicon.js","./Grid":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Grid.js","./Input":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Input.js","./Interpolate":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Interpolate.js","./Jumbotron":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Jumbotron.js","./Label":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Label.js","./ListGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroup.js","./ListGroupItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ListGroupItem.js","./MenuItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js","./Modal":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Modal.js","./ModalTrigger":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ModalTrigger.js","./Nav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Nav.js","./NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","./Navbar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Navbar.js","./OverlayMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayMixin.js","./OverlayTrigger":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/OverlayTrigger.js","./PageHeader":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageHeader.js","./PageItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PageItem.js","./Pager":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Pager.js","./Panel":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Panel.js","./PanelGroup":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/PanelGroup.js","./Popover":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Popover.js","./ProgressBar":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/ProgressBar.js","./Row":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Row.js","./SplitButton":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SplitButton.js","./SubNav":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/SubNav.js","./TabPane":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabPane.js","./TabbedArea":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/TabbedArea.js","./Table":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Table.js","./Tooltip":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Tooltip.js","./Well":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Well.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/CustomPropTypes.js":[function(require,module,exports){
+},{"./Accordion":2,"./Affix":3,"./AffixMixin":4,"./Alert":5,"./Badge":6,"./BootstrapMixin":7,"./Button":8,"./ButtonGroup":9,"./ButtonToolbar":10,"./Carousel":11,"./CarouselItem":12,"./Col":13,"./CollapsableMixin":14,"./DropdownButton":15,"./DropdownMenu":16,"./DropdownStateMixin":17,"./FadeMixin":18,"./Glyphicon":19,"./Grid":20,"./Input":21,"./Interpolate":22,"./Jumbotron":23,"./Label":24,"./ListGroup":25,"./ListGroupItem":26,"./MenuItem":27,"./Modal":28,"./ModalTrigger":29,"./Nav":30,"./NavItem":31,"./Navbar":32,"./OverlayMixin":33,"./OverlayTrigger":34,"./PageHeader":35,"./PageItem":36,"./Pager":37,"./Panel":38,"./PanelGroup":39,"./Popover":40,"./ProgressBar":41,"./Row":42,"./SplitButton":43,"./SubNav":44,"./TabPane":45,"./TabbedArea":46,"./Table":47,"./Tooltip":48,"./Well":49}],52:[function(require,module,exports){
 var React = require('react');
 
 var ANONYMOUS = '<<anonymous>>';
@@ -4537,7 +4537,7 @@ function createMountableChecker() {
 }
 
 module.exports = CustomPropTypes;
-},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/EventListener.js":[function(require,module,exports){
+},{"react":"react"}],53:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -4593,7 +4593,7 @@ var EventListener = {
 
 module.exports = EventListener;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js":[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -4642,7 +4642,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/TransitionEvents.js":[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -4757,7 +4757,7 @@ var ReactTransitionEvents = {
 
 module.exports = ReactTransitionEvents;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/ValidComponentChildren.js":[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 var React = require('react');
 
 /**
@@ -4848,7 +4848,7 @@ module.exports = {
   numberOf: numberOfValidComponents,
   hasValidComponent: hasValidComponent
 };
-},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/classSet.js":[function(require,module,exports){
+},{"react":"react"}],57:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -4888,7 +4888,7 @@ function cx(classNames) {
 }
 
 module.exports = cx;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/cloneWithProps.js":[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -5032,7 +5032,7 @@ function cloneWithProps(child, props) {
 }
 
 module.exports = cloneWithProps;
-},{"./Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/Object.assign.js","./joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/createChainedFunction.js":[function(require,module,exports){
+},{"./Object.assign":54,"./joinClasses":61,"react":"react"}],59:[function(require,module,exports){
 /**
  * Safe chained function
  *
@@ -5058,7 +5058,7 @@ function createChainedFunction(one, two) {
 }
 
 module.exports = createChainedFunction;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/domUtils.js":[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 
 /**
  * Shortcut to compute element style
@@ -5168,7 +5168,7 @@ module.exports = {
   getPosition: getPosition,
   offsetParent: offsetParent
 };
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js":[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -5210,7 +5210,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/ButtonLink.js":[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 var React = require('react');
 
 var Button = require('react-bootstrap/lib/Button');
@@ -5250,7 +5250,7 @@ var ButtonLink = React.createClass({displayName: "ButtonLink",
 
 module.exports = ButtonLink;
 
-},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/Button":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/Button.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js":[function(require,module,exports){
+},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/Button":8,"react-router":94}],63:[function(require,module,exports){
 var React = require('react');
 var classSet = require('react/lib/cx');
 var assign = require('react/lib/Object.assign');
@@ -5327,7 +5327,7 @@ module.exports = {
   }
 };
 
-},{"react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/MenuItemLink.js":[function(require,module,exports){
+},{"react":"react","react/lib/Object.assign":108,"react/lib/cx":109}],64:[function(require,module,exports){
 var React = require('react');
 var classSet = require('react/lib/cx');
 
@@ -5372,7 +5372,7 @@ var MenuItemLink = React.createClass({displayName: "MenuItemLink",
 
 module.exports = MenuItemLink;
 
-},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/MenuItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/MenuItem.js","react-bootstrap/lib/utils/joinClasses":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/utils/joinClasses.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/NavItemLink.js":[function(require,module,exports){
+},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/MenuItem":27,"react-bootstrap/lib/utils/joinClasses":61,"react-router":94,"react/lib/cx":109}],65:[function(require,module,exports){
 var React = require('react');
 
 var NavItem = require('react-bootstrap/lib/NavItem');
@@ -5412,7 +5412,7 @@ var NavItemLink = React.createClass({displayName: "NavItemLink",
 
 module.exports = NavItemLink;
 
-},{"./LinkMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/LinkMixin.js","react":"react","react-bootstrap/lib/NavItem":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/NavItem.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/index.js":[function(require,module,exports){
+},{"./LinkMixin":63,"react":"react","react-bootstrap/lib/NavItem":31,"react-router":94}],66:[function(require,module,exports){
 var ButtonLink = require('./ButtonLink');
 var MenuItemLink = require('./MenuItemLink');
 var NavItemLink = require('./NavItemLink');
@@ -5423,7 +5423,7 @@ module.exports = {
   NavItemLink: NavItemLink
 };
 
-},{"./ButtonLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/ButtonLink.js","./MenuItemLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/MenuItemLink.js","./NavItemLink":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/NavItemLink.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js":[function(require,module,exports){
+},{"./ButtonLink":62,"./MenuItemLink":64,"./NavItemLink":65}],67:[function(require,module,exports){
 "use strict";
 
 /**
@@ -5433,7 +5433,7 @@ module.exports = {
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js":[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict";
 
 var warning = require("react/lib/warning");
@@ -5466,7 +5466,7 @@ var Configuration = {
 };
 
 module.exports = Configuration;
-},{"react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js":[function(require,module,exports){
+},{"react/lib/invariant":111,"react/lib/warning":112}],69:[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -5497,7 +5497,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Match.js":[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],70:[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -5577,7 +5577,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js":[function(require,module,exports){
+},{"./PathUtils":73}],71:[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -5652,7 +5652,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/NavigationContext.js":[function(require,module,exports){
+},{"./PropTypes":74}],72:[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -5683,7 +5683,7 @@ var NavigationContext = {
 };
 
 module.exports = NavigationContext;
-},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js":[function(require,module,exports){
+},{"./PropTypes":74}],73:[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -5837,7 +5837,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"qs":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/index.js","qs/lib/utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js":[function(require,module,exports){
+},{"qs":102,"qs/lib/utils":106,"react/lib/invariant":111}],74:[function(require,module,exports){
 "use strict";
 
 var assign = require("react/lib/Object.assign");
@@ -5857,7 +5857,7 @@ var PropTypes = assign({
 }, ReactPropTypes);
 
 module.exports = PropTypes;
-},{"react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js":[function(require,module,exports){
+},{"react":"react","react/lib/Object.assign":108}],75:[function(require,module,exports){
 "use strict";
 
 /**
@@ -5870,7 +5870,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js":[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -6090,7 +6090,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js":[function(require,module,exports){
+},{"./PathUtils":73,"react/lib/Object.assign":108,"react/lib/invariant":111,"react/lib/warning":112}],77:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6145,7 +6145,7 @@ var RouteHandlerMixin = {
 };
 
 module.exports = RouteHandlerMixin;
-},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/ScrollHistory.js":[function(require,module,exports){
+},{"./PropTypes":74,"react":"react","react/lib/Object.assign":108}],78:[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -6221,7 +6221,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/getWindowScrollPosition.js","react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js":[function(require,module,exports){
+},{"./getWindowScrollPosition":93,"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],79:[function(require,module,exports){
 "use strict";
 
 var PropTypes = require("./PropTypes");
@@ -6301,7 +6301,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/StateContext.js":[function(require,module,exports){
+},{"./PropTypes":74}],80:[function(require,module,exports){
 "use strict";
 
 var assign = require("react/lib/Object.assign");
@@ -6398,7 +6398,7 @@ var StateContext = {
 };
 
 module.exports = StateContext;
-},{"./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Transition.js":[function(require,module,exports){
+},{"./PathUtils":73,"./PropTypes":74,"react/lib/Object.assign":108}],81:[function(require,module,exports){
 "use strict";
 
 /* jshint -W058 */
@@ -6474,7 +6474,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js","./Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js":[function(require,module,exports){
+},{"./Cancellation":67,"./Redirect":75}],82:[function(require,module,exports){
 "use strict";
 
 /**
@@ -6500,7 +6500,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js":[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -6530,7 +6530,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ScrollToTopBehavior.js":[function(require,module,exports){
+},{"../actions/LocationActions":82}],84:[function(require,module,exports){
 "use strict";
 
 /**
@@ -6546,7 +6546,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js":[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6575,7 +6575,7 @@ var DefaultRoute = React.createClass({
 });
 
 module.exports = DefaultRoute;
-},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Link.js":[function(require,module,exports){
+},{"../Configuration":68,"../PropTypes":74,"react":"react"}],86:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6688,7 +6688,7 @@ var Link = React.createClass({
 });
 
 module.exports = Link;
-},{"../Navigation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","../Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","../State":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/cx":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js":[function(require,module,exports){
+},{"../Navigation":71,"../PropTypes":74,"../Route":76,"../State":79,"react":"react","react/lib/Object.assign":108,"react/lib/cx":109}],87:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6718,7 +6718,7 @@ var NotFoundRoute = React.createClass({
 });
 
 module.exports = NotFoundRoute;
-},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js":[function(require,module,exports){
+},{"../Configuration":68,"../PropTypes":74,"react":"react"}],88:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6745,7 +6745,7 @@ var Redirect = React.createClass({
 });
 
 module.exports = Redirect;
-},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Route.js":[function(require,module,exports){
+},{"../Configuration":68,"../PropTypes":74,"react":"react"}],89:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6814,7 +6814,7 @@ var Route = React.createClass({
 });
 
 module.exports = Route;
-},{"../Configuration":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Configuration.js","../PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","./RouteHandler":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js":[function(require,module,exports){
+},{"../Configuration":68,"../PropTypes":74,"./RouteHandler":90,"react":"react"}],90:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -6837,7 +6837,7 @@ var RouteHandler = React.createClass({
 });
 
 module.exports = RouteHandler;
-},{"../RouteHandlerMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js","react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js":[function(require,module,exports){
+},{"../RouteHandlerMixin":77,"react":"react"}],91:[function(require,module,exports){
 (function (process){
 "use strict";
 
@@ -7296,7 +7296,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Cancellation.js","./History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./Match":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Match.js","./NavigationContext":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/NavigationContext.js","./PathUtils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PathUtils.js","./PropTypes":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/PropTypes.js","./Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Redirect.js","./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./ScrollHistory":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/ScrollHistory.js","./StateContext":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/StateContext.js","./Transition":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Transition.js","./actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js","./behaviors/ImitateBrowserBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js","./createRoutesFromReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js","./isReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/isReactChildren.js","./locations/HashLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js","./locations/HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js","./locations/RefreshLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js","./locations/StaticLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js","./supportsHistory":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/supportsHistory.js","_process":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/grunt-browserify/node_modules/browserify/node_modules/process/browser.js","react":"react","react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js":[function(require,module,exports){
+},{"./Cancellation":67,"./History":69,"./Match":70,"./NavigationContext":72,"./PathUtils":73,"./PropTypes":74,"./Redirect":75,"./Route":76,"./ScrollHistory":78,"./StateContext":80,"./Transition":81,"./actions/LocationActions":82,"./behaviors/ImitateBrowserBehavior":83,"./createRoutesFromReactChildren":92,"./isReactChildren":95,"./locations/HashLocation":96,"./locations/HistoryLocation":97,"./locations/RefreshLocation":98,"./locations/StaticLocation":99,"./supportsHistory":101,"_process":1,"react":"react","react/lib/ExecutionEnvironment":107,"react/lib/invariant":111,"react/lib/warning":112}],92:[function(require,module,exports){
 "use strict";
 
 /* jshint -W084 */
@@ -7379,7 +7379,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./components/DefaultRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js","./components/NotFoundRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js","./components/Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js","react":"react","react/lib/Object.assign":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js","react/lib/warning":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/getWindowScrollPosition.js":[function(require,module,exports){
+},{"./Route":76,"./components/DefaultRoute":85,"./components/NotFoundRoute":87,"./components/Redirect":88,"react":"react","react/lib/Object.assign":108,"react/lib/warning":112}],93:[function(require,module,exports){
 "use strict";
 
 var invariant = require("react/lib/invariant");
@@ -7398,7 +7398,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js","react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js":[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":107,"react/lib/invariant":111}],94:[function(require,module,exports){
 "use strict";
 
 exports.DefaultRoute = require("./components/DefaultRoute");
@@ -7428,7 +7428,7 @@ exports.createRedirect = require("./Route").createRedirect;
 exports.createRoutesFromReactChildren = require("./createRoutesFromReactChildren");
 exports.create = require("./createRouter");
 exports.run = require("./runRouter");
-},{"./History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./Navigation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Navigation.js","./Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/Route.js","./RouteHandlerMixin":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/RouteHandlerMixin.js","./State":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/State.js","./behaviors/ImitateBrowserBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ImitateBrowserBehavior.js","./behaviors/ScrollToTopBehavior":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/behaviors/ScrollToTopBehavior.js","./components/DefaultRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/DefaultRoute.js","./components/Link":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Link.js","./components/NotFoundRoute":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/NotFoundRoute.js","./components/Redirect":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Redirect.js","./components/Route":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/Route.js","./components/RouteHandler":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/components/RouteHandler.js","./createRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js","./createRoutesFromReactChildren":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRoutesFromReactChildren.js","./locations/HashLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js","./locations/HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js","./locations/RefreshLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js","./locations/StaticLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js","./runRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/runRouter.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/isReactChildren.js":[function(require,module,exports){
+},{"./History":69,"./Navigation":71,"./Route":76,"./RouteHandlerMixin":77,"./State":79,"./behaviors/ImitateBrowserBehavior":83,"./behaviors/ScrollToTopBehavior":84,"./components/DefaultRoute":85,"./components/Link":86,"./components/NotFoundRoute":87,"./components/Redirect":88,"./components/Route":89,"./components/RouteHandler":90,"./createRouter":91,"./createRoutesFromReactChildren":92,"./locations/HashLocation":96,"./locations/HistoryLocation":97,"./locations/RefreshLocation":98,"./locations/StaticLocation":99,"./runRouter":100}],95:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -7442,7 +7442,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HashLocation.js":[function(require,module,exports){
+},{"react":"react"}],96:[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -7561,7 +7561,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js":[function(require,module,exports){
+},{"../History":69,"../actions/LocationActions":82}],97:[function(require,module,exports){
 "use strict";
 
 var LocationActions = require("../actions/LocationActions");
@@ -7654,7 +7654,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","../actions/LocationActions":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/actions/LocationActions.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/RefreshLocation.js":[function(require,module,exports){
+},{"../History":69,"../actions/LocationActions":82}],98:[function(require,module,exports){
 "use strict";
 
 var HistoryLocation = require("./HistoryLocation");
@@ -7686,7 +7686,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/History.js","./HistoryLocation":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/HistoryLocation.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/locations/StaticLocation.js":[function(require,module,exports){
+},{"../History":69,"./HistoryLocation":97}],99:[function(require,module,exports){
 "use strict";
 
 var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
@@ -7739,7 +7739,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/runRouter.js":[function(require,module,exports){
+},{"react/lib/invariant":111}],100:[function(require,module,exports){
 "use strict";
 
 var createRouter = require("./createRouter");
@@ -7790,7 +7790,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/createRouter.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/supportsHistory.js":[function(require,module,exports){
+},{"./createRouter":91}],101:[function(require,module,exports){
 "use strict";
 
 function supportsHistory() {
@@ -7807,10 +7807,10 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/index.js":[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/index.js":[function(require,module,exports){
+},{"./lib/":103}],103:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -7827,7 +7827,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/parse.js","./stringify":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/stringify.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/parse.js":[function(require,module,exports){
+},{"./parse":104,"./stringify":105}],104:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -7986,7 +7986,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/stringify.js":[function(require,module,exports){
+},{"./utils":106}],105:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -8065,7 +8065,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js"}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/node_modules/qs/lib/utils.js":[function(require,module,exports){
+},{"./utils":106}],106:[function(require,module,exports){
 // Load modules
 
 
@@ -8199,7 +8199,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/ExecutionEnvironment.js":[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8244,7 +8244,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/Object.assign.js":[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -8291,7 +8291,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/cx.js":[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8330,7 +8330,7 @@ function cx(classNames) {
 
 module.exports = cx;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/emptyFunction.js":[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8364,7 +8364,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/invariant.js":[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -8419,7 +8419,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/warning.js":[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 /**
  * Copyright 2014, Facebook, Inc.
  * All rights reserved.
@@ -8462,78 +8462,1291 @@ if ("production" !== "development") {
 
 module.exports = warning;
 
-},{"./emptyFunction":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react/lib/emptyFunction.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js":[function(require,module,exports){
-"use strict";
+},{"./emptyFunction":110}],113:[function(require,module,exports){
+module.exports = require('./src');
 
-// This file is a simple temporary data store that
-// initializes a few models and provides a bare
-// minimum of methods to manipulate them. It does
-// no validation.
+},{"./src":127}],114:[function(require,module,exports){
+'use strict';
 
-var students = [];
-var id = 0;
-
-function UUID() {
-	return ++id;
+/**
+ * Representation of a single EventEmitter function.
+ *
+ * @param {Function} fn Event handler to be called.
+ * @param {Mixed} context Context for function execution.
+ * @param {Boolean} once Only emit once
+ * @api private
+ */
+function EE(fn, context, once) {
+  this.fn = fn;
+  this.context = context;
+  this.once = once || false;
 }
 
-function addStudent(data) {
-	data.id = UUID();
+/**
+ * Minimal EventEmitter interface that is molded against the Node.js
+ * EventEmitter interface.
+ *
+ * @constructor
+ * @api public
+ */
+function EventEmitter() { /* Nothing to set */ }
 
-	students.push(data);
-}
+/**
+ * Holds the assigned EventEmitters by name.
+ *
+ * @type {Object}
+ * @private
+ */
+EventEmitter.prototype._events = undefined;
 
-function getStudentById(id) {
-	var student;
+/**
+ * Return a list of assigned event listeners.
+ *
+ * @param {String} event The events that should be listed.
+ * @returns {Array}
+ * @api public
+ */
+EventEmitter.prototype.listeners = function listeners(event) {
+  if (!this._events || !this._events[event]) return [];
+  if (this._events[event].fn) return [this._events[event].fn];
 
-	students.forEach(function (s) {
-		if (s.id == id) {
-			student = s;
-		}
-	});
+  for (var i = 0, l = this._events[event].length, ee = new Array(l); i < l; i++) {
+    ee[i] = this._events[event][i].fn;
+  }
 
-	return student;
-}
-
-function getAllStudents() {
-	return students;
-}
-
-// We add some sample data
-addStudent({
-	firstName: "Kieran",
-	lastName: "Sedgwick",
-	rank: "Black-belt",
-	emails: ["example1@myseneca.ca", "example2@myseneca.ca"]
-});
-addStudent({
-	firstName: "Alina",
-	lastName: "Shtramwasser",
-	rank: "Kitty-belt",
-	emails: ["example1@myseneca.ca"]
-});
-addStudent({
-	firstName: "Yoav",
-	lastName: "Gurevich",
-	rank: "Smoke-belt",
-	emails: ["example1@myseneca.ca", "example2@myseneca.ca"]
-});
-addStudent({
-	firstName: "Chris",
-	lastName: "Choi",
-	rank: "?????",
-	emails: ["example1@myseneca.ca", "example2@myseneca.ca"]
-});
-
-// We expose all of the methods
-module.exports = {
-	UUID: UUID,
-	addStudent: addStudent,
-	getStudentById: getStudentById,
-	getAllStudents: getAllStudents
+  return ee;
 };
 
-},{}],"/Users/k.sedge/Documents/Projects/opendojo/react/bin/routes.jsx":[function(require,module,exports){
+/**
+ * Emit an event to all registered event listeners.
+ *
+ * @param {String} event The name of the event.
+ * @returns {Boolean} Indication if we've emitted an event.
+ * @api public
+ */
+EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
+  if (!this._events || !this._events[event]) return false;
+
+  var listeners = this._events[event]
+    , len = arguments.length
+    , args
+    , i;
+
+  if ('function' === typeof listeners.fn) {
+    if (listeners.once) this.removeListener(event, listeners.fn, true);
+
+    switch (len) {
+      case 1: return listeners.fn.call(listeners.context), true;
+      case 2: return listeners.fn.call(listeners.context, a1), true;
+      case 3: return listeners.fn.call(listeners.context, a1, a2), true;
+      case 4: return listeners.fn.call(listeners.context, a1, a2, a3), true;
+      case 5: return listeners.fn.call(listeners.context, a1, a2, a3, a4), true;
+      case 6: return listeners.fn.call(listeners.context, a1, a2, a3, a4, a5), true;
+    }
+
+    for (i = 1, args = new Array(len -1); i < len; i++) {
+      args[i - 1] = arguments[i];
+    }
+
+    listeners.fn.apply(listeners.context, args);
+  } else {
+    var length = listeners.length
+      , j;
+
+    for (i = 0; i < length; i++) {
+      if (listeners[i].once) this.removeListener(event, listeners[i].fn, true);
+
+      switch (len) {
+        case 1: listeners[i].fn.call(listeners[i].context); break;
+        case 2: listeners[i].fn.call(listeners[i].context, a1); break;
+        case 3: listeners[i].fn.call(listeners[i].context, a1, a2); break;
+        default:
+          if (!args) for (j = 1, args = new Array(len -1); j < len; j++) {
+            args[j - 1] = arguments[j];
+          }
+
+          listeners[i].fn.apply(listeners[i].context, args);
+      }
+    }
+  }
+
+  return true;
+};
+
+/**
+ * Register a new EventListener for the given event.
+ *
+ * @param {String} event Name of the event.
+ * @param {Functon} fn Callback function.
+ * @param {Mixed} context The context of the function.
+ * @api public
+ */
+EventEmitter.prototype.on = function on(event, fn, context) {
+  var listener = new EE(fn, context || this);
+
+  if (!this._events) this._events = {};
+  if (!this._events[event]) this._events[event] = listener;
+  else {
+    if (!this._events[event].fn) this._events[event].push(listener);
+    else this._events[event] = [
+      this._events[event], listener
+    ];
+  }
+
+  return this;
+};
+
+/**
+ * Add an EventListener that's only called once.
+ *
+ * @param {String} event Name of the event.
+ * @param {Function} fn Callback function.
+ * @param {Mixed} context The context of the function.
+ * @api public
+ */
+EventEmitter.prototype.once = function once(event, fn, context) {
+  var listener = new EE(fn, context || this, true);
+
+  if (!this._events) this._events = {};
+  if (!this._events[event]) this._events[event] = listener;
+  else {
+    if (!this._events[event].fn) this._events[event].push(listener);
+    else this._events[event] = [
+      this._events[event], listener
+    ];
+  }
+
+  return this;
+};
+
+/**
+ * Remove event listeners.
+ *
+ * @param {String} event The event we want to remove.
+ * @param {Function} fn The listener that we need to find.
+ * @param {Boolean} once Only remove once listeners.
+ * @api public
+ */
+EventEmitter.prototype.removeListener = function removeListener(event, fn, once) {
+  if (!this._events || !this._events[event]) return this;
+
+  var listeners = this._events[event]
+    , events = [];
+
+  if (fn) {
+    if (listeners.fn && (listeners.fn !== fn || (once && !listeners.once))) {
+      events.push(listeners);
+    }
+    if (!listeners.fn) for (var i = 0, length = listeners.length; i < length; i++) {
+      if (listeners[i].fn !== fn || (once && !listeners[i].once)) {
+        events.push(listeners[i]);
+      }
+    }
+  }
+
+  //
+  // Reset the array, or remove it completely if we have no more listeners.
+  //
+  if (events.length) {
+    this._events[event] = events.length === 1 ? events[0] : events;
+  } else {
+    delete this._events[event];
+  }
+
+  return this;
+};
+
+/**
+ * Remove all listeners or only the listeners for the specified event.
+ *
+ * @param {String} event The event want to remove all listeners for.
+ * @api public
+ */
+EventEmitter.prototype.removeAllListeners = function removeAllListeners(event) {
+  if (!this._events) return this;
+
+  if (event) delete this._events[event];
+  else this._events = {};
+
+  return this;
+};
+
+//
+// Alias methods names because people roll like that.
+//
+EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+EventEmitter.prototype.addListener = EventEmitter.prototype.on;
+
+//
+// This function doesn't apply anymore.
+//
+EventEmitter.prototype.setMaxListeners = function setMaxListeners() {
+  return this;
+};
+
+//
+// Expose the module.
+//
+EventEmitter.EventEmitter = EventEmitter;
+EventEmitter.EventEmitter2 = EventEmitter;
+EventEmitter.EventEmitter3 = EventEmitter;
+
+//
+// Expose the module.
+//
+module.exports = EventEmitter;
+
+},{}],115:[function(require,module,exports){
+(function (global){
+/*! Native Promise Only
+    v0.7.6-a (c) Kyle Simpson
+    MIT License: http://getify.mit-license.org
+*/
+!function(t,n,e){n[t]=n[t]||e(),"undefined"!=typeof module&&module.exports?module.exports=n[t]:"function"==typeof define&&define.amd&&define(function(){return n[t]})}("Promise","undefined"!=typeof global?global:this,function(){"use strict";function t(t,n){l.add(t,n),h||(h=y(l.drain))}function n(t){var n,e=typeof t;return null==t||"object"!=e&&"function"!=e||(n=t.then),"function"==typeof n?n:!1}function e(){for(var t=0;t<this.chain.length;t++)o(this,1===this.state?this.chain[t].success:this.chain[t].failure,this.chain[t]);this.chain.length=0}function o(t,e,o){var r,i;try{e===!1?o.reject(t.msg):(r=e===!0?t.msg:e.call(void 0,t.msg),r===o.promise?o.reject(TypeError("Promise-chain cycle")):(i=n(r))?i.call(r,o.resolve,o.reject):o.resolve(r))}catch(c){o.reject(c)}}function r(o){var c,u,a=this;if(!a.triggered){a.triggered=!0,a.def&&(a=a.def);try{(c=n(o))?(u=new f(a),c.call(o,function(){r.apply(u,arguments)},function(){i.apply(u,arguments)})):(a.msg=o,a.state=1,a.chain.length>0&&t(e,a))}catch(s){i.call(u||new f(a),s)}}}function i(n){var o=this;o.triggered||(o.triggered=!0,o.def&&(o=o.def),o.msg=n,o.state=2,o.chain.length>0&&t(e,o))}function c(t,n,e,o){for(var r=0;r<n.length;r++)!function(r){t.resolve(n[r]).then(function(t){e(r,t)},o)}(r)}function f(t){this.def=t,this.triggered=!1}function u(t){this.promise=t,this.state=0,this.triggered=!1,this.chain=[],this.msg=void 0}function a(n){if("function"!=typeof n)throw TypeError("Not a function");if(0!==this.__NPO__)throw TypeError("Not a promise");this.__NPO__=1;var o=new u(this);this.then=function(n,r){var i={success:"function"==typeof n?n:!0,failure:"function"==typeof r?r:!1};return i.promise=new this.constructor(function(t,n){if("function"!=typeof t||"function"!=typeof n)throw TypeError("Not a function");i.resolve=t,i.reject=n}),o.chain.push(i),0!==o.state&&t(e,o),i.promise},this["catch"]=function(t){return this.then(void 0,t)};try{n.call(void 0,function(t){r.call(o,t)},function(t){i.call(o,t)})}catch(c){i.call(o,c)}}var s,h,l,p=Object.prototype.toString,y="undefined"!=typeof setImmediate?function(t){return setImmediate(t)}:setTimeout;try{Object.defineProperty({},"x",{}),s=function(t,n,e,o){return Object.defineProperty(t,n,{value:e,writable:!0,configurable:o!==!1})}}catch(d){s=function(t,n,e){return t[n]=e,t}}l=function(){function t(t,n){this.fn=t,this.self=n,this.next=void 0}var n,e,o;return{add:function(r,i){o=new t(r,i),e?e.next=o:n=o,e=o,o=void 0},drain:function(){var t=n;for(n=e=h=void 0;t;)t.fn.call(t.self),t=t.next}}}();var g=s({},"constructor",a,!1);return s(a,"prototype",g,!1),s(g,"__NPO__",0,!1),s(a,"resolve",function(t){var n=this;return t&&"object"==typeof t&&1===t.__NPO__?t:new n(function(n,e){if("function"!=typeof n||"function"!=typeof e)throw TypeError("Not a function");n(t)})}),s(a,"reject",function(t){return new this(function(n,e){if("function"!=typeof n||"function"!=typeof e)throw TypeError("Not a function");e(t)})}),s(a,"all",function(t){var n=this;return"[object Array]"!=p.call(t)?n.reject(TypeError("Not an array")):0===t.length?n.resolve([]):new n(function(e,o){if("function"!=typeof e||"function"!=typeof o)throw TypeError("Not a function");var r=t.length,i=Array(r),f=0;c(n,t,function(t,n){i[t]=n,++f===r&&e(i)},o)})}),s(a,"race",function(t){var n=this;return"[object Array]"!=p.call(t)?n.reject(TypeError("Not an array")):new n(function(e,o){if("function"!=typeof e||"function"!=typeof o)throw TypeError("Not a function");c(n,t,function(t,n){e(n)},o)})}),a});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],116:[function(require,module,exports){
+/**
+ * A module of methods that you want to include in all actions.
+ * This module is consumed by `createAction`.
+ */
+module.exports = {
+};
+
+},{}],117:[function(require,module,exports){
+exports.createdStores = [];
+
+exports.createdActions = [];
+
+exports.reset = function() {
+    while(exports.createdStores.length) {
+        exports.createdStores.pop();
+    }
+    while(exports.createdActions.length) {
+        exports.createdActions.pop();
+    }
+};
+
+},{}],118:[function(require,module,exports){
+var _ = require('./utils'),
+    maker = require('./joins').instanceJoinCreator;
+
+/**
+ * Extract child listenables from a parent from their
+ * children property and return them in a keyed Object
+ *
+ * @param {Object} listenable The parent listenable
+ */
+var mapChildListenables = function(listenable) {
+    var i = 0, children = {}, childName;
+    for (;i < (listenable.children||[]).length; ++i) {
+        childName = listenable.children[i];
+        if(listenable[childName]){
+            children[childName] = listenable[childName];
+        }
+    }
+    return children;
+};
+
+/**
+ * Make a flat dictionary of all listenables including their
+ * possible children (recursively), concatenating names in camelCase.
+ *
+ * @param {Object} listenables The top-level listenables
+ */
+var flattenListenables = function(listenables) {
+    var flattened = {};
+    for(var key in listenables){
+        var listenable = listenables[key];
+        var childMap = mapChildListenables(listenable);
+
+        // recursively flatten children
+        var children = flattenListenables(childMap);
+
+        // add the primary listenable and chilren
+        flattened[key] = listenable;
+        for(var childKey in children){
+            var childListenable = children[childKey];
+            flattened[key + _.capitalize(childKey)] = childListenable;
+        }
+    }
+
+    return flattened;
+};
+
+/**
+ * A module of methods related to listening.
+ */
+module.exports = {
+
+    /**
+     * An internal utility function used by `validateListening`
+     *
+     * @param {Action|Store} listenable The listenable we want to search for
+     * @returns {Boolean} The result of a recursive search among `this.subscriptions`
+     */
+    hasListener: function(listenable) {
+        var i = 0, j, listener, listenables;
+        for (;i < (this.subscriptions||[]).length; ++i) {
+            listenables = [].concat(this.subscriptions[i].listenable);
+            for (j = 0; j < listenables.length; j++){
+                listener = listenables[j];
+                if (listener === listenable || listener.hasListener && listener.hasListener(listenable)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
+
+    /**
+     * A convenience method that listens to all listenables in the given object.
+     *
+     * @param {Object} listenables An object of listenables. Keys will be used as callback method names.
+     */
+    listenToMany: function(listenables){
+        var allListenables = flattenListenables(listenables);
+        for(var key in allListenables){
+            var cbname = _.callbackName(key),
+                localname = this[cbname] ? cbname : this[key] ? key : undefined;
+            if (localname){
+                this.listenTo(allListenables[key],localname,this[cbname+"Default"]||this[localname+"Default"]||localname);
+            }
+        }
+    },
+
+    /**
+     * Checks if the current context can listen to the supplied listenable
+     *
+     * @param {Action|Store} listenable An Action or Store that should be
+     *  listened to.
+     * @returns {String|Undefined} An error message, or undefined if there was no problem.
+     */
+    validateListening: function(listenable){
+        if (listenable === this) {
+            return "Listener is not able to listen to itself";
+        }
+        if (!_.isFunction(listenable.listen)) {
+            return listenable + " is missing a listen method";
+        }
+        if (listenable.hasListener && listenable.hasListener(this)) {
+            return "Listener cannot listen to this listenable because of circular loop";
+        }
+    },
+
+    /**
+     * Sets up a subscription to the given listenable for the context object
+     *
+     * @param {Action|Store} listenable An Action or Store that should be
+     *  listened to.
+     * @param {Function|String} callback The callback to register as event handler
+     * @param {Function|String} defaultCallback The callback to register as default handler
+     * @returns {Object} A subscription obj where `stop` is an unsub function and `listenable` is the object being listened to
+     */
+    listenTo: function(listenable, callback, defaultCallback) {
+        var desub, unsubscriber, subscriptionobj, subs = this.subscriptions = this.subscriptions || [];
+        _.throwIf(this.validateListening(listenable));
+        this.fetchInitialState(listenable, defaultCallback);
+        desub = listenable.listen(this[callback]||callback, this);
+        unsubscriber = function() {
+            var index = subs.indexOf(subscriptionobj);
+            _.throwIf(index === -1,'Tried to remove listen already gone from subscriptions list!');
+            subs.splice(index, 1);
+            desub();
+        };
+        subscriptionobj = {
+            stop: unsubscriber,
+            listenable: listenable
+        };
+        subs.push(subscriptionobj);
+        return subscriptionobj;
+    },
+
+    /**
+     * Stops listening to a single listenable
+     *
+     * @param {Action|Store} listenable The action or store we no longer want to listen to
+     * @returns {Boolean} True if a subscription was found and removed, otherwise false.
+     */
+    stopListeningTo: function(listenable){
+        var sub, i = 0, subs = this.subscriptions || [];
+        for(;i < subs.length; i++){
+            sub = subs[i];
+            if (sub.listenable === listenable){
+                sub.stop();
+                _.throwIf(subs.indexOf(sub)!==-1,'Failed to remove listen from subscriptions list!');
+                return true;
+            }
+        }
+        return false;
+    },
+
+    /**
+     * Stops all subscriptions and empties subscriptions array
+     */
+    stopListeningToAll: function(){
+        var remaining, subs = this.subscriptions || [];
+        while((remaining=subs.length)){
+            subs[0].stop();
+            _.throwIf(subs.length!==remaining-1,'Failed to remove listen from subscriptions list!');
+        }
+    },
+
+    /**
+     * Used in `listenTo`. Fetches initial data from a publisher if it has a `getInitialState` method.
+     * @param {Action|Store} listenable The publisher we want to get initial state from
+     * @param {Function|String} defaultCallback The method to receive the data
+     */
+    fetchInitialState: function (listenable, defaultCallback) {
+        defaultCallback = (defaultCallback && this[defaultCallback]) || defaultCallback;
+        var me = this;
+        if (_.isFunction(defaultCallback) && _.isFunction(listenable.getInitialState)) {
+            var data = listenable.getInitialState();
+            if (data && _.isFunction(data.then)) {
+                data.then(function() {
+                    defaultCallback.apply(me, arguments);
+                });
+            } else {
+                defaultCallback.call(this, data);
+            }
+        }
+    },
+
+    /**
+     * The callback will be called once all listenables have triggered at least once.
+     * It will be invoked with the last emission from each listenable.
+     * @param {...Publishers} publishers Publishers that should be tracked.
+     * @param {Function|String} callback The method to call when all publishers have emitted
+     * @returns {Object} A subscription obj where `stop` is an unsub function and `listenable` is an array of listenables
+     */
+    joinTrailing: maker("last"),
+
+    /**
+     * The callback will be called once all listenables have triggered at least once.
+     * It will be invoked with the first emission from each listenable.
+     * @param {...Publishers} publishers Publishers that should be tracked.
+     * @param {Function|String} callback The method to call when all publishers have emitted
+     * @returns {Object} A subscription obj where `stop` is an unsub function and `listenable` is an array of listenables
+     */
+    joinLeading: maker("first"),
+
+    /**
+     * The callback will be called once all listenables have triggered at least once.
+     * It will be invoked with all emission from each listenable.
+     * @param {...Publishers} publishers Publishers that should be tracked.
+     * @param {Function|String} callback The method to call when all publishers have emitted
+     * @returns {Object} A subscription obj where `stop` is an unsub function and `listenable` is an array of listenables
+     */
+    joinConcat: maker("all"),
+
+    /**
+     * The callback will be called once all listenables have triggered.
+     * If a callback triggers twice before that happens, an error is thrown.
+     * @param {...Publishers} publishers Publishers that should be tracked.
+     * @param {Function|String} callback The method to call when all publishers have emitted
+     * @returns {Object} A subscription obj where `stop` is an unsub function and `listenable` is an array of listenables
+     */
+    joinStrict: maker("strict")
+};
+
+},{"./joins":128,"./utils":132}],119:[function(require,module,exports){
+var _ = require('./utils'),
+    ListenerMethods = require('./ListenerMethods');
+
+/**
+ * A module meant to be consumed as a mixin by a React component. Supplies the methods from
+ * `ListenerMethods` mixin and takes care of teardown of subscriptions.
+ * Note that if you're using the `connect` mixin you don't need this mixin, as connect will
+ * import everything this mixin contains!
+ */
+module.exports = _.extend({
+
+    /**
+     * Cleans up all listener previously registered.
+     */
+    componentWillUnmount: ListenerMethods.stopListeningToAll
+
+}, ListenerMethods);
+
+},{"./ListenerMethods":118,"./utils":132}],120:[function(require,module,exports){
+var _ = require('./utils');
+
+/**
+ * A module of methods for object that you want to be able to listen to.
+ * This module is consumed by `createStore` and `createAction`
+ */
+module.exports = {
+
+    /**
+     * Hook used by the publisher that is invoked before emitting
+     * and before `shouldEmit`. The arguments are the ones that the action
+     * is invoked with. If this function returns something other than
+     * undefined, that will be passed on as arguments for shouldEmit and
+     * emission.
+     */
+    preEmit: function() {},
+
+    /**
+     * Hook used by the publisher after `preEmit` to determine if the
+     * event should be emitted with given arguments. This may be overridden
+     * in your application, default implementation always returns true.
+     *
+     * @returns {Boolean} true if event should be emitted
+     */
+    shouldEmit: function() { return true; },
+
+    /**
+     * Subscribes the given callback for action triggered
+     *
+     * @param {Function} callback The callback to register as event handler
+     * @param {Mixed} [optional] bindContext The context to bind the callback with
+     * @returns {Function} Callback that unsubscribes the registered event handler
+     */
+    listen: function(callback, bindContext) {
+        bindContext = bindContext || this;
+        var eventHandler = function(args) {
+            callback.apply(bindContext, args);
+        }, me = this;
+        this.emitter.addListener(this.eventLabel, eventHandler);
+        return function() {
+            me.emitter.removeListener(me.eventLabel, eventHandler);
+        };
+    },
+
+    /**
+     * Attach handlers to promise that trigger the completed and failed
+     * child publishers, if available.
+     *
+     * @param {Object} The promise to attach to
+     */
+    promise: function(promise) {
+        var me = this;
+
+        var canHandlePromise =
+            this.children.indexOf('completed') >= 0 &&
+            this.children.indexOf('failed') >= 0;
+
+        if (!canHandlePromise){
+            throw new Error('Publisher must have "completed" and "failed" child publishers');
+        }
+
+        promise.then(function(response) {
+            return me.completed(response);
+        });
+        // IE compatibility - catch is a reserved word - without bracket notation source compilation will fail under IE
+        promise["catch"](function(error) {
+            return me.failed(error);
+        });
+    },
+
+    /**
+     * Subscribes the given callback for action triggered, which should
+     * return a promise that in turn is passed to `this.promise`
+     *
+     * @param {Function} callback The callback to register as event handler
+     */
+    listenAndPromise: function(callback, bindContext) {
+        var me = this;
+        bindContext = bindContext || this;
+
+        return this.listen(function() {
+
+            if (!callback) {
+                throw new Error('Expected a function returning a promise but got ' + callback);
+            }
+
+            var args = arguments,
+                promise = callback.apply(bindContext, args);
+            return me.promise.call(me, promise);
+        }, bindContext);
+    },
+
+    /**
+     * Publishes an event using `this.emitter` (if `shouldEmit` agrees)
+     */
+    trigger: function() {
+        var args = arguments,
+            pre = this.preEmit.apply(this, args);
+        args = pre === undefined ? args : _.isArguments(pre) ? pre : [].concat(pre);
+        if (this.shouldEmit.apply(this, args)) {
+            this.emitter.emit(this.eventLabel, args);
+        }
+    },
+
+    /**
+     * Tries to publish the event on the next tick
+     */
+    triggerAsync: function(){
+        var args = arguments,me = this;
+        _.nextTick(function() {
+            me.trigger.apply(me, args);
+        });
+    },
+
+    /**
+     * Returns a Promise for the triggered action
+     */
+    triggerPromise: function(){
+        var me = this;
+        var args = arguments;
+
+        var canHandlePromise =
+            this.children.indexOf('completed') >= 0 &&
+            this.children.indexOf('failed') >= 0;
+
+        if (!canHandlePromise){
+            throw new Error('Publisher must have "completed" and "failed" child publishers');
+        }
+
+        var promise = _.createPromise(function(resolve, reject) {
+            var removeSuccess = me.completed.listen(function(args) {
+                removeSuccess();
+                removeFailed();
+                resolve(args);
+            });
+
+            var removeFailed = me.failed.listen(function(args) {
+                removeSuccess();
+                removeFailed();
+                reject(args);
+            });
+
+            me.triggerAsync.apply(me, args);
+        });
+
+        return promise;
+    },
+};
+
+},{"./utils":132}],121:[function(require,module,exports){
+/**
+ * A module of methods that you want to include in all stores.
+ * This module is consumed by `createStore`.
+ */
+module.exports = {
+};
+
+},{}],122:[function(require,module,exports){
+module.exports = function(store, definition) {
+  for (var name in definition) {
+    var property = definition[name];
+
+    if (typeof property !== 'function' || !definition.hasOwnProperty(name)) {
+      continue;
+    }
+
+    store[name] = property.bind(store);
+  }
+
+  return store;
+};
+
+},{}],123:[function(require,module,exports){
+var Reflux = require('./index'),
+    _ = require('./utils');
+
+module.exports = function(listenable,key){
+    return {
+        getInitialState: function(){
+            if (!_.isFunction(listenable.getInitialState)) {
+                return {};
+            } else if (key === undefined) {
+                return listenable.getInitialState();
+            } else {
+                return _.object([key],[listenable.getInitialState()]);
+            }
+        },
+        componentDidMount: function(){
+            _.extend(this,Reflux.ListenerMethods);
+            var me = this, cb = (key === undefined ? this.setState : function(v){me.setState(_.object([key],[v]));});
+            this.listenTo(listenable,cb);
+        },
+        componentWillUnmount: Reflux.ListenerMixin.componentWillUnmount
+    };
+};
+
+},{"./index":127,"./utils":132}],124:[function(require,module,exports){
+var Reflux = require('./index'),
+  _ = require('./utils');
+
+module.exports = function(listenable, key, filterFunc) {
+    filterFunc = _.isFunction(key) ? key : filterFunc;
+    return {
+        getInitialState: function() {
+            if (!_.isFunction(listenable.getInitialState)) {
+                return {};
+            } else if (_.isFunction(key)) {
+                return filterFunc.call(this, listenable.getInitialState());
+            } else {
+                // Filter initial payload from store.
+                var result = filterFunc.call(this, listenable.getInitialState());
+                if (result) {
+                  return _.object([key], [result]);
+                } else {
+                  return {};
+                }
+            }
+        },
+        componentDidMount: function() {
+            _.extend(this, Reflux.ListenerMethods);
+            var me = this;
+            var cb = function(value) {
+                if (_.isFunction(key)) {
+                    me.setState(filterFunc.call(me, value));
+                } else {
+                    var result = filterFunc.call(me, value);
+                    me.setState(_.object([key], [result]));
+                }
+            };
+
+            this.listenTo(listenable, cb);
+        },
+        componentWillUnmount: Reflux.ListenerMixin.componentWillUnmount
+    };
+};
+
+
+},{"./index":127,"./utils":132}],125:[function(require,module,exports){
+var _ = require('./utils'),
+    Reflux = require('./index'),
+    Keep = require('./Keep'),
+    allowed = {preEmit:1,shouldEmit:1};
+
+/**
+ * Creates an action functor object. It is mixed in with functions
+ * from the `PublisherMethods` mixin. `preEmit` and `shouldEmit` may
+ * be overridden in the definition object.
+ *
+ * @param {Object} definition The action object definition
+ */
+var createAction = function(definition) {
+
+    definition = definition || {};
+    if (!_.isObject(definition)){
+        definition = {actionName: definition};
+    }
+
+    for(var a in Reflux.ActionMethods){
+        if (!allowed[a] && Reflux.PublisherMethods[a]) {
+            throw new Error("Cannot override API method " + a +
+                " in Reflux.ActionMethods. Use another method name or override it on Reflux.PublisherMethods instead."
+            );
+        }
+    }
+
+    for(var d in definition){
+        if (!allowed[d] && Reflux.PublisherMethods[d]) {
+            throw new Error("Cannot override API method " + d +
+                " in action creation. Use another method name or override it on Reflux.PublisherMethods instead."
+            );
+        }
+    }
+
+    definition.children = definition.children || [];
+    if (definition.asyncResult){
+        definition.children = definition.children.concat(["completed","failed"]);
+    }
+
+    var i = 0, childActions = {};
+    for (; i < definition.children.length; i++) {
+        var name = definition.children[i];
+        childActions[name] = createAction(name);
+    }
+
+    var context = _.extend({
+        eventLabel: "action",
+        emitter: new _.EventEmitter(),
+        _isAction: true
+    }, Reflux.PublisherMethods, Reflux.ActionMethods, definition);
+
+    var functor = function() {
+        functor[functor.sync?"trigger":"triggerAsync"].apply(functor, arguments);
+    };
+
+    _.extend(functor,childActions,context);
+
+    Keep.createdActions.push(functor);
+
+    return functor;
+
+};
+
+module.exports = createAction;
+
+},{"./Keep":117,"./index":127,"./utils":132}],126:[function(require,module,exports){
+var _ = require('./utils'),
+    Reflux = require('./index'),
+    Keep = require('./Keep'),
+    mixer = require('./mixer'),
+    allowed = {preEmit:1,shouldEmit:1},
+    bindMethods = require('./bindMethods');
+
+/**
+ * Creates an event emitting Data Store. It is mixed in with functions
+ * from the `ListenerMethods` and `PublisherMethods` mixins. `preEmit`
+ * and `shouldEmit` may be overridden in the definition object.
+ *
+ * @param {Object} definition The data store object definition
+ * @returns {Store} A data store instance
+ */
+module.exports = function(definition) {
+
+    definition = definition || {};
+
+    for(var a in Reflux.StoreMethods){
+        if (!allowed[a] && (Reflux.PublisherMethods[a] || Reflux.ListenerMethods[a])){
+            throw new Error("Cannot override API method " + a +
+                " in Reflux.StoreMethods. Use another method name or override it on Reflux.PublisherMethods / Reflux.ListenerMethods instead."
+            );
+        }
+    }
+
+    for(var d in definition){
+        if (!allowed[d] && (Reflux.PublisherMethods[d] || Reflux.ListenerMethods[d])){
+            throw new Error("Cannot override API method " + d +
+                " in store creation. Use another method name or override it on Reflux.PublisherMethods / Reflux.ListenerMethods instead."
+            );
+        }
+    }
+
+    definition = mixer(definition);
+
+    function Store() {
+        var i=0, arr;
+        this.subscriptions = [];
+        this.emitter = new _.EventEmitter();
+        this.eventLabel = "change";
+        bindMethods(this, definition);
+        if (this.init && _.isFunction(this.init)) {
+            this.init();
+        }
+        if (this.listenables){
+            arr = [].concat(this.listenables);
+            for(;i < arr.length;i++){
+                this.listenToMany(arr[i]);
+            }
+        }
+    }
+
+    _.extend(Store.prototype, Reflux.ListenerMethods, Reflux.PublisherMethods, Reflux.StoreMethods, definition);
+
+    var store = new Store();
+    Keep.createdStores.push(store);
+
+    return store;
+};
+
+},{"./Keep":117,"./bindMethods":122,"./index":127,"./mixer":131,"./utils":132}],127:[function(require,module,exports){
+exports.ActionMethods = require('./ActionMethods');
+
+exports.ListenerMethods = require('./ListenerMethods');
+
+exports.PublisherMethods = require('./PublisherMethods');
+
+exports.StoreMethods = require('./StoreMethods');
+
+exports.createAction = require('./createAction');
+
+exports.createStore = require('./createStore');
+
+exports.connect = require('./connect');
+
+exports.connectFilter = require('./connectFilter');
+
+exports.ListenerMixin = require('./ListenerMixin');
+
+exports.listenTo = require('./listenTo');
+
+exports.listenToMany = require('./listenToMany');
+
+
+var maker = require('./joins').staticJoinCreator;
+
+exports.joinTrailing = exports.all = maker("last"); // Reflux.all alias for backward compatibility
+
+exports.joinLeading = maker("first");
+
+exports.joinStrict = maker("strict");
+
+exports.joinConcat = maker("all");
+
+var _ = require('./utils');
+
+/**
+ * Convenience function for creating a set of actions
+ *
+ * @param definitions the definitions for the actions to be created
+ * @returns an object with actions of corresponding action names
+ */
+exports.createActions = function(definitions) {
+    var actions = {};
+    for (var k in definitions){
+        var val = definitions[k],
+            actionName = _.isObject(val) ? k : val;
+
+        actions[actionName] = exports.createAction(val);
+    }
+    return actions;
+};
+
+/**
+ * Sets the eventmitter that Reflux uses
+ */
+exports.setEventEmitter = function(ctx) {
+    var _ = require('./utils');
+    _.EventEmitter = ctx;
+};
+
+
+/**
+ * Sets the Promise library that Reflux uses
+ */
+exports.setPromise = function(ctx) {
+    var _ = require('./utils');
+    _.Promise = ctx;
+};
+
+/**
+ * Sets the Promise factory that creates new promises
+ * @param {Function} factory has the signature `function(resolver) { return [new Promise]; }`
+ */
+exports.setPromiseFactory = function(factory) {
+    var _ = require('./utils');
+    _.createPromise = factory;
+};
+
+
+/**
+ * Sets the method used for deferring actions and stores
+ */
+exports.nextTick = function(nextTick) {
+    var _ = require('./utils');
+    _.nextTick = nextTick;
+};
+
+/**
+ * Provides the set of created actions and stores for introspection
+ */
+exports.__keep = require('./Keep');
+
+/**
+ * Warn if Function.prototype.bind not available
+ */
+if (!Function.prototype.bind) {
+  console.error(
+    'Function.prototype.bind not available. ' +
+    'ES5 shim required. ' +
+    'https://github.com/spoike/refluxjs#es5'
+  );
+}
+
+},{"./ActionMethods":116,"./Keep":117,"./ListenerMethods":118,"./ListenerMixin":119,"./PublisherMethods":120,"./StoreMethods":121,"./connect":123,"./connectFilter":124,"./createAction":125,"./createStore":126,"./joins":128,"./listenTo":129,"./listenToMany":130,"./utils":132}],128:[function(require,module,exports){
+/**
+ * Internal module used to create static and instance join methods
+ */
+
+var slice = Array.prototype.slice,
+    _ = require("./utils"),
+    createStore = require("./createStore"),
+    strategyMethodNames = {
+        strict: "joinStrict",
+        first: "joinLeading",
+        last: "joinTrailing",
+        all: "joinConcat"
+    };
+
+/**
+ * Used in `index.js` to create the static join methods
+ * @param {String} strategy Which strategy to use when tracking listenable trigger arguments
+ * @returns {Function} A static function which returns a store with a join listen on the given listenables using the given strategy
+ */
+exports.staticJoinCreator = function(strategy){
+    return function(/* listenables... */) {
+        var listenables = slice.call(arguments);
+        return createStore({
+            init: function(){
+                this[strategyMethodNames[strategy]].apply(this,listenables.concat("triggerAsync"));
+            }
+        });
+    };
+};
+
+/**
+ * Used in `ListenerMethods.js` to create the instance join methods
+ * @param {String} strategy Which strategy to use when tracking listenable trigger arguments
+ * @returns {Function} An instance method which sets up a join listen on the given listenables using the given strategy
+ */
+exports.instanceJoinCreator = function(strategy){
+    return function(/* listenables..., callback*/){
+        _.throwIf(arguments.length < 3,'Cannot create a join with less than 2 listenables!');
+        var listenables = slice.call(arguments),
+            callback = listenables.pop(),
+            numberOfListenables = listenables.length,
+            join = {
+                numberOfListenables: numberOfListenables,
+                callback: this[callback]||callback,
+                listener: this,
+                strategy: strategy
+            }, i, cancels = [], subobj;
+        for (i = 0; i < numberOfListenables; i++) {
+            _.throwIf(this.validateListening(listenables[i]));
+        }
+        for (i = 0; i < numberOfListenables; i++) {
+            cancels.push(listenables[i].listen(newListener(i,join),this));
+        }
+        reset(join);
+        subobj = {listenable: listenables};
+        subobj.stop = makeStopper(subobj,cancels,this);
+        this.subscriptions = (this.subscriptions || []).concat(subobj);
+        return subobj;
+    };
+};
+
+// ---- internal join functions ----
+
+function makeStopper(subobj,cancels,context){
+    return function() {
+        var i, subs = context.subscriptions,
+            index = (subs ? subs.indexOf(subobj) : -1);
+        _.throwIf(index === -1,'Tried to remove join already gone from subscriptions list!');
+        for(i=0;i < cancels.length; i++){
+            cancels[i]();
+        }
+        subs.splice(index, 1);
+    };
+}
+
+function reset(join) {
+    join.listenablesEmitted = new Array(join.numberOfListenables);
+    join.args = new Array(join.numberOfListenables);
+}
+
+function newListener(i,join) {
+    return function() {
+        var callargs = slice.call(arguments);
+        if (join.listenablesEmitted[i]){
+            switch(join.strategy){
+                case "strict": throw new Error("Strict join failed because listener triggered twice.");
+                case "last": join.args[i] = callargs; break;
+                case "all": join.args[i].push(callargs);
+            }
+        } else {
+            join.listenablesEmitted[i] = true;
+            join.args[i] = (join.strategy==="all"?[callargs]:callargs);
+        }
+        emitIfAllListenablesEmitted(join);
+    };
+}
+
+function emitIfAllListenablesEmitted(join) {
+    for (var i = 0; i < join.numberOfListenables; i++) {
+        if (!join.listenablesEmitted[i]) {
+            return;
+        }
+    }
+    join.callback.apply(join.listener,join.args);
+    reset(join);
+}
+
+},{"./createStore":126,"./utils":132}],129:[function(require,module,exports){
+var Reflux = require('./index');
+
+
+/**
+ * A mixin factory for a React component. Meant as a more convenient way of using the `ListenerMixin`,
+ * without having to manually set listeners in the `componentDidMount` method.
+ *
+ * @param {Action|Store} listenable An Action or Store that should be
+ *  listened to.
+ * @param {Function|String} callback The callback to register as event handler
+ * @param {Function|String} defaultCallback The callback to register as default handler
+ * @returns {Object} An object to be used as a mixin, which sets up the listener for the given listenable.
+ */
+module.exports = function(listenable,callback,initial){
+    return {
+        /**
+         * Set up the mixin before the initial rendering occurs. Import methods from `ListenerMethods`
+         * and then make the call to `listenTo` with the arguments provided to the factory function
+         */
+        componentDidMount: function() {
+            for(var m in Reflux.ListenerMethods){
+                if (this[m] !== Reflux.ListenerMethods[m]){
+                    if (this[m]){
+                        throw "Can't have other property '"+m+"' when using Reflux.listenTo!";
+                    }
+                    this[m] = Reflux.ListenerMethods[m];
+                }
+            }
+            this.listenTo(listenable,callback,initial);
+        },
+        /**
+         * Cleans up all listener previously registered.
+         */
+        componentWillUnmount: Reflux.ListenerMethods.stopListeningToAll
+    };
+};
+
+},{"./index":127}],130:[function(require,module,exports){
+var Reflux = require('./index');
+
+/**
+ * A mixin factory for a React component. Meant as a more convenient way of using the `listenerMixin`,
+ * without having to manually set listeners in the `componentDidMount` method. This version is used
+ * to automatically set up a `listenToMany` call.
+ *
+ * @param {Object} listenables An object of listenables
+ * @returns {Object} An object to be used as a mixin, which sets up the listeners for the given listenables.
+ */
+module.exports = function(listenables){
+    return {
+        /**
+         * Set up the mixin before the initial rendering occurs. Import methods from `ListenerMethods`
+         * and then make the call to `listenTo` with the arguments provided to the factory function
+         */
+        componentDidMount: function() {
+            for(var m in Reflux.ListenerMethods){
+                if (this[m] !== Reflux.ListenerMethods[m]){
+                    if (this[m]){
+                        throw "Can't have other property '"+m+"' when using Reflux.listenToMany!";
+                    }
+                    this[m] = Reflux.ListenerMethods[m];
+                }
+            }
+            this.listenToMany(listenables);
+        },
+        /**
+         * Cleans up all listener previously registered.
+         */
+        componentWillUnmount: Reflux.ListenerMethods.stopListeningToAll
+    };
+};
+
+},{"./index":127}],131:[function(require,module,exports){
+var _ = require('./utils');
+
+module.exports = function mix(def) {
+    var composed = {
+        init: [],
+        preEmit: [],
+        shouldEmit: []
+    };
+
+    var updated = (function mixDef(mixin) {
+        var mixed = {};
+        if (mixin.mixins) {
+            mixin.mixins.forEach(function (subMixin) {
+                _.extend(mixed, mixDef(subMixin));
+            });
+        }
+        _.extend(mixed, mixin);
+        Object.keys(composed).forEach(function (composable) {
+            if (mixin.hasOwnProperty(composable)) {
+                composed[composable].push(mixin[composable]);
+            }
+        });
+        return mixed;
+    }(def));
+
+    if (composed.init.length > 1) {
+        updated.init = function () {
+            var args = arguments;
+            composed.init.forEach(function (init) {
+                init.apply(this, args);
+            }, this);
+        };
+    }
+    if (composed.preEmit.length > 1) {
+        updated.preEmit = function () {
+            return composed.preEmit.reduce(function (args, preEmit) {
+                var newValue = preEmit.apply(this, args);
+                return newValue === undefined ? args : [newValue];
+            }.bind(this), arguments);
+        };
+    }
+    if (composed.shouldEmit.length > 1) {
+        updated.shouldEmit = function () {
+            var args = arguments;
+            return !composed.shouldEmit.some(function (shouldEmit) {
+                return !shouldEmit.apply(this, args);
+            }, this);
+        };
+    }
+    Object.keys(composed).forEach(function (composable) {
+        if (composed[composable].length === 1) {
+            updated[composable] = composed[composable][0];
+        }
+    });
+
+    return updated;
+};
+
+},{"./utils":132}],132:[function(require,module,exports){
+/*
+ * isObject, extend, isFunction, isArguments are taken from undescore/lodash in
+ * order to remove the dependency
+ */
+var isObject = exports.isObject = function(obj) {
+    var type = typeof obj;
+    return type === 'function' || type === 'object' && !!obj;
+};
+
+exports.extend = function(obj) {
+    if (!isObject(obj)) {
+        return obj;
+    }
+    var source, prop;
+    for (var i = 1, length = arguments.length; i < length; i++) {
+        source = arguments[i];
+        for (prop in source) {
+            obj[prop] = source[prop];
+        }
+    }
+    return obj;
+};
+
+exports.isFunction = function(value) {
+    return typeof value === 'function';
+};
+
+exports.EventEmitter = require('eventemitter3');
+
+exports.nextTick = function(callback) {
+    setTimeout(callback, 0);
+};
+
+exports.capitalize = function(string){
+    return string.charAt(0).toUpperCase()+string.slice(1);
+};
+
+exports.callbackName = function(string){
+    return "on"+exports.capitalize(string);
+};
+
+exports.object = function(keys,vals){
+    var o={}, i=0;
+    for(;i<keys.length;i++){
+        o[keys[i]] = vals[i];
+    }
+    return o;
+};
+
+exports.Promise = require("native-promise-only");
+
+exports.createPromise = function(resolver) {
+    return new exports.Promise(resolver);
+};
+
+exports.isArguments = function(value) {
+    return typeof value === 'object' && ('callee' in value) && typeof value.length === 'number';
+};
+
+exports.throwIf = function(val,msg){
+    if (val){
+        throw Error(msg||val);
+    }
+};
+
+},{"eventemitter3":114,"native-promise-only":115}],133:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8564,11 +9777,83 @@ var AddStudent = require("../components/studentForm.jsx");
 var routes =
 // Main view, will always be rendered
 //  - `handler` responsible for all permanent UI.
-React.createElement(Route, { name: "app", route: "/", handler: App }, React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }), React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }), React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }), React.createElement(DefaultRoute, { handler: Welcome }));
+React.createElement(
+	Route,
+	{ name: "app", path: "/", handler: App },
+	React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }),
+	React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }),
+	React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }),
+	React.createElement(DefaultRoute, { handler: Welcome })
+);
 
 module.exports = routes;
 
-},{"../components/app.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/app.jsx","../components/studentForm.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentForm.jsx","../components/studentList.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentList.jsx","../components/studentView.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentView.jsx","../components/welcome.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/welcome.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/LinkBar.jsx":[function(require,module,exports){
+},{"../components/app.jsx":137,"../components/studentForm.jsx":139,"../components/studentList.jsx":140,"../components/studentView.jsx":141,"../components/welcome.jsx":142,"react":"react","react-router":94}],134:[function(require,module,exports){
+"use strict";
+
+var Reflux = require("reflux");
+
+var StudentActions = module.exports = Reflux.createActions(["addStudent", "editStudent", "deleteStudent"]);
+
+},{"reflux":113}],135:[function(require,module,exports){
+"use strict";
+
+var Reflux = require("reflux");
+var studentAction = require("./studentActions.js");
+
+var students = [];
+var id = 0;
+
+function UUID() {
+	return ++id;
+}
+
+students.push({
+	id: UUID(),
+	firstName: "lah",
+	lastName: "leehhh",
+	rank: "boooo",
+	emails: ["fasldkfjadsfl@flkdsjfasld.com"]
+});
+
+var studentStore = Reflux.createStore({
+	listenables: studentAction,
+	init: function init() {},
+
+	addStudent: function addStudent(data) {
+		data.id = UUID();
+		students.push(data);
+
+		this.trigger(students);
+	},
+
+	editStudent: function editStudent(data) {
+		students[data.id] = data;
+
+		this.trigger(students);
+	},
+
+	deleteStudent: function deleteStudent(id) {
+		for (var i = 0; i < students.length; i++) {
+			if (students[i].id == id) {
+				students.splice(i, 1);
+				break;
+			}
+		}
+		this.trigger(students);
+	},
+
+	getInitialState: function getInitialState() {
+		return students;
+	}
+});
+
+module.exports = {
+	UUID: UUID,
+	store: studentStore
+};
+
+},{"./studentActions.js":134,"reflux":113}],136:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8585,7 +9870,9 @@ var DropdownButton = ReactBootstrap.DropdownButton;
 var MenuItem = ReactBootstrap.MenuItem;
 var NavItemLink = ReactRouterBootstrap.NavItemLink;
 
-var LinkBar = module.exports = React.createClass({ displayName: "exports",
+var LinkBar = module.exports = React.createClass({
+	displayName: "exports",
+
 	render: function render() {
 		var classes = {
 			brand: this.props.title,
@@ -8594,21 +9881,36 @@ var LinkBar = module.exports = React.createClass({ displayName: "exports",
 			fluid: true
 		};
 
-		return React.createElement("div", { className: "container" },
-		/* The `...` is the EcmaScript6 spread operator                      */
-		/* and is the equivilent to:                                         */
-		/* <Navbar brand={classes.brand} fixedTop={classes.fixedTop} etc. /> */
-		React.createElement(Navbar, React.__spread({}, classes), React.createElement(Nav, null, this.props.children)));
+		return React.createElement(
+			"div",
+			{ className: "container" },
+			React.createElement(
+				Navbar,
+				classes,
+				React.createElement(
+					Nav,
+					null,
+					this.props.children
+				)
+			)
+		);
 	}
 });
 
-LinkBar.Link = React.createClass({ displayName: "Link",
+LinkBar.Link = React.createClass({
+	displayName: "Link",
+
 	render: function render() {
-		return React.createElement(NavItemLink, { to: this.props.name }, this.props.children);
+		return React.createElement(
+			NavItemLink,
+			{ to: this.props.name },
+			this.props.children
+		);
 	}
 });
+/* The `...` is the EcmaScript6 spread operator                      */ /* and is the equivilent to:                                         */ /* <Navbar brand={classes.brand} fixedTop={classes.fixedTop} etc. /> */
 
-},{"react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router-bootstrap/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/app.jsx":[function(require,module,exports){
+},{"react":"react","react-bootstrap":51,"react-router-bootstrap":66}],137:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -8638,52 +9940,98 @@ var nav = {
 // Unique key for each link
 var headerLinkId = 0;
 
-var App = React.createClass({ displayName: "App",
+var App = React.createClass({
+	displayName: "App",
+
 	render: function render() {
 		var headerLinksText = Object.keys(nav);
 		var headerLinks = headerLinksText.map(function (linkText) {
-			return React.createElement(LinkBar.Link, { name: nav[linkText], key: headerLinkId++ }, linkText);
+			return React.createElement(
+				LinkBar.Link,
+				{ name: nav[linkText], key: headerLinkId++ },
+				linkText
+			);
 		});
 
-		return React.createElement("div", { id: "main" }, React.createElement(LinkBar, { fixedTop: true, title: "OpenDojo" }, headerLinks), React.createElement(Jumbotron, null, React.createElement("h2", null, "Hello world!"), React.createElement("p", null, "I'll say.")),
-
-		/* This is where child views will be rendered */
-		React.createElement(RouteHandler, { routerParams: this.props.routerParams }), React.createElement(LinkBar, { fixedBottom: true, title: "Copyright OpenDojo 2015" }));
+		return React.createElement(
+			"div",
+			{ id: "main" },
+			React.createElement(
+				LinkBar,
+				{ fixedTop: true, title: "OpenDojo" },
+				headerLinks
+			),
+			React.createElement(
+				Jumbotron,
+				null,
+				React.createElement(
+					"h2",
+					null,
+					"Hello world!"
+				),
+				React.createElement(
+					"p",
+					null,
+					"I'll say."
+				)
+			),
+			React.createElement(RouteHandler, { routerParams: this.props.routerParams }),
+			React.createElement(LinkBar, { fixedBottom: true, title: "Copyright OpenDojo 2015" })
+		);
 	}
 });
 
 module.exports = App;
+/* This is where child views will be rendered */
 
-},{"./LinkBar.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/LinkBar.jsx","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/input.jsx":[function(require,module,exports){
+},{"./LinkBar.jsx":136,"react":"react","react-bootstrap":51,"react-router":94}],138:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var Input = module.exports = React.createClass({ displayName: "exports",
+var Input = module.exports = React.createClass({
+	displayName: "exports",
+
 	getValue: function getValue() {
 		return this.refs[this.props.name].getDOMNode().value;
 	},
 	render: function render() {
-		return React.createElement("div", { className: "form-group" }, React.createElement("label", { className: "control-label" }, React.createElement("span", null, this.props.label)), React.createElement("input", { ref: this.props.name, type: this.props.type, placeholder: this.props.placeholder, className: "form-control" }));
+		return React.createElement(
+			"div",
+			{ className: "form-group" },
+			React.createElement(
+				"label",
+				{ className: "control-label" },
+				React.createElement(
+					"span",
+					null,
+					this.props.label
+				)
+			),
+			React.createElement("input", { ref: this.props.name, type: this.props.type, placeholder: this.props.placeholder, className: "form-control" })
+		);
 	}
 });
 
-},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentForm.jsx":[function(require,module,exports){
+},{"react":"react"}],139:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
+var Reflux = require("reflux");
 
 var _require = require("react-router");
 
 var Navigation = _require.Navigation;
 
-var models = require("../bin/model");
-
-var newId = models.UUID();
+var action = require("../bin/studentActions");
+var store = require("../bin/studentStore");
+var newId = store.UUID();
 
 var Input = require("./input.jsx");
 
-var StudentForm = module.exports = React.createClass({ displayName: "exports",
-	mixins: [Navigation],
+var StudentForm = module.exports = React.createClass({
+	displayName: "exports",
+
+	mixins: [Navigation, Reflux.ListenerMixin],
 
 	handleSubmit: function handleSubmit(e) {
 		e.preventDefault();
@@ -8692,7 +10040,7 @@ var StudentForm = module.exports = React.createClass({ displayName: "exports",
 			return email.trim();
 		});
 
-		models.addStudent({
+		action.addStudent({
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
@@ -8702,32 +10050,82 @@ var StudentForm = module.exports = React.createClass({ displayName: "exports",
 		this.transitionTo("/students/all");
 	},
 	render: function render() {
-		return React.createElement("div", { className: "addStudent container" }, React.createElement("form", null, React.createElement("h2", null, " Enter new student information:"), React.createElement(Input, { label: "First Name", type: "text", ref: "firstName", name: "firstName", placeholder: "e.g. Bob" }), React.createElement(Input, { label: "Last Name", type: "text", ref: "lastName", name: "lastName", placeholder: "e.g. Smith" }), React.createElement(Input, { label: "Rank", type: "text", ref: "rank", name: "rank", placeholder: "(colour)" }), React.createElement(Input, { label: "Emails", type: "text", ref: "emails", name: "emails", placeholder: "(comma delimited)" }), React.createElement("input", { type: "submit", value: "Save", onClick: this.handleSubmit })));
+		return React.createElement(
+			"div",
+			{ className: "addStudent container" },
+			React.createElement(
+				"form",
+				null,
+				React.createElement(
+					"h2",
+					null,
+					" Enter new student information:"
+				),
+				React.createElement(Input, { label: "First Name", type: "text", ref: "firstName", name: "firstName", placeholder: "e.g. Bob" }),
+				React.createElement(Input, { label: "Last Name", type: "text", ref: "lastName", name: "lastName", placeholder: "e.g. Smith" }),
+				React.createElement(Input, { label: "Rank", type: "text", ref: "rank", name: "rank", placeholder: "(colour)" }),
+				React.createElement(Input, { label: "Emails", type: "text", ref: "emails", name: "emails", placeholder: "(comma delimited)" }),
+				React.createElement("input", { type: "submit", value: "Save", onClick: this.handleSubmit })
+			)
+		);
 	}
 });
 
-},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","./input.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/components/input.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentList.jsx":[function(require,module,exports){
+},{"../bin/studentActions":134,"../bin/studentStore":135,"./input.jsx":138,"react":"react","react-router":94,"reflux":113}],140:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var models = require("../bin/model");
 
-var Router = require("react-router");
-var Link = Router.Link;
-
+var studentActions = require("../bin/studentActions.js");
 var ReactBootstrap = require("react-bootstrap");
+
+var _require = require("reflux");
+
+var ListenerMixin = _require.ListenerMixin;
+
+var _require2 = require("../bin/studentStore.js");
+
+var store = _require2.store;
+
+var _require3 = require("react-router");
+
+var Link = _require3.Link;
 var Alert = ReactBootstrap.Alert;
 var Table = ReactBootstrap.Table;
 
-var StudentList = React.createClass({ displayName: "StudentList",
+var StudentList = React.createClass({
+	displayName: "StudentList",
+
+	mixins: [ListenerMixin],
+	getInitialState: function getInitialState() {
+		return {
+			students: null
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		this.listenTo(store, this.studentsUpdate, function (initialStudents) {
+			this.setState({
+				students: initialStudents
+			});
+		});
+	},
+
+	studentsUpdate: function studentsUpdate(students) {
+		this.state.students = students;
+	},
+
 	render: function render() {
 		var content;
-		var students = models.getAllStudents();
+		var students = this.state.students;
 
 		var view;
 
 		if (!students) {
-			view = React.createElement(Alert, { bsStyle: "danger" }, "There are no students in the database!");
+			view = React.createElement(
+				Alert,
+				{ bsStyle: "danger" },
+				"There are no students in the database!"
+			);
 		} else {
 			var studentRows;
 			var key = 0;
@@ -8738,40 +10136,160 @@ var StudentList = React.createClass({ displayName: "StudentList",
 					emails += email + " ";
 				});
 
-				return React.createElement("tr", { key: key++ }, React.createElement("td", null, student.id), React.createElement("td", null, student.firstName + " " + student.lastName), React.createElement("td", null, student.rank), React.createElement("td", null, React.createElement(Link, { to: "singleStudent", params: {
-						id: student.id
-					} }, "View")));
+				return React.createElement(
+					"tr",
+					{ key: key++ },
+					React.createElement(
+						"td",
+						null,
+						student.id
+					),
+					React.createElement(
+						"td",
+						null,
+						student.firstName + " " + student.lastName
+					),
+					React.createElement(
+						"td",
+						null,
+						student.rank
+					),
+					React.createElement(
+						"td",
+						null,
+						React.createElement(
+							Link,
+							{ to: "singleStudent", params: {
+									id: student.id
+								} },
+							"View"
+						)
+					)
+				);
 			});
 
-			view = React.createElement(Table, { bordered: true, striped: true }, React.createElement("thead", null, React.createElement("th", null, "#"), React.createElement("th", null, "Student Name"), React.createElement("th", null, "Student Rank"), React.createElement("th", null, React.createElement(Link, { to: "addStudent" }, "Add new student"))), React.createElement("tbody", null, studentRows));
+			view = React.createElement(
+				Table,
+				{ bordered: true, striped: true },
+				React.createElement(
+					"thead",
+					null,
+					React.createElement(
+						"th",
+						null,
+						"#"
+					),
+					React.createElement(
+						"th",
+						null,
+						"Student Name"
+					),
+					React.createElement(
+						"th",
+						null,
+						"Student Rank"
+					),
+					React.createElement(
+						"th",
+						null,
+						React.createElement(
+							Link,
+							{ to: "addStudent" },
+							"Add new student"
+						)
+					)
+				),
+				React.createElement(
+					"tbody",
+					null,
+					studentRows
+				)
+			);
 		}
 
-		return React.createElement("div", { className: "studentView container" }, view);
+		return React.createElement(
+			"div",
+			{ className: "studentView container" },
+			view
+		);
 	}
 });
 
 module.exports = StudentList;
 
-},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/studentView.jsx":[function(require,module,exports){
+},{"../bin/studentActions.js":134,"../bin/studentStore.js":135,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],141:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var models = require("../bin/model");
+var action = require("../bin/studentActions");
 
-var ReactBootstrap = require("react-bootstrap");
-var Alert = ReactBootstrap.Alert;
-var Table = ReactBootstrap.Table;
+var _require = require("react-bootstrap");
 
-var StudentView = module.exports = React.createClass({ displayName: "exports",
+var Alert = _require.Alert;
+var Table = _require.Table;
+
+var _require2 = require("reflux");
+
+var ListenerMixin = _require2.ListenerMixin;
+
+var _require3 = require("../bin/studentStore.js");
+
+var store = _require3.store;
+
+var _require4 = require("react-router");
+
+var Navigation = _require4.Navigation;
+
+var StudentView = module.exports = React.createClass({
+	displayName: "exports",
+
+	mixins: [Navigation, ListenerMixin],
+	getInitialState: function getInitialState() {
+		return {
+			student: null
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var that = this;
+
+		this.listenTo(store, this.updateStudent, function (students) {
+			var id = that.props.routerParams.id;
+
+			students.forEach(function (student) {
+				if (id == student.id) {
+					that.setState({
+						student: student
+					});
+				}
+			});
+		});
+	},
+
+	deleteStudent: function deleteStudent(e) {
+		e.preventDefault();
+		action.deleteStudent(this.props.routerParams.id);
+
+		this.transitionTo("/students/all");
+	},
 	render: function render() {
 		var content;
-		var studentId = this.props.routerParams.id;
-		var student = models.getStudentById(studentId);
+		var student = this.state.student;
 
 		var view;
 
 		if (!student) {
-			view = React.createElement(Alert, { bsStyle: "danger" }, "The student associated with ", React.createElement("strong", null, "ID ", this.props.id), " does not exist.");
+			view = React.createElement(
+				Alert,
+				{ bsStyle: "danger" },
+				"The student associated with ",
+				React.createElement(
+					"strong",
+					null,
+					"ID ",
+					this.props.routerParams.id
+				),
+				" does not exist."
+			);
 		} else {
 			var emails = "";
 
@@ -8779,25 +10297,108 @@ var StudentView = module.exports = React.createClass({ displayName: "exports",
 				emails += email + " ";
 			});
 
-			view = React.createElement(Table, { bordered: true, striped: true }, React.createElement("tr", null, React.createElement("th", { colSpan: "4" }, "Viewing: ", student.firstName + " " + student.lastName)), React.createElement("tr", null, React.createElement("th", null, "Id:"), React.createElement("td", { colSpan: "3" }, student.id)), React.createElement("tr", null, React.createElement("th", null, "Rank:"), React.createElement("td", { colSpan: "3" }, student.rank)), React.createElement("tr", null, React.createElement("th", null, "Emails:"), React.createElement("td", { colSpan: "3" }, emails)));
+			view = React.createElement(
+				Table,
+				{ bordered: true, striped: true },
+				React.createElement(
+					"tr",
+					null,
+					React.createElement(
+						"th",
+						{ colSpan: "4" },
+						"Viewing: ",
+						student.firstName + " " + student.lastName
+					)
+				),
+				React.createElement(
+					"tr",
+					null,
+					React.createElement(
+						"th",
+						null,
+						"Id:"
+					),
+					React.createElement(
+						"td",
+						{ colSpan: "3" },
+						student.id
+					)
+				),
+				React.createElement(
+					"tr",
+					null,
+					React.createElement(
+						"th",
+						null,
+						"Rank:"
+					),
+					React.createElement(
+						"td",
+						{ colSpan: "3" },
+						student.rank
+					)
+				),
+				React.createElement(
+					"tr",
+					null,
+					React.createElement(
+						"th",
+						null,
+						"Emails:"
+					),
+					React.createElement(
+						"td",
+						{ colSpan: "3" },
+						emails
+					)
+				),
+				React.createElement(
+					"tr",
+					null,
+					React.createElement("th", null),
+					React.createElement(
+						"td",
+						null,
+						React.createElement(
+							"button",
+							{ onClick: this.deleteStudent },
+							"Delete"
+						)
+					)
+				)
+			);
 		}
 
-		return React.createElement("div", { className: "studentView container" }, view);
+		return React.createElement(
+			"div",
+			{ className: "studentView container" },
+			view
+		);
 	}
 });
 
-},{"../bin/model":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/model.js","react":"react","react-bootstrap":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-bootstrap/lib/main.js"}],"/Users/k.sedge/Documents/Projects/opendojo/react/components/welcome.jsx":[function(require,module,exports){
+},{"../bin/studentActions":134,"../bin/studentStore.js":135,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],142:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
 
-var Welcome = module.exports = React.createClass({ displayName: "exports",
+var Welcome = module.exports = React.createClass({
+	displayName: "exports",
+
 	render: function render() {
-		return React.createElement("div", { className: "Welcome container" }, React.createElement("h2", null, "Welcome to the application!"));
+		return React.createElement(
+			"div",
+			{ className: "Welcome container" },
+			React.createElement(
+				"h2",
+				null,
+				"Welcome to the application!"
+			)
+		);
 	}
 });
 
-},{"react":"react"}],"/Users/k.sedge/Documents/Projects/opendojo/react/index.jsx":[function(require,module,exports){
+},{"react":"react"}],143:[function(require,module,exports){
 "use strict";
 
 // Because this is the entry point, we expose React on the
@@ -8818,9 +10419,7 @@ Router.run(routeConfiguration, function (View, routerState) {
 	React.render(React.createElement(View, { routerParams: routerParams }), document.getElementById("main"));
 });
 
-},{"./bin/routes.jsx":"/Users/k.sedge/Documents/Projects/opendojo/react/bin/routes.jsx","react":"react","react-router":"/Users/k.sedge/Documents/Projects/opendojo/node_modules/react-router/lib/index.js"}],"react":[function(require,module,exports){
-arguments[4]["react"][0].apply(exports,arguments)
-},{}],"react":[function(require,module,exports){
+},{"./bin/routes.jsx":133,"react":"react","react-router":94}],"react":[function(require,module,exports){
 (function (global){
 /**
  * React v0.12.2
@@ -26939,4 +28538,4 @@ module.exports = warning;
 },{"./emptyFunction":107}]},{},[1])(1)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},["/Users/k.sedge/Documents/Projects/opendojo/react/index.jsx"]);
+},{}]},{},[143]);
