@@ -1,14 +1,15 @@
 var React = require('react');
+var Reflux = require('reflux');
 var { Navigation } = require('react-router');
 
-var models = require('../bin/model');
-
-var newId = models.UUID();
+var action = require('../actions/studentActions.jsx');
+var store = require('../stores/studentStore.jsx');
+var newId = store.UUID();
 
 var Input = require('./input.jsx');
 
 var StudentForm = module.exports = React.createClass({
-	mixins: [Navigation],
+	mixins: [Navigation,Reflux.ListenerMixin],
 
 	handleSubmit: function(e) {
 		e.preventDefault();
@@ -17,7 +18,7 @@ var StudentForm = module.exports = React.createClass({
 			return email.trim();
 		});
 
-		models.addStudent({
+		action.addStudent({
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
