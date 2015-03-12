@@ -56,16 +56,5 @@ server.on('listening', function() {
   var addr = server.address();
   var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
 
-  // FOR MOCHA TESTING:
-  // If we're running as a child process, let our parent know we're ready.
-  if (process.send) {
-    try {
-      process.send("serverStarted");
-    } catch ( e ) {
-      // exit the worker if master is gone
-      process.exit(1);
-    }
-  }
-
   log.info('Listening on ' + bind);
 });

@@ -1,11 +1,12 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_install: npm install -g grunt-cli
 services:
-  - mongodb
+- mongodb
 notifications:
   email: false
-  irc: "irc.mozilla.org#filer"
+  slack:
+    secure: E0g1voKlqQIK+Mndv1ZImrk0XZxuFVup4E50TjrSw0LXAQQGrS9mQGWUd2CGk1JgJlSRzH3aif49CXG5YuNPnmIIq6tt978fzG/HVWvOeo6RvWcnpOHo95YKyy7gIcSrhzbJd3NJWMlKfF87dSjrrVfTgw587xx1pfI8fxE9/Ok=
 env:
-  - "HOST=\"http://127.0.0.1\" PORT=\"6565\""
+- HOST="http://127.0.0.1" PORT="6565" DBHOST="mongodb://localhost/studentDB"

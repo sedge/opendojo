@@ -6,7 +6,7 @@
 1. Patch Requirements
 2. Logging
 3. Style Guide
-
+4. Unit Tests
 
 ### Final Patch Requirements
 
