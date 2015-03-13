@@ -265,7 +265,7 @@ module.exports = function() {
               res: res
             });
             if (err.name === "ValidationError") {
-              res.status(400).send('Invalid data!');
+              return res.status(400).send('Invalid data!');
             }
             return next(err);
           }
@@ -366,7 +366,6 @@ router.route('/rank/:id')
     .delete(function(req, res, next) {
 
       // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
-      console.log("am in rank delete"); 
       var id = req.params.id;
       db.mongoose.models.Rank.remove({_id: id}, function(err) {
         if(err) {
@@ -426,7 +425,6 @@ router.route('/classes')
             - If successful, the new class object data passed in by the request
     */
     .post(function(req, res, next) {
-    
       if(!req.body) {
         log.warn({
           req: req,
@@ -448,18 +446,16 @@ router.route('/classes')
           "classType": req.body.classType, 
           "RanksAllowed": req.body.RanksAllowed
         });
-        console.log("new course: ", newCourse);
 
         newCourse.save(function (err, newCourse) {
           if (err) {
-            console.log("ERROR: ", err);
             log.error({
               err: err,
               req: req,
               res: res
             });
             if (err.name === "ValidationError") {
-              res.status(400).send('Invalid data!');
+              return res.status(400).send('Invalid data!');
             }
             return next(err);
           }
