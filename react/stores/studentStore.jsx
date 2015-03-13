@@ -1,5 +1,5 @@
 var Reflux = require('reflux');
-var studentAction = require('./studentActions.js');
+var studentAction = require('../actions/studentActions.jsx');
 
 var students = [];
 var id = 0;

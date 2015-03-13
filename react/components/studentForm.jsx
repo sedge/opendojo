@@ -2,8 +2,8 @@ var React = require('react');
 var Reflux = require('reflux');
 var { Navigation } = require('react-router');
 
-var action = require('../bin/studentActions');
-var store = require('../bin/studentStore');
+var action = require('../actions/studentActions.jsx');
+var store = require('../stores/studentStore.jsx');
 var newId = store.UUID();
 
 var Input = require('./input.jsx');

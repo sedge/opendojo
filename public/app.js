@@ -9749,6 +9749,13 @@ exports.throwIf = function(val,msg){
 },{"eventemitter3":114,"native-promise-only":115}],133:[function(require,module,exports){
 "use strict";
 
+var Reflux = require("reflux");
+
+var StudentActions = module.exports = Reflux.createActions(["addStudent", "editStudent", "deleteStudent"]);
+
+},{"reflux":113}],134:[function(require,module,exports){
+"use strict";
+
 var React = require("react");
 var Router = require("react-router");
 
@@ -9788,72 +9795,7 @@ React.createElement(
 
 module.exports = routes;
 
-},{"../components/app.jsx":137,"../components/studentForm.jsx":139,"../components/studentList.jsx":140,"../components/studentView.jsx":141,"../components/welcome.jsx":142,"react":"react","react-router":94}],134:[function(require,module,exports){
-"use strict";
-
-var Reflux = require("reflux");
-
-var StudentActions = module.exports = Reflux.createActions(["addStudent", "editStudent", "deleteStudent"]);
-
-},{"reflux":113}],135:[function(require,module,exports){
-"use strict";
-
-var Reflux = require("reflux");
-var studentAction = require("./studentActions.js");
-
-var students = [];
-var id = 0;
-
-function UUID() {
-	return ++id;
-}
-
-students.push({
-	id: UUID(),
-	firstName: "lah",
-	lastName: "leehhh",
-	rank: "boooo",
-	emails: ["fasldkfjadsfl@flkdsjfasld.com"]
-});
-
-var studentStore = Reflux.createStore({
-	listenables: studentAction,
-	init: function init() {},
-
-	addStudent: function addStudent(data) {
-		data.id = UUID();
-		students.push(data);
-
-		this.trigger(students);
-	},
-
-	editStudent: function editStudent(data) {
-		students[data.id] = data;
-
-		this.trigger(students);
-	},
-
-	deleteStudent: function deleteStudent(id) {
-		for (var i = 0; i < students.length; i++) {
-			if (students[i].id == id) {
-				students.splice(i, 1);
-				break;
-			}
-		}
-		this.trigger(students);
-	},
-
-	getInitialState: function getInitialState() {
-		return students;
-	}
-});
-
-module.exports = {
-	UUID: UUID,
-	store: studentStore
-};
-
-},{"./studentActions.js":134,"reflux":113}],136:[function(require,module,exports){
+},{"../components/app.jsx":136,"../components/studentForm.jsx":138,"../components/studentList.jsx":139,"../components/studentView.jsx":140,"../components/welcome.jsx":141,"react":"react","react-router":94}],135:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -9910,7 +9852,7 @@ LinkBar.Link = React.createClass({
 });
 /* The `...` is the EcmaScript6 spread operator                      */ /* and is the equivilent to:                                         */ /* <Navbar brand={classes.brand} fixedTop={classes.fixedTop} etc. /> */
 
-},{"react":"react","react-bootstrap":51,"react-router-bootstrap":66}],137:[function(require,module,exports){
+},{"react":"react","react-bootstrap":51,"react-router-bootstrap":66}],136:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -9984,7 +9926,7 @@ var App = React.createClass({
 module.exports = App;
 /* This is where child views will be rendered */
 
-},{"./LinkBar.jsx":136,"react":"react","react-bootstrap":51,"react-router":94}],138:[function(require,module,exports){
+},{"./LinkBar.jsx":135,"react":"react","react-bootstrap":51,"react-router":94}],137:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10012,7 +9954,7 @@ var Input = module.exports = React.createClass({
 	}
 });
 
-},{"react":"react"}],139:[function(require,module,exports){
+},{"react":"react"}],138:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10022,8 +9964,8 @@ var _require = require("react-router");
 
 var Navigation = _require.Navigation;
 
-var action = require("../bin/studentActions");
-var store = require("../bin/studentStore");
+var action = require("../actions/studentActions.jsx");
+var store = require("../stores/studentStore.jsx");
 var newId = store.UUID();
 
 var Input = require("./input.jsx");
@@ -10071,19 +10013,19 @@ var StudentForm = module.exports = React.createClass({
 	}
 });
 
-},{"../bin/studentActions":134,"../bin/studentStore":135,"./input.jsx":138,"react":"react","react-router":94,"reflux":113}],140:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"./input.jsx":137,"react":"react","react-router":94,"reflux":113}],139:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
 
-var studentActions = require("../bin/studentActions.js");
+var studentActions = require("../actions/studentActions.jsx");
 var ReactBootstrap = require("react-bootstrap");
 
 var _require = require("reflux");
 
 var ListenerMixin = _require.ListenerMixin;
 
-var _require2 = require("../bin/studentStore.js");
+var _require2 = require("../stores/studentStore.jsx");
 
 var store = _require2.store;
 
@@ -10217,11 +10159,11 @@ var StudentList = React.createClass({
 
 module.exports = StudentList;
 
-},{"../bin/studentActions.js":134,"../bin/studentStore.js":135,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],141:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],140:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var action = require("../bin/studentActions");
+var action = require("../actions/studentActions.jsx");
 
 var _require = require("react-bootstrap");
 
@@ -10232,7 +10174,7 @@ var _require2 = require("reflux");
 
 var ListenerMixin = _require2.ListenerMixin;
 
-var _require3 = require("../bin/studentStore.js");
+var _require3 = require("../stores/studentStore.jsx");
 
 var store = _require3.store;
 
@@ -10377,7 +10319,7 @@ var StudentView = module.exports = React.createClass({
 	}
 });
 
-},{"../bin/studentActions":134,"../bin/studentStore.js":135,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],142:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],141:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10398,7 +10340,7 @@ var Welcome = module.exports = React.createClass({
 	}
 });
 
-},{"react":"react"}],143:[function(require,module,exports){
+},{"react":"react"}],142:[function(require,module,exports){
 "use strict";
 
 // Because this is the entry point, we expose React on the
@@ -10419,7 +10361,65 @@ Router.run(routeConfiguration, function (View, routerState) {
 	React.render(React.createElement(View, { routerParams: routerParams }), document.getElementById("main"));
 });
 
-},{"./bin/routes.jsx":133,"react":"react","react-router":94}],"react":[function(require,module,exports){
+},{"./bin/routes.jsx":134,"react":"react","react-router":94}],143:[function(require,module,exports){
+"use strict";
+
+var Reflux = require("reflux");
+var studentAction = require("../actions/studentActions.jsx");
+
+var students = [];
+var id = 0;
+
+function UUID() {
+	return ++id;
+}
+
+students.push({
+	id: UUID(),
+	firstName: "lah",
+	lastName: "leehhh",
+	rank: "boooo",
+	emails: ["fasldkfjadsfl@flkdsjfasld.com"]
+});
+
+var studentStore = Reflux.createStore({
+	listenables: studentAction,
+	init: function init() {},
+
+	addStudent: function addStudent(data) {
+		data.id = UUID();
+		students.push(data);
+
+		this.trigger(students);
+	},
+
+	editStudent: function editStudent(data) {
+		students[data.id] = data;
+
+		this.trigger(students);
+	},
+
+	deleteStudent: function deleteStudent(id) {
+		for (var i = 0; i < students.length; i++) {
+			if (students[i].id == id) {
+				students.splice(i, 1);
+				break;
+			}
+		}
+		this.trigger(students);
+	},
+
+	getInitialState: function getInitialState() {
+		return students;
+	}
+});
+
+module.exports = {
+	UUID: UUID,
+	store: studentStore
+};
+
+},{"../actions/studentActions.jsx":133,"reflux":113}],"react":[function(require,module,exports){
 (function (global){
 /**
  * React v0.12.2
@@ -28538,4 +28538,4 @@ module.exports = warning;
 },{"./emptyFunction":107}]},{},[1])(1)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[143]);
+},{}]},{},[142]);

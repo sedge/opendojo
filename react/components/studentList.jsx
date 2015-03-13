@@ -1,10 +1,10 @@
 var React = require('react');
 
-var studentActions = require('../bin/studentActions.js');
+var studentActions = require('../actions/studentActions.jsx');
 var ReactBootstrap = require('react-bootstrap');
 
 var { ListenerMixin } = require('reflux');
-var {	store } = require('../bin/studentStore.js');
+var {	store } = require('../stores/studentStore.jsx');
 var { Link } = require('react-router');
 
 var {

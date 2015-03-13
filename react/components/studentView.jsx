@@ -1,12 +1,12 @@
 var React = require('react');
-var action = require('../bin/studentActions');
+var action = require('../actions/studentActions.jsx');
 
 var {
 	Alert,
 	Table
 } = require('react-bootstrap');
 var { ListenerMixin } = require('reflux');
-var {	store } = require('../bin/studentStore.js');
+var {	store } = require('../stores/studentStore.jsx');
 var { Navigation } = require('react-router');
 
 var StudentView = module.exports = React.createClass({
