@@ -3,15 +3,15 @@ var mongoose = require('mongoose');
 
 mongoose.connection.once('open', function(){
   var studentSchema = new mongoose.Schema ({
-    firstName :String,
-    lastName :String,
+    firstName: String,
+    lastName: String,
     gender:String,
     rankId : {type: mongoose.Schema.Types.ObjectId, ref: 'Rank'},
-    healthInformation:String,
-    guardianInformation:String,
+    healthInformation: String,
+    guardianInformation: String,
     email: {type: [String]},
     membershipStatus: Boolean,
-    membershipExpiry:Date,
+    membershipExpiry: Date,
     phone:String,
     birthDate:Date
   });

@@ -27,3 +27,9 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 .env
+
+# Database
+data/
+
+# Dist file for front end single page application
+public/app.js
