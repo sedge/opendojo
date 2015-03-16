@@ -27,7 +27,6 @@ module.exports = function(grunt){
         esnext: true
       }
     },
-    //test suite
     exec: {
       run_mocha: {
         command: 'mocha --timeout 1000 --recursive --reporter spec tests',
@@ -56,21 +55,18 @@ module.exports = function(grunt){
         }
       }
     },
-    clean: ['public/app.js']
+    clean: ['public/app.js', 'public/stylesheets/style.css'],
+    less: {
+      dev: {
+        files: {
+          "./public/stylesheets/style.css": "./public/stylesheets/style.less"
+        }
+      }
+    }
   });
 
   // Default is the same as test, for travis-ci
   grunt.registerTask('default', 'test');
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
-  grunt.registerTask('build', function(env) {
-    var tasks;
-
-    if (env === "prod") {
-      tasks = ['jshint', 'clean', 'browserify:prod'];
-    } else {
-      tasks = ['jshint', 'clean', 'browserify:dev'];
-    }
-
-    grunt.task.run(tasks);
-  });
+  grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'less:dev']);
 };

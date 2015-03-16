@@ -9770,7 +9770,6 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var App = require("../components/app.jsx");
 
-// Main views
 var Welcome = require("../components/welcome.jsx");
 
 // Student child views
@@ -9787,96 +9786,47 @@ var routes =
 React.createElement(
 	Route,
 	{ name: "app", path: "/", handler: App },
-	React.createElement(Route, { name: "allStudents", path: "/students/all", handler: ListStudents }),
-	React.createElement(Route, { name: "addStudent", path: "/students/new", handler: AddStudent }),
-	React.createElement(Route, { name: "singleStudent", path: "/students/:id", handler: ViewStudent }),
-	React.createElement(DefaultRoute, { handler: Welcome })
+	React.createElement(Route, { name: "welcome1", path: "welcome1", handler: Welcome }),
+	React.createElement(Route, { name: "welcome2", path: "welcome2", handler: Welcome }),
+	React.createElement(Route, { name: "welcome3", path: "welcome3", handler: Welcome }),
+	React.createElement(Route, { name: "welcome4", path: "welcome4", handler: Welcome }),
+	React.createElement(DefaultRoute, { handler: Welcome }),
+	React.createElement(NotFoundRoute, { handler: Welcome })
 );
 
 module.exports = routes;
 
-},{"../components/app.jsx":136,"../components/studentForm.jsx":138,"../components/studentList.jsx":139,"../components/studentView.jsx":140,"../components/welcome.jsx":141,"react":"react","react-router":94}],135:[function(require,module,exports){
-"use strict";
-
-var React = require("react");
-var ReactBootstrap = require("react-bootstrap");
-var ReactRouterBootstrap = require("react-router-bootstrap");
-
-// EcmaScript6 destructuring assignment syntax.
-// Equivalent to:
-//   var Navbar = ReactBootstrap.Navbar;
-//   ...
-var Navbar = ReactBootstrap.Navbar;
-var Nav = ReactBootstrap.Nav;
-var DropdownButton = ReactBootstrap.DropdownButton;
-var MenuItem = ReactBootstrap.MenuItem;
-var NavItemLink = ReactRouterBootstrap.NavItemLink;
-
-var LinkBar = module.exports = React.createClass({
-	displayName: "exports",
-
-	render: function render() {
-		var classes = {
-			brand: this.props.title,
-			fixedTop: this.props.fixedTop,
-			fixedBottom: this.props.fixedBottom,
-			fluid: true
-		};
-
-		return React.createElement(
-			"div",
-			{ className: "container" },
-			React.createElement(
-				Navbar,
-				classes,
-				React.createElement(
-					Nav,
-					null,
-					this.props.children
-				)
-			)
-		);
-	}
-});
-
-LinkBar.Link = React.createClass({
-	displayName: "Link",
-
-	render: function render() {
-		return React.createElement(
-			NavItemLink,
-			{ to: this.props.name },
-			this.props.children
-		);
-	}
-});
-/* The `...` is the EcmaScript6 spread operator                      */ /* and is the equivilent to:                                         */ /* <Navbar brand={classes.brand} fixedTop={classes.fixedTop} etc. /> */
-
-},{"react":"react","react-bootstrap":51,"react-router-bootstrap":66}],136:[function(require,module,exports){
+},{"../components/app.jsx":135,"../components/studentForm.jsx":137,"../components/studentList.jsx":138,"../components/studentView.jsx":139,"../components/welcome.jsx":140,"react":"react","react-router":94}],135:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
 var Router = require("react-router");
 
-var _require = require("react-bootstrap");
-
-var Jumbotron = _require.Jumbotron;
-
 // EcmaScript6 destructuring assignment syntax.
 // Equivalent to:
-//   var Link = Router.Link;
+//   var RouteHandler = Router.RouteHandler;
 //   ...
 var RouteHandler = Router.RouteHandler;
 
-// Component requires
-var LinkBar = require("./LinkBar.jsx");
+var _require = require("react-bootstrap");
+
+var Grid = _require.Grid;
+var Row = _require.Row;
+var Col = _require.Col;
+var Navbar = _require.Navbar;
+
+var _require2 = require("react-router-bootstrap");
+
+var NavItemLink = _require2.NavItemLink;
 
 // Note, each route is actually a name
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-	"Add a Student": "addStudent",
-	"View all Students": "allStudents"
+	Students: "welcome1",
+	Ranks: "welcome2",
+	Classes: "welcome3",
+	Attendance: "welcome4"
 };
 
 // Unique key for each link
@@ -9886,11 +9836,11 @@ var App = React.createClass({
 	displayName: "App",
 
 	render: function render() {
-		var headerLinksText = Object.keys(nav);
-		var headerLinks = headerLinksText.map(function (linkText) {
+		var linkText = Object.keys(nav);
+		var links = linkText.map(function (linkText) {
 			return React.createElement(
-				LinkBar.Link,
-				{ name: nav[linkText], key: headerLinkId++ },
+				NavItemLink,
+				{ to: nav[linkText], key: headerLinkId++ },
 				linkText
 			);
 		});
@@ -9898,35 +9848,42 @@ var App = React.createClass({
 		return React.createElement(
 			"div",
 			{ id: "main" },
+			React.createElement(Navbar, { fixedTop: true, brand: "OpenDojo" }),
 			React.createElement(
-				LinkBar,
-				{ fixedTop: true, title: "OpenDojo" },
-				headerLinks
-			),
-			React.createElement(
-				Jumbotron,
+				Grid,
 				null,
 				React.createElement(
-					"h2",
+					Row,
 					null,
-					"Hello world!"
+					React.createElement(
+						Col,
+						{ md: 3 },
+						React.createElement(
+							Navbar,
+							{ className: "fluid" },
+							links
+						)
+					),
+					React.createElement(
+						Col,
+						{ md: 9 },
+						React.createElement(RouteHandler, { routerParams: this.props.routerParams })
+					)
 				),
 				React.createElement(
-					"p",
+					Row,
 					null,
-					"I'll say."
+					React.createElement(Navbar, { brand: "Copyright Team Nariyuki 2015" })
 				)
-			),
-			React.createElement(RouteHandler, { routerParams: this.props.routerParams }),
-			React.createElement(LinkBar, { fixedBottom: true, title: "Copyright OpenDojo 2015" })
+			)
 		);
 	}
 });
 
 module.exports = App;
-/* This is where child views will be rendered */
+/* Main Content */ /* Navbar */ /* Child View */ /* Footer */
 
-},{"./LinkBar.jsx":135,"react":"react","react-bootstrap":51,"react-router":94}],137:[function(require,module,exports){
+},{"react":"react","react-bootstrap":51,"react-router":94,"react-router-bootstrap":66}],136:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -9954,7 +9911,7 @@ var Input = module.exports = React.createClass({
 	}
 });
 
-},{"react":"react"}],138:[function(require,module,exports){
+},{"react":"react"}],137:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10013,7 +9970,7 @@ var StudentForm = module.exports = React.createClass({
 	}
 });
 
-},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"./input.jsx":137,"react":"react","react-router":94,"reflux":113}],139:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":142,"./input.jsx":136,"react":"react","react-router":94,"reflux":113}],138:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10159,7 +10116,7 @@ var StudentList = React.createClass({
 
 module.exports = StudentList;
 
-},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],140:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":142,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],139:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -10319,10 +10276,14 @@ var StudentView = module.exports = React.createClass({
 	}
 });
 
-},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":143,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],141:[function(require,module,exports){
+},{"../actions/studentActions.jsx":133,"../stores/studentStore.jsx":142,"react":"react","react-bootstrap":51,"react-router":94,"reflux":113}],140:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
+
+var _require = require("react-bootstrap");
+
+var Jumbotron = _require.Jumbotron;
 
 var Welcome = module.exports = React.createClass({
 	displayName: "exports",
@@ -10340,7 +10301,7 @@ var Welcome = module.exports = React.createClass({
 	}
 });
 
-},{"react":"react"}],142:[function(require,module,exports){
+},{"react":"react","react-bootstrap":51}],141:[function(require,module,exports){
 "use strict";
 
 // Because this is the entry point, we expose React on the
@@ -10361,7 +10322,7 @@ Router.run(routeConfiguration, function (View, routerState) {
 	React.render(React.createElement(View, { routerParams: routerParams }), document.getElementById("main"));
 });
 
-},{"./bin/routes.jsx":134,"react":"react","react-router":94}],143:[function(require,module,exports){
+},{"./bin/routes.jsx":134,"react":"react","react-router":94}],142:[function(require,module,exports){
 "use strict";
 
 var Reflux = require("reflux");
@@ -28538,4 +28499,4 @@ module.exports = warning;
 },{"./emptyFunction":107}]},{},[1])(1)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[142]);
+},{}]},{},[141]);

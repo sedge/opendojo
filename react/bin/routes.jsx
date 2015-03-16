@@ -14,7 +14,6 @@ var {
 
 var App = require('../components/app.jsx');
 
-// Main views
 var Welcome = require('../components/welcome.jsx');
 
 // Student child views
@@ -28,12 +27,14 @@ var AddStudent = require('../components/studentForm.jsx');
 var routes = (
 	// Main view, will always be rendered
 	//  - `handler` responsible for all permanent UI.
-	<Route name="app" path='/' handler={App}>
-		<Route name="allStudents" path="/students/all" handler={ListStudents} />
-		<Route name="addStudent" path="/students/new" handler={AddStudent} />
-		<Route name="singleStudent" path="/students/:id" handler={ViewStudent} />
+	<Route name='app' path='/' handler={App}>
+		<Route name='welcome1' path='welcome1' handler={Welcome} />
+		<Route name='welcome2' path='welcome2' handler={Welcome} />
+		<Route name='welcome3' path='welcome3' handler={Welcome} />
+		<Route name='welcome4' path='welcome4' handler={Welcome} />
 
 		<DefaultRoute handler={Welcome} />
+		<NotFoundRoute handler={Welcome} />
 	</Route>
 );
 

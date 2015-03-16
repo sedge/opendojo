@@ -1,27 +1,32 @@
 var React = require('react');
 var Router = require('react-router');
 
-var {
-	Jumbotron
-} = require('react-bootstrap');
-
 // EcmaScript6 destructuring assignment syntax.
 // Equivalent to:
-//   var Link = Router.Link;
+//   var RouteHandler = Router.RouteHandler;
 //   ...
 var {
 	RouteHandler
 } = Router;
 
-// Component requires
-var LinkBar = require("./LinkBar.jsx");
+var {
+	Grid,
+	Row,
+	Col,
+
+	Navbar
+} = require('react-bootstrap');
+
+var { NavItemLink } = require('react-router-bootstrap');
 
 // Note, each route is actually a name
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-	"Add a Student": "addStudent",
-	"View all Students": "allStudents"
+  "Students": "welcome1",
+  "Ranks": "welcome2",
+  "Classes": "welcome3",
+  "Attendance": "welcome4"
 };
 
 // Unique key for each link
@@ -29,31 +34,40 @@ var headerLinkId = 0;
 
 var App = React.createClass({
 	render: function() {
-		var headerLinksText = Object.keys(nav);
-    var headerLinks = headerLinksText.map(function(linkText) {
+		var linkText = Object.keys(nav);
+    var links = linkText.map(function(linkText) {
     	return (
-    		<LinkBar.Link name={nav[linkText]} key={headerLinkId++}>
+    		<NavItemLink to={nav[linkText]} key={headerLinkId++}>
     			{linkText}
-    		</LinkBar.Link>
+    		</NavItemLink>
     	);
     });
 
 		return (
 			<div id="main">
-				<LinkBar fixedTop={true} title={"OpenDojo"}>
-					{headerLinks}
-				</LinkBar>
+				<Navbar fixedTop={true} brand={"OpenDojo"} />
 
-				<Jumbotron>
-					<h2>Hello world!</h2>
-					<p>I'll say.</p>
-				</Jumbotron>
+				<Grid>
+					{/* Main Content */}
+					<Row>
+						{/* Navbar */}
+						<Col md={3}>
+              <Navbar className="fluid">
+                {links}
+              </Navbar>
+						</Col>
 
-				{/* This is where child views will be rendered */}
-				<RouteHandler routerParams={this.props.routerParams} />
+						{/* Child View */}
+						<Col md={9}>
+							<RouteHandler routerParams={this.props.routerParams} />
+						</Col>
+					</Row>
 
-				<LinkBar fixedBottom={true} title={"Copyright OpenDojo 2015"}>
-				</LinkBar>
+					{/* Footer */}
+					<Row>
+            <Navbar brand="Copyright Team Nariyuki 2015" />
+					</Row>
+				</Grid>
 			</div>
 		);
 	}
