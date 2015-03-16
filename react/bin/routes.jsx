@@ -20,15 +20,20 @@ var Welcome = require('../components/welcome.jsx');
 var ListStudents = require('../components/studentList.jsx');
 var ViewStudent = require('../components/studentView.jsx');
 var AddStudent = require('../components/studentForm.jsx');
-
+var Students = require('../components/students.jsx');
 // This:
 //   1. Sets up routing functionality
 //   2. Lays out the structure of the app clearly
 var routes = (
 	// Main view, will always be rendered
 	//  - `handler` responsible for all permanent UI.
-	<Route name='app' path='/' handler={App}>
-		<Route name='welcome1' path='welcome1' handler={Welcome} />
+
+	<Route name="app" path='/' handler={App}>
+		<Route name="students" path="students" handler={Students}>
+			<Route name="addStudent" path="new" handler={AddStudent} />
+			<Route name="singleStudent" path=":_id" handler={ViewStudent} />
+			<DefaultRoute handler={ListStudents} />
+		</Route>
 		<Route name='welcome2' path='welcome2' handler={Welcome} />
 		<Route name='welcome3' path='welcome3' handler={Welcome} />
 		<Route name='welcome4' path='welcome4' handler={Welcome} />
