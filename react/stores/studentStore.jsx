@@ -29,7 +29,13 @@ var studentStore = Reflux.createStore({
 
 	editStudent: function(data){
 		students[data.id] = data;
-
+		if(data){
+			console.log(data.id);
+			console.log(data.firstName);
+		}
+		else{
+			console.log("fuc");
+		}
 		this.trigger(students);
 	},
 

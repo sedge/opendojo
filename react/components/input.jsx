@@ -11,7 +11,7 @@ var Input = module.exports = React.createClass({
 						{this.props.label}
 					</span>
 				</label>
-				<input ref={this.props.name} type={this.props.type} placeholder={this.props.placeholder} className="form-control" />
+				<input ref={this.props.name} type={this.props.type} placeholder={this.props.placeholder} defaultValue={this.props.defaultValue} className="form-control" />
 			</div>
 		);
 	}

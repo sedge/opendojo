@@ -24,7 +24,7 @@ var { NavItemLink } = require('react-router-bootstrap');
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-  "Students": "welcome1",
+  "Students": "students",
   "Ranks": "welcome2",
   "Classes": "welcome3",
   "Attendance": "welcome4"
@@ -76,7 +76,7 @@ var App = React.createClass({
       </div>
     );
   }
+
 });
 
 module.exports = App;
-

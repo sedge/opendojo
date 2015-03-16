@@ -36,7 +36,7 @@ var StudentForm = module.exports = React.createClass({
 					<Input label="Last Name" type="text" ref="lastName" name="lastName" placeholder="e.g. Smith" />
 					<Input label="Rank" type="text" ref="rank" name="rank" placeholder="(colour)" />
 					<Input label="Emails" type="text" ref="emails" name="emails" placeholder="(comma delimited)" />
-					<input type="submit" value="Save" onClick={this.handleSubmit} />
+					<button onClick={this.handleSubmit}>Save</button>
 				</form>
 			</div>
 		);
