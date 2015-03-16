@@ -51,6 +51,7 @@
     "reactify": "^1.0.0",
     "reflux": "^0.2.5",
     "request": "^2.51.0",
+    "superagent": "^1.1.0",
     "time-grunt": "^1.1.0"
   },
   "browser": {

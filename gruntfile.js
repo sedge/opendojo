@@ -4,7 +4,8 @@ module.exports = function(grunt){
   // it runs
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt, {
-    jshint: "grunt-jsxhint"
+    jshint: "grunt-jsxhint",
+    clean: "grunt-contrib-clean"
   });
 
   var reactify = require('grunt-react').browserify;

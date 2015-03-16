@@ -4,16 +4,18 @@ var studentActions = require('../actions/studentActions.jsx');
 var ReactBootstrap = require('react-bootstrap');
 
 var { ListenerMixin } = require('reflux');
-var {	store } = require('../stores/studentStore.jsx');
-var { Link } = require('react-router');
-
+var {	store,
+			agecal } = require('../stores/studentStore.jsx');
+var { Link, Navigation } = require('react-router');
 var {
 	Alert,
 	Table
 } = ReactBootstrap;
 
-var StudentList = React.createClass({
-	mixins: [ListenerMixin],
+
+
+var StudentList = module.exports = React.createClass({
+	mixins: [ListenerMixin,Navigation],
 	getInitialState: function(){
 		return {
 			students: null
@@ -26,17 +28,20 @@ var StudentList = React.createClass({
 			});
 		});
 	},
+	studentsUpdate: function(newstudents) {
+		this.setState({
+			students: newstudents
+		});
+	},
 
-	studentsUpdate: function(students) {
-		this.state.students = students;
+	componentWillUpdate: function(newstudents){
+		
 	},
 
 	render: function() {
 		var content;
 		var students = this.state.students;
-
 		var view;
-
 		if (!students) {
 			view = (
 				<Alert bsStyle="danger">
@@ -49,29 +54,35 @@ var StudentList = React.createClass({
 
 			studentRows = students.map(function(student) {
 				var emails = "";
-				student.emails.forEach(function(email) {
+				var age = agecal(student.birthDate);
+				student.email.forEach(function(email) {
 					emails += email + " ";
 				});
-
 				return (
-					<tr key={key++}>
-						<td>{student.id}</td>
-						<td>{student.firstName + " " + student.lastName}</td>
-						<td>{student.rank}</td>
+					<tr key={key++}> 
+						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
+						<td>{student.phone}</td>
+						<td>{emails}</td>
+						<td>{student.rankId}</td>
+						<td>{age}</td>
+						<td>{student.guardianInformation}</td>
 						<td><Link to="singleStudent" params={{
-							id: student.id
+							_id: student._id
 						}}>View</Link></td>
 					</tr>
 				);
 			});
 
 			view = (
-				<Table bordered={true} striped={true}>
+				<Table>
 					<thead>
-						<th>#</th>
 						<th>Student Name</th>
+						<th>Phone #</th>
+						<th>Email</th>
 						<th>Student Rank</th>
-						<th><Link to="addStudent">Add new student</Link></th>
+						<th>Age</th>
+						<th>Guardian</th>
+						<th></th>
 					</thead>
 					<tbody>
 						{studentRows}
