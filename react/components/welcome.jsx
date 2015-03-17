@@ -1,7 +1,5 @@
 var React = require('react');
 
-var { Jumbotron } = require('react-bootstrap');
-
 var Welcome = module.exports = React.createClass({
 	render: function() {
 		return (

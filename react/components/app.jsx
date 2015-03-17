@@ -52,9 +52,11 @@ var App = React.createClass({
 					<Row>
 						{/* Navbar */}
 						<Col md={3}>
-              <Navbar className="fluid">
-                {links}
-              </Navbar>
+							<div className="sidebar-nav">
+	              <Navbar className="fluid">
+	                {links}
+	              </Navbar>
+              </div>
 						</Col>
 
 						{/* Child View */}

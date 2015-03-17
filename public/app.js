@@ -9859,9 +9859,13 @@ var App = React.createClass({
 						Col,
 						{ md: 3 },
 						React.createElement(
-							Navbar,
-							{ className: "fluid" },
-							links
+							"div",
+							{ className: "sidebar-nav" },
+							React.createElement(
+								Navbar,
+								{ className: "fluid" },
+								links
+							)
 						)
 					),
 					React.createElement(
@@ -10281,10 +10285,6 @@ var StudentView = module.exports = React.createClass({
 
 var React = require("react");
 
-var _require = require("react-bootstrap");
-
-var Jumbotron = _require.Jumbotron;
-
 var Welcome = module.exports = React.createClass({
 	displayName: "exports",
 
@@ -10301,7 +10301,7 @@ var Welcome = module.exports = React.createClass({
 	}
 });
 
-},{"react":"react","react-bootstrap":51}],141:[function(require,module,exports){
+},{"react":"react"}],141:[function(require,module,exports){
 "use strict";
 
 // Because this is the entry point, we expose React on the
