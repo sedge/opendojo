@@ -1,6 +1,7 @@
 var env = require('./lib/environment');
 var mongoose = require('mongoose');
 var log = require('./lib/logger');
+var idValidator = require('mongoose-id-validator');
 
 // Variables for the schemas
 var schema;
@@ -44,10 +45,21 @@ connection.once('open', function (callback) {
   * Rank entity definition
   */
   rankSchema = new schema({
-    name: String,
-    sequence: Number,
-    color: String
+    name: {
+      type: String,
+      required: true
+    },
+    sequence: {
+      type: Number,
+      required: true
+    },
+    color: {
+      type: String,
+      required: true
+    }
   });
+
+  rankSchema.plugin(idValidator);
 
   rank = mongoose.model('Rank', rankSchema);
 
@@ -55,42 +67,80 @@ connection.once('open', function (callback) {
   * Student entity definition
   */
   studentSchema = new schema({
-    firstName: String,
-    lastName: String,
-    gender: String,
+    firstName: { 
+      type: String, 
+      required: true 
+    },
+    lastName: { 
+      type: String, 
+      required: true 
+    },
+    gender: { 
+      type: String, 
+      required: true 
+    },
     rankId : {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Rank'
     },
     healthInformation: String,
     guardianInformation: String,
-    email: {
-      type: [String]
-    },
+    email: [{
+      type: String, 
+      required: true
+    }],
     membershipStatus: Boolean,
     membershipExpiry: Date,
-    phone: String,
-    birthDate: Date
+    phone: { 
+      type: String, 
+      required: true 
+    },
+    birthDate: {
+      type: Date,
+      required: true
+    }
   });
 
+  studentSchema.plugin(idValidator);
+  
   student = mongoose.model('Student', studentSchema);
 
   /**
   * Class entity definition
   */
   classSchema = new schema({
-    class_title: String,
-    start_date : Date,
-    end_date: Date,
-    day_of_week: Number,
-    start_time: Date,
-    end_time: Date,
+    class_title: {
+      type: String,
+      required: true
+    },
+    start_date : {
+      type: Date,
+      required: true
+    },
+    end_date: {
+      type: Date,
+      required: true
+    },
+    day_of_week: {
+      type: Number,
+      required: true
+    },
+    start_time: {
+      type: String,
+      required: true
+    },
+    end_time: {
+      type: String,
+      required: true
+    },
     classType: String,
-    RanksAllowed: {
-      type: [mongoose.Schema.ObjectId], 
-      ref:'Rank'
-    }
+    RanksAllowed: [{
+        type: mongoose.Schema.ObjectId, 
+        ref:'Rank'
+    }]
   });
+
+  classSchema.plugin(idValidator);
 
   course= mongoose.model('Class', classSchema);
 
@@ -100,15 +150,25 @@ connection.once('open', function (callback) {
   attendanceSchema = new schema({
     student_id: {
       type: mongoose.Schema.Types.ObjectId, 
-      ref:'Student'
+      ref:'Student',
+      required: true
     },
-    classDate: Date,
-    classTime: Date,
+    classDate: {
+      type: Date,
+      required: true
+    },
+    classTime: {
+      type: Date,
+      required: true
+    },
     classID: {
       type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Class'
+      ref: 'Class',
+      required: true
     }
   });
+
+  attendanceSchema.plugin(idValidator);
 
   attendance= mongoose.model('Attendance', attendanceSchema);
   // FOR MOCHA TESTING:

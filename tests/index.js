@@ -4,10 +4,15 @@
  */
 
 // Host API
-require('./api/host');
+//require('./api/host');
 
 // Student API
-require('./api/student');
+//require('./api/student');
 
-/*Database testing
-require('./database/dbtest');*/
+// Rank API
+//require('./api/rank');
+
+// Class Api
+require('./api/course')
+
+
