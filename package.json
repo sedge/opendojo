@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/www",
+    "start": "node ./server/start",
     "test": "grunt test"
   },
   "dependencies": {
