@@ -217,7 +217,9 @@ module.exports = function() {
             res: res,
             err: err
           });
-          res.status(204).send('Operation completed');
+
+          // TODO: Ameliorate test logic for incoming db parse errors: https://github.com/sedge/opendojo/issues/60
+          //return res.status(409).send('Server could not process request because of conflict: ', err);
         }
       log.info({
         req: req,

@@ -8,6 +8,3 @@ require('./api/host');
 
 // Student API
 require('./api/student');
-
-/*Database testing
-require('./database/dbtest');*/

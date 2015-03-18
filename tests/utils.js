@@ -1,30 +1,21 @@
-var fork = require("child_process").fork;
-var child;
 var env = require('../lib/environment');
 var request = require('request');
 var expect = require('chai').expect;
 var fullUrl = env.get('HOST') + ':' + env.get('PORT');
-var log = require("../lib/logger");
+var log = require('../lib/logger');
+var server = require('../server/www').server;
 
 module.exports = {
+  // Helper function to access API resource routes
   initServer: function(done){
-    // Spin-up the server as a child process
-    child = fork("./server/www", null, {});
+    // Spin-up the server
+    server.listen(env.get("PORT"), done);
 
-    // Listen for success, or error with the DB
-    child.on('message', function(msg) {
-      if ( msg === 'serverStarted' ) {
-        return done();
-      }
-      throw "What happened with the fork?";
-    });
-    child.on('error', function(err) {
+    server.on('error', function(err) {
       log.error(err);
-      child.kill();
+      server.close();
     });
   },
-
-  // Helper function to access API resource routes
   apiSetup: function(verb, route, status, data, callback, customAssertions){
     // Parameter handling
     if (typeof(data) === "function") {
@@ -53,7 +44,6 @@ module.exports = {
   },
 
   killServer: function(done){
-    child.kill();
-    done();
+    server.close(done);
   }
 };
