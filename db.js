@@ -1,6 +1,11 @@
+var EventEmitter = require('events').EventEmitter;
+
 var env = require('./lib/environment');
 var mongoose = require('mongoose');
 var log = require('./lib/logger');
+var dbHealth = new EventEmitter();
+
+dbHealth.connected = false;
 
 // Variables for the schemas
 var schema;
@@ -8,7 +13,6 @@ var rankSchema;
 var studentSchema;
 var classSchema;
 var attendanceSchema;
-
 
 // Variables for models
 var rank;
@@ -59,7 +63,7 @@ connection.once('open', function (callback) {
     lastName: String,
     gender: String,
     rankId : {
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Rank'
     },
     healthInformation: String,
@@ -87,7 +91,7 @@ connection.once('open', function (callback) {
     end_time: Date,
     classType: String,
     RanksAllowed: {
-      type: [mongoose.Schema.ObjectId], 
+      type: [mongoose.Schema.ObjectId],
       ref:'Rank'
     }
   });
@@ -99,28 +103,21 @@ connection.once('open', function (callback) {
   */
   attendanceSchema = new schema({
     student_id: {
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Schema.Types.ObjectId,
       ref:'Student'
     },
     classDate: Date,
     classTime: Date,
     classID: {
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Class'
     }
   });
 
-  attendance= mongoose.model('Attendance', attendanceSchema);
-  // FOR MOCHA TESTING:
-  // If we're running as a child process, let our parent know we're ready.
-  if (process.send) {
-    try {
-      process.send("serverStarted");
-    } catch ( e ) {
-      // Exit the worker if master is gone
-      process.exit(1);
-    }
-  }
+  attendance = mongoose.model('Attendance', attendanceSchema);
+
+  dbHealth.connected = true;
+  dbHealth.emit("connected");
 });
 
 mongoose.connect(env.get("DBHOST"));
@@ -131,5 +128,6 @@ module.exports = {
   "rank": mongoose.models.Rank,
   "course": mongoose.models.Course,
   "attendance": mongoose.models.Attendance,
+  dbHealth: dbHealth
 };
 
