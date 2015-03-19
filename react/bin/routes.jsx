@@ -29,10 +29,10 @@ var routes = (
 	//  - `handler` responsible for all permanent UI.
 
 	<Route name="app" path='/' handler={App}>
-		<Route name="students" path="/students" handler={Students}>
-			<Route name="allStudents" path="/students/all" handler={ListStudents} />
-			<Route name="addStudent" path="/students/new" handler={AddStudent} />
-			<Route name="singleStudent" path="/students/:id" handler={ViewStudent} />
+		<Route name="students" path="students" handler={Students}>
+			<Route name="allStudents" path="students/all" handler={ListStudents} />
+			<Route name="addStudent" path="students/new" handler={AddStudent} />
+			<Route name="singleStudent" path="students/:id" handler={ViewStudent} />
 			<DefaultRoute handler={ListStudents} />
 		</Route>
 		<Route name='welcome2' path='welcome2' handler={Welcome} />

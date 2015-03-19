@@ -6,8 +6,7 @@ var action = require('../actions/studentActions.jsx');
 var store = require('../stores/studentStore.jsx');
 var newId = store.UUID();
 
-var Input = require('./input.jsx');
-
+var { Input } = require('react-bootstrap');
 var StudentForm = module.exports = React.createClass({
 	mixins: [Navigation,Reflux.ListenerMixin],
 
@@ -27,7 +26,7 @@ var StudentForm = module.exports = React.createClass({
 			emails: emails
 		});
 
-		this.transitionTo('/students/all');
+		this.transitionTo('/students');
 	},
 	render: function() {
 		return (

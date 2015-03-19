@@ -6,7 +6,6 @@ var ReactBootstrap = require('react-bootstrap');
 var { ListenerMixin } = require('reflux');
 var {	store } = require('../stores/studentStore.jsx');
 var { Link } = require('react-router');
-var Route = require('react-router');
 var {
 	Alert,
 	Table
@@ -27,7 +26,7 @@ var StudentList = module.exports = React.createClass({
 		});
 	},
 	viewSingleStudent: function(id){
-		Route.transitionTo("singleStudent", student.id);
+		this.transitionTo("singleStudent", student.id);
 	},
 	studentsUpdate: function(students) {
 		this.state.students = students;

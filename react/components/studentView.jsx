@@ -1,10 +1,9 @@
 var React = require('react');
 var action = require('../actions/studentActions.jsx');
-var Input = require('./input.jsx');
-
 var {
 	Alert,
-	Table
+	Table,
+	Input
 } = require('react-bootstrap');
 var { ListenerMixin } = require('reflux');
 var {	store } = require('../stores/studentStore.jsx');
@@ -35,7 +34,6 @@ var StudentView = module.exports = React.createClass({
 	},
 	editStudent: function(e){
 		e.preventDefault();
-		console.log("Fuuuuuuuuuuuuuc");
 		var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
 			return email.trim();
 		});

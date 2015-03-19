@@ -1,10 +1,9 @@
 var React = require('react');
 var Reflux = require('reflux');
-var Router = require('react-router');
 var ReactBootstrap = require('react-bootstrap');
 var {
 	RouteHandler
-} = Router;
+} = require('react-router');
 var { Link } = require('react-router');
 var {
 	Button,
@@ -12,7 +11,7 @@ var {
 	ButtonToolbar,
 	Row,
 	Col
-} = ReactBootstrap;
+} = require('react-bootstrap');
 
 
 var Students = module.exports = React.createClass({
@@ -26,8 +25,8 @@ var Students = module.exports = React.createClass({
 		var toolbar =(
 			<Grid>
 				<Row className="show-grid">
-          			<Col xs={6} md={4}><input type="text" name="searchStudent" placeholder="Serach by Name..." /></Col>
-          			<Col xs={6} md={4}><h4 className="text-center">STUDENT NAMAGEMENT TOOLBAR</h4></Col>
+          			<Col xs={6} md={4}><input type="text" name="searchStudent" placeholder="Search by Name..." /></Col>
+          			<Col xs={6} md={4}><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Col>
           			<Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
        			</Row>
        		</Grid>
