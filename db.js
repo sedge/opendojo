@@ -1,6 +1,12 @@
+var EventEmitter = require('events').EventEmitter;
+
 var env = require('./lib/environment');
 var mongoose = require('mongoose');
 var log = require('./lib/logger');
+var idValidator = require('mongoose-id-validator');
+var dbHealth = new EventEmitter();
+
+dbHealth.connected = false;
 
 // Variables for the schemas
 var schema;
@@ -8,7 +14,6 @@ var rankSchema;
 var studentSchema;
 var classSchema;
 var attendanceSchema;
-
 
 // Variables for models
 var rank;
@@ -48,6 +53,8 @@ connection.once('open', function (callback) {
     sequence: Number,
     color: String
   });
+
+  rankSchema.plugin(idValidator);
 
   rank = mongoose.model('Rank', rankSchema);
 
@@ -110,17 +117,13 @@ connection.once('open', function (callback) {
     }
   });
 
-  attendance= mongoose.model('Attendance', attendanceSchema);
-  // FOR MOCHA TESTING:
-  // If we're running as a child process, let our parent know we're ready.
-  if (process.send) {
-    try {
-      process.send("serverStarted");
-    } catch ( e ) {
-      // Exit the worker if master is gone
-      process.exit(1);
-    }
-  }
+  //Validates that the classID, studentID are correct 
+  attendanceSchema.plugin(idValidator);
+
+  attendance = mongoose.model('Attendance', attendanceSchema);
+
+  dbHealth.connected = true;
+  dbHealth.emit("connected");
 });
 
 mongoose.connect(env.get("DBHOST"));
@@ -131,5 +134,6 @@ module.exports = {
   "rank": mongoose.models.Rank,
   "course": mongoose.models.Course,
   "attendance": mongoose.models.Attendance,
+  dbHealth: dbHealth
 };
 
