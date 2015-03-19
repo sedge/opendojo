@@ -44,7 +44,9 @@ var StudentView = module.exports = React.createClass({
 			id: this.props.routerParams.id,
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
+			phone: this.refs.phone.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
+			age: this.refs.age.getValue().trim(),
 			emails: emails
 		};
 		action.editStudent(newstu);
@@ -95,6 +97,14 @@ var StudentView = module.exports = React.createClass({
 							<td colSpan="3">{student.rank}</td>
 						</tr>
 						<tr>
+							<th>Age:</th>
+							<td colSpan="3">{student.age}</td>
+						</tr>
+						<tr>
+							<th>Phone:</th>
+							<td colSpan="3">{student.phone}</td>
+						</tr>
+						<tr>
 							<th>Emails:</th>
 							<td colSpan="3">{emails}</td>
 						</tr>
@@ -113,6 +123,8 @@ var StudentView = module.exports = React.createClass({
 						<Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
 						<Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
 						<Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
+						<Input label="Age" type="text" ref="age" name="age" defaultValue={student.age} />
+						<Input label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
 						<Input label="Emails" type="text" ref="emails" name="emails" defaultValue={student.emails} />
 						<button onClick={this.editStudent}>Save</button>
 						<button onClick={this.editToggle}>Cancel</button>

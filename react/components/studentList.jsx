@@ -57,10 +57,10 @@ var StudentList = module.exports = React.createClass({
 					<tr key={key++} onClick={StudentList.viewSingleStudent}> 
 						<td>{student.id}</td>
 						<td>{student.firstName + " " + student.lastName}</td>
-						<td>Phone # goes here</td>
+						<td>{student.phone}</td>
 						<td>{emails}</td>
 						<td>{student.rank}</td>
-						<td>Age goes here</td>
+						<td>{student.age}</td>
 						<td><Link to="singleStudent" params={{
 							id: student.id
 						}}>View</Link></td>

@@ -12,7 +12,9 @@ students.push({
 	id: UUID(),
 	firstName: "lah",
 	lastName: "leehhh",
+	phone:"647-123-1234",
 	rank: "boooo",
+	age: "20",
 	emails: ["fasldkfjadsfl@flkdsjfasld.com"]
 });
 
@@ -28,13 +30,11 @@ var studentStore = Reflux.createStore({
 	},
 
 	editStudent: function(data){
-		students[data.id] = data;
-		if(data){
-			console.log(data.id);
-			console.log(data.firstName);
-		}
-		else{
-			console.log("fuc");
+		for(var i = 0; i<students.length;i++){
+			if(students[i].id == data.id){
+				students[i] = data;
+				break;
+			}
 		}
 		this.trigger(students);
 	},

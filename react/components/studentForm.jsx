@@ -21,7 +21,9 @@ var StudentForm = module.exports = React.createClass({
 		action.addStudent({
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
+			phone: this.refs.phone.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
+			age: this.refs.age.getValue().trim(),
 			emails: emails
 		});
 
@@ -35,6 +37,8 @@ var StudentForm = module.exports = React.createClass({
 					<Input label="First Name" type="text" ref="firstName" name="firstName" placeholder="e.g. Bob" />
 					<Input label="Last Name" type="text" ref="lastName" name="lastName" placeholder="e.g. Smith" />
 					<Input label="Rank" type="text" ref="rank" name="rank" placeholder="(colour)" />
+					<Input label="Phone" type="text" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
+					<Input label="Age" type="text" ref="age" name="age" placeholder="Age" />
 					<Input label="Emails" type="text" ref="emails" name="emails" placeholder="(comma delimited)" />
 					<button onClick={this.handleSubmit}>Save</button>
 				</form>

@@ -64,7 +64,7 @@ var App = React.createClass({
 
             {/* Child View */}
             <Col md={9}>
-              <RouteHandler routerParams={this.props.routerParams} />
+              <RouteHandler width="80%" routerParams={this.props.routerParams} />
             </Col>
           </Row>
 
