@@ -1,10 +1,9 @@
 var React = require('react');
 var Reflux = require('reflux');
-var ReactBootstrap = require('react-bootstrap');
 var {
-	RouteHandler
+	RouteHandler,
+	Link
 } = require('react-router');
-var { Link } = require('react-router');
 var {
 	Button,
 	Grid,
