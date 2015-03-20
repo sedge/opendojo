@@ -5,14 +5,14 @@ var ReactBootstrap = require('react-bootstrap');
 
 var { ListenerMixin } = require('reflux');
 var {	store } = require('../stores/studentStore.jsx');
-var { Link } = require('react-router');
+var { Link, Navigation } = require('react-router');
 var {
 	Alert,
 	Table
 } = ReactBootstrap;
 
 var StudentList = module.exports = React.createClass({
-	mixins: [ListenerMixin],
+	mixins: [ListenerMixin,Navigation],
 	getInitialState: function(){
 		return {
 			students: null
@@ -24,9 +24,6 @@ var StudentList = module.exports = React.createClass({
 				students: initialStudents
 			});
 		});
-	},
-	viewSingleStudent: function(id){
-		this.transitionTo("singleStudent", student.id);
 	},
 	studentsUpdate: function(students) {
 		this.state.students = students;
@@ -53,9 +50,9 @@ var StudentList = module.exports = React.createClass({
 					emails += email + " ";
 				});
 				return (
-					<tr key={key++} onClick={StudentList.viewSingleStudent}> 
+					<tr key={key++}> 
 						<td>{student.id}</td>
-						<td>{student.firstName + " " + student.lastName}</td>
+						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
 						<td>{emails}</td>
 						<td>{student.rank}</td>
