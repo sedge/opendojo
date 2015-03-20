@@ -18,7 +18,7 @@ var StudentList = module.exports = React.createClass({
 			students: null
 		};
 	},
-	componentDidMount: function() {
+	componentWillMount: function() {
 		this.listenTo(store, this.studentsUpdate, function(initialStudents) {
 			this.setState({
 				students: initialStudents
@@ -65,7 +65,7 @@ var StudentList = module.exports = React.createClass({
 			});
 
 			view = (
-				<Table id="studentListTable">
+				<Table>
 					<thead>
 						<th>#</th>
 						<th>Student Name</th>

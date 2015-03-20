@@ -38,7 +38,7 @@ var StudentView = module.exports = React.createClass({
 			return email.trim();
 		});
 
-		var newstu = {
+		var newStudent = {
 			id: this.props.routerParams.id,
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
@@ -47,7 +47,7 @@ var StudentView = module.exports = React.createClass({
 			age: this.refs.age.getValue().trim(),
 			emails: emails
 		};
-		action.editStudent(newstu);
+		action.editStudent(newStudent);
 		this.transitionTo('/students');
 	},
 	editToggle: function(e){
