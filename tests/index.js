@@ -11,3 +11,9 @@ require('./api/student');
 
 // Rank API
 require('./api/rank');
+
+// Attendance API
+require('./api/attendance');
+
+// Class API
+require('./api/course.js')

@@ -24,13 +24,13 @@ var attendance;
 var connection = mongoose.connection;
 
 connection.on('disconnected', function () {
-    log.info('Mongoose default connection disconnected');
+  log.info('Mongoose default connection disconnected');
 });
 
 connection.on('error', function(error) {
-    var port = env.get("DBHOST");
-    log.fatal(port + ' connection error--'+ error);
-    process.exit(1);
+  var port = env.get("DBHOST");
+  log.fatal(port + ' connection error--'+ error);
+  process.exit(1);
 });
 
 // If the Node process ends, close the Mongoose connection
@@ -125,23 +125,23 @@ connection.once('open', function (callback) {
       type: Date,
       required: true
     },
-    dayOFWeek: {
+    dayOfWeek: {
       type: Number,
       required: true
     },
     startTime: {
-      type: Date,
+      type: String,
       required: true
     },
     endTime: {
-      type: Date,
+      type: String,
       required: true
     },
     classType: String,
-    RanksAllowed: {
-      type: [mongoose.Schema.ObjectId],
+    RanksAllowed: [{
+      type: mongoose.Schema.ObjectId, 
       ref:'Rank'
-    }
+    }]
   });
 
   //validates that the RanksAllowed holds actual rank Ids
@@ -163,7 +163,7 @@ connection.once('open', function (callback) {
       required: true
     },
     classTime: {
-      type: Date,
+      type: String,
       required: true
     },
     classID: {
