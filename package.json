@@ -15,7 +15,7 @@
     "express": "~4.11.1",
     "habitat": "^3.1.2",
     "mongoose": "3.8.22",
-    "mongoose-id-validator":"git://github.com/AlinaShtramwasser/mongoose-id-validator.git#arrayOfIdsValidation",
+    "mongoose-id-validator":"0.1.7",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
   },
