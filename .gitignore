@@ -33,3 +33,4 @@ data/
 
 # Dist file for front end single page application
 public/app.js
+public/stylesheets/style.css

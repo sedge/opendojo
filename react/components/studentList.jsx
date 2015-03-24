@@ -25,8 +25,10 @@ var StudentList = module.exports = React.createClass({
 			});
 		});
 	},
-	studentsUpdate: function(students) {
-		this.state.students = students;
+	studentsUpdate: function(newstudents) {
+		this.setState({
+			students: newstudents
+		});
 	},
 
 	render: function() {

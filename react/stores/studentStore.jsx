@@ -1,6 +1,6 @@
 var Reflux = require('reflux');
 var studentAction = require('../actions/studentActions.jsx');
-
+var { studentModel } = require('../bin/opendojo.jsx');
 var students = [];
 var id = 0;
 
@@ -8,44 +8,47 @@ function UUID() {
 	return ++id;
 }
 
-students.push({
-	id: UUID(),
-	firstName: "lah",
-	lastName: "leehhh",
-	phone:"647-123-1234",
-	rank: "boooo",
-	age: "20",
-	emails: ["fasldkfjadsfl@flkdsjfasld.com"]
-});
 
 var studentStore = Reflux.createStore({
 	listenables: studentAction,
-	init: function(){},
+	init: function(){
+		studentModel.init(function(err,stu){
+			students = stu;
+		});
+	},
 
 	addStudent: function(data){
 		data.id = UUID();
-		students.push(data);
+		studentModel.addStudent(data,function(err,stu){
+			if(err){
+        console.log(err);
+        return;
+      }
+      students = stu;
+		});
 
 		this.trigger(students);
 	},
 
 	editStudent: function(data){
-		for(var i = 0; i<students.length;i++){
-			if(students[i].id == data.id){
-				students[i] = data;
-				break;
-			}
-		}
+		studentModel.updateStudent(data,function(err,stu){
+			if(err){
+        console.log(err);
+        return;
+      }
+      students = stu;
+		});
 		this.trigger(students);
 	},
 
 	deleteStudent: function(id){
-		for(var i = 0; i<students.length;i++){
-			if(students[i].id == id){
-				students.splice(i,1);
-				break;
-			}
-		}
+		studentModel.deleteStudent(id,function(err,stu){
+			if(err){
+        console.log(err);
+        return;
+      }
+      students = stu;
+		});
 		this.trigger(students);
 	},
 
