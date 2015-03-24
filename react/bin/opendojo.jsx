@@ -4,6 +4,17 @@ var url = 'http://localhost:8745/';
 
 var students = [];
 
+request.get(url+'students').end(function(err,res){
+  if(err){
+    console.log(err);
+  }
+  students = res.body;
+  console.log(students);
+  students.forEach(function(student){
+    console.log(student);
+  });
+});
+
 var opendojo = module.exports = {
   studentModel: {
     init : function(cb){
