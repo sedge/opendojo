@@ -1,37 +1,25 @@
-var students = {};
+var request = require('superagent');
 
-var opendojo = moduel.exports = {
+var url = 'http://localhost:8745/';
+
+var students = [];
+
+var opendojo = module.exports = {
   studentModel: {
     init : function(cb){
-      if(err){
-        console.log(err);
-        cb(err)
-        return;
-      }
       if(!students){
         console.log("Student database doesn't exist");
         return;
       }
       else{
-        this.students = students;
         cb(null, students);
       }
     },
     addStudent : function(data,cb){
-      if(err){
-        console.log(err);
-        cb(err);
-        return;
-      }
       students.push(data);      
       cb(null,students);
     },
     updateStudent : function(data,cb){
-      if(err){
-        console.log(err);
-        cb(err);
-        return;
-      }
       if(!students){
         console.log("Student database doesn't exist");
         return;
@@ -45,11 +33,6 @@ var opendojo = moduel.exports = {
       cb(null,students);
     },
     deleteStudent : function(id,cb){
-      if(err){
-        console.log(err);
-        cb(err);
-        return;
-      }
       if(!students){
         console.log("Student database doesn't exist");
         return;
@@ -63,4 +46,4 @@ var opendojo = moduel.exports = {
       cb(null,students);
     }
   }
-}
+};
