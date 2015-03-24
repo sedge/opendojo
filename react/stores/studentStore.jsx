@@ -12,7 +12,8 @@ function UUID() {
 var studentStore = Reflux.createStore({
 	listenables: studentAction,
 	init: function(){
-		studentModel.init(function(err,students){
+		studentModel.init(function(err,stu){
+			students = stu;
 		});
 	},
 
