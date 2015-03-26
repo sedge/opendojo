@@ -1,12 +1,9 @@
-var assert = require('assert'),
-  expect = require('chai').expect,
-  utils = require('../utils');
+var assert = require('assert');
+var expect = require('chai').expect;
+var utils = require('../utils');
 
 describe('The parent route', function(){
   before(function(done){
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(5000);
-
     utils.initServer(done);
   });
 

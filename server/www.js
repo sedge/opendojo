@@ -1,9 +1,9 @@
 /**
  * Module dependencies.
  */
-var app = require('../app');
+var app = require('./app');
 var http = require('http');
-var env = require('../lib/environment');
+var env = require('./lib/environment');
 
 /**
  * Get port from environment and store in Express.

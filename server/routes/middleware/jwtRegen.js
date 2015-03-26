@@ -7,7 +7,7 @@ module.exports = function(req, res, next) {
 
   if (!existingToken) {
     return next(err);
-  } 
+  }
 
   else {
     var decoded = jwt.decode(existingToken, env.get('AUTH_SECRET'));

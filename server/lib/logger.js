@@ -22,14 +22,14 @@ var opts = {
         body: req.body || "No body"
       };
     },
-    student: function student(student) {
+    student: function(student) {
       return {
         id: student._id,
         name: student.lastName + ", " + student.firstName,
-      }
+      };
     }
   }
-}
+};
 
 if(NODE_ENV === "development") {
   // In development, we pretty print the JSON logging to stdout.

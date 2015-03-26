@@ -1,8 +1,8 @@
-var expect = require('chai').expect,
-  utils = require('../utils'),
-  env = require('../../lib/environment'),
-  newStud,
-  rankId = "";
+var expect = require('chai').expect;
+var utils = require('../utils');
+var env = require('../../server/lib/environment');
+var newStud;
+var rankId = "";
 
 var options = {
   headers: {
@@ -11,7 +11,7 @@ var options = {
   }
 };
 
-var sillyOptions = {
+var invalidHeaders = {
   headers: {
     username: "KOOLAID",
     password: "COWBOY"
@@ -20,9 +20,6 @@ var sillyOptions = {
 
 function hooks() {
   before(function(done) {
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(6000);
-
     utils.initServer(function() {
       addRanks(function() {
         createStudentObject(done);
@@ -120,7 +117,7 @@ describe('The GET \'/api/students\' route', function() {
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    utils.apiSetup('get', '/api/students', 401, sillyOptions, done);
+    utils.apiSetup('get', '/api/students', 401, invalidHeaders, done);
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {
@@ -167,7 +164,7 @@ describe('The POST \'/api/students/\' route', function() {
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    utils.apiSetup('post', '/api/students', 401, sillyOptions, done);
+    utils.apiSetup('post', '/api/students', 401, invalidHeaders, done);
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {
@@ -232,7 +229,7 @@ describe('The GET \'/api/student/:id\' route', function() {
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    utils.apiSetup('get', '/api/student/' + id, 401, sillyOptions, done);
+    utils.apiSetup('get', '/api/student/' + id, 401, invalidHeaders, done);
   });
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {
     utils.apiSetup('get', '/api/student/' + id, 401, {}, done);
@@ -309,7 +306,7 @@ describe('The PUT \'/api/student/:id\' route', function() {
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    utils.apiSetup('put', '/api/student/' + id, 401, sillyOptions, newStud, done);
+    utils.apiSetup('put', '/api/student/' + id, 401, invalidHeaders, newStud, done);
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {
@@ -346,7 +343,7 @@ describe('The DELETE \'/api/student/:id\' route', function() {
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    utils.apiSetup('delete', '/api/student/' + "abc", 401, sillyOptions, done);
+    utils.apiSetup('delete', '/api/student/' + "abc", 401, invalidHeaders, done);
   });
 
   it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {

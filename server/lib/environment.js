@@ -8,7 +8,7 @@
 var LOG_LEVEL = process.env.LOG_LEVEL;
 
 var habitat = require('habitat');
-habitat.load(require('path').resolve(__dirname, '../.env'));
+habitat.load(require('path').resolve(__dirname, '../../.env'));
 var env = new habitat();
 
 // Fix-up LOG_LEVEL if present on env and different than habitat's

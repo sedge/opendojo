@@ -1,11 +1,9 @@
-var expect = require('chai').expect,
-  utils = require('../utils'),
-  env = require('../../lib/environment');
+var expect = require('chai').expect;
+var utils = require('../utils');
+var env = require('../../server/lib/environment');
 
 function hooks() {
   before(function(done) {
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(6000);
     utils.initServer(done);
   });
 
@@ -24,13 +22,13 @@ describe('The GET \'/token\' route', function() {
     }
   };
 
-  var sillyOptions = {
+  var invalidHeaders = {
     headers: {
       username: "AH",
       password: "BAH"
     }
   };
-
+debugger;
   it('should respond with a 200 and a generated token object with valid user credentials', function(done) {
     utils.jwtSetup(options, function(err, res, body) {
       expect(err).to.not.exist;
@@ -60,7 +58,7 @@ describe('The GET \'/token\' route', function() {
     })
   });
   it('should respond with a 401 as well as an authentication error message when invalid credentials are passed in', function(done) {
-    utils.jwtSetup(sillyOptions, function(err, res, body) {
+    utils.jwtSetup(invalidHeaders, function(err, res, body) {
       expect(err).to.not.exist;
 
       expect(res.statusCode).to.equal(401);

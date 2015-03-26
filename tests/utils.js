@@ -1,29 +1,29 @@
-var env = require('../lib/environment');
+var env = require('../server/lib/environment');
 var request = require('request');
 var expect = require('chai').expect;
 var fullUrl = env.get('HOST') + ':' + env.get('PORT');
-var log = require('../lib/logger');
+var log = require('../server/lib/logger');
 var server = require('../server/www').server;
 
-var dbHealth = require('../db').dbHealth;
+server.on('error', function(err) {
+  expect(err).to.not.exist;
+});
+
+var health = require('../server/lib/db').health;
 
 module.exports = {
   // Helper function to safely start the node server for unit tests
   initServer: function(done) {
+
     function startServer() {
       server.listen(env.get("PORT"), done);
-
-      server.on('error', function(err) {
-        expect(err).to.not.exist;
-      });
     }
 
-    if (dbHealth.connected) {
+    if (health.connected) {
       startServer();
-    } 
-	
-	else {
-      dbHealth.on('connected', startServer);
+      health.removeListener('connected', startServer);
+    } else {
+      health.on('connected', startServer);
     }
   },
   // Helper function to wrap the token route and conveniently send back

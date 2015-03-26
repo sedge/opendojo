@@ -1,11 +1,14 @@
 var express = require('express');
 var path = require('path');
+
 var log = require('./lib/logger');
 var env = require('./lib/environment');
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index');
-var authRoutes = require('./routes/auth');
+
+var routes = require('./routes');
+
 var app = module.exports = express();
 
 // render without jade for templating
@@ -19,9 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Connect to the dynamic routes file
-app.use('/api', routes);
-app.use('/', authRoutes);
+app.use('/', routes.auth);
+
+app.use('/api', routes.attendance);
+app.use('/api', routes.course);
+app.use('/api', routes.rank);
+app.use('/api', routes.student);
 
 // Invoke our token secret
 app.set('jwtTokenSecret', env.get("AUTH_SECRET"));

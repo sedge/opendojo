@@ -1,12 +1,12 @@
-var assert = require('assert'),
-  expect = require('chai').expect,
-  utils = require('../utils'),
-  classIdToDelete,
-  studentIdToDelete,
-  newRec,
-  newStud,
-  newCourse,
-  ranksList=[];
+var assert = require('assert');
+var expect = require('chai').expect;
+var utils = require('../utils');
+var classIdToDelete;
+var studentIdToDelete;
+var newRec;
+var newStud;
+var newCourse;
+var ranksList=[];
 
 var options = {
   headers: {
@@ -17,15 +17,13 @@ var options = {
 
 function hooks() {
   before(function(done) {
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(6000);
-    utils.initServer( function () {
-      addRanks( function () {
-        createObjects( function () {
-          createRecord (done);
+    utils.initServer(function () {
+      addRanks(function () {
+        createObjects(function () {
+          createRecord(done);
         });
       });
-    });  
+    });
   });
 
   after(function(done) {
@@ -50,15 +48,15 @@ function createObjects( callback ) {
     membershipExpiry: "2015-04-12T20:44:55.000Z",
     phone: "111-222-3333",
     birthDate: "2004-04-12T20:44:55.000Z"
-  };  
+  };
   newCourse = {
     classTitle: "TestClass",
     startDate: "2015-04-12T20:44:55.000Z",
     endDate: "2015-04-12T20:44:55.000Z",
-    dayOfWeek: 3, 
-    startTime: d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
-    endTime:d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
-    classType: "TestType", 
+    dayOfWeek: 3,
+    startTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+    endTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+    classType: "TestType",
     RanksAllowed: ranksList
     };
   utils.apiSetup('post', '/api/classes', 201, {}, newCourse, function(err, res, body) {
@@ -79,8 +77,8 @@ function createRecord ( done ) {
     classDate: "2015-04-12T20:44:55.000Z",
     classTime: d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
     classID: classIdToDelete
-  }; 
-  done(); 
+  };
+  done();
 }
 
 function addRanks( callback ) {
@@ -89,18 +87,18 @@ function addRanks( callback ) {
       "sequence": 1,
       "color": "black"
   };
- 
+
   var newRank2 = {
       "name": "White",
       "sequence": 2,
       "color": "white"
   };
- 
+
   utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
     ranksList.push(body._id);
     utils.apiSetup('post', '/api/ranks', 201, {}, newRank2, function(err, res, body) {
       ranksList.push(body._id);
-      callback();  
+      callback();
     });
   });
 }
@@ -129,7 +127,7 @@ function deleteObjects( callback ) {
 
 describe('The GET \'/api/records/\' route', function() {
   hooks();
-  
+
   it('should return a 200 status code and all the records when invoked with proper credentials', function(done) {
     var recordIdToDelete;
     utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
@@ -160,14 +158,14 @@ describe('The POST \'/api/records/\' route', function() {
     utils.apiSetup('post', '/api/records', 201, {}, newRec, function(err, res, body) {
       expect(err).to.not.exist;
       expect(body).to.exist;
-      Object.keys(body).forEach(function(prop) { 
+      Object.keys(body).forEach(function(prop) {
         if (prop === "__v") {
           return;
         }
         if (prop === "_id") {
           expect(body).property('_id').to.exist;
           return;
-        } 
+        }
         expect(body).to.have.property(prop).deep.equal(newRec[prop]);
       });
       recordIdToDelete = body._id;
@@ -203,14 +201,14 @@ describe('The GET \'/api/record/:id\' route', function() {
       utils.apiSetup('get', '/api/record/' + id, 200, {}, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
-        Object.keys(body).forEach(function(prop) { 
+        Object.keys(body).forEach(function(prop) {
           if (prop === "__v") {
             return;
           }
           if (prop === "_id") {
             expect(body).to.have.property('_id').equal(id);
             return;
-          } 
+          }
           expect(body).to.have.property(prop).deep.equal(newRec[prop]);
         });
         utils.apiSetup('delete', '/api/record/' + body._id, 204, {}, function(err, res, body) {

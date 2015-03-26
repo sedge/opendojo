@@ -1,18 +1,16 @@
-var assert = require('assert'),
-  expect = require('chai').expect,
-  utils = require('../utils'),
-  newCourse,
-  ranksList=[];
+var assert = require('assert');
+var expect = require('chai').expect;
+var utils = require('../utils');
+var newCourse;
+var ranksList=[];
 
 function hooks() {
   before(function(done) {
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(6000);
     utils.initServer( function () {
       addRanksToArray(function () {
         createCourse(done);
       });
-    });  
+    });
   });
 
   after(function(done) {
@@ -29,18 +27,18 @@ function addRanksToArray( callback ) {
       "sequence": 1,
       "color": "black"
   };
- 
+
   var newRank2 = {
       "name": "White",
       "sequence": 2,
       "color": "white"
   };
- 
+
   utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
     ranksList.push(body._id);
     utils.apiSetup('post', '/api/ranks', 201, {}, newRank2, function(err, res, body) {
       ranksList.push(body._id);
-      callback();  
+      callback();
     });
   });
 }
@@ -51,12 +49,12 @@ function createCourse( done ) {
     classTitle: "TestClass",
     startDate: "2015-04-12T20:44:55.000Z",
     endDate: "2015-04-12T20:44:55.000Z",
-    dayOfWeek: 3, 
-    startTime: d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
-    endTime:d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(), 
-    classType: "TestType", 
+    dayOfWeek: 3,
+    startTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+    endTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+    classType: "TestType",
     RanksAllowed: ranksList
-    };
+  };
   done();
 }
 
@@ -67,8 +65,8 @@ function deleteRanks( callback ) {
   }
 
   ranksList.forEach( function (rank) {
-    utils.apiSetup('delete', '/api/rank/' + rank, 204, {}, function(err, res, body) {
-      rankCount--;  
+    utils.apiSetup('delete', '/api/rank/'  +  rank, 204, {}, function(err, res, body) {
+      rankCount--;
       if (rankCount == 0) {
          ranksList=[];
         return callback();
@@ -78,9 +76,9 @@ function deleteRanks( callback ) {
 }
 
 describe('The GET \'/api/classes/\' route', function() {
-  
+
   hooks();
-  
+
   it('should return a 200 status code and all the classes when invoked with proper credentials', function(done) {
     utils.apiSetup('post', '/api/classes', 201, {}, newCourse, function(err, res, body) {
       var idToDelete=body._id;
@@ -110,14 +108,14 @@ describe('The POST \'/api/classes/\' route', function() {
       var idToDelete=body._id;
       expect(err).to.not.exist;
       expect(body).to.exist;
-      Object.keys(body).forEach(function(prop) { 
+      Object.keys(body).forEach(function(prop) {
         if (prop === "__v") {
           return;
         }
         if (prop === "_id") {
           expect(body).property('_id').to.exist;
           return;
-        } 
+        }
         expect(body).to.have.property(prop).deep.equal(newCourse[prop]);
       });
       utils.apiSetup('delete', '/api/class/' + idToDelete, 204, {}, function(err, res, body)  {
@@ -131,7 +129,7 @@ describe('The POST \'/api/classes/\' route', function() {
     var newCourse = {
        "title":"Positions"
     };
-    utils.apiSetup('post', '/api/classes', 400, {}, newCourse, function(err, res, body) { 
+    utils.apiSetup('post', '/api/classes', 400, {}, newCourse, function(err, res, body) {
       done();
     });
   });
@@ -146,18 +144,18 @@ describe('The GET \'/api/class/:id\' route', function() {
 
   it('should return a 200 status code and the corresponding class object when invoked with proper credentials, and a valid id string', function(done) {
     utils.apiSetup('post', '/api/classes', 201, {}, newCourse, function(err, res, body) {
-      var id=body._id; 
+      var id=body._id;
       utils.apiSetup('get', '/api/class/' + id, 200, {}, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
-        Object.keys(body).forEach(function(prop) { 
+        Object.keys(body).forEach(function(prop) {
         if (prop === "__v") {
           return;
         }
         if (prop === "_id") {
           expect(body).to.have.property('_id').equal(id);
           return;
-        } 
+        }
         expect(body).to.have.property(prop).deep.equal(newCourse[prop]);
       });
         utils.apiSetup('delete', '/api/class/' + body._id, 204, {}, function(err, res, body) {
@@ -203,7 +201,7 @@ describe('The PUT \'/api/class/:id\' route', function() {
         expect(err).to.not.exist;
         expect(body).to.exist;
         expect(body).to.have.property('classTitle').equal('ChangedName');
-        
+
         utils.apiSetup('delete', '/api/class/' + id, 204, {}, function(err, res, body) {
           expect(err).to.not.exist;
           done();

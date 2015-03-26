@@ -1,11 +1,9 @@
-var assert = require('assert'),
-  expect = require('chai').expect,
-  utils = require('../utils');
+var assert = require('assert');
+var expect = require('chai').expect;
+var utils = require('../utils');
 
 function hooks() {
   before(function(done) {
-    // Because dry runs to spin up the server sometimes take more than 2s
-    this.timeout(6000);
     utils.initServer(done);
   });
 
@@ -16,7 +14,7 @@ function hooks() {
 
 describe('The GET \'/api/ranks/\' route', function() {
   hooks();
-  
+
   it('should return a 200 status code and all the ranks when invoked with proper credentials', function(done) {
     var idToDelete;
     var newRank = {
@@ -24,7 +22,7 @@ describe('The GET \'/api/ranks/\' route', function() {
       sequence: 1,
       color: "black"
     };
-    
+
     utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
       idToDelete=body._id;
       expect(err).to.not.exist;
@@ -58,14 +56,14 @@ describe('The POST \'/api/ranks/\' route', function() {
     utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
       expect(err).to.not.exist;
       expect(body).to.exist;
-      Object.keys(body).forEach(function(prop) { 
+      Object.keys(body).forEach(function(prop) {
         if (prop === "__v") {
           return;
         }
         if (prop === "_id") {
           expect(body).property('_id').to.exist;
           return;
-        } 
+        }
         expect(body).to.have.property(prop).deep.equal(newRank[prop]);
       });
       utils.apiSetup('delete', '/api/rank/' + body._id, 204, {}, function(err, res, body) {
@@ -91,7 +89,7 @@ describe('The POST \'/api/ranks/\' route', function() {
 
 describe('The GET \'/api/rank/:id\' route', function() {
   var newRank;
-  
+
   hooks();
 
   it('should return a 200 status code and the corresponding rank object when invoked with proper credentials, and a valid id string', function(done) {
@@ -103,18 +101,18 @@ describe('The GET \'/api/rank/:id\' route', function() {
 
     utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
       expect(err).to.not.exist;
-      id=body._id; 
+      id=body._id;
       utils.apiSetup('get', '/api/rank/' + id, 200, {}, function(err, res, body) {
         expect(err).to.not.exist;
         expect(body).to.exist;
-        Object.keys(body).forEach(function(prop) { 
+        Object.keys(body).forEach(function(prop) {
         if (prop === "__v") {
           return;
         }
         if (prop === "_id") {
           expect(body).to.have.property('_id').equal(id);
           return;
-        } 
+        }
         expect(body).to.have.property(prop).deep.equal(newRank[prop]);
       });
         utils.apiSetup('delete', '/api/rank/' + body._id, 204, {}, function(err, res, body) {
@@ -206,7 +204,7 @@ describe('The DELETE \'/api/rank/:id\' route', function() {
   hooks();
 
   it('should return a 204 when invoked with the proper credentials, and valid data', function(done) {
-    
+
     var newRank = {
       name: "Purple",
       sequence: 5,
