@@ -59,7 +59,7 @@ function bdayCalculator(bday){
   var today = new Date();
 
   var years = (today.getFullYear() - birthDate.getFullYear());
-  if (today.getMonth() < birthDate.getMonth() || 
+  if (today.getMonth() < birthDate.getMonth() ||
         today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
         years--;
     }

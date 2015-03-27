@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OpenDojo</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Navbar Example</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown Nav Menu Example (Students) <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/students">All</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/students/:id">By ID</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/students/:rank">By Rank</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/students/:status">By Status</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div>
+        </nav>
+      </div>
+      <div class="jumbotron">
+        <h1 id="top">Jumbotron Example</h1>
+        <p class="breadcrumb" id="sub"><span class="glyphicon glyphicon-console"></span> Breadcrumb example</p>
+      </div>
+      <div class="container">
+        <h2>Button Examples</h2>
+        <div class="btn-group btn-group-lg" role="group">
+          <button type="button" class="btn">Left</button>
+          <button type="button" class="btn">Middle</button>
+          <button type="button" class="btn ">Right</button>
+        </div>
+        <h3>Alerts</h3>
+        <div class="alert alert-success" role="alert">Sucess Alert Example</div>
+        <div class="alert alert-info" role="alert">Info Alert Example</div>
+        <div class="alert alert-warning" role="alert">Warning Alert Example</div>
+        <div class="alert alert-danger" role="alert">Danger Alert Example</div>
+        <h4>(Unordered) List</h4>
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <h5>Table Example</h5>
+        <div class="panel panel-default">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Top Heading 1</th>
+                    <th>Top Heading 2</th>
+                    <th>Top Heading 3</th>
+                    <th>Top Heading 4</th>
+                </tr>
+                <tr>
+                    <th>Heading 2</th>
+                    <td>Definition</td>
+                    <td>Definition</td>
+                    <td>Definition</td>
+                </tr>
+                <tr>
+                    <th>Heading 3</th>
+                    <td>Definition</td>
+                    <td>Definition</td>
+                    <td>Definition</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="page-header">Forms</h3>
+        <form>
+          <div class="input-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email1user" placeholder="Enter email">
+          </div>
+          <div class="input-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+            <label for="comment">Text Area:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Option 1</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Option 2</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="optradio" disabled>Option 3</label>
+            </div>
+            <div class="checkbox">
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

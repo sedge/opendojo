@@ -35,7 +35,7 @@ var StudentList = module.exports = React.createClass({
 	},
 
 	componentWillUpdate: function(newstudents){
-		
+
 	},
 
 	render: function() {
@@ -59,7 +59,7 @@ var StudentList = module.exports = React.createClass({
 					emails += email + " ";
 				});
 				return (
-					<tr key={key++}> 
+					<tr key={key++}>
 						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
 						<td>{emails}</td>
