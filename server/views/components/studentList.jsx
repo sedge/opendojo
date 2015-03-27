@@ -35,7 +35,7 @@ var StudentList = module.exports = React.createClass({
 	},
 
 	componentWillUpdate: function(newstudents){
-
+   //
 	},
 
 	render: function() {
