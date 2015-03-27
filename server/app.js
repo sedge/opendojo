@@ -6,9 +6,13 @@ var env = require('./lib/environment');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+<<<<<<< HEAD:server/app.js
 
 var routes = require('./routes');
 
+=======
+var routes = require('./routes/index');
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be:app.js
 var app = module.exports = express();
 
 // render without jade for templating

@@ -18,16 +18,24 @@
     "debug": "~2.1.1",
     "express": "~4.11.1",
     "habitat": "^3.1.2",
+<<<<<<< HEAD
     "jwt-simple": "^0.2.0",
     "moment": "^2.9.0",
     "mongoose": "3.8.22",
     "mongoose-id-validator": "0.1.7",
+=======
+    "mongoose": "3.8.22",
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
     "babelify": "^5.0.4",
     "backbone": "^1.1.2",
+<<<<<<< HEAD
+=======
+    "backbone-react-component": "^0.8.0-beta.2",
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
     "browserify-global-shim": "^1.0.0",
     "chai": "^1.10.0",
     "grunt": "^0.4.5",
@@ -51,7 +59,10 @@
     "reactify": "^1.0.0",
     "reflux": "^0.2.5",
     "request": "^2.51.0",
+<<<<<<< HEAD
     "superagent": "^1.1.0",
+=======
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
     "time-grunt": "^1.1.0"
   },
   "browser": {

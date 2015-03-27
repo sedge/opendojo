@@ -9,6 +9,7 @@ require('./api/host');
 // Student API
 require('./api/student');
 
+<<<<<<< HEAD
 // Rank API
 require('./api/rank');
 
@@ -20,3 +21,7 @@ require('./api/course.js')
 
 // Auth API
 require('./api/auth');
+=======
+/*Database testing
+require('./database/dbtest');*/
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be

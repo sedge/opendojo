@@ -4,8 +4,12 @@ module.exports = function(grunt){
   // it runs
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt, {
+<<<<<<< HEAD
     jshint: "grunt-jsxhint",
     clean: "grunt-contrib-clean"
+=======
+    jshint: "grunt-jsxhint"
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
   });
 
   var reactify = require('grunt-react').browserify;
@@ -16,9 +20,17 @@ module.exports = function(grunt){
     jshint: {
       all: [
         'Gruntfile.js',
+<<<<<<< HEAD
         'server/**/*.js',
         'server/*.js',
         '!server/public/app.js',
+=======
+        'app.js',
+        'public/**/*.js',
+        'server/**/*.js',
+        'routes/**/*.js',
+        '!public/app.js',
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
         'react/*.jsx',
         'react/**/*.jsx'
       ],
@@ -44,7 +56,11 @@ module.exports = function(grunt){
     browserify: {
       dev: {
         files: {
+<<<<<<< HEAD
           './server/public/app.js': ['./server/views/index.jsx']
+=======
+          'public/app.js': ['react/index.jsx']
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
         },
         options: {
           alias: [
@@ -54,6 +70,7 @@ module.exports = function(grunt){
         }
       }
     },
+<<<<<<< HEAD
     clean: ['server/public/app.js', 'server/public/stylesheets/style.css'],
     less: {
       dev: {
@@ -63,10 +80,27 @@ module.exports = function(grunt){
         }
       }
     }
+=======
+    clean: ['public/app.js']
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
   });
 
   // Default is the same as test, for travis-ci
   grunt.registerTask('default', 'test');
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
+<<<<<<< HEAD
   grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'less:dev']);
+=======
+  grunt.registerTask('build', function(env) {
+    var tasks;
+
+    if (env === "prod") {
+      tasks = ['jshint', 'clean', 'browserify:prod'];
+    } else {
+      tasks = ['jshint', 'clean', 'browserify:dev'];
+    }
+
+    grunt.task.run(tasks);
+  });
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
 };

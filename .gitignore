@@ -32,5 +32,9 @@ node_modules
 data/
 
 # Dist file for front end single page application
+<<<<<<< HEAD
 server/public/app.js
 server/public/stylesheets/style.css
+=======
+public/app.js
+>>>>>>> a0f43d1250378722fcea9c1b416200f6b30525be
