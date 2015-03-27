@@ -6,14 +6,15 @@ var {
 	Input
 } = require('react-bootstrap');
 var { ListenerMixin } = require('reflux');
-var {	store } = require('../stores/studentStore.jsx');
+var {	store,
+			agecal,
+			membershipStatusCalculator } = require('../stores/studentStore.jsx');
 var { Navigation } = require('react-router');
 
 var StudentView = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
 	getInitialState: function() {
 		return {
-			student: null,
 			editable : false
 		};
 	},
@@ -21,10 +22,10 @@ var StudentView = module.exports = React.createClass({
 		var that = this;
 
 		this.listenTo(store, this.updateStudent, function(students) {
-			var id = that.props.routerParams.id;
+			var id = that.props.routerParams._id;
 
 			students.forEach(function(student) {
-				if (id == student.id) {
+				if (id == student._id) {
 					that.setState({
 						student: student
 					});
@@ -34,18 +35,18 @@ var StudentView = module.exports = React.createClass({
 	},
 	editStudent: function(e){
 		e.preventDefault();
-		var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
+		var emails = this.refs.email.getValue().trim().split(',').map(function(email){
 			return email.trim();
 		});
 
 		var newStudent = {
-			id: this.props.routerParams.id,
+			id: this.props.routerParams._id,
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
 			phone: this.refs.phone.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
 			age: this.refs.age.getValue().trim(),
-			emails: emails
+			email: emails
 		};
 		action.editStudent(newStudent);
 		this.transitionTo('/students');
@@ -58,7 +59,7 @@ var StudentView = module.exports = React.createClass({
 	},
 	deleteStudent: function(e){
 		e.preventDefault();
-		action.deleteStudent(this.props.routerParams.id);
+		action.deleteStudent(this.props.routerParams._id);
 
 		this.transitionTo('/students');
 	},
@@ -70,14 +71,17 @@ var StudentView = module.exports = React.createClass({
 		if (!student) {
 			view = (
 				<Alert bsStyle="danger">
-					The student associated with <strong>ID {this.props.routerParams.id}</strong> does not exist.
+					The student associated with <strong>ID {this.props.routerParams._id}</strong> does not exist.
 				</Alert>
 			);
 		} else {
 			var emails = "";
-					student.emails.forEach(function(email) {
+					student.email.forEach(function(email) {
 				emails += email + " ";
 			});
+			var age = agecal(student.birthDate);
+			var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
+
 			if(!editable){
 				view = (
 					<Table bordered={true} striped={true}>
@@ -88,15 +92,23 @@ var StudentView = module.exports = React.createClass({
 						</tr>
 						<tr>
 							<th>Id:</th>
-							<td colSpan="3">{student.id}</td>
+							<td colSpan="3">{student._id}</td>
 						</tr>
 						<tr>
 							<th>Rank:</th>
-							<td colSpan="3">{student.rank}</td>
+							<td colSpan="3">{student.rankId}</td>
 						</tr>
 						<tr>
 							<th>Age:</th>
-							<td colSpan="3">{student.age}</td>
+							<td colSpan="3">{age}</td>
+						</tr>
+						<tr>
+							<th>Gender:</th>
+							<td colSpan="3">{student.gender}</td>
+						</tr>
+						<tr>
+							<th>Membership Status</th>
+							<td colSpan="3">{membershipStatus}</td>
 						</tr>
 						<tr>
 							<th>Phone:</th>
@@ -105,6 +117,10 @@ var StudentView = module.exports = React.createClass({
 						<tr>
 							<th>Emails:</th>
 							<td colSpan="3">{emails}</td>
+						</tr>
+						<tr>
+							<th>Health Information</th>
+							<td colSpan="3">{student.healthInformation}</td>
 						</tr>
 						<tr>
 							<th></th>

@@ -4,30 +4,45 @@ var url = 'http://localhost:8745/';
 
 var students = [];
 
-request.get(url+'students').end(function(err,res){
-  if(err){
-    console.log(err);
-  }
-  students = res.body;
-  console.log(students);
-  students.forEach(function(student){
-    console.log(student);
-  });
-});
+
 
 var opendojo = module.exports = {
   studentModel: {
     init : function(cb){
-      if(!students){
+      request.get(url+'students').end(function(err,res){
+        if(err){
+          console.log(err);
+        }
+        students = res.body;
+        students.forEach(function(student){
+        });
+        if(!students){
         console.log("Student database doesn't exist");
         return;
       }
       else{
         cb(null, students);
       }
+    });
+
     },
     addStudent : function(data,cb){
-      students.push(data);      
+      request
+        .post(url+'student')
+        .send({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          gender: data.gender,
+          //Need to fix
+          rankId: "N/A",
+          healthInformation: data.healthiInfo,
+          guardianInformation: data.guardianInfo,
+          email: data.email,
+          membershipExpiry: new Date(),
+          phone: data.phone,
+          birthDate: data.birthDate
+        })
+        .end(function(res){});      
       cb(null,students);
     },
     updateStudent : function(data,cb){
@@ -36,7 +51,7 @@ var opendojo = module.exports = {
         return;
       }
       for(var i = 0; i<students.length;i++){
-        if(students[i].id == data.id){
+        if(students[i]._id == data._id){
           students[i] = data;
           break;
         }
@@ -48,12 +63,11 @@ var opendojo = module.exports = {
         console.log("Student database doesn't exist");
         return;
       }
-      for(var i = 0; i<students.length;i++){
-       if(students[i].id == id){
-          students.splice(i,1);
-          break;
-        }
-      }
+      request
+        .del(url+"student/"+id)
+        .end(function(err,res){
+          students = res.body;
+        });
       cb(null,students);
     }
   }

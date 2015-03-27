@@ -56,11 +56,11 @@ mongoose.connection.once('open', function(){
     "lastName": "Madison",
     "gender": "F",
      "rankId": "54da74e15fac9fec3c848fab",
-     "healthInformation": "dead",
+     "healthInformation": "Awesome",
     "guardianInformation": "bob",
      "email": "example@myface.com",
     "membershipStatus": false,
-    "membershipExpiry": "2009-04-12T20:44:55",
+    "membershipExpiry": "2015-04-12T20:44:55",
     "phone": "454-323-3312",
     "birthDate": "2004-04-12T20:44:55"
   });

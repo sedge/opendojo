@@ -31,7 +31,7 @@ describe('The GET \'/students/\' route', function() {
         "email": emailArr, //this is an array and should be passed in as such on the client request
         "membershipStatus": true,
         "membershipExpiry": "2015-04-12T20:44:55.000Z",
-        "phone": "111-222-3333",
+        "phone": "647-222-3333",
         "birthDate": "2004-04-12T20:44:55.000Z"
     };
 

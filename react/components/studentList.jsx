@@ -4,18 +4,20 @@ var studentActions = require('../actions/studentActions.jsx');
 var ReactBootstrap = require('react-bootstrap');
 
 var { ListenerMixin } = require('reflux');
-var {	store } = require('../stores/studentStore.jsx');
+var {	store,
+			agecal } = require('../stores/studentStore.jsx');
 var { Link, Navigation } = require('react-router');
 var {
 	Alert,
 	Table
 } = ReactBootstrap;
 
+
+
 var StudentList = module.exports = React.createClass({
 	mixins: [ListenerMixin,Navigation],
 	getInitialState: function(){
 		return {
-			students: null
 		};
 	},
 	componentWillMount: function() {
@@ -34,7 +36,6 @@ var StudentList = module.exports = React.createClass({
 	render: function() {
 		var content;
 		var students = this.state.students;
-
 		var view;
 		if (!students) {
 			view = (
@@ -48,19 +49,20 @@ var StudentList = module.exports = React.createClass({
 
 			studentRows = students.map(function(student) {
 				var emails = "";
-				student.emails.forEach(function(email) {
+				var age = agecal(student.birthDate);
+				student.email.forEach(function(email) {
 					emails += email + " ";
 				});
 				return (
 					<tr key={key++}> 
-						<td>{student.id}</td>
 						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
 						<td>{emails}</td>
-						<td>{student.rank}</td>
-						<td>{student.age}</td>
+						<td>{student.rankId}</td>
+						<td>{age}</td>
+						<td>{student.guardianInformation}</td>
 						<td><Link to="singleStudent" params={{
-							id: student.id
+							_id: student._id
 						}}>View</Link></td>
 					</tr>
 				);
@@ -69,12 +71,12 @@ var StudentList = module.exports = React.createClass({
 			view = (
 				<Table>
 					<thead>
-						<th>#</th>
 						<th>Student Name</th>
 						<th>Phone #</th>
 						<th>Email</th>
 						<th>Student Rank</th>
 						<th>Age</th>
+						<th>Guardian</th>
 						<th></th>
 					</thead>
 					<tbody>
