@@ -17,7 +17,7 @@ module.exports = function(grunt){
       all: [
         'Gruntfile.js',
         'server/**/*.js',
-        'server/*.js'
+        'server/*.js',
         '!public/app.js',
         'react/*.jsx',
         'react/**/*.jsx'
@@ -44,7 +44,7 @@ module.exports = function(grunt){
     browserify: {
       dev: {
         files: {
-          'public/app.js': ['react/index.jsx']
+          './server/public/app.js': ['./server/views/index.jsx']
         },
         options: {
           alias: [
@@ -54,11 +54,12 @@ module.exports = function(grunt){
         }
       }
     },
-    clean: ['public/app.js', 'public/stylesheets/style.css'],
+    clean: ['server/public/app.js', 'server/public/stylesheets/style.css'],
     less: {
       dev: {
         files: {
-          "./public/stylesheets/style.css": "./public/stylesheets/style.less"
+          "./server/public/stylesheets/style.css"
+            : "./server/public/stylesheets/style.less"
         }
       }
     }

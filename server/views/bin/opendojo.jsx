@@ -4,8 +4,6 @@ var url = 'http://localhost:8745/';
 
 var students = [];
 
-
-
 var opendojo = module.exports = {
   studentModel: {
     init : function(cb){
@@ -42,7 +40,7 @@ var opendojo = module.exports = {
           phone: data.phone,
           birthDate: data.birthDate
         })
-        .end(function(res){});      
+        .end(function(res){});
       cb(null,students);
     },
     updateStudent : function(data,cb){

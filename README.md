@@ -24,6 +24,10 @@ From the root directory: `npm install`
 
 The server won't run without an environment file in the root directory of the application. Copy the provided `env.dist` file to `.env` and customize as necessary.
 
+### Front-end dev
+
+Before you can view your work, you have to compile the CSS files and ReactJS app files with `grunt build`.
+
 ### Tests
 
 Tests are a `grunt` task that invoke the `mocha` test framework and provide JavaScript linting by running:

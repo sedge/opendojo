@@ -12,7 +12,7 @@ var routes = require('./routes');
 var app = module.exports = express();
 
 // render without jade for templating
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, './views')));
 app.use(express.static(__dirname + '/public'));
 
 app.disable("x-powered-by");
