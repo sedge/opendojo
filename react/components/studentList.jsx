@@ -18,6 +18,7 @@ var StudentList = module.exports = React.createClass({
 	mixins: [ListenerMixin,Navigation],
 	getInitialState: function(){
 		return {
+			students: null
 		};
 	},
 	componentWillMount: function() {
@@ -31,6 +32,10 @@ var StudentList = module.exports = React.createClass({
 		this.setState({
 			students: newstudents
 		});
+	},
+
+	componentWillUpdate: function(newstudents){
+		
 	},
 
 	render: function() {
