@@ -18,7 +18,7 @@ module.exports = function(grunt){
         'Gruntfile.js',
         'server/**/*.js',
         'server/*.js',
-        '!public/app.js',
+        '!server/public/app.js',
         'react/*.jsx',
         'react/**/*.jsx'
       ],
