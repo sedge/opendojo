@@ -13,7 +13,6 @@ var studentStore = Reflux.createStore({
 			students = stu;
       console.log(students);
 		});
-    this.trigger(students);
 	},
 
 	addStudent: function(data){
@@ -24,8 +23,6 @@ var studentStore = Reflux.createStore({
       }
       students = stu;
 		});
-
-		this.trigger(students);
 	},
 
 	editStudent: function(data){
@@ -46,12 +43,15 @@ var studentStore = Reflux.createStore({
       }
       students = stu;
 		});
-		this.trigger(students);
 	},
 
 	getInitialState: function() {
 		return students;
-	}
+	},
+
+  componentWillUpdate: function(){
+    this.trigger(students);
+  }
 });
 
 function bdayCalculator(bday){

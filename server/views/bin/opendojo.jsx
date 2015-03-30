@@ -7,13 +7,11 @@ var students = [];
 var opendojo = module.exports = {
   studentModel: {
     init : function(cb){
-      request.get(url+'students').end(function(err,res){
+      request.get(url+'api/students').end(function(err,res){
         if(err){
           console.log(err);
         }
         students = res.body;
-        students.forEach(function(student){
-        });
         if(!students){
         console.log("Student database doesn't exist");
         return;
@@ -26,7 +24,7 @@ var opendojo = module.exports = {
     },
     addStudent : function(data,cb){
       request
-        .post(url+'student')
+        .post(url+'api/students')
         .send({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -62,7 +60,7 @@ var opendojo = module.exports = {
         return;
       }
       request
-        .del(url+"student/"+id)
+        .del(url+"api/student/"+id)
         .end(function(err,res){
           students = res.body;
         });
