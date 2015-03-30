@@ -84,7 +84,7 @@ function deleteRanks(callback) {
 //Before the scripts are run the _dbSamplesGen should be ran to generate rank ids
 describe('The GET \'/api/students\' route', function() {
   hooks();
-  
+
   it('should return a 200 status code and all the students when invoked with proper credentials', function(done) {
     utils.jwtSetup(options, function(err, res, body, authInfo) {
       utils.apiSetup('post', '/api/students', 201, authInfo, newStud, function(err, res, body) {
@@ -150,7 +150,6 @@ describe('The POST \'/api/students/\' route', function() {
         });
       });
     });
-
   });
 
   it('should return a 400 status code and a custom \'bad request\' error message when invoked with any invalid request body data', function(done) {
