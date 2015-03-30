@@ -12,6 +12,7 @@ var students = [];
 var studentStore = Reflux.createStore({
 	listenables: studentAction,
 	init: function(){
+
     var that = this;
 
     request.get(URL + 'students').end(function(err,res){
@@ -29,22 +30,21 @@ var studentStore = Reflux.createStore({
 
 	addStudent: function(data){
     var that = this;
-
     var newStudent = {
       firstName: data.firstName,
       lastName: data.lastName,
       gender: data.gender,
-      rankId: data.rankId,
-      healthInformation: data.healthiInfo,
-      guardianInformation: data.guardianInfo,
-      email: data.email,
+      rank: data.rankId,
+      healthInformation: data.healthinformation,
+      guardianInformation: data.guardianinformation,
+      email: data.emails,
       membershipExpiry: new Date(),
       phone: data.phone,
-      birthDate: data.birthDate
+      birthDate: data.bday
     };
 
     request
-      .post(URL + 'student')
+      .post(URL + 'students')
       .send(newStudent)
       .end(function(err, res){
         if(err){
@@ -62,7 +62,6 @@ var studentStore = Reflux.createStore({
 
     var student;
     var index;
-
     for(var i = 0; i < students.length; i++){
       if(students[i]._id == updatedInfo._id) {
         student = students[i];
@@ -97,11 +96,12 @@ var studentStore = Reflux.createStore({
     var index;
 
     for(var i = 0; i < students.length; i++){
-      if(students[i]._id == updatedInfo._id) {
+      if(students[i]._id == id) {
         student = students[i];
         index = i;
         break;
       }
+
     }
 
     if (!student) {
@@ -136,7 +136,11 @@ var studentStore = Reflux.createStore({
 
 	getInitialState: function() {
 		return students;
-	}
+	},
+
+  componentWillUpdate: function(){
+    this.trigger(students);
+  }
 });
 
 module.exports = studentStore;

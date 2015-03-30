@@ -38,6 +38,7 @@ var StudentList = module.exports = React.createClass({
 		});
 	},
 
+
 	render: function() {
 		var content;
 		var students = this.state.students;
@@ -51,7 +52,6 @@ var StudentList = module.exports = React.createClass({
 		} else {
 			var studentRows;
 			var key = 0;
-
 			studentRows = students.map(function(student) {
 				var emails = "";
 				var age = ageCalculator(student.birthDate);
