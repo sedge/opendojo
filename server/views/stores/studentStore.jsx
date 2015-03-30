@@ -30,7 +30,6 @@ var studentStore = Reflux.createStore({
 
 	addStudent: function(data){
     var that = this;
-    console.log(data);
     var newStudent = {
       firstName: data.firstName,
       lastName: data.lastName,
