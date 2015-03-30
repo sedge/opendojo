@@ -28,6 +28,7 @@
   "devDependencies": {
     "babelify": "^5.0.4",
     "backbone": "^1.1.2",
+    "bluebird": "^2.9.21",
     "browserify-global-shim": "^1.0.0",
     "chai": "^1.10.0",
     "grunt": "^0.4.5",

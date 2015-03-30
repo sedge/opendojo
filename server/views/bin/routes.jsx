@@ -31,7 +31,7 @@ var routes = (
 	<Route name="app" path='/' handler={App}>
 		<Route name="students" path="students" handler={Students}>
 			<Route name="addStudent" path="new" handler={AddStudent} />
-			<Route name="singleStudent" path=":_id" handler={ViewStudent} />
+			<Route name="singleStudent" path=":id" handler={ViewStudent} />
 			<DefaultRoute handler={ListStudents} />
 		</Route>
 		<Route name='welcome2' path='welcome2' handler={Welcome} />
