@@ -1,85 +1,167 @@
 var Reflux = require('reflux');
-var studentAction = require('../actions/studentActions.jsx');
-var { studentModel } = require('../bin/opendojo.jsx');
-var students = [];
+var request = require('superagent');
+
+var studentActions = require('../actions/studentActions.jsx');
+var {
+  addStudent,
+  editStudent,
+  deleteStudent
+} = studentActions;
+
+var { URL } = require('../bin/constants.jsx');
+
 var id = 0;
 
+var students = [];
 
 var studentStore = Reflux.createStore({
-	listenables: studentAction,
-  students: null,
+	listenables: studentActions,
+
+  // Initialize the store
 	init: function(){
-		studentModel.init(function(err,stu){
-			students = stu;
-      console.log(students);
-		});
-    this.trigger(students);
-	},
+    var that = this;
 
+    request.get(URL + 'students').end(function(err,res){
+      if (err) {
+        console.error("Error initializing the studentStore: ", error);
+      }
+
+      if (res.body && res.body.length && res.body.length > 0) {
+        students = res.body;
+      }
+      that.trigger(students);
+    });
+	},
+  // Initial getter for anything listening to
+  // this store
+  getInitialState: function() {
+    return students;
+  },
+
+  // `addStudent` Action handling
 	addStudent: function(data){
-		studentModel.addStudent(data,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
-      }
-      students = stu;
-		});
+    var that = this;
 
-		this.trigger(students);
+    var newStudent = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      gender: data.gender,
+      rankId: parseInt(data.rankId, 10),
+      healthInformation: data.healthInformation,
+      guardianInformation: data.guardianInformation,
+      email: data.email,
+      membershipExpiry: new Date(),
+      phone: data.phone,
+      birthDate: data.birthDate
+    };
+
+    request
+      .post(URL + 'student')
+      .send(newStudent)
+      .end(function(err, res){
+        if(err){
+          return addStudent.failed(err);
+        }
+
+        students.push(newStudent);
+        addStudent.completed(students);
+      });
 	},
+  addStudentFailed: function() {
+    this.trigger(students);
+  },
+  addStudentCompleted: function() {
+    this.trigger(students);
+  },
 
-	editStudent: function(data){
-		studentModel.updateStudent(data,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
+  // `editStudent` Action handling
+	editStudent: function(updatedInfo){
+    var that = this;
+
+    var student;
+    var index;
+
+    for(var i = 0; i < students.length; i++){
+      if(students[i]._id == updatedInfo._id) {
+        student = students[i];
+        index = i;
+        break;
       }
-      students = stu;
-		});
-	},
-
-	deleteStudent: function(id){
-		studentModel.deleteStudent(id,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
-      }
-      students = stu;
-		});
-		this.trigger(students);
-	},
-
-	getInitialState: function() {
-		return students;
-	}
-});
-
-function bdayCalculator(bday){
-  var birthDate = new Date(bday);
-  var today = new Date();
-
-  var years = (today.getFullYear() - birthDate.getFullYear());
-  if (today.getMonth() < birthDate.getMonth() ||
-        today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
-        years--;
     }
 
-  return years;
-}
+    if(!student) {
+      return editStudent.failed(students);
+    }
 
-function membershipStatusCalculator(exDate){
-  var status;
-  var expireDate = new Date(exDate);
-  var today = new Date();
-  var restDays = Math.floor((expireDate.getTime()-today.getTime())/(24 * 60 * 60 * 1000));
-  if(expireDate-today > 0){
-    status = "Available (" + restDays +" days left)";
-  }else {status = "Expired";}
-  return status;
-}
+    request
+      .put(URL + "student/" + updatedInfo._id)
+      .send(updatedInfo)
+      .end(function(err, res) {
+  			if(err){
+          return editStudent.failed(err);
+        }
 
-module.exports = {
-  membershipStatusCalculator : membershipStatusCalculator,
-	agecal: bdayCalculator,
-	store: studentStore
-};
+        students[index] = updatedInfo;
+        editStudent.completed(students);
+      });
+	},
+  editStudentFailed: function() {
+    this.trigger(students)
+  },
+  editStudentCompleted: function() {
+    this.trigger(students);
+  },
+
+  // `deleteStudent` Action handling
+	deleteStudent: function(id){
+    var that = this;
+
+    var student;
+    var index;
+
+    for(var i = 0; i < students.length; i++){
+      if(students[i]._id == id) {
+        student = students[i];
+        index = i;
+        break;
+      }
+    }
+
+    if (!student) {
+      return deleteStudent.failed("Cannot delete non-existant student");
+    }
+
+    request
+      .del(URL + "student/" + id)
+      .end(function(err, res){
+        if (err) {
+          return deleteStudent.failed("API Error: " + err.toString());
+        }
+
+        // A delete returns 204 no matter what,
+        // so we attempt a get request on the student
+        // to confirm it was deleted
+        request
+          .get(URL + "student/" + id)
+          .end(function(err, res) {
+            if (res.text != "Invalid data!") {
+              return deleteStudent.failed("API Error: " + err.toString());
+            }
+
+            students.splice(index, 1);
+		        deleteStudent.completed(students);
+          });
+      });
+  },
+  deleteStudentFailed: function() {
+    // Delete Error handling goes here
+    this.trigger(students);
+  },
+  deleteStudentCompleted: function() {
+    // Delete success handling goes here
+    this.trigger(students);
+  }
+});
+
+module.exports = studentStore;
+

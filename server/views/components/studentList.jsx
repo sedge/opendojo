@@ -1,41 +1,41 @@
 var React = require('react');
+var { ListenerMixin } = require('reflux');
 
 var studentActions = require('../actions/studentActions.jsx');
-var ReactBootstrap = require('react-bootstrap');
+var studentStore = require('../stores/studentStore.jsx');
 
-var { ListenerMixin } = require('reflux');
-var {	store,
-			agecal } = require('../stores/studentStore.jsx');
-var { Link, Navigation } = require('react-router');
+var {
+	ageCalculator
+} = require('../bin/utils.jsx');
+
+var {
+ Link,
+ Navigation
+} = require('react-router');
+
 var {
 	Alert,
 	Table
-} = ReactBootstrap;
-
-
+} = require('react-bootstrap');
 
 var StudentList = module.exports = React.createClass({
-	mixins: [ListenerMixin,Navigation],
+	mixins: [ListenerMixin, Navigation],
 	getInitialState: function(){
 		return {
 			students: null
 		};
 	},
 	componentWillMount: function() {
-		this.listenTo(store, this.studentsUpdate, function(initialStudents) {
+		this.listenTo(studentStore, this.studentsUpdate, function(initialStudents) {
 			this.setState({
 				students: initialStudents
 			});
 		});
 	},
-	studentsUpdate: function(newstudents) {
+	studentsUpdate: function(latestStudents) {
 		this.setState({
-			students: newstudents
+			students: latestStudents
 		});
-	},
-
-	componentWillUpdate: function(newstudents){
-
 	},
 
 	render: function() {
@@ -54,7 +54,7 @@ var StudentList = module.exports = React.createClass({
 
 			studentRows = students.map(function(student) {
 				var emails = "";
-				var age = agecal(student.birthDate);
+				var age = ageCalculator(student.birthDate);
 				student.email.forEach(function(email) {
 					emails += email + " ";
 				});
@@ -67,7 +67,7 @@ var StudentList = module.exports = React.createClass({
 						<td>{age}</td>
 						<td>{student.guardianInformation}</td>
 						<td><Link to="singleStudent" params={{
-							_id: student._id
+							id: student._id
 						}}>View</Link></td>
 					</tr>
 				);
