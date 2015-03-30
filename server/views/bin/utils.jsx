@@ -22,7 +22,22 @@ function membershipStatusCalculator(exDate){
   return status;
 }
 
+function bdateForEdit(date){
+  var bdate = new Date(date);
+  var yyyy = bdate.getFullYear().toString();
+  var mm = (bdate.getMonth()+1).toString();
+  var dd  = bdate.getDate().toString();
+ 
+  // CONVERT mm AND dd INTO chars
+  var mmChars = mm.split('');
+  var ddChars = dd.split('');
+ 
+  // CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
+  return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+}
+
 module.exports = {
+  bdateForEdit: bdateForEdit,
   ageCalculator: ageCalculator,
   membershipStatusCalculator: membershipStatusCalculator
 };

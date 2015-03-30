@@ -14,7 +14,8 @@ var studentActions = require('../actions/studentActions.jsx');
 
 var {
 	ageCalculator,
-	membershipStatusCalculator
+	membershipStatusCalculator,
+	bdateForEdit
 } = require('../bin/utils.jsx');
 
 var StudentView = module.exports = React.createClass({
@@ -89,12 +90,13 @@ var StudentView = module.exports = React.createClass({
 		}
 
 		var emails = "";
-				student.email.forEach(function(email) {
+			student.email.forEach(function(email) {
 			emails += email + " ";
 		});
 		var age = ageCalculator(student.birthDate);
 		var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
-
+		var editBdate = bdateForEdit(student.birthDate);
+		console.log(editBdate);
 		if(!editable){
 			return (
 				<div className="studentView container">
@@ -158,7 +160,7 @@ var StudentView = module.exports = React.createClass({
 					<Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
 					<Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
 					<Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
-					<Input label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
+					<Input label="Birth Date" type="date" ref="bday" name="bday" defaultValue={editBdate} />
 					<Input label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender}>
 						<option value='Male'>Male</option>
       			<option value='Female'>Female</option>
