@@ -1,15 +1,21 @@
 var React = require('react');
-var action = require('../actions/studentActions.jsx');
+var Promise = require('bluebird');
+var { ListenerMixin } = require('reflux');
+var { Navigation } = require('react-router');
+
 var {
 	Alert,
 	Table,
 	Input
 } = require('react-bootstrap');
-var { ListenerMixin } = require('reflux');
-var {	store,
-			agecal,
-			membershipStatusCalculator } = require('../stores/studentStore.jsx');
-var { Navigation } = require('react-router');
+
+var studentStore = require('../stores/studentStore.jsx');
+var studentActions = require('../actions/studentActions.jsx');
+
+var {
+	ageCalculator,
+	membershipStatusCalculator
+} = require('../bin/utils.jsx');
 
 var StudentView = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
@@ -21,7 +27,7 @@ var StudentView = module.exports = React.createClass({
 	componentWillMount: function() {
 		var that = this;
 
-		this.listenTo(store, this.updateStudent, function(students) {
+		this.listenTo(studentStore, this.updateStudent, function(students) {
 			var id = that.props.routerParams._id;
 
 			students.forEach(function(student) {
@@ -35,7 +41,9 @@ var StudentView = module.exports = React.createClass({
 	},
 	editStudent: function(e){
 		e.preventDefault();
-		var emails = this.refs.email.getValue().trim().split(',').map(function(email){
+
+		// Validation needs to go here
+		var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
 			return email.trim();
 		});
 
@@ -48,8 +56,7 @@ var StudentView = module.exports = React.createClass({
 			age: this.refs.age.getValue().trim(),
 			email: emails
 		};
-		action.editStudent(newStudent);
-		this.transitionTo('/students');
+		studentActions.editStudent(newStudent);
 	},
 	editToggle: function(e){
 		e.preventDefault();
@@ -59,7 +66,7 @@ var StudentView = module.exports = React.createClass({
 	},
 	deleteStudent: function(e){
 		e.preventDefault();
-		action.deleteStudent(this.props.routerParams._id);
+		studentActions.deleteStudent(this.props.routerParams._id);
 
 		this.transitionTo('/students');
 	},
@@ -67,23 +74,27 @@ var StudentView = module.exports = React.createClass({
 		var content;
 		var student = this.state.student;
 		var editable = this.state.editable;
-		var view;
-		if (!student) {
-			view = (
-				<Alert bsStyle="danger">
-					The student associated with <strong>ID {this.props.routerParams._id}</strong> does not exist.
-				</Alert>
-			);
-		} else {
-			var emails = "";
-					student.email.forEach(function(email) {
-				emails += email + " ";
-			});
-			var age = agecal(student.birthDate);
-			var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
 
-			if(!editable){
-				view = (
+		if (!student) {
+			return (
+				<div className="studentView container">
+					<Alert bsStyle="danger">
+						The student associated with <strong>ID {this.props.routerParams._id}</strong> does not exist.
+					</Alert>
+				</div>
+			);
+		}
+
+		var emails = "";
+				student.email.forEach(function(email) {
+			emails += email + " ";
+		});
+		var age = ageCalculator(student.birthDate);
+		var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
+
+		if(!editable){
+			return (
+				<div className="studentView container">
 					<Table bordered={true} striped={true}>
 						<tr>
 							<th colSpan="4">Viewing: {
@@ -129,28 +140,23 @@ var StudentView = module.exports = React.createClass({
 							</td>
 						</tr>
 					</Table>
-				);
-			}else{
-				view = (
-					<form>
-						<h2> Update student information:</h2>
-						<Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
-						<Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
-						<Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
-						<Input label="Age" type="text" ref="age" name="age" defaultValue={student.age} />
-						<Input label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
-						<Input label="Emails" type="text" ref="emails" name="emails" defaultValue={student.emails} />
-						<button onClick={this.editStudent}>Save</button>
-						<button onClick={this.editToggle}>Cancel</button>
-					</form>
-				);
-			}
+				</div>
+			);
 		}
-		
 
 		return (
 			<div className="studentView container">
-				{view}
+				<form>
+					<h2> Update student information:</h2>
+					<Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
+					<Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
+					<Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
+					<Input label="Age" type="text" ref="age" name="age" defaultValue={student.age} />
+					<Input label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
+					<Input label="Emails" type="text" ref="emails" name="emails" defaultValue={student.emails} />
+					<button onClick={this.editStudent}>Save</button>
+					<button onClick={this.editToggle}>Cancel</button>
+				</form>
 			</div>
 		);
 	}
