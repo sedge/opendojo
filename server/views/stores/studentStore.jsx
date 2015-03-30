@@ -63,8 +63,6 @@ var studentStore = Reflux.createStore({
 
     var student;
     var index;
-    console.log(students);
-    console.log(updatedInfo._id);
     for(var i = 0; i < students.length; i++){
       if(students[i]._id == updatedInfo._id) {
         student = students[i];
@@ -127,7 +125,6 @@ var studentStore = Reflux.createStore({
           .get(URL + "student/" + id)
           .end(function(err, res) {
             if (!err || res.message != "Invalid data!") {
-              console.log(res);
               console.error("Error deleting a student: ", err);
               return that.trigger(students);
             }
