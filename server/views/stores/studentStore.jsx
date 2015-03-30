@@ -1,52 +1,137 @@
 var Reflux = require('reflux');
+var request = require('superagent');
+
 var studentAction = require('../actions/studentActions.jsx');
-var { studentModel } = require('../bin/opendojo.jsx');
-var students = [];
+
+var { URL } = require('../bin/constants.jsx');
+
 var id = 0;
 
+var students = [];
 
 var studentStore = Reflux.createStore({
 	listenables: studentAction,
-  students: null,
 	init: function(){
-		studentModel.init(function(err,stu){
-			students = stu;
-      console.log(students);
-		});
-    this.trigger(students);
+    var that = this;
+
+    request.get(URL + 'students').end(function(err,res){
+      if (err) {
+        console.error("Error initializing the studentStore: ", error);
+      }
+
+      if(res.body && res.body.length && res.body.length > 0) {
+        students = res.body;
+      }
+
+      that.trigger(students);
+    });
 	},
 
 	addStudent: function(data){
-		studentModel.addStudent(data,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
-      }
-      students = stu;
-		});
+    var that = this;
 
-		this.trigger(students);
+    var newStudent = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      gender: data.gender,
+      rankId: data.rankId,
+      healthInformation: data.healthiInfo,
+      guardianInformation: data.guardianInfo,
+      email: data.email,
+      membershipExpiry: new Date(),
+      phone: data.phone,
+      birthDate: data.birthDate
+    };
+
+    request
+      .post(URL + 'student')
+      .send(newStudent)
+      .end(function(err, res){
+        if(err){
+          console.error("Error adding a student: ", err);
+          return that.trigger(students);
+        }
+
+        students.push(newStudent);
+        that.trigger(students);
+      });
 	},
 
-	editStudent: function(data){
-		studentModel.updateStudent(data,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
+	editStudent: function(updatedInfo){
+    var that = this;
+
+    var student;
+    var index;
+
+    for(var i = 0; i < students.length; i++){
+      if(students[i]._id == updatedInfo._id) {
+        student = students[i];
+        index = i;
+        break;
       }
-      students = stu;
-		});
+    }
+
+    if(!student) {
+      console.error("Cannot update non-existant student");
+      return this.trigger(students);
+    }
+
+    request
+      .put(URL + "student/" + updatedInfo._id)
+      .send(updatedInfo)
+      .end(function(err, res) {
+  			if(err){
+          console.error("Error editing a student: ", err);
+          return that.trigger(students);
+        }
+
+        students[index] = updatedInfo;
+        that.trigger(students);
+      });
 	},
 
 	deleteStudent: function(id){
-		studentModel.deleteStudent(id,function(err,stu){
-			if(err){
-        console.log(err);
-        return;
+    var that = this;
+
+    var student;
+    var index;
+
+    for(var i = 0; i < students.length; i++){
+      if(students[i]._id == updatedInfo._id) {
+        student = students[i];
+        index = i;
+        break;
       }
-      students = stu;
-		});
-		this.trigger(students);
+    }
+
+    if (!student) {
+      console.error("Cannot delete non-existant student");
+      this.trigger(students);
+    }
+
+    request
+      .del(URL + "student/" + id)
+      .end(function(err, res){
+        if (err) {
+          console.error("Error deleting a student: ", err);
+          return that.trigger(students);
+        }
+
+        // A delete returns 204 no matter what,
+        // so we attempt a get request on the student
+        // to confirm it was deleted
+        request
+          .get(URL + "student/" + id)
+          .end(function(err, res) {
+            if (!err || res.message != "Invalid data!") {
+              console.error("Error deleting a student: ", err);
+              return that.trigger(students);
+            }
+
+            students.splice(index, 1);
+		        that.trigger(students);
+          });
+      });
 	},
 
 	getInitialState: function() {
@@ -54,32 +139,5 @@ var studentStore = Reflux.createStore({
 	}
 });
 
-function bdayCalculator(bday){
-  var birthDate = new Date(bday);
-  var today = new Date();
+module.exports = studentStore;
 
-  var years = (today.getFullYear() - birthDate.getFullYear());
-  if (today.getMonth() < birthDate.getMonth() ||
-        today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
-        years--;
-    }
-
-  return years;
-}
-
-function membershipStatusCalculator(exDate){
-  var status;
-  var expireDate = new Date(exDate);
-  var today = new Date();
-  var restDays = Math.floor((expireDate.getTime()-today.getTime())/(24 * 60 * 60 * 1000));
-  if(expireDate-today > 0){
-    status = "Available (" + restDays +" days left)";
-  }else {status = "Expired";}
-  return status;
-}
-
-module.exports = {
-  membershipStatusCalculator : membershipStatusCalculator,
-	agecal: bdayCalculator,
-	store: studentStore
-};
