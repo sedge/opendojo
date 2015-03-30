@@ -84,7 +84,7 @@ function deleteRanks(callback) {
 //Before the scripts are run the _dbSamplesGen should be ran to generate rank ids
 describe('The GET \'/api/students\' route', function() {
   hooks();
-  
+
   it('should return a 200 status code and all the students when invoked with proper credentials', function(done) {
     utils.jwtSetup(options, function(err, res, body, authInfo) {
       utils.apiSetup('post', '/api/students', 201, authInfo, newStud, function(err, res, body) {
@@ -150,7 +150,6 @@ describe('The POST \'/api/students/\' route', function() {
         });
       });
     });
-
   });
 
   it('should return a 400 status code and a custom \'bad request\' error message when invoked with any invalid request body data', function(done) {
@@ -196,10 +195,15 @@ describe('The GET \'/api/student/:id\' route', function() {
             }
             expect(body).to.have.property(prop).deep.equal(newStud[prop]);
           });
-          utils.apiSetup('delete', '/api/student/' + body._id, 204, authInfo, function(err, res, body) {
+          utils.apiSetup('delete', '/api/student/' + id, 204, authInfo, function(err, res, body) {
             expect(err).to.not.exist;
 
-            done();
+            utils.apiSetup('get', '/api/student/' + id, 400, authInfo, function(err, res, body) {
+              expect(err).to.not.exist;
+              expect(body).to.equal('Invalid data!');
+
+              done();
+            });
           });
         });
       });
@@ -216,11 +220,24 @@ describe('The GET \'/api/student/:id\' route', function() {
     });
   });
 
-  it('should return a 400 status code and an invalid data message if an id is not found', function(done) {
+  it('should return a 400 status code and an invalid data message if an id is not a number', function(done) {
     id = "abc";
 
     utils.jwtSetup(options, function(err, res, body, authInfo) {
       utils.apiSetup('get', '/api/student/' + id, 400, authInfo, function(err, res, body) {
+        expect(body).to.equal('Invalid data!');
+
+        done();
+      });
+    });
+  });
+
+  it('should return a 400 status code and an invalid data message if an id is a number but not found', function(done) {
+    id = "abc";
+
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('get', '/api/student/' + id, 400, authInfo, function(err, res, body) {
+        expect(err).to.not.exist;
         expect(body).to.equal('Invalid data!');
 
         done();
@@ -323,10 +340,17 @@ describe('The DELETE \'/api/student/:id\' route', function() {
         expect(err).to.not.exist;
         expect(body).to.exist;
 
-        utils.apiSetup('delete', '/api/student/' + body._id, 204, authInfo, function(err, res, body) {
+        var id = body._id;
+
+        utils.apiSetup('delete', '/api/student/' + id, 204, authInfo, function(err, res, body) {
           expect(err).to.not.exist;
 
-          done();
+          utils.apiSetup('get', '/api/student/' + id, 400, authInfo, function(err, res, body) {
+            expect(err).to.not.exist;
+            expect(body).to.equal('Invalid data!');
+
+            done();
+          });
         });
       });
     });

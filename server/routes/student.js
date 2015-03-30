@@ -90,8 +90,8 @@ module.exports = function() {
       var id = req.params.id;
 
       Student.findById(id, function(err, student) {
-        if (err) {
-        log.error({
+        if (err || !student) {
+          log.error({
             err: err,
             req: req,
             res: res
