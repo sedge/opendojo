@@ -52,7 +52,7 @@ var StudentList = module.exports = React.createClass({
 		} else {
 			var studentRows;
 			var key = 0;
-
+			console.log(students);
 			studentRows = students.map(function(student) {
 				var emails = "";
 				var age = ageCalculator(student.birthDate);

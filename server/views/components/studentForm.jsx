@@ -21,8 +21,9 @@ var StudentForm = module.exports = React.createClass({
 			phone: this.refs.phone.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
 			bday: this.refs.bday.getValue().trim(),
+			gender: this.refs.gender.getValue().trim(),
 			guardianinformation: this.refs.guardian.getValue().trim(),
-			healthinfomation: this.refs.healthinfo.getValue().trim(),
+			healthinformation: this.refs.health.getValue().trim(),
 			emails: emails
 		});
 
@@ -38,9 +39,13 @@ var StudentForm = module.exports = React.createClass({
 					<Input label="Rank" type="text" ref="rank" name="rank" placeholder="(colour)" />
 					<Input label="Phone" type="text" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
 					<Input label="Birth Date" type="date" ref="bday" name="bday" placeholder="Age" />
+					<Input label="Gender" type="select" ref="gender" name="gender" placeholder="Gender">
+						<option value='Male'>Male</option>
+      			<option value='Female'>Female</option>
+      		</Input>
 					<Input label="Emails" type="text" ref="emails" name="emails" placeholder="(comma delimited)" />
 					<Input label="Guardian Information" type="text" ref="guardian" name="guardian" placeholder="(Name of guardian)" />
-					<Input label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" placeholder="(Health Information)"/>
+					<Input label="Health Informaion" type="text" ref="health" name="health" placeholder="(Health Information)"/>
 					<button onClick={this.handleSubmit}>Save</button>
 				</form>
 			</div>

@@ -48,13 +48,16 @@ var StudentView = module.exports = React.createClass({
 		});
 
 		var newStudent = {
-			id: this.props.routerParams._id,
+			_id: this.props.routerParams._id,
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
 			phone: this.refs.phone.getValue().trim(),
 			rank: this.refs.rank.getValue().trim(),
-			age: this.refs.age.getValue().trim(),
-			email: emails
+			bday: this.refs.bday.getValue().trim(),
+			gender: this.refs.gender.getValue().trim(),
+			guardianinformation: this.refs.guardian.getValue().trim(),
+			healthinfomation: this.refs.healthinfo.getValue().trim(),
+			emails: emails
 		};
 		studentActions.editStudent(newStudent);
 	},
@@ -130,6 +133,10 @@ var StudentView = module.exports = React.createClass({
 							<td colSpan="3">{emails}</td>
 						</tr>
 						<tr>
+							<th>Guardian Information</th>
+							<td colSpan="3">{student.guardianInformation}</td>
+						</tr>
+						<tr>
 							<th>Health Information</th>
 							<td colSpan="3">{student.healthInformation}</td>
 						</tr>
@@ -151,9 +158,15 @@ var StudentView = module.exports = React.createClass({
 					<Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
 					<Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
 					<Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
-					<Input label="Age" type="text" ref="age" name="age" defaultValue={student.age} />
+					<Input label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
+					<Input label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender}>
+						<option value='Male'>Male</option>
+      			<option value='Female'>Female</option>
+      		</Input>
 					<Input label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
-					<Input label="Emails" type="text" ref="emails" name="emails" defaultValue={student.emails} />
+					<Input label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+					<Input label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+					<Input label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
 					<button onClick={this.editStudent}>Save</button>
 					<button onClick={this.editToggle}>Cancel</button>
 				</form>

@@ -30,22 +30,22 @@ var studentStore = Reflux.createStore({
 
 	addStudent: function(data){
     var that = this;
-
+    console.log(data);
     var newStudent = {
       firstName: data.firstName,
       lastName: data.lastName,
       gender: data.gender,
-      rankId: data.rankId,
-      healthInformation: data.healthiInfo,
-      guardianInformation: data.guardianInfo,
-      email: data.email,
+      rank: data.rankId,
+      healthInformation: data.healthinformation,
+      guardianInformation: data.guardianinformation,
+      email: data.emails,
       membershipExpiry: new Date(),
       phone: data.phone,
-      birthDate: data.birthDate
+      birthDate: data.bday
     };
 
     request
-      .post(URL + 'student')
+      .post(URL + 'students')
       .send(newStudent)
       .end(function(err, res){
         if(err){
@@ -63,7 +63,8 @@ var studentStore = Reflux.createStore({
 
     var student;
     var index;
-
+    console.log(students);
+    console.log(updatedInfo._id);
     for(var i = 0; i < students.length; i++){
       if(students[i]._id == updatedInfo._id) {
         student = students[i];
@@ -98,7 +99,7 @@ var studentStore = Reflux.createStore({
     var index;
 
     for(var i = 0; i < students.length; i++){
-      if(students[i]._id == updatedInfo._id) {
+      if(students[i]._id == id) {
         student = students[i];
         index = i;
         break;
@@ -126,6 +127,7 @@ var studentStore = Reflux.createStore({
           .get(URL + "student/" + id)
           .end(function(err, res) {
             if (!err || res.message != "Invalid data!") {
+              console.log(res);
               console.error("Error deleting a student: ", err);
               return that.trigger(students);
             }
