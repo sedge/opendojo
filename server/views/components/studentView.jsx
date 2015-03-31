@@ -9,14 +9,15 @@ var studentActions = require('../actions/studentActions.jsx');
 
 var {
   Alert,
-  Table,
-  Input
+  Table
 } = require('react-bootstrap');
 
 var {
   ageCalculator,
   membershipStatusCalculator
 } = require('../bin/utils.jsx');
+
+var ValidInput = require('./ValidInput.jsx');
 
 var StudentView = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
@@ -64,10 +65,13 @@ var StudentView = module.exports = React.createClass({
   },
 
   // `EditStudent` Action Handling
-  onEditStudent: function(e){
-    e.preventDefault();
+  onEditStudent: function(){
+    var valid = true;
 
-    // Validation needs to go here
+    React.Children.forEach(this.props.children, function(child) {
+
+    });
+
     var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
       return email.trim();
     });
@@ -187,19 +191,19 @@ var StudentView = module.exports = React.createClass({
     return (
       <div className="studentView container">
         <form>
-          <h2> Update student information:</h2>
-          <Input label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
-          <Input label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
-          <Input label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
-          <Input label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
-          <Input label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender}>
+          <h2>Update student information:</h2>
+          <ValidInput label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
+          <ValidInput label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
+          <ValidInput label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
+          <ValidInput label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
+          <ValidInput label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender}>
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>
-          </Input>
-          <Input label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
-          <Input label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-          <Input label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-          <Input label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+          </ValidInput>
+          <ValidInput label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
+          <ValidInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+          <ValidInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+          <ValidInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
           <button onClick={this.onEditStudent}>Save</button>
           <button onClick={this.editToggle}>Cancel</button>
         </form>
