@@ -66,7 +66,7 @@ module.exports = function(grunt){
   });
 
   // Default is the same as test, for travis-ci
-  grunt.registerTask('default', 'test');
+  grunt.registerTask('default', ['test', 'build']);
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
   grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'less:dev']);
 };

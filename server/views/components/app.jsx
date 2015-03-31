@@ -70,7 +70,7 @@ var App = React.createClass({
 
           {/* Footer */}
           <Row>
-            <Navbar brand="Copyright Team Nariyuki 2015" />
+            <Navbar brand={[<span>&copy;</span>, " 2015 Team Nariyuki & Seneca College"]} />
           </Row>
         </Grid>
       </div>
