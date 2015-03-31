@@ -22,7 +22,9 @@ var StudentList = module.exports = React.createClass({
 	mixins: [ListenerMixin, Navigation],
 	getInitialState: function(){
 		return {
-			students: null
+			students: null,
+			query:'',
+      filteredData: this.props.data
 		};
 	},
 	componentWillMount: function() {

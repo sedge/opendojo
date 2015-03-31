@@ -11,7 +11,15 @@ var {
 	Row,
 	Col
 } = require('react-bootstrap');
-
+var SearchBox = React.createClass({
+    doSearch:function(){
+        var query=this.refs.searchInput.getDOMNode().value; // this is the search text
+        this.props.doSearch(query);
+    },
+    render:function(){
+        return <input type="text" ref="searchInput" placeholder="Search Name" value={this.props.query} onChange={this.doSearch}/>
+    }
+});
 
 var Students = module.exports = React.createClass({
 	
@@ -24,7 +32,7 @@ var Students = module.exports = React.createClass({
 		var toolbar =(
 			<Grid>
 				<Row className="show-grid">
-          			<Col xs={6} md={4}><input type="text" name="searchStudent" placeholder="Search by Name..." /></Col>
+          			<Col xs={6} md={4}><SearchBox query={studentList.state.query} doSearch={this.doSearch}/></Col>
           			<Col xs={6} md={4}><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Col>
           			<Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
        			</Row>
