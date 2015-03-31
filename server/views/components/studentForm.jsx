@@ -6,12 +6,13 @@ var { addStudent } = require('../actions/studentActions.jsx');
 var store = require('../stores/studentStore.jsx');
 
 var { Input } = require('react-bootstrap');
+
 var StudentForm = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
 
 	componentWillMount: function() {
-	  this.listenTo(studentActions.addStudent.completed, this.addStudentComplete);
-	  this.listenTo(studentActions.addStudent.failed, this.addStudentFailed);
+	  this.listenTo(addStudent.completed, this.addStudentComplete);
+	  this.listenTo(addStudent.failed, this.addStudentFailed);
 	},
 
 	handleSubmit: function(e) {
@@ -21,7 +22,7 @@ var StudentForm = module.exports = React.createClass({
 			return email.trim();
 		});
 
-		action.addStudent({
+		addStudent({
 			firstName: this.refs.firstName.getValue().trim(),
 			lastName: this.refs.lastName.getValue().trim(),
 			phone: this.refs.phone.getValue().trim(),

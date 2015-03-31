@@ -24,7 +24,8 @@ var StudentView = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
   getInitialState: function() {
     return {
-      editable: false
+      editable: false,
+      valid: true
     };
   },
 
@@ -66,11 +67,11 @@ var StudentView = module.exports = React.createClass({
   },
 
   // `EditStudent` Action Handling
-  onEditStudent: function(e){debugger;
+  onEditStudent: function(e){
     if (e) { e.preventDefault(); }
 
-    var valid = true;
     var that = this;
+    var valid = true;
 
     var keys = Object.keys(this.refs);
     keys.forEach(function(ref) {
@@ -83,10 +84,17 @@ var StudentView = module.exports = React.createClass({
     });
 
     if (!valid) {
-      console.log("Invalid!");
+      // Show alert
+      this.setState({
+        valid: false
+      });
       return;
     }
 
+    this.setState({
+      valid: true
+    });
+return;
     var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
       return email.trim();
     });
@@ -141,7 +149,7 @@ var StudentView = module.exports = React.createClass({
     }
 
     var emails = "";
-        student.email.forEach(function(email) {
+    student.email.forEach(function(email) {
       emails += email + " ";
     });
     var age = ageCalculator(student.birthDate);
@@ -209,14 +217,16 @@ var StudentView = module.exports = React.createClass({
           <h2>Update student information:</h2>
 
           <FirstName label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
-{/*          <LastName label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
+          <LastName label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
           <Rank label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
           <BirthDate label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
           <Gender label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender} />
           <Phone label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
           <Emails label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
           <Guardian label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-          <Health label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/> */}
+          <Health label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+
+          <AlertDismissable visable={!this.state.valid} />
 
           <button onClick={this.onEditStudent}>Save</button>
           <button onClick={this.editToggle}>Cancel</button>
