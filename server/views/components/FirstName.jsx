@@ -1,22 +1,39 @@
 var React = require('react');
+var $ = require('jquery');
+var {
+  isAlpha,
+  isLength
+} = require('validator');
 
 var {
   Input
 } = require('react-bootstrap');
 
-var ValidInput = module.exports = React.createClass({
-  mixins: [Navigation, ListenerMixin],
+var FirstName = module.exports = React.createClass({
   getInitialState: function() {
     return {
-      invalid: false
+      valid: true,
+      value: this.props.defaultValue
     };
   },
 
-  toggleInvalid: function(e){
-    e.preventDefault();
-    this.setState({
-      invalid: !this.state.invalid
-    });
+  onChange: function(e) {
+    var ref = this.refs[this.props.name];
+    var value = ref.getValue();
+
+    if (!isLength(value, 1) || !isAlpha(value)) {
+      return this.setState({
+        valid: false,
+        value: value
+      });
+    }
+
+    if (!this.state.valid) {
+      this.setState({
+        valid: true,
+        value: value
+      });
+    }
   },
 
   // Get value from the ref
@@ -24,21 +41,34 @@ var ValidInput = module.exports = React.createClass({
     return this.refs[this.props.name].getValue();
   },
 
-  render: function() {
-    var classes = {};
-    var feedback;
+  validationState: function() {
+    if (this.state.valid) {
+      return "success";
+    }
+    return "error";
+  },
 
+  render: function() {
+    var props = {
+      label: this.props.label,
+      type: this.props.type,
+      ref: this.props.name,
+      name: this.props.name,
+      defaultValue: this.state.value
+    };
+    props.bsStyle = this.validationState();
+
+    var feedback;
     if (!this.state.valid) {
-      // Set invalid classes
       feedback = (
-        <p><strong>{this.props.invalidMessage}</strong></p>
-      )
+        <p><strong>A first name is required, and must only be letters.</strong></p>
+      );
     }
 
     return (
       <div>
         {feedback}
-        <Input label={this.props.label} type={this.props.type} ref={this.props.name} name={this.props.name} defaultValue={this.props.defaultValue} />
+        <Input {...props} onChange={this.onChange} />
       </div>
     );
   }

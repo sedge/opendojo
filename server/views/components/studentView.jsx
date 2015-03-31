@@ -17,7 +17,8 @@ var {
   membershipStatusCalculator
 } = require('../bin/utils.jsx');
 
-var ValidInput = require('./ValidInput.jsx');
+var FirstName = require('./FirstName.jsx');
+var AlertDismissable = require('./AlertDismissable.jsx');
 
 var StudentView = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
@@ -65,12 +66,26 @@ var StudentView = module.exports = React.createClass({
   },
 
   // `EditStudent` Action Handling
-  onEditStudent: function(){
+  onEditStudent: function(e){debugger;
+    if (e) { e.preventDefault(); }
+
     var valid = true;
+    var that = this;
 
-    React.Children.forEach(this.props.children, function(child) {
+    var keys = Object.keys(this.refs);
+    keys.forEach(function(ref) {
+      var child = that.refs[ref];
 
+      // Is it in a valid state?
+      if (!child.state.valid) {
+        valid = false;
+      }
     });
+
+    if (!valid) {
+      console.log("Invalid!");
+      return;
+    }
 
     var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
       return email.trim();
@@ -192,20 +207,20 @@ var StudentView = module.exports = React.createClass({
       <div className="studentView container">
         <form>
           <h2>Update student information:</h2>
-          <ValidInput label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
-          <ValidInput label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
-          <ValidInput label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
-          <ValidInput label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
-          <ValidInput label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender}>
-            <option value='Male'>Male</option>
-            <option value='Female'>Female</option>
-          </ValidInput>
-          <ValidInput label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
-          <ValidInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-          <ValidInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-          <ValidInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+
+          <FirstName label="First Name" type="text" ref="firstName" name="firstName" defaultValue={student.firstName} />
+{/*          <LastName label="Last Name" type="text" ref="lastName" name="lastName" defaultValue={student.lastName} />
+          <Rank label="Rank" type="text" ref="rank" name="rank" defaultValue={student.rank} />
+          <BirthDate label="Birth Date" type="date" ref="bday" name="bday" defaultValue={student.birthDate} />
+          <Gender label="Gender" type="select" ref="gender" name="gender" defaultValue={student.gender} />
+          <Phone label="Phone" type="text" ref="phone" name="phone" defaultValue={student.phone} />
+          <Emails label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+          <Guardian label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+          <Health label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/> */}
+
           <button onClick={this.onEditStudent}>Save</button>
           <button onClick={this.editToggle}>Cancel</button>
+
         </form>
       </div>
     );
