@@ -10,7 +10,7 @@
     "node": "0.10.28"
   },
   "dependencies": {
-    "bcrypt": "^0.8.1",
+    "bcrypt-nodejs": "git://github.com/yoavgurevich/bcrypt-nodejs.git",
     "body-parser": "~1.10.2",
     "bunyan": "^1.3.3",
     "bunyan-prettystream": "^0.1.3",

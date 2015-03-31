@@ -27,7 +27,7 @@ process.on('SIGINT', function() {
   });
 });
 
-connection.once('open', function (callback) {
+connection.once('open', function () {
   log.info('MongoDB connected');
 
   health.connected = true;

@@ -1,6 +1,6 @@
 var env = require('../lib/environment');
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 // We cache these objects so we don't regenerate
 // them if this file is required more than once
@@ -25,7 +25,7 @@ module.exports = function(connection) {
     if (!User.isModified('password')) return next();
 
     // Generate a salt
-    bcrypt.genSalt(function(err, salt) {
+    bcrypt.genSalt(10, function(err, salt) {
       if (err) return next(err);
 
       // Hash the password along with our new salt
