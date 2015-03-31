@@ -50,7 +50,10 @@ module.exports = function(grunt){
           alias: [
             "react:react", "React:react"
           ],
-          transform: [babelify,reactify]
+          transform: [babelify,reactify],
+          watch: true,
+          keepAlive: true,
+          debug: true
         }
       }
     },
@@ -68,5 +71,5 @@ module.exports = function(grunt){
   // Default is the same as test, for travis-ci
   grunt.registerTask('default', ['test', 'build']);
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
-  grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'less:dev']);
+  grunt.registerTask('build', ['jshint', 'clean', 'less:dev', 'browserify:dev']);
 };

@@ -115,7 +115,7 @@ module.exports = function() {
             - A status code of success/failure
             - If successful, the altered student data object passed in by the request
     */
-    .put(function(req, res, next) {
+    .put(function(req, res, next) {debugger;
       var validData = true;
       var studentProperties = [
         "_id", "firstName", "lastName", "gender",
