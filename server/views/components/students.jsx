@@ -1,28 +1,48 @@
 var React = require('react');
 var Reflux = require('reflux');
+var { ListenerMixin } = Reflux;
 var {
 	RouteHandler,
-	Link
+	Link,
+  Navigation
 } = require('react-router');
 var {
 	Button,
 	Grid,
 	ButtonToolbar,
 	Row,
-	Col
+	Col,
+  Input
 } = require('react-bootstrap');
-var SearchBox = React.createClass({
-    doSearch:function(){
-        var query=this.refs.searchInput.getDOMNode().value; // this is the search text
-        this.props.doSearch(query);
-    },
-    render:function(){
-        return <input type="text" ref="searchInput" placeholder="Search Name" value={this.props.query} onChange={this.doSearch}/>
-    }
-});
+var studentActions = require('../actions/studentActions.jsx');
+var studentStore = require('../stores/studentStore.jsx');
+
 
 var Students = module.exports = React.createClass({
-	
+  mixins: [ListenerMixin, Navigation],
+  getInitialState: function(){
+    return {
+      students: null,
+      query:'',
+    };
+  },
+  componentWillMount: function() {
+    this.listenTo(studentStore, this.studentsUpdate, function(initialStudents) {
+      this.setState({
+        students: initialStudents
+      });
+    });
+  },
+  studentsUpdate: function(latestStudents) {
+    this.setState({
+      students: latestStudents
+    });
+  },
+	doSearch:function(){
+    this.setState({
+      query: this.refs.searchInput.getValue()
+    });
+  },
 	render: function(){
 		var addButton= (
 			<ButtonToolbar>
@@ -32,7 +52,7 @@ var Students = module.exports = React.createClass({
 		var toolbar =(
 			<Grid>
 				<Row className="show-grid">
-          			<Col xs={6} md={4}><SearchBox query={studentList.state.query} doSearch={this.doSearch}/></Col>
+          			<Col xs={6} md={4}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search Name"/></Col>
           			<Col xs={6} md={4}><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Col>
           			<Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
        			</Row>
@@ -41,7 +61,7 @@ var Students = module.exports = React.createClass({
 		return(
 			<div className="students">
 				{toolbar}
-				<RouteHandler routerParams={this.props.routerParams} />
+				<RouteHandler routerParams={this.props.routerParams} query={this.state.query} students={this.state.students} />
 			</div>
 		);
 	}
