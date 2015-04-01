@@ -10,7 +10,7 @@
     "node": "0.10.28"
   },
   "dependencies": {
-    "bcrypt": "^0.8.1",
+    "bcrypt-nodejs": "git://github.com/yoavgurevich/bcrypt-nodejs.git",
     "body-parser": "~1.10.2",
     "bunyan": "^1.3.3",
     "bunyan-prettystream": "^0.1.3",
@@ -29,6 +29,10 @@
     "babelify": "^5.0.4",
     "backbone": "^1.1.2",
     "bluebird": "^2.9.21",
+<<<<<<< HEAD
+=======
+    "bootstrap": "^3.3.4",
+>>>>>>> 2428558437bc01510cc3be6fced2fd4da9ce4985
     "browserify-global-shim": "^1.0.0",
     "chai": "^1.10.0",
     "grunt": "^0.4.5",
@@ -53,7 +57,9 @@
     "reflux": "^0.2.5",
     "request": "^2.51.0",
     "superagent": "^1.1.0",
-    "time-grunt": "^1.1.0"
+    "time-grunt": "^1.1.0",
+    "validator": "^3.36.0",
+    "zepto": "0.0.4"
   },
   "browser": {
     "react": "./node_modules/react/dist/react.js"

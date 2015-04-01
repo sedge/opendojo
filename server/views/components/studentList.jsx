@@ -1,4 +1,5 @@
 var React = require('react');
+var { ListenerMixin } = require('reflux');
 
 var studentActions = require('../actions/studentActions.jsx');
 var studentStore = require('../stores/studentStore.jsx');
@@ -69,7 +70,7 @@ var StudentList = module.exports = React.createClass({
 						<td>{age}</td>
 						<td>{student.guardianInformation}</td>
 						<td><Link to="singleStudent" params={{
-							_id: student._id
+							id: student._id
 						}}>View</Link></td>
 					</tr>
 				);
