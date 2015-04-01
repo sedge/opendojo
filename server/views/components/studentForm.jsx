@@ -18,12 +18,17 @@ var HealthInput = require('./healthInput.jsx');
 
 var AlertDismissable = require('./alertDismissable.jsx');
 
+var {
+	Alert
+} = require('react-bootstrap');
+
 var StudentForm = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
 
 	getInitialState: function() {
 		return {
-			valid: true
+			valid: true,
+			emptyvalid: true
 		};
 	},
 
@@ -84,17 +89,30 @@ var StudentForm = module.exports = React.createClass({
 		// stuff it into an array
 		var emails = [this.refs.emails.getValue()];
 
-		addStudent({
-			firstName: this.refs.firstName.getValue().trim(),
-			lastName: this.refs.lastName.getValue().trim(),
-			phone: this.refs.phone.getValue().trim(),
-			rankId: this.refs.rank.getValue().trim(),
-			gender: this.refs.gender.getValue().trim(),
-			birthDate: this.refs.bday.getValue().trim(),
-			guardianInformation: this.refs.guardian.getValue().trim(),
-			healthInformation: this.refs.health.getValue().trim(),
-			email: emails
-		});
+		if(!this.refs.firstName.getValue().trim() ||
+				!this.refs.lastName.getValue().trim() ||
+				!this.refs.phone.getValue().trim() ||
+				!this.refs.rank.getValue().trim() ||
+				!this.refs.gender.getValue().trim() ||
+				!this.refs.bday.getValue().trim() ||
+				!emails){
+				console.log("empty");
+			this.setState({
+				emptyvalid: false
+			})
+		}else{
+			addStudent({
+				firstName: this.refs.firstName.getValue().trim(),
+				lastName: this.refs.lastName.getValue().trim(),
+				phone: this.refs.phone.getValue().trim(),
+				rankId: this.refs.rank.getValue().trim(),
+				gender: this.refs.gender.getValue().trim(),
+				birthDate: this.refs.bday.getValue().trim(),
+				guardianInformation: this.refs.guardian.getValue().trim(),
+				healthInformation: this.refs.health.getValue().trim(),
+				email: emails
+			});
+		}
 	},
 
 	addStudentComplete: function() {
@@ -106,11 +124,20 @@ var StudentForm = module.exports = React.createClass({
 	},
 
 	render: function() {
+		var emptyWarn;
+		var submitButton;
+		if (!this.state.emptyvalid){
+			emptyWarn = (
+				<Alert bsStyle="danger" id="alert">
+					<p><strong>Please fill all text box</strong></p>
+				</Alert>
+			)
+		}
 		return (
 			<div className="addStudent container">
 				<form>
 					<h2> Enter new student information:</h2>
-
+					{emptyWarn}
 					<FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
 					<LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
 					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} />

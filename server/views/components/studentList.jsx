@@ -44,7 +44,8 @@ var StudentList = module.exports = React.createClass({
 
 		this.listenTo(studentStore, this.studentsUpdate, function(initialStudents) {
 			that.setState({
-				students: initialStudents
+				students: initialStudents,
+				filtered: initialStudents
 			});
 		});
 
