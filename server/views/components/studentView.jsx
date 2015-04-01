@@ -14,7 +14,7 @@ var {
   Table
 } = require('react-bootstrap');
 
-var AlertDismissable = require('./AlertDismissable.jsx');
+var AlertDismissable = require('./alertDismissable.jsx');
 
 var {
   ageCalculator,
