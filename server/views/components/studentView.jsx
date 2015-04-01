@@ -18,7 +18,8 @@ var AlertDismissable = require('./alertDismissable.jsx');
 
 var {
   ageCalculator,
-  membershipStatusCalculator
+  membershipStatusCalculator,
+  bdateForEdit
 } = require('../bin/utils.jsx');
 
 var FirstName = require('./firstName.jsx');
@@ -187,7 +188,7 @@ var StudentView = module.exports = React.createClass({
     });
     var age = ageCalculator(student.birthDate);
     var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
-
+    var editBdate = bdateForEdit(student.birthDate);
     var ranks = this.state.ranks;
     var rankName;
 
@@ -262,7 +263,7 @@ var StudentView = module.exports = React.createClass({
           <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
           <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rank} />
           <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
-          <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={student.birthDate} />
+          <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={editBdate} />
           <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
           <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
           <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
