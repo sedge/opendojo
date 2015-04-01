@@ -21,6 +21,12 @@ var ListStudents = require('../components/studentList.jsx');
 var ViewStudent = require('../components/studentView.jsx');
 var AddStudent = require('../components/studentForm.jsx');
 var Students = require('../components/students.jsx');
+
+// Rank child views
+var ListRanks = require('../components/rankList.jsx');
+var ViewRank = require('../components/rankView.jsx');
+var AddRank = require('../components/rankForm.jsx');
+var Ranks = require('../components/ranks.jsx');
 // This:
 //   1. Sets up routing functionality
 //   2. Lays out the structure of the app clearly
@@ -34,7 +40,11 @@ var routes = (
 			<Route name="singleStudent" path=":id" handler={ViewStudent} />
 			<DefaultRoute handler={ListStudents} />
 		</Route>
-		<Route name='welcome2' path='welcome2' handler={Welcome} />
+		<Route name='ranks' path='ranks' handler={Ranks}>
+			<Route name="addRank" path = "new" handler={AddRank}/>
+			<Route name="singleRank" path=":id" handler={ViewRank} />
+			<DefaultRoute handler={ListRanks} />
+		</Route>
 		<Route name='welcome3' path='welcome3' handler={Welcome} />
 		<Route name='welcome4' path='welcome4' handler={Welcome} />
 
