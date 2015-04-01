@@ -22,7 +22,7 @@ function membershipStatusCalculator(exDate){
   return status;
 }
 
-<<<<<<< HEAD
+
 function bdateForEdit(date){
   var bdate = new Date(date);
   var yyyy = bdate.getFullYear().toString();
@@ -42,9 +42,3 @@ module.exports = {
   ageCalculator: ageCalculator,
   membershipStatusCalculator: membershipStatusCalculator
 };
-=======
-module.exports = {
-  ageCalculator: ageCalculator,
-  membershipStatusCalculator: membershipStatusCalculator
-};
->>>>>>> 2428558437bc01510cc3be6fced2fd4da9ce4985

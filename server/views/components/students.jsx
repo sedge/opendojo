@@ -19,7 +19,7 @@ var studentStore = require('../stores/studentStore.jsx');
 
 
 var Students = module.exports = React.createClass({
-<<<<<<< HEAD
+
   mixins: [ListenerMixin, Navigation],
   getInitialState: function(){
     return {
@@ -44,8 +44,7 @@ var Students = module.exports = React.createClass({
       query: this.refs.searchInput.getValue()
     });
   },
-=======
->>>>>>> 2428558437bc01510cc3be6fced2fd4da9ce4985
+
 	render: function(){
 		var addButton= (
 			<ButtonToolbar>

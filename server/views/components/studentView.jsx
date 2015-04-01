@@ -254,7 +254,7 @@ return;
             </tr>
             <tr>
               <th></th>
-              <td><button onClick={this.deleteStudent}>Delete</button>
+              <td><button onClick={this.onDeleteStudent}>Delete</button>
                 <button onClick={this.editToggle}>Edit</button>
               </td>
             </tr>

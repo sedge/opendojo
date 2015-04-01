@@ -29,10 +29,7 @@
     "babelify": "^5.0.4",
     "backbone": "^1.1.2",
     "bluebird": "^2.9.21",
-<<<<<<< HEAD
-=======
     "bootstrap": "^3.3.4",
->>>>>>> 2428558437bc01510cc3be6fced2fd4da9ce4985
     "browserify-global-shim": "^1.0.0",
     "chai": "^1.10.0",
     "grunt": "^0.4.5",
