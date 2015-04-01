@@ -1,8 +1,8 @@
 var React = require('react');
 var $ = require('jquery');
 var {
-  isNumeric,
   isLength,
+  isAlpha,
   blacklist
 } = require('validator');
 
@@ -22,10 +22,12 @@ var FirstName = module.exports = React.createClass({
     var ref = this.refs[this.props.name];
     var value = ref.getValue().trim();
 
-    // Allow dashes
-    var sanitized = blacklist(value, "-")
+    // Allow whitespace
+    var sanitized = blacklist(value, " ")
 
-    if (!isLength(value, 12, 12) || !isLength(sanitized, 10, 10) || !isNumeric(sanitized)) {
+    if (isLength(value, 0, 0)){
+      // If it's empty we're okay since it's optional
+    } else if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
       return this.setState({
         valid: false,
         value: value
@@ -67,7 +69,7 @@ var FirstName = module.exports = React.createClass({
     var feedback;
     if (!this.state.valid) {
       feedback = (
-        <p><strong>A phone number is required. Format: 123-456-7890</strong></p>
+        <p><strong>This field is optional! Enter a name or nothing.</strong></p>
       );
     }
 

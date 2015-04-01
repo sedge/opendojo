@@ -47,7 +47,7 @@ var FirstName = module.exports = React.createClass({
 
   validationState: function() {
     if (this.state.valid) {
-      return "";
+      return;
     }
     return "error";
   },
@@ -60,7 +60,9 @@ var FirstName = module.exports = React.createClass({
       name: this.props.name,
       defaultValue: this.state.value
     };
-    props.bsStyle = this.validationState();
+    if (this.validationState()) {
+      props.bsStyle = this.validationState();
+    }
 
     var feedback;
     if (!this.state.valid) {
@@ -71,8 +73,8 @@ var FirstName = module.exports = React.createClass({
 
     return (
       <div>
-        {feedback}
         <Input {...props} onChange={this.onChange} />
+        {feedback}
       </div>
     );
   }

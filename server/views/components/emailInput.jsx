@@ -70,8 +70,8 @@ var FirstName = module.exports = React.createClass({
 
     return (
       <div>
-        {feedback}
         <Input {...props} onChange={this.onChange} />
+        {feedback}
       </div>
     );
   }

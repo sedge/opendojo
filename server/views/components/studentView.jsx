@@ -28,6 +28,8 @@ var GenderInput = require('./genderInput.jsx');
 var DateInput = require('./dateInput.jsx');
 var PhoneInput = require('./phoneInput.jsx');
 var EmailInput = require('./emailInput.jsx');
+var GuardianInput = require('./guardianInput.jsx');
+var HealthInput = require('./healthInput.jsx');
 
 var StudentView = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
@@ -121,31 +123,35 @@ var StudentView = module.exports = React.createClass({
     this.setState({
       valid: true
     });
-return;
-    var emails = this.refs.emails.getValue().trim().split(',').map(function(email){
-      return email.trim();
-    });
+
+    // For now, input only accepts one email so we
+    // stuff it into an array
+    var emails = [this.refs.emails.getValue()];
 
     var newStudent = {
       _id: this.props.routerParams.id,
-      firstName: this.refs.firstName.getValue().trim(),
-      lastName: this.refs.lastName.getValue().trim(),
-      phone: this.refs.phone.getValue().trim(),
-      rankId: parseInt(this.refs.rank.getValue().trim(), 10),
-      birthDate: this.refs.bday.getValue().trim(),
-      gender: this.refs.gender.getValue().trim(),
-      guardianInformation: this.refs.guardian.getValue().trim(),
-      healthInformation: this.refs.healthinfo.getValue().trim(),
+      firstName: this.refs.firstName.getValue(),
+      lastName: this.refs.lastName.getValue(),
+      phone: this.refs.phone.getValue(),
+      rankId: this.refs.rank.getValue(),
+      birthDate: this.refs.bday.getValue(),
+      gender: this.refs.gender.getValue(),
+      guardianInformation: this.refs.guardian.getValue(),
+      healthInformation: this.refs.healthinfo.getValue(),
       email: emails
     };
     studentActions.editStudent(newStudent);
   },
   editStudentFailed:function(err) {
     console.error("Editing a student failed: ", err);
-    this.transitionTo("singleStudent", { id: this.props.routerParams.id });
+    this.setState({
+      editable: false
+    });
   },
   editStudentComplete: function() {
-    this.transitionTo("singleStudent", { id: this.props.routerParams.id });
+    this.setState({
+      editable: false
+    });
   },
 
   // `DeleteStudent` Action Handling
@@ -238,7 +244,7 @@ return;
             </tr>
             <tr>
               <th></th>
-              <td><button onClick={this.deleteStudent}>Delete</button>
+              <td><button onClick={this.onDeleteStudent}>Delete</button>
                 <button onClick={this.editToggle}>Edit</button>
               </td>
             </tr>
@@ -259,8 +265,8 @@ return;
           <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={student.birthDate} />
           <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
           <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-{/*          <Guardian label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-          <Health label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/> */}
+          <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+          <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
 
           <AlertDismissable visable={!this.state.valid} />
 

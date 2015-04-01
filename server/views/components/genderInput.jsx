@@ -40,11 +40,11 @@ var LastName = module.exports = React.createClass({
 
     return (
       <div>
-        {feedback}
         <Input {...props} onChange={this.onChange}>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </Input>
+        {feedback}
       </div>
     );
   }
