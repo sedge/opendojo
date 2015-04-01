@@ -62,7 +62,6 @@ module.exports = function() {
     /* GET '/rank/:id' accepts:
             - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
             - The ID of the object being requested (in JSON format ie. {"_id": "6"})
-
           GET '/rank/:id' returns:
             - A status code of success/failure
             - The rank object bearing the given ID and all of its associated properties and values
@@ -91,7 +90,6 @@ module.exports = function() {
             - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
             - The ID of the corresponding object to be altered (in JSON format)
             - The property being altered and its new value in the request body
-
           PUT '/rank/:id' returns:
             - A status code of success/failure
             - If successful, the altered rank data object passed in by the request
@@ -101,7 +99,7 @@ module.exports = function() {
       var rankProperties = [
        "_id","name","sequence","color"
       ];
-
+     
       if(!req.body) {
         res.status(400).send('Invalid data!');
         return;
@@ -110,11 +108,10 @@ module.exports = function() {
       var id = req.params.id;
 
       Object.keys(req.body).forEach(function(key) {
-       if (rankProperties.indexOf(key) == -1) {
+       if (rankProperties.indexOf(key) === -1) {
         validData = false;
        }
       });
-
       if (!validData) {
         res.status(400).send('Invalid data!');
         return;
@@ -139,7 +136,6 @@ module.exports = function() {
     /* DELETE '/rank/:id' accepts:
             - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
             - The rank ID of the corresponding object to be deleted
-
           DELETE '/rank/:id' returns:
             - A status code of success/failure
     */
