@@ -7,9 +7,10 @@
  *  Credit for this file's logic goes to Lukas White, thanks to his open-source tutorial on JWTs with Node/Express.js:
  *  http://www.sitepoint.com/using-json-web-tokens-node-js/
  */
-var db = require('../../lib/db');
+var models = require('../../models')(require('../../lib/db'));
 var jwt = require('jwt-simple');
 var env = require('../../lib/environment');
+var log = require('../../lib/logger');
 
 module.exports = function(req, res, next) {
   var token = req.headers["x-access-token"];
@@ -31,7 +32,7 @@ module.exports = function(req, res, next) {
     return res.status(400).send('Access token has expired');
   }
 
-  db.mongoose.models.User.findOne({
+  models.User.findOne({
     '_id': decoded.iss
   }, function(err, user) {
     if (err) {

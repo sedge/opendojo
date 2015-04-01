@@ -1,7 +1,6 @@
 var router = require('express').Router();
 var log = require('../lib/logger');
 var models = require('../models')(require('../lib/db'));
-
 var Student = models.Student;
 
 module.exports = function() {

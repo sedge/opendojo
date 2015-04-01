@@ -69,7 +69,6 @@ module.exports = function() {
     */
     .get(function(req, res, next) {
       var id = req.params.id;
-      // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
 
       Rank.findById(id, function(err, rank) {
         if (err) {
@@ -145,8 +144,6 @@ module.exports = function() {
             - A status code of success/failure
     */
     .delete(function(req, res, next) {
-      // TODO: Check for authorization: https://github.com/sedge/opendojo/issues/22
-
       var id = req.params.id;
       Rank.remove({_id: id}, function(err) {
         if(err) {

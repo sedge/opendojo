@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes');
+var jwtAuth = require('./routes/middleware/jwtAuth');
+var jwtRegen = require('./routes/middleware/jwtRegen');
 
 var app = module.exports = express();
 
@@ -24,10 +26,10 @@ app.use(cookieParser());
 
 app.use('/', routes.auth);
 
-app.use('/api', routes.attendance);
-app.use('/api', routes.course);
-app.use('/api', routes.rank);
-app.use('/api', routes.student);
+app.use('/api', jwtAuth, jwtRegen, routes.attendance);
+app.use('/api', jwtAuth, jwtRegen, routes.course);
+app.use('/api', jwtAuth, jwtRegen, routes.rank);
+app.use('/api', jwtAuth, jwtRegen, routes.student);
 
 // Invoke our token secret
 app.set('jwtTokenSecret', env.get("AUTH_SECRET"));

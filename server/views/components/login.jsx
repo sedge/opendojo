@@ -9,6 +9,8 @@ var {
   logIn
 } = require('../actions/authActions.jsx');
 
+var authStore = require('../stores/authStore.jsx');
+
 var {
   Form,
   Input,
@@ -23,10 +25,14 @@ var UserField = React.createClass({
     };
   },
 
+  getValue: function() {
+    return this.refs.input.getValue();
+  },
+
   validationState: function() {
     let valueCode = this.state.value;
     if (valueCode.length > 0) {
-      switch (valueCode.match(/^[A-Za-z0-9_]+$/)) {
+      switch (valueCode.match(/^[A-Za-z0-9_-]+$/)) {
         case null:
           return 'warning';
           break;
@@ -71,6 +77,10 @@ var PasswordField = React.createClass({
     };
   },
 
+  getValue: function() {
+    return this.refs.input.getValue();
+  },
+
   validationState: function() {
     let passValue = this.state.value;
 
@@ -113,34 +123,34 @@ var PasswordField = React.createClass({
   }
 });
 
-var SubButton = React.createClass({
-  mixins: [Navigation],
+var LoginUI = module.exports = React.createClass({
+  mixins: [Navigation, ListenerMixin],
 
   handleSubmit: function() {
-    logIn();
+    logIn({
+      username: this.refs.userVal.getValue(),
+      password: this.refs.passVal.getValue()
+    });
+  },
+
+  logInCompleted: function() {
+    this.transitionTo('/');
+  },
+
+  logInFailed: function(err) {
+    console.log('Log in failed! ', err);
     this.transitionTo('/');
   },
 
   render: function() {
-    return ( < Button onClick = {
-      this.handleSubmit
-    } > Submit < /Button>);
-  }
-});
-
-var LoginUI = module.exports = React.createClass({
-  render: function() {
-    return ( < div id = "loginForm" >
-      < Col xs = {
-        7
-      }
-      xsOffset = {
-        5
-      } >
-      < UserField / >
-      < PasswordField / >
-      < SubButton / >
-      < /Col> < /div>
+    return (
+      <div id="loginForm">
+        <Col xs={7} xsOffset={5}>
+          <UserField ref="userVal" / >
+          <PasswordField ref="passVal" / >
+          <Button onClick={this.handleSubmit}>Submit</Button>
+        </Col>
+      </div>
     );
   }
 });

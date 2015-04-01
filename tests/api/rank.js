@@ -1,6 +1,19 @@
-var assert = require('assert');
 var expect = require('chai').expect;
 var utils = require('../utils');
+
+var options = {
+    headers: {
+        username: "admin",
+        password: "iliketoSmokeandr1nk"
+    }
+};
+
+var invalidHeaders = {
+    headers: {
+        username: "KOOLAID",
+        password: "COWBOY"
+    }
+};
 
 function hooks() {
   before(function(done) {
@@ -23,23 +36,25 @@ describe('The GET \'/api/ranks/\' route', function() {
       color: "black"
     };
 
-    utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
-      idToDelete=body._id;
-      expect(err).to.not.exist;
-      utils.apiSetup('get', '/api/ranks', 200, {}, function(err, res, body) {
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('post', '/api/ranks', 201, authInfo, newRank, function(err, res, body) {
+        idToDelete=body._id;
         expect(err).to.not.exist;
-        expect(body).to.exist;
-        expect(body).to.be.an('array');
-        utils.apiSetup('delete', '/api/rank/' + idToDelete, 204, {}, function(err, res, body) {
+        utils.apiSetup('get', '/api/ranks', 200, authInfo, function(err, res, body) {
           expect(err).to.not.exist;
-          done();
+          expect(body).to.exist;
+          expect(body).to.be.an('array');
+          utils.apiSetup('delete', '/api/rank/' + idToDelete, 204, authInfo, function(err, res, body) {
+            expect(err).to.not.exist;
+            done();
+          });
         });
       });
     });
   });
 
-  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    done();
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
+    utils.apiSetup('get', '/api/ranks', 401, invalidHeaders, done);
   });
 });
 
@@ -53,22 +68,24 @@ describe('The POST \'/api/ranks/\' route', function() {
       color: "grayTest"
     };
 
-    utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
-      expect(err).to.not.exist;
-      expect(body).to.exist;
-      Object.keys(body).forEach(function(prop) {
-        if (prop === "__v") {
-          return;
-        }
-        if (prop === "_id") {
-          expect(body).property('_id').to.exist;
-          return;
-        }
-        expect(body).to.have.property(prop).deep.equal(newRank[prop]);
-      });
-      utils.apiSetup('delete', '/api/rank/' + body._id, 204, {}, function(err, res, body) {
+    utils.jwtSetup(options, function(err, res, body, authInfo){
+      utils.apiSetup('post', '/api/ranks', 201, authInfo, newRank, function(err, res, body) {
         expect(err).to.not.exist;
-        done();
+        expect(body).to.exist;
+        Object.keys(body).forEach(function(prop) {
+          if (prop === "__v") {
+            return;
+          }
+          if (prop === "_id") {
+            expect(body).property('_id').to.exist;
+            return;
+          }
+          expect(body).to.have.property(prop).deep.equal(newRank[prop]);
+        });
+        utils.apiSetup('delete', '/api/rank/' + body._id, 204, authInfo, function(err, res, body) {
+          expect(err).to.not.exist;
+          done();
+        });
       });
     });
   });
@@ -77,47 +94,56 @@ describe('The POST \'/api/ranks/\' route', function() {
     var newRank = {
        catName:"Spot"
     };
-    utils.apiSetup('post', '/api/ranks', 400, {}, newRank, function(err, res, body) {
-      done();
+
+    utils.jwtSetup(options, function(err, res, body, authInfo){
+      utils.apiSetup('post', '/api/ranks', 400, authInfo, newRank, function(err, res, body) {
+        done();
+      });
     });
   });
 
-  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    done();
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
+    var newRank = {
+      name: "Black",
+      sequence: 1,
+      color: "black"
+    };
+
+    utils.apiSetup('post', '/api/ranks', 401, invalidHeaders, newRank, done);
   });
 });
 
 describe('The GET \'/api/rank/:id\' route', function() {
-  var newRank;
-
   hooks();
 
   it('should return a 200 status code and the corresponding rank object when invoked with proper credentials, and a valid id string', function(done) {
-   var newRank = {
+    var newRank = {
       name: "White",
       sequence: 3,
       color: "white"
     };
 
-    utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
-      expect(err).to.not.exist;
-      id=body._id;
-      utils.apiSetup('get', '/api/rank/' + id, 200, {}, function(err, res, body) {
+    utils.jwtSetup(options, function(err, res, body, authInfo){
+      utils.apiSetup('post', '/api/ranks', 201, authInfo, newRank, function(err, res, body) {
         expect(err).to.not.exist;
-        expect(body).to.exist;
-        Object.keys(body).forEach(function(prop) {
-        if (prop === "__v") {
-          return;
-        }
-        if (prop === "_id") {
-          expect(body).to.have.property('_id').equal(id);
-          return;
-        }
-        expect(body).to.have.property(prop).deep.equal(newRank[prop]);
-      });
-        utils.apiSetup('delete', '/api/rank/' + body._id, 204, {}, function(err, res, body) {
+        id=body._id;
+        utils.apiSetup('get', '/api/rank/' + id, 200, authInfo, function(err, res, body) {
           expect(err).to.not.exist;
-          done();
+          expect(body).to.exist;
+          Object.keys(body).forEach(function(prop) {
+            if (prop === "__v") {
+              return;
+            }
+            if (prop === "_id") {
+              expect(body).to.have.property('_id').equal(id);
+              return;
+            }
+            expect(body).to.have.property(prop).deep.equal(newRank[prop]);
+          });
+          utils.apiSetup('delete', '/api/rank/' + body._id, 204, authInfo, function(err, res, body) {
+            expect(err).to.not.exist;
+            done();
+          });
         });
       });
     });
@@ -125,19 +151,33 @@ describe('The GET \'/api/rank/:id\' route', function() {
 
   it('should return a 404 status code when invoked without providing an id', function(done) {
     id="";
-    utils.apiSetup('get', '/api/rank/' + id, 404, {}, done);
+
+    utils.jwtSetup(options, function(err, res, body, authInfo){
+      utils.apiSetup('get', '/api/rank/' + id, 404, authInfo, done);
+    });
   });
 
   it('should return a 400 status code and an invalid data message if an id is not found', function(done) {
     id="fey";
-    utils.apiSetup('get', '/api/rank/' + id, 400, {}, function(err, res, body) {
-      expect(body).to.equal('Invalid data!');
-      done();
+
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('get', '/api/rank/' + id, 400, authInfo, function(err, res, body) {
+        expect(body).to.equal('Invalid data!');
+        done();
+      });
     });
   });
 
-  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    done();
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
+    var id = "sh0uldntmatt3r";
+
+    utils.apiSetup('get', '/api/ranks' + id, 401, invalidHeaders, done);
+  });
+
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid no user credentials whatsoever', function(done) {
+    var id = "st1llsh0uldntmatt3r";
+
+    utils.apiSetup('get', '/api/ranks' + id, 401, {}, done);
   });
 });
 
@@ -153,19 +193,21 @@ describe('The PUT \'/api/rank/:id\' route', function() {
       color: "pink"
     };
 
-    utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
-      expect(err).to.not.exist;
-      id=body._id;
-      var modRank = {
-        name: "Magenta"
-      };
-      utils.apiSetup('put', '/api/rank/' + id, 200, {}, modRank, function(err, res, body) {
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('post', '/api/ranks', 201, authInfo, newRank, function(err, res, body) {
         expect(err).to.not.exist;
-        expect(body).to.exist;
-        expect(body).to.have.property('name').equal('Magenta');
-        utils.apiSetup('delete', '/api/rank/' + id, 204, {}, function(err, res, body) {
+        id=body._id;
+        var modRank = {
+          name: "Magenta"
+        };
+        utils.apiSetup('put', '/api/rank/' + id, 200, authInfo, modRank, function(err, res, body) {
           expect(err).to.not.exist;
-          done();
+          expect(body).to.exist;
+          expect(body).to.have.property('name').equal('Magenta');
+          utils.apiSetup('delete', '/api/rank/' + id, 204, authInfo, function(err, res, body) {
+            expect(err).to.not.exist;
+            done();
+          });
         });
       });
     });
@@ -174,11 +216,14 @@ describe('The PUT \'/api/rank/:id\' route', function() {
   it('should return a 400 status code and an invalid data message if an id is not found', function(done) {
       var id="abc";
       var newRank = {
-        name: "Crimson",
+        name: "Crimson"
       };
-      utils.apiSetup('put', '/api/rank/' + id, 400, {}, newRank, function(err, res, body) {
+
+      utils.jwtSetup(options, function(err, res, body, authInfo) {
+        utils.apiSetup('put', '/api/rank/' + id, 400, authInfo, newRank, function(err, res, body) {
           expect(body).to.equal('Invalid data!');
           done();
+        });
       });
   });
 
@@ -187,20 +232,25 @@ describe('The PUT \'/api/rank/:id\' route', function() {
     var newRank = {
       catName:"Einstein"
     };
-    utils.apiSetup('put', '/api/rank/' + id, 400, {}, newRank, function(err, res, body) {
-      expect(body).to.equal('Invalid data!');
-      done();
+
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('put', '/api/rank/' + id, 400, authInfo, newRank, function(err, res, body) {
+        expect(body).to.equal('Invalid data!');
+        done();
+      });
     });
   });
 
-  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    done();
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
+    var newRank = {
+      name: "Cauliflower"
+    };
+
+    utils.apiSetup('put', '/api/rank/' + id, 401, invalidHeaders, newRank, done);
   });
 });
 
 describe('The DELETE \'/api/rank/:id\' route', function() {
-  var newRank;
-
   hooks();
 
   it('should return a 204 when invoked with the proper credentials, and valid data', function(done) {
@@ -211,23 +261,31 @@ describe('The DELETE \'/api/rank/:id\' route', function() {
       color: "purple"
     };
 
-    utils.apiSetup('post', '/api/ranks', 201, {}, newRank, function(err, res, body) {
-      expect(err).to.not.exist;
-      utils.apiSetup('delete', '/api/rank/' + body._id, 204, {}, function(err, res, body) {
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('post', '/api/ranks', 201, authInfo, newRank, function(err, res, body) {
+        expect(err).to.not.exist;
+        utils.apiSetup('delete', '/api/rank/' + body._id, 204, authInfo, function(err, res, body) {
+          expect(err).to.not.exist;
+          done();
+        });
+      });
+    });
+  });
+
+  it('should return a 204 status code in the case of a nonexistent id', function(done) {
+    utils.jwtSetup(options, function(err, res, body, authInfo) {
+      utils.apiSetup('delete', '/api/rank/' + "abc", 204, authInfo, function(err, res, body) {
         expect(err).to.not.exist;
         done();
       });
     });
   });
 
-  it('should return a 204 status code in the case of a nonexistent id', function(done) {
-    utils.apiSetup('delete', '/api/rank/' + "abc", 204, {}, function(err, res, body) {
-      expect(err).to.not.exist;
-      done();
-    });
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
+    utils.apiSetup('delete', '/api/rank/' + "abc", 401, invalidHeaders, done);
   });
 
-  it.skip('should return a 401 status code and a default \'unauthorized\' error when invoked with invalid user credentials', function(done) {
-    done();
+  it('should return a 401 status code and a default \'unauthorized\' error when invoked with no user credentials whatsoever', function(done) {
+    utils.apiSetup('delete', '/api/rank/' + "abc", 401, {}, done);
   });
 });
