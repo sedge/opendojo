@@ -46,7 +46,7 @@ var studentStore = Reflux.createStore({
       firstName: data.firstName,
       lastName: data.lastName,
       gender: data.gender,
-      rankId: parseInt(data.rankId, 10),
+      rankId: data.rankId,
       healthInformation: data.healthInformation,
       guardianInformation: data.guardianInformation,
       email: data.email,
@@ -56,14 +56,14 @@ var studentStore = Reflux.createStore({
     };
 
     request
-      .post(URL + 'student')
+      .post(URL + 'students')
       .send(newStudent)
       .end(function(err, res){
         if(err){
           return addStudent.failed(err);
         }
 
-        students.push(newStudent);
+        students.push(res.body);
         addStudent.completed(students);
       });
 	},

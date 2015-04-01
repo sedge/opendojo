@@ -36,7 +36,7 @@ module.exports = function() {
             - A status code of success/failure
             - If successful, the new student object data passed in by the request
     */
-    .post(function(req, res, next) {
+    .post(function(req, res, next) {debugger;
       if(!req.body) {
         log.warn({
           req: req,

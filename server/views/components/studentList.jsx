@@ -4,6 +4,8 @@ var { ListenerMixin } = require('reflux');
 var studentActions = require('../actions/studentActions.jsx');
 var studentStore = require('../stores/studentStore.jsx');
 
+var rankStore = require('../stores/rankStore.jsx');
+
 var {
 	ageCalculator
 } = require('../bin/utils.jsx');
@@ -26,10 +28,16 @@ var StudentList = module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function() {
+		var that = this;
+
 		this.listenTo(studentStore, this.studentsUpdate, function(initialStudents) {
-			this.setState({
+			that.setState({
 				students: initialStudents
 			});
+		});
+
+		this.listenTo(rankStore, this.updateRanks, function(initialRanks) {
+			that.updateRanks(initialRanks);
 		});
 	},
 	studentsUpdate: function(latestStudents) {
@@ -38,7 +46,21 @@ var StudentList = module.exports = React.createClass({
 		});
 	},
 
+  updateRanks: function(ranks) {
+    var processedRanks = {};
+
+    ranks.map(function(rank){
+      processedRanks[rank._id] = rank.name;
+    });
+
+    this.setState({
+      ranks: processedRanks
+    });
+  },
+
 	render: function() {
+		var that = this;
+
 		var content;
 		var students = this.state.students;
 		var view;
@@ -58,12 +80,22 @@ var StudentList = module.exports = React.createClass({
 				student.email.forEach(function(email) {
 					emails += email + " ";
 				});
+
+				var ranks = that.state.ranks;
+				var rankName;
+
+				Object.keys(ranks).map(function(rankId) {
+				  if (rankId == student.rankId) {
+				    rankName = ranks[rankId];
+				  }
+				});
+
 				return (
 					<tr key={key++}>
 						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
 						<td>{emails}</td>
-						<td>{student.rankId}</td>
+						<td>{rankName}</td>
 						<td>{age}</td>
 						<td>{student.guardianInformation}</td>
 						<td><Link to="singleStudent" params={{
