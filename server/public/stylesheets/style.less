@@ -16,11 +16,21 @@
 
 // Common colors
 @bodyColor: #000;
-@defaultTextColor: #777;
+@defaultTextColor: #aaa;
 @borderColor: #222;
 @focusColor: #3399ff;
 
+@font-face {
+  font-family: "nariyuki";
+  src: url("../fonts/konfuciousez.woff") format('woff');
+}
+
 // Common settings
+._defaultText {
+  color: @defaultTextColor;
+  font-size: 20px;
+}
+
 ._background {
   background-color: @bodyColor;
 }
@@ -46,7 +56,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: linear-gradient(to top, lighten(#0F0F0F, 5%) 0%, @bodyColor 100%);
-  color: @defaultTextColor;
+  ._defaultText;
+}
+
+#main {
+  padding-bottom: 70px;
 }
 
 // LESSifying these wildly nested nav classes does not work at the moment
@@ -140,6 +154,10 @@ body {
   margin-bottom: 1%;
 }
 
+#loginForm {
+  padding-right: 10%;
+}
+
 #top {
   font-weight: bold;
   color: @bodyColor;
@@ -154,8 +172,11 @@ body {
 }
 
 .jumbotron {
-  background: linear-gradient(to right, hsla(359,67%,32%,0) 0%,hsla(359,67%,32%,0.8) 15%,hsla(359,67%,32%,1) 19%,hsla(359,67%,32%,1) 20%,hsla(359,67%,32%,1) 50%,hsla(359,67%,32%,1) 80%,hsla(359,67%,32%,1) 81%,hsla(359,67%,32%,0.8) 85%,hsla(359,67%,32%,0) 100%);
+  background-image: url("../images/CRKFbanner.jpg");
+  background-size: contain;
   text-align: center;
+  color: #FFFFFF;
+  font-family: nariyuki;
 }
 
 .breadcrumb {

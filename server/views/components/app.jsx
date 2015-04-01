@@ -1,81 +1,144 @@
 var React = require('react');
 var Router = require('react-router');
+var {
+    ListenerMixin
+    } = require('reflux');
 
 // EcmaScript6 destructuring assignment syntax.
 // Equivalent to:
 //   var RouteHandler = Router.RouteHandler;
 //   ...
 var {
-  RouteHandler
-} = Router;
+    RouteHandler
+    } = Router;
+
+var LoginUI = require('./login.jsx');
+var Banner = require('./banner.jsx');
+var {
+    logIn
+    } = require('../actions/authActions.jsx');
 
 var {
-  Grid,
-  Row,
-  Col,
+    Grid,
+    Row,
+    Col,
 
-  Navbar,
-  Nav
-} = require('react-bootstrap');
+    Navbar,
+    Nav
+    } = require('react-bootstrap');
 
-var { NavItemLink } = require('react-router-bootstrap');
+var {
+    NavItemLink
+    } = require('react-router-bootstrap');
 
 // Note, each route is actually a name
 // corresponding with the React-Router
 // configuration in router.jsx
 var nav = {
-  "Students": "students",
-  "Ranks": "welcome2",
-  "Classes": "welcome3",
-  "Attendance": "welcome4"
+    "Students": "students",
+    "Ranks": "welcome2",
+    "Classes": "welcome3",
+    "Attendance": "welcome4"
 };
 
 // Unique key for each link
 var headerLinkId = 0;
 
 var App = React.createClass({
-  render: function() {
-    var linkText = Object.keys(nav);
-    var links = linkText.map(function(linkText) {
-      return (
-        <NavItemLink to={nav[linkText]} key={headerLinkId++}>
-          {linkText}
-        </NavItemLink>
-      );
-    });
+    mixins: [ListenerMixin],
 
-    return (
-      <div id="main">
-        <Navbar fixedTop={true} brand={"OpenDojo"} />
+    componentWillMount: function() {
+        var that = this;
 
-        <Grid>
-          {/* Main Content */}
-          <Row>
-            {/* Navbar */}
-            <Col md={3}>
-              <div className="sidebar-nav">
-                <Navbar>
-                  <Nav>
-                    {links}
-                  </Nav>
-                </Navbar>
-              </div>
-            </Col>
+        this.listenTo(logIn, function() {
+            that.setState({
+                loggedIn: true
+            });
+        });
+    },
 
-            {/* Child View */}
-            <Col md={9}>
-              <RouteHandler routerParams={this.props.routerParams} />
-            </Col>
-          </Row>
+    getInitialState: function() {
+        return {
+            token: localStorage["token"],
+            loggedIn: false
+        };
+    },
 
-          {/* Footer */}
-          <Row>
-            <Navbar brand={[<span>&copy;</span>, " 2015 Team Nariyuki & Seneca College"]} />
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
+    render: function() {
+        var linkText = Object.keys(nav);
+        var links = linkText.map(function(linkText) {
+            return ( < NavItemLink to = {
+                nav[linkText]
+            }
+            key = {
+                headerLinkId++
+            } >
+            {
+                linkText
+            } < /NavItemLink>
+            );
+        });
+        var view;
+
+        if (!this.state.loggedIn) {
+            view = ( < div id = "main" >
+            < Navbar fixedTop = {
+                true
+            }
+            brand = {
+                "OpenDojo CMS"
+            }
+            /> < Banner / >
+            < Grid >
+            < LoginUI / >
+            { /* Footer */ } < Row >
+            < Navbar fixedBottom = {
+                true
+            }
+            brand = {
+                [< span >&copy;< /span>, " 2015 Team Nariyuki & Seneca College"]} / >
+            < /Row> < /Grid> < /div>
+        );
+        }
+        else {
+            view = ( < div id = "main" >
+            < Navbar fixedTop = {
+                true
+            }
+            brand = {
+                "OpenDojo CMS"
+            }
+            /> < Banner / >
+            < Grid >
+            { /* Main Content */ } < Row >
+            { /* Navbar */ } < Col md = {
+                3
+            } >
+            < div className = "sidebar-nav" >
+            < Navbar >
+            < Nav >
+            {
+                links
+            } < /Nav> < /Navbar> < /div> < /Col>
+            { /* Child View */ } < Col md = {
+                9
+            } >
+            < RouteHandler routerParams = {
+                this.props.routerParams
+        }
+        /> < /Col> < /Row>
+        { /* Footer */ } < Row >
+        < Navbar fixedBottom = {
+            true
+        }
+        brand = {
+            [< span >&copy;< /span>, " 2015 Team Nariyuki & Seneca College"]} / >
+        < /Row> < /Grid> < /div>
+        );
+    }
+
+    return view;
+}
 
 });
 

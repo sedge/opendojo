@@ -10,7 +10,8 @@ var {
 	ButtonToolbar,
 	Row,
 	Col,
-	Input
+	Input,
+    Panel
 } = require('react-bootstrap');
 
 
@@ -34,9 +35,9 @@ var Students = module.exports = React.createClass({
 		var toolbar =(
 			<Grid>
 				<Row className="show-grid">
-    			<Col xs={6} md={4}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search Name"/></Col>
-    			<Col xs={6} md={4}><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Col>
-    			<Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
+    			<Col xs={6} md={4}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by name..."/></Col>
+    			<Col xs={8} md={6}><Panel className="text-center"><strong>STUDENT MANAGEMENT TOOLBAR</strong></Panel></Col>
+    			<Col xs={2} md={2}><span className="pull-right">{addButton}</span></Col>
    			</Row>
    		</Grid>
 		);
