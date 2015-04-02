@@ -145,7 +145,7 @@ var EditClass = module.exports = React.createClass({
       <div className="addClass container">
         <form>
           <h2> Update Class Information:</h2>
-          
+
           <ClassTitle label="Class Title" ref="classTitle" name="classTitle" defaultValue={course.classTitle} />
           <Input type="select" label="Day of Week" ref="day" name="day" defaultValue={course.dayOfWeek}>
             <option value="" disabled className="notDisplay">Select Day of Week</option>
@@ -175,7 +175,7 @@ var EditClass = module.exports = React.createClass({
             <Row className="show-grid">
              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditClass}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large">Cancel</Button></Link></span></Col>
             </Row>
           </Grid>
         </form>

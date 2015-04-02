@@ -2,7 +2,7 @@ var React = require('react');
 var Promise = require('bluebird');
 
 var { ListenerMixin } = require('reflux');
-var { 
+var {
   Navigation,
   Link
 } = require('react-router');
@@ -47,7 +47,7 @@ var RankView = module.exports = React.createClass({
       that.showRank(ranks);
     });
 
-    // Listen to students to see what ranks the students have so that a rank wouldn't 
+    // Listen to students to see what ranks the students have so that a rank wouldn't
     // deleted if it's assigned to a student
     this.listenTo(studentStore, this.getStudentRanks, function(students){
       this.getStudentRanks(students);
@@ -95,12 +95,12 @@ var RankView = module.exports = React.createClass({
     });
     var highestSequence = rankStore.getSequence()+1;
     for (var i=1; i<highestSequence; i++) {
-      
+
       if (!that.presentInArray(rankSequence,i)){
         rankSequence.push(i);
       }
     }
-    
+
     rankSequence.sort();
 
     this.setState({
@@ -240,11 +240,11 @@ var RankView = module.exports = React.createClass({
           <p colSpan="6" className="red"> {message} </p>
           <Grid>
             <Row className="show-grid">
-              <Col xs={6} md={4}><Button bsSize="large" onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-                <Button bsSize="large" onClick={this.onDeleteRank}>Delete</Button></Col>
+              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+                <Button bsSize="large" bsStyle='warning' onClick={this.onDeleteRank}>Delete</Button></Col>
               <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}><span className="pull-right"><Link to="ranks">
-                <Button bsSize="large" bsStyle="warning">Back</Button></Link></span></Col>
+                <Button bsSize="large" >Back</Button></Link></span></Col>
             </Row>
           </Grid>
         </div>
@@ -265,7 +265,7 @@ var RankView = module.exports = React.createClass({
             <Row className="show-grid">
              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditRank}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" bsStyle="warning" onClick={this.editToggle}>Cancel</Button></span></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
             </Row>
           </Grid>
         </form>

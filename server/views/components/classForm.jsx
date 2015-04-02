@@ -1,9 +1,9 @@
 var React = require('react');
 var { ListenerMixin } = require('reflux');
-var { 
+var {
   Navigation,
   Link
-   } = require('react-router');
+} = require('react-router');
 
 var { addClass } = require('../actions/classActions.jsx');
 
@@ -143,10 +143,10 @@ var ClassForm = module.exports = React.createClass({
             <Row className="show-grid">
              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large">Cancel</Button></Link></span></Col>
             </Row>
           </Grid>
-          
+
         </form>
       </div>
     );

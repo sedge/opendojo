@@ -166,7 +166,7 @@ var StudentForm = module.exports = React.createClass({
             <Row className="show-grid">
              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Link to="students"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="students"><Button bsSize="large" >Cancel</Button></Link></span></Col>
             </Row>
           </Grid>
 				</form>

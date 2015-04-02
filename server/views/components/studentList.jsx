@@ -140,26 +140,55 @@ var StudentList = module.exports = React.createClass({
 					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
 						<Button bsSize="xsmall" onClick={this.nameSort}>&#9660;</Button>
 					</OverlayTrigger>
-				</th>);
-		}else{
+				</th>
+			);
+		}
+		else{
 			nameOrder = (
 				<th>Student Name&nbsp; 
 					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
 						<Button bsSize="xsmall" onClick={this.nameSort}>&#9650;</Button>
 					</OverlayTrigger>
-				</th>);
+				</th>
+			);
 		}
 
 		if (this.state.sortage){
-			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9660;</Button></th>
-		}else{
-			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9650;</Button></th>
+			ageOrder = (
+				<th>Age&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Age</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.ageSort}>&#9660;</Button>
+					</OverlayTrigger>
+				</th>
+			);
+		}
+		else{
+			ageOrder = (
+				<th>Age&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Age</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.ageSort}>&#9650;</Button>
+					</OverlayTrigger>
+				</th>
+			);
 		}
 
 		if (this.state.sortrank){
-			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9660;</Button></th>
-		}else{
-			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9650;</Button></th>
+			rankOrder = (
+				<th>Student Rank&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Rank</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.rankSort}>&#9660;</Button>
+					</OverlayTrigger>
+				</th>
+			);
+		}
+		else{
+			rankOrder = (
+				<th>Student Rank&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Rank</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.rankSort}>&#9650;</Button>
+					</OverlayTrigger>
+				</th>
+			);
 		}
 
 		if (!students) {

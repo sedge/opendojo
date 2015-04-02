@@ -33,7 +33,7 @@ function _generateSampleData() {
 
       console.log('All ranks happily generated!');
       var d = new Date();
-      
+
       newClass = new models.Class({
         "classTitle": "TestClass",
         "dayOfWeek": 3,
@@ -131,11 +131,11 @@ function _generateSampleData() {
                     console.log("Error generating! ", err);
                     return process.exit(1);
                   }
-                  
+
                   console.log('All attendance records happily generated :)');
                   process.exit();
                 });
-              });  
+              });
             });
           });
         });

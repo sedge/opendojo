@@ -20,7 +20,9 @@ var DeleteClassButton = require('./deleteClass.jsx');
 var {
   Alert,
   Table,
-  Button
+  Button,
+  OverlayTrigger,
+  Tooltip
 } = require('react-bootstrap');
 
 var ClassList = module.exports = React.createClass({
@@ -138,9 +140,22 @@ var ClassList = module.exports = React.createClass({
     var startTime;
     var endTime;
     if (this.state.sortday){
-      dayOrder = <th>Day <Button bsSize="xsmall" onClick={this.daySort}>&#9660;</Button></th>
-    }else{
-      dayOrder = <th>Day <Button bsSize="xsmall" onClick={this.daySort}>&#9650;</Button></th>
+      dayOrder = (
+        <th>Day&nbsp;
+          <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Day</strong></Tooltip>}>
+            <Button bsSize="xsmall" onClick={this.daySort}>&#9660;</Button>
+          </OverlayTrigger>
+        </th>
+      );
+    }
+    else{
+      dayOrder = (
+        <th>Day&nbsp;
+          <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Day</strong></Tooltip>}>
+            <Button bsSize="xsmall" onClick={this.daySort}>&#9650;</Button>
+          </OverlayTrigger>
+        </th>
+      );
     }
 
 
@@ -211,7 +226,7 @@ var ClassList = module.exports = React.createClass({
             <td>{day}</td>
             <td>{startTime} To {endTime} </td>
             <td className="rankName">{rankName}</td>
-            <td><Link to="editClass" params={{id: course._id}}><Button bsSize="small">Edit</Button></Link>&nbsp;&nbsp;
+            <td><Link to="editClass" params={{id: course._id}}><Button bsStyle='primary' bsSize="small">Edit</Button></Link>&nbsp;&nbsp;
                 <DeleteClassButton classId={course._id} onClick={that.onDeleteClass} bsSize="small" />
             </td>
           </tr>

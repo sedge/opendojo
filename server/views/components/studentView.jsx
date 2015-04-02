@@ -2,7 +2,7 @@ var React = require('react');
 var Promise = require('bluebird');
 
 var { ListenerMixin } = require('reflux');
-var { 
+var {
   Navigation,
   Link
  } = require('react-router');
@@ -261,11 +261,16 @@ var StudentView = module.exports = React.createClass({
           </Table>
           <Grid>
             <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-                <Button bsSize="large" onClick={this.onDeleteStudent}>Delete</Button></Col>
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+                <Button bsSize="large" bsStyle='warning' onClick={this.onDeleteStudent}>Delete</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Link to="students">
-                  <Button bsSize="large" bsStyle='warning'>Back</Button></Link></span></Col>
+              <Col xs={6} md={4}>
+                <span className="pull-right">
+                  <Link to="students">
+                    <Button bsSize="large">Back</Button>
+                  </Link>
+                </span>
+              </Col>
             </Row>
           </Grid>
 
@@ -292,7 +297,11 @@ var StudentView = module.exports = React.createClass({
             <Row className="show-grid">
              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" bsStyle="warning" onClick={this.editToggle}>Cancel</Button></span></Col>
+              <Col xs={6} md={4}>
+                <span className="pull-right">
+                  <Button bsSize="large" onClick={this.editToggle}>Cancel</Button>
+                </span>
+              </Col>
             </Row>
           </Grid>
         </form>
