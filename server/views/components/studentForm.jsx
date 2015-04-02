@@ -23,6 +23,10 @@ var {
 	Button
 } = require('react-bootstrap');
 
+var {
+	capitalizeFirstLetter
+} = require('../bin/utils.jsx');
+
 var StudentForm = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
 
@@ -102,9 +106,11 @@ var StudentForm = module.exports = React.createClass({
 				emptyvalid: false
 			})
 		}else{
+			var fName = capitalizeFirstLetter(this.refs.firstName.getValue().trim());
+			var lName = capitalizeFirstLetter(this.refs.lastName.getValue().trim());
 			addStudent({
-				firstName: this.refs.firstName.getValue().trim(),
-				lastName: this.refs.lastName.getValue().trim(),
+				firstName: fName,
+				lastName: lName,
 				phone: this.refs.phone.getValue().trim(),
 				rankId: this.refs.rank.getValue().trim(),
 				gender: this.refs.gender.getValue().trim(),
@@ -141,7 +147,7 @@ var StudentForm = module.exports = React.createClass({
 					{emptyWarn}
 					<FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
 					<LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
-					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} />
+					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
 					<PhoneInput label="Phone" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
 					<DateInput label="Birth Date" ref="bday" name="bday" placeholder="Age" />
 					<GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />

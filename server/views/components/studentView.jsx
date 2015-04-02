@@ -158,13 +158,16 @@ var StudentView = module.exports = React.createClass({
 
   // `DeleteStudent` Action Handling
   onDeleteStudent: function(e){
-    studentActions.deleteStudent(this.props.routerParams.id);
+    var deleteStudent = confirm("Do you want to delete the student?");
+    if (deleteStudent){
+      studentActions.deleteStudent(this.props.routerParams.id);
+    }
   },
   deleteStudentComplete: function(students) {
     this.transitionTo("students");
   },
   deleteStudentFailed: function(students) {
-    console.error("Editing a student failed: ", err);
+    console.error("Deleting a student failed: ", err);
     this.transitionTo("students");
   },
 
@@ -209,10 +212,6 @@ var StudentView = module.exports = React.createClass({
               }</th>
             </tr>
             <tr>
-              <th>Id:</th>
-              <td colSpan="3">{student._id}</td>
-            </tr>
-            <tr>
               <th>Rank:</th>
               <td colSpan="3">{rankName || "No rank assigned"}</td>
             </tr>
@@ -244,22 +243,17 @@ var StudentView = module.exports = React.createClass({
               <th>Health Information</th>
               <td colSpan="3">{student.healthInformation}</td>
             </tr>
-            <tr>
-              <th></th>
-              <td><Button onClick={this.onDeleteStudent}>Delete</Button>
-                <Button onClick={this.editToggle}>Edit</Button>
-              </td>
-            </tr>
           </Table>
+          <Button onClick={this.editToggle}>Edit</Button>
+          <Button onClick={this.onDeleteStudent}>Delete</Button>
         </div>
       );
     }
-
     return (
       <div className="studentView container">
         <form>
-          <h2>Update student information:</h2>
-
+          <h2>Update Student Information:</h2>
+          c
           <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
           <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
           <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rank} />
@@ -272,7 +266,7 @@ var StudentView = module.exports = React.createClass({
 
           <AlertDismissable visable={!this.state.valid} />
 
-          <Button onClick={this.onEditStudent}>Save</Button>
+          <Button onClick={this.onEditStudent}>Save</Button>&nbsp;&nbsp;
           <Button onClick={this.editToggle}>Cancel</Button>
 
         </form>
