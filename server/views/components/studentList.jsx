@@ -17,7 +17,8 @@ var {
 
 var {
 	Alert,
-	Table
+	Table,
+	Button
 } = require('react-bootstrap');
 
 var StudentList = module.exports = React.createClass({
@@ -32,7 +33,8 @@ var StudentList = module.exports = React.createClass({
 		var queryResult=[];
 
 		this.state.students.forEach(function(person){
-     	if((person.firstName.toLowerCase().indexOf(queryText)!=-1 )||(person.lastName.toLowerCase().indexOf(queryText)!=-1 ))
+			var studentName = person.firstName+' '+person.lastName;
+      if(studentName.toLowerCase().indexOf(queryText)!=-1)
        	queryResult.push(person);
 		});
     this.setState({
@@ -111,7 +113,7 @@ var StudentList = module.exports = React.createClass({
 
 				return (
 					<tr key={key++}>
-						<td onClick={StudentList.viewSingleStudent}>{student.firstName + " " + student.lastName}</td>
+						<td>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
 						<td>{emails}</td>
 						<td>{rankName}</td>
