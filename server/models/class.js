@@ -18,14 +18,6 @@ module.exports = function(connection) {
       type: String,
       required: true
     },
-    startDate : {
-      type: Date,
-      required: true
-    },
-    endDate: {
-      type: Date,
-      required: true
-    },
     dayOfWeek: {
       type: Number,
       required: true

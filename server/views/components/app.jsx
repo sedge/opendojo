@@ -41,7 +41,7 @@ var {
 var nav = {
   "Students": "students",
   "Ranks": "ranks",
-  "Classes": "welcome3",
+  "Classes": "classes",
   "Attendance": "welcome4"
 };
 

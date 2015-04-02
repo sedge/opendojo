@@ -53,8 +53,6 @@ module.exports = function() {
 
       var newClass = new Class({
         classTitle: req.body.classTitle,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
         dayOfWeek: req.body.dayOfWeek,
         startTime: req.body.startTime,
         endTime:req.body.endTime,
@@ -87,12 +85,12 @@ module.exports = function() {
             - A status code of success/failure
             - The class object bearing the given ID and all of its associated properties and values
     */
-    .get(function(req, res, next) {
+    .get(function(req, res, next) { 
       var id = req.params.id;
 
 
       Class.findById(id, function(err, course) {
-        if (err) {
+        if (err || !course) {
           log.error({
             err: err,
             req: req,
@@ -120,7 +118,7 @@ module.exports = function() {
     .put(function(req, res, next) {
       var validData = true;
       var classProperties = [
-        "_id","classTitle","startDate","endDate",
+        "_id","classTitle",
         "dayOfWeek","startTime","endTime",
         "classType", "RanksAllowed"
       ];

@@ -11,6 +11,32 @@ function ageCalculator(bday){
   return years;
 }
 
+function sortByKey(property,desc) {
+  if (desc) {
+    return function (a, b) {
+      if(typeof a[property] == "string"){
+        var x = a[property].toLowerCase();
+        var y = b[property].toLowerCase();
+      }
+      else{
+        var x = a[property];
+        var y = b[property];
+      }
+      return (x > y) ? -1 : (x< y) ? 1 : 0;
+    }   
+  }
+  return function (a, b) {
+      if(typeof a[property] == "string"){
+        var x = a[property].toLowerCase();
+        var y = b[property].toLowerCase();
+      }else{
+        var x = a[property];
+        var y = b[property];
+      }
+    return (x < y) ? -1 : (x > y) ? 1 : 0;
+  }
+}
+
 function membershipStatusCalculator(exDate){
   var status;
   var expireDate = new Date(exDate);
@@ -36,9 +62,14 @@ function bdateForEdit(date){
   return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 module.exports = {
   ageCalculator: ageCalculator,
   membershipStatusCalculator: membershipStatusCalculator,
-  bdateForEdit: bdateForEdit
+  bdateForEdit: bdateForEdit,
+  sortByKey: sortByKey,
+  capitalizeFirstLetter: capitalizeFirstLetter
 };

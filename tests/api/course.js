@@ -62,8 +62,6 @@ function createCourse( done ) {
   var d = new Date();
   newCourse = {
     classTitle: "TestClass",
-    startDate: "2015-04-12T20:44:55.000Z",
-    endDate: "2015-04-12T20:44:55.000Z",
     dayOfWeek: 3,
     startTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
     endTime: d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
@@ -210,12 +208,14 @@ describe('The GET \'/api/class/:id\' route', function() {
     });
   });
 
-  it('should return a 400 status code and an id not found message if an id is not found', function(done) {
-    var id="abc";
+  it('should return a 400 status code and an id not found message if an id is not found', function(done) {debugger;
+    var id=23423423;
 
     utils.jwtSetup(options, function(err, res, body, authInfo) {
       utils.apiSetup('get', '/api/class/' + id, 400, authInfo, function(err, res, body) {
+        expect(err).to.not.exist;
         expect(body).to.equal('Invalid data!');
+
         done();
       });
     });
@@ -260,7 +260,7 @@ describe('The PUT \'/api/class/:id\' route', function() {
     });
   });
 
-  it('should return a 400 status code and an id not found message if an id is not found', function(done) {
+  it('should return a 400 status code and an id not found message if an id is not found', function(done) { debugger;
       var id="abc";
       var newCourse = {
         "classTitle": "ChangedName",

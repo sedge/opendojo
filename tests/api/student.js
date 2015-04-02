@@ -233,7 +233,7 @@ describe('The GET \'/api/student/:id\' route', function() {
   });
 
   it('should return a 400 status code and an invalid data message if an id is a number but not found', function(done) {
-    id = "abc";
+    id = 7876;
 
     utils.jwtSetup(options, function(err, res, body, authInfo) {
       utils.apiSetup('get', '/api/student/' + id, 400, authInfo, function(err, res, body) {

@@ -7,7 +7,8 @@ var studentStore = require('../stores/studentStore.jsx');
 var rankStore = require('../stores/rankStore.jsx');
 
 var {
-	ageCalculator
+	ageCalculator,
+	sortByKey
 } = require('../bin/utils.jsx');
 
 var {
@@ -18,7 +19,11 @@ var {
 var {
 	Alert,
 	Table,
-	Button
+	Button,
+	Glyphicon,
+	ButtonToolbar,
+	OverlayTrigger,
+	Tooltip
 } = require('react-bootstrap');
 
 var StudentList = module.exports = React.createClass({
@@ -26,7 +31,10 @@ var StudentList = module.exports = React.createClass({
 	getInitialState: function(){
 		return {
 			students: null,
-			filtered: null
+			filtered: null,
+			sortname: true,
+			sortage: true,
+			sortrank: true
 		};
 	},
 	doSearch:function(queryText){
@@ -66,6 +74,44 @@ var StudentList = module.exports = React.createClass({
 			filtered: this.state.students
 		});
 	},
+	nameSort:function(){
+		
+		var sortedArray;
+		if(this.state.sortname){
+			sortedArray = this.state.filtered.sort(sortByKey("lastName",1));
+		}else{
+			sortedArray = this.state.filtered.sort(sortByKey("lastName",0));
+		}
+		this.setState({
+			sortname: !this.state.sortname
+		});
+	},
+
+	ageSort:function(){
+		
+		var sortedArray;
+		if(this.state.sortage){
+			sortedArray = this.state.filtered.sort(sortByKey("birthDate",0));
+		}else{
+			sortedArray = this.state.filtered.sort(sortByKey("birthDate",1));
+		}
+		this.setState({
+			sortage: !this.state.sortage
+		});
+	},
+
+	rankSort:function(){
+		
+		var sortedArray;
+		if(this.state.sortrank){
+			sortedArray = this.state.filtered.sort(sortByKey("rankId",1));
+		}else{
+			sortedArray = this.state.filtered.sort(sortByKey("rankId",0));
+		}
+		this.setState({
+			sortrank: !this.state.sortrank
+		});
+	},
 
   updateRanks: function(ranks) {
     var processedRanks = {};
@@ -85,6 +131,38 @@ var StudentList = module.exports = React.createClass({
 		var content;
 		var students = this.state.filtered;
 		var view;
+		var nameOrder;
+		var rankOrder;
+		var ageOrder;
+
+		if (this.state.sortname){
+			nameOrder = (
+				<th>Student Name&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.nameSort}>&#9660;</Button>
+					</OverlayTrigger>
+				</th>);
+		}else{
+			nameOrder = (
+				<th>Student Name&nbsp; 
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.nameSort}>&#9650;</Button>
+					</OverlayTrigger>
+				</th>);
+		}
+
+		if (this.state.sortage){
+			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9660;</Button></th>
+		}else{
+			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9650;</Button></th>
+		}
+
+		if (this.state.sortrank){
+			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9660;</Button></th>
+		}else{
+			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9650;</Button></th>
+		}
+
 		if (!students) {
 			view = (
 				<Alert bsStyle="danger">
@@ -119,21 +197,25 @@ var StudentList = module.exports = React.createClass({
 						<td>{rankName}</td>
 						<td>{age}</td>
 						<td>{student.guardianInformation}</td>
-						<td><Link to="singleStudent" params={{
-							id: student._id
-						}}>View</Link></td>
+						<td>
+							<ButtonToolbar>
+       					<Link to="singleStudent" params={{id: student._id}}>
+       						<Button bsSize="xsmall">View</Button></Link>
+      				</ButtonToolbar>
+      			</td>			
 					</tr>
 				);
 			});
 
+			
 			view = (
 				<Table>
 					<thead>
-						<th>Student Name</th>
+						{nameOrder}
 						<th>Phone #</th>
 						<th>Email</th>
-						<th>Student Rank</th>
-						<th>Age</th>
+						{rankOrder}
+						{ageOrder}
 						<th>Guardian</th>
 						<th></th>
 					</thead>
@@ -153,3 +235,4 @@ var StudentList = module.exports = React.createClass({
 });
 
 module.exports = StudentList;
+
