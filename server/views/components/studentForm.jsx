@@ -19,7 +19,8 @@ var HealthInput = require('./healthInput.jsx');
 var AlertDismissable = require('./alertDismissable.jsx');
 
 var {
-	Alert
+	Alert,
+	Button
 } = require('react-bootstrap');
 
 var StudentForm = module.exports = React.createClass({
@@ -150,7 +151,7 @@ var StudentForm = module.exports = React.createClass({
 
           <AlertDismissable visable={!this.state.valid} />
 
-					<button onClick={this.handleSubmit}>Save</button>
+					<Button onClick={this.handleSubmit}>Save</Button>
 				</form>
 			</div>
 		);

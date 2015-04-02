@@ -11,7 +11,8 @@ var rankStore = require('../stores/rankStore.jsx');
 
 var {
   Alert,
-  Table
+  Table,
+  Button
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./alertDismissable.jsx');
@@ -245,8 +246,8 @@ var StudentView = module.exports = React.createClass({
             </tr>
             <tr>
               <th></th>
-              <td><button onClick={this.onDeleteStudent}>Delete</button>
-                <button onClick={this.editToggle}>Edit</button>
+              <td><Button onClick={this.onDeleteStudent}>Delete</Button>
+                <Button onClick={this.editToggle}>Edit</Button>
               </td>
             </tr>
           </Table>
@@ -271,8 +272,8 @@ var StudentView = module.exports = React.createClass({
 
           <AlertDismissable visable={!this.state.valid} />
 
-          <button onClick={this.onEditStudent}>Save</button>
-          <button onClick={this.editToggle}>Cancel</button>
+          <Button onClick={this.onEditStudent}>Save</Button>
+          <Button onClick={this.editToggle}>Cancel</Button>
 
         </form>
       </div>
