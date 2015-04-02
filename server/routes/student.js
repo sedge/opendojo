@@ -44,7 +44,6 @@ module.exports = function() {
         res.status(400).send('Invalid data!');
         return;
       }
-
       var newStud = new Student({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -56,9 +55,9 @@ module.exports = function() {
         membershipStatus: req.body.membershipStatus,
         membershipExpiry: req.body.membershipExpiry,
         phone: req.body.phone,
-        birthDate: req.body.birthDate
+        birthDate: req.body.birthDate,
+        emergencyphone: req.body.emergencyphone
       });
-
       newStud.save(function (err, newStud) {
         if (err) {
           log.error({
@@ -120,7 +119,7 @@ module.exports = function() {
         "_id", "firstName", "lastName", "gender",
         "rankId", "healthInformation", "guardianInformation",
         "email",  "membershipStatus", "membershipExpiry",
-        "phone", "birthDate"
+        "phone", "birthDate", "emergencyphone"
       ];
 
       if(!req.body) {

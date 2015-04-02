@@ -31,6 +31,7 @@ module.exports = function(connection) {
       ref: 'Rank'
     },
     healthInformation: String,
+    emergencyphone : String,
     guardianInformation: String,
     email: {
       type: [String],

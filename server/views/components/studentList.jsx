@@ -141,26 +141,55 @@ var StudentList = module.exports = React.createClass({
 					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
 						<Button bsSize="xsmall" onClick={this.nameSort}>&#9660;</Button>
 					</OverlayTrigger>
-				</th>);
-		}else{
+				</th>
+			);
+		}
+		else{
 			nameOrder = (
 				<th>Student Name&nbsp; 
 					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
 						<Button bsSize="xsmall" onClick={this.nameSort}>&#9650;</Button>
 					</OverlayTrigger>
-				</th>);
+				</th>
+			);
 		}
 
 		if (this.state.sortage){
-			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9660;</Button></th>
-		}else{
-			ageOrder = <th>Age <Button bsSize="xsmall" onClick={this.ageSort}>&#9650;</Button></th>
+			ageOrder = (
+				<th>Age&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Age</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.ageSort}>&#9660;</Button>
+					</OverlayTrigger>
+				</th>
+			);
+		}
+		else{
+			ageOrder = (
+				<th>Age&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Age</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.ageSort}>&#9650;</Button>
+					</OverlayTrigger>
+				</th>
+			);
 		}
 
 		if (this.state.sortrank){
-			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9660;</Button></th>
-		}else{
-			rankOrder = <th>Student Rank <Button bsSize="xsmall" onClick={this.rankSort}>&#9650;</Button></th>
+			rankOrder = (
+				<th>Student Rank&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Rank</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.rankSort}>&#9660;</Button>
+					</OverlayTrigger>
+				</th>
+			);
+		}
+		else{
+			rankOrder = (
+				<th>Student Rank&nbsp;
+					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Rank</strong></Tooltip>}>
+						<Button bsSize="xsmall" onClick={this.rankSort}>&#9650;</Button>
+					</OverlayTrigger>
+				</th>
+			);
 		}
 
 		if (!students) {
@@ -193,10 +222,8 @@ var StudentList = module.exports = React.createClass({
 					<tr key={key++}>
 						<td>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
-						<td>{emails}</td>
 						<td>{rankName}</td>
 						<td>{age}</td>
-						<td>{student.guardianInformation}</td>
 						<td>
 							<ButtonToolbar>
        					<Link to="singleStudent" params={{id: student._id}}>
@@ -213,10 +240,8 @@ var StudentList = module.exports = React.createClass({
 					<thead>
 						{nameOrder}
 						<th>Phone #</th>
-						<th>Email</th>
 						{rankOrder}
 						{ageOrder}
-						<th>Guardian</th>
 						<th></th>
 					</thead>
 					<tbody>

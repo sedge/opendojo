@@ -60,7 +60,6 @@ var studentStore = Reflux.createStore({
   // `addStudent` Action handling
 	addStudent: function(data){
     var that = this;
-
     var newStudent = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -71,7 +70,8 @@ var studentStore = Reflux.createStore({
       email: data.email,
       membershipExpiry: new Date(),
       phone: data.phone,
-      birthDate: data.birthDate
+      birthDate: data.birthDate,
+      emergencyphone: data.emergencyphone
     };
 
     request
@@ -218,4 +218,3 @@ var studentStore = Reflux.createStore({
 });
 
 module.exports = studentStore;
-

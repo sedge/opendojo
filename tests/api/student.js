@@ -47,7 +47,8 @@ function createStudentObject(callback) {
     membershipStatus: true,
     membershipExpiry: "2015-04-12T20:44:55.000Z",
     phone: "111-222-3333",
-    birthDate: "2004-04-12T20:44:55.000Z"
+    birthDate: "2004-04-12T20:44:55.000Z",
+    emergencyphone: "999-888-7777"
   };
   callback();
 }

@@ -18,7 +18,7 @@ var DeleteClassButton = module.exports = React.createClass({
 
   render: function() {
     return (
-        <Button bsSize={this.props.bsSize} onClick={this.onClick} >Delete</Button>
+        <Button bsSize={this.props.bsSize} bsStyle='warning' onClick={this.onClick} >Delete</Button>
     );
   }
 });

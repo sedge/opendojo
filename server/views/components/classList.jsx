@@ -12,14 +12,17 @@ var {
 } = require('react-router');
 
 var {
-  sortByKey
+  sortByKey,
+  timeFormatting
 } = require('../bin/utils.jsx');
 
 var DeleteClassButton = require('./deleteClass.jsx');
 var {
   Alert,
   Table,
-  Button
+  Button,
+  OverlayTrigger,
+  Tooltip
 } = require('react-bootstrap');
 
 var ClassList = module.exports = React.createClass({
@@ -137,9 +140,22 @@ var ClassList = module.exports = React.createClass({
     var startTime;
     var endTime;
     if (this.state.sortday){
-      dayOrder = <th>Day <Button bsSize="xsmall" onClick={this.daySort}>&#9660;</Button></th>
-    }else{
-      dayOrder = <th>Day <Button bsSize="xsmall" onClick={this.daySort}>&#9650;</Button></th>
+      dayOrder = (
+        <th>Day&nbsp;
+          <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Day</strong></Tooltip>}>
+            <Button bsSize="xsmall" onClick={this.daySort}>&#9660;</Button>
+          </OverlayTrigger>
+        </th>
+      );
+    }
+    else{
+      dayOrder = (
+        <th>Day&nbsp;
+          <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Day</strong></Tooltip>}>
+            <Button bsSize="xsmall" onClick={this.daySort}>&#9650;</Button>
+          </OverlayTrigger>
+        </th>
+      );
     }
 
 
@@ -158,8 +174,8 @@ var ClassList = module.exports = React.createClass({
         var rankName;
         var rankFromDb;
         rankFromDb = course.classType.split(',');
-        startTime = course.startTime.split(':')[0] +":" +course.startTime.split(':')[1];
-        endTime = course.endTime.split(':')[0] +":" +course.endTime.split(':')[1];
+        startTime = timeFormatting(course.startTime);
+        endTime = timeFormatting(course.endTime);
         switch(course.dayOfWeek){
           case 1:
             day="Monday"
@@ -210,7 +226,7 @@ var ClassList = module.exports = React.createClass({
             <td>{day}</td>
             <td>{startTime} To {endTime} </td>
             <td className="rankName">{rankName}</td>
-            <td><Link to="editClass" params={{id: course._id}}><Button bsSize="small">Edit</Button></Link>&nbsp;&nbsp;
+            <td><Link to="editClass" params={{id: course._id}}><Button bsStyle='primary' bsSize="small">Edit</Button></Link>&nbsp;&nbsp;
                 <DeleteClassButton classId={course._id} onClick={that.onDeleteClass} bsSize="small" />
             </td>
           </tr>

@@ -1,22 +1,26 @@
 var React = require('react');
 var { ListenerMixin } = require('reflux');
-var { Navigation } = require('react-router');
+var { 
+  Navigation,
+  Link
+   } = require('react-router');
 
 var { addClass } = require('../actions/classActions.jsx');
 
-
+var ClassTitle = require('./classTitle.jsx');
 var rankStore = require('../stores/rankStore.jsx');
 
 var AlertDismissable = require('./alertDismissable.jsx');
 
-var RankInput = require('./rankInput.jsx');
+var RankInput = require('./rankInputforClass.jsx');
 
 var {
   Alert,
   Button,
   Input,
   Row,
-  Col
+  Col,
+  Grid
 } = require('react-bootstrap');
 
 var ClassForm = module.exports = React.createClass({
@@ -57,14 +61,26 @@ var ClassForm = module.exports = React.createClass({
   handleSubmit: function(e) {
     if (e) { e.preventDefault(); }
     var that = this;
-    addClass({
-      classTitle:this.refs.classTitle.getValue().trim(),
-      dayOfWeek:this.refs.day.getValue(),
-      startTime:this.refs.startTime.getValue().trim(),
-      endTime:this.refs.endTime.getValue().trim(),
-      classType:this.refs.classtype.getValue()
-    });
-
+    console.log(this.refs.startTime);
+    if(!this.refs.classTitle.getValue() ||
+      !this.refs.day.getValue()||
+      !this.refs.startTime.getValue()||
+      !this.refs.endTime.getValue()||
+      !this.refs.classtype.getValue()
+    ){
+      this.setState({
+        emptyvalid: false
+      });
+    }
+    else{
+      addClass({
+        classTitle:this.refs.classTitle.getValue().trim(),
+        dayOfWeek:this.refs.day.getValue(),
+        startTime:this.refs.startTime.getValue().trim(),
+        endTime:this.refs.endTime.getValue().trim(),
+        classType:this.refs.classtype.getValue()
+      });
+    }
   },
 
   addClassComplete: function() {
@@ -85,12 +101,20 @@ var ClassForm = module.exports = React.createClass({
         </Alert>
       )
     }
+
+    if (!this.state.emptyvalid){
+      emptyWarn = (
+        <Alert bsStyle="danger" id="alert">
+          <p><strong>Please fill all information</strong></p>
+        </Alert>
+      )
+    }
+
     return (
       <div className="addClass container">
         <form>
           <h2> Enter new class information:</h2>
-          {emptyWarn}
-          <Input type="text" label="Class Title" ref="classTitle" name="classTitle" placeholder="Class Title" />
+          <ClassTitle label="Class Title" ref="classTitle" name="classTitle" placeholder="Class Title" />
           <Input type="select" label="Day of Week" ref="day" name="day">
             <option value="" disabled defaultValue className="notDisplay">Select Day of Week</option>
             <option value="1">Monday</option>
@@ -111,11 +135,18 @@ var ClassForm = module.exports = React.createClass({
               </Col>
             </Row>
           </Input>
-          <RankInput label="Class Type" ref="classtype" name="classtype" ranks={this.state.ranks} formType="class" />
+          <RankInput label="Class Type" ref="classtype" name="classtype" ranks={this.state.ranks} />
 
           <AlertDismissable visable={!this.state.valid} />
-
-          <Button onClick={this.handleSubmit}>Save</Button>
+          {emptyWarn}
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large">Cancel</Button></Link></span></Col>
+            </Row>
+          </Grid>
+          
         </form>
       </div>
     );
