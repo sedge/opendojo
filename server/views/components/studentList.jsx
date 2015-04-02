@@ -24,15 +24,28 @@ var StudentList = module.exports = React.createClass({
 	mixins: [ListenerMixin, Navigation],
 	getInitialState: function(){
 		return {
-			students: null
+			students: null,
+			filtered: null
 		};
 	},
+	doSearch:function(queryText){
+		var queryResult=[];
+
+		this.state.students.forEach(function(person){
+     	if((person.firstName.toLowerCase().indexOf(queryText)!=-1 )||(person.lastName.toLowerCase().indexOf(queryText)!=-1 ))
+       	queryResult.push(person);
+		});
+    this.setState({
+    	filtered:queryResult
+    });
+  },
 	componentWillMount: function() {
 		var that = this;
 
 		this.listenTo(studentStore, this.studentsUpdate, function(initialStudents) {
 			that.setState({
-				students: initialStudents
+				students: initialStudents,
+				filtered: initialStudents
 			});
 		});
 
@@ -40,9 +53,15 @@ var StudentList = module.exports = React.createClass({
 			that.updateRanks(initialRanks);
 		});
 	},
+	componentWillReceiveProps: function(newProps){
+		this.doSearch(newProps.query);
+	},
 	studentsUpdate: function(latestStudents) {
 		this.setState({
 			students: latestStudents
+		});
+		this.setState({
+			filtered: this.state.students
 		});
 	},
 
@@ -62,7 +81,7 @@ var StudentList = module.exports = React.createClass({
 		var that = this;
 
 		var content;
-		var students = this.state.students;
+		var students = this.state.filtered;
 		var view;
 		if (!students) {
 			view = (
