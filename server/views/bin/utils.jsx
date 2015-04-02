@@ -11,6 +11,15 @@ function ageCalculator(bday){
   return years;
 }
 
+function timeFormatting(time){
+  if(time.split(':')[1].length == 1){
+        return time.split(":")[0]+":0" + time.split(':')[1];
+  }
+  else{
+    return time.split(":")[0]+":" + time.split(':')[1];
+  }
+}
+
 function sortByKey(property,desc) {
   if (desc) {
     return function (a, b) {
@@ -29,7 +38,8 @@ function sortByKey(property,desc) {
       if(typeof a[property] == "string"){
         var x = a[property].toLowerCase();
         var y = b[property].toLowerCase();
-      }else{
+      }
+      else{
         var x = a[property];
         var y = b[property];
       }
@@ -44,7 +54,8 @@ function membershipStatusCalculator(exDate){
   var restDays = Math.floor((expireDate.getTime()-today.getTime())/(24 * 60 * 60 * 1000));
   if(expireDate-today > 0){
     status = "Available (" + restDays +" days left)";
-  }else {status = "Expired";}
+  }
+  else {status = "Expired";}
   return status;
 }
 
@@ -71,5 +82,6 @@ module.exports = {
   membershipStatusCalculator: membershipStatusCalculator,
   bdateForEdit: bdateForEdit,
   sortByKey: sortByKey,
-  capitalizeFirstLetter: capitalizeFirstLetter
+  capitalizeFirstLetter: capitalizeFirstLetter,
+  timeFormatting: timeFormatting
 };

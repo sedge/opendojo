@@ -1,6 +1,9 @@
 var React = require('react');
 var { ListenerMixin } = require('reflux');
-var { Navigation } = require('react-router');
+var {
+	Navigation,
+	Link
+} = require('react-router');
 
 var { addStudent } = require('../actions/studentActions.jsx');
 
@@ -20,7 +23,10 @@ var AlertDismissable = require('./alertDismissable.jsx');
 
 var {
 	Alert,
-	Button
+	Button,
+	Row,
+	Col,
+	Grid
 } = require('react-bootstrap');
 
 var {
@@ -101,10 +107,9 @@ var StudentForm = module.exports = React.createClass({
 				!this.refs.gender.getValue().trim() ||
 				!this.refs.bday.getValue().trim() ||
 				!emails){
-				console.log("empty");
 			this.setState({
 				emptyvalid: false
-			})
+			});
 		}else{
 			var fName = capitalizeFirstLetter(this.refs.firstName.getValue().trim());
 			var lName = capitalizeFirstLetter(this.refs.lastName.getValue().trim());
@@ -117,7 +122,8 @@ var StudentForm = module.exports = React.createClass({
 				birthDate: this.refs.bday.getValue().trim(),
 				guardianInformation: this.refs.guardian.getValue().trim(),
 				healthInformation: this.refs.health.getValue().trim(),
-				email: emails
+				email: emails,
+				emergencyphone: this.refs.emergencyphone.getValue().trim()
 			});
 		}
 	},
@@ -136,7 +142,7 @@ var StudentForm = module.exports = React.createClass({
 		if (!this.state.emptyvalid){
 			emptyWarn = (
 				<Alert bsStyle="danger" id="alert">
-					<p><strong>Please fill all text box</strong></p>
+					<p><strong>Please fill all information</strong></p>
 				</Alert>
 			)
 		}
@@ -144,7 +150,6 @@ var StudentForm = module.exports = React.createClass({
 			<div className="addStudent container">
 				<form>
 					<h2> Enter new student information:</h2>
-					{emptyWarn}
 					<FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
 					<LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
 					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
@@ -153,11 +158,17 @@ var StudentForm = module.exports = React.createClass({
 					<GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />
 					<EmailInput label="Email" ref="emails" name="emails" placeholder="(comma delimited)" />
 					<GuardianInput label="Guardian Information" ref="guardian" name="guardian" placeholder="(Name of guardian)" />
+					<PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" placeholder="XXX-XXX-XXXX" />
 					<HealthInput label="Health Informaion" ref="health" name="health" placeholder="(Health Information)"/>
-
           <AlertDismissable visable={!this.state.valid} />
-
-					<Button onClick={this.handleSubmit}>Save</Button>
+					{emptyWarn}
+					<Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="students"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+            </Row>
+          </Grid>
 				</form>
 			</div>
 		);

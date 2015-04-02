@@ -14,6 +14,7 @@ var id = 0;
 
 var classes = [];
 
+
 var authActions = require('../actions/authActions.jsx');
 var authStore = require('../stores/authStore.jsx');
 
@@ -192,4 +193,3 @@ var classStore = Reflux.createStore({
 });
 
 module.exports = classStore;
-

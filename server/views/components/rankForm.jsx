@@ -1,23 +1,22 @@
 var React = require('react');
 var { ListenerMixin } = require('reflux');
-var { Navigation } = require('react-router');
-
+var {
+  Navigation,
+  Link
+} = require('react-router');
 var { addRank } = require('../actions/rankActions.jsx');
-
 var rankStore = require('../stores/rankStore.jsx');
-
 var RankName = require('./rankName.jsx');
 var RankSequence = require('./rankSequence.jsx');
 var RankColor = require('./rankColor.jsx');
-
 var AlertDismissable = require('./alertDismissable.jsx');
-
-
 var {
   Alert,
-  Button
+  Button,
+  Col,
+  Row,
+  Grid
 } = require('react-bootstrap');
-
 var RankForm = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
 
@@ -99,14 +98,20 @@ var RankForm = module.exports = React.createClass({
     return (
       <div className="addRank container">
         <form>
-         {emptyWarn}
+
           <h2> Enter new rank information:</h2>
           <RankName label="Rank Name" ref="name" name="name" placeholder="e.g. Black" />
           <RankColor label="Rank Color" ref="color" name="color" placeholder="e.g. Black" />
 
           <AlertDismissable visable={!this.state.valid} />
-
-          <button onClick={this.handleSubmit}>Save</button>
+          {emptyWarn}
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="ranks"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+            </Row>
+          </Grid>
         </form>
       </div>
     );

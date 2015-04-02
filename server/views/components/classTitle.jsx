@@ -1,7 +1,7 @@
 var React = require('react');
 var $ = require('jquery');
 var {
-  isNumeric,
+  isAlpha,
   isLength,
   blacklist
 } = require('validator');
@@ -10,7 +10,7 @@ var {
   Input
 } = require('react-bootstrap');
 
-var FirstName = module.exports = React.createClass({
+var ClassTitle = module.exports = React.createClass({
   getInitialState: function() {
     return {
       valid: true,
@@ -22,21 +22,14 @@ var FirstName = module.exports = React.createClass({
     var ref = this.refs[this.props.name];
     var value = ref.getValue().trim();
 
-    // Allow dashes
-    var sanitized = blacklist(value, "-")
-     if (!isLength(value, 12, 12) || !isLength(sanitized, 10, 10) || !isNumeric(sanitized)) {
-      if (this.props.name == "emergencyphone" && value.length == 0){
-        return this.setState({
-          valid: true,
-          value: value
-        });
-      }
-      else{
-        return this.setState({
-          valid: false,
-          value: value
-        });
-      }
+    // Allow whitespace
+    var sanitized = blacklist(value, " ")
+
+    if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
+      return this.setState({
+        valid: false,
+        value: value
+      });
     }
 
     if (!this.state.valid) {
@@ -45,7 +38,6 @@ var FirstName = module.exports = React.createClass({
         value: value
       });
     }
-
   },
 
   // Get value from the ref
@@ -75,7 +67,7 @@ var FirstName = module.exports = React.createClass({
     var feedback;
     if (!this.state.valid) {
       feedback = (
-        <p><strong>A phone number is required. Format: 123-456-7890</strong></p>
+        <p><strong>A class title is required, and must only be letters.</strong></p>
       );
     }
 

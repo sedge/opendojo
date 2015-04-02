@@ -14,6 +14,7 @@ var {
   Table,
   ButtonToolbar,
   Button
+
 } = require('react-bootstrap');
 
 var {
