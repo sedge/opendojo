@@ -4,5 +4,6 @@ module.exports = {
   rank: require('./rank'),
   student: require('./student'),
 
-  auth: require('./auth')
+  auth: require('./auth'),
+  email: require('./email')
 };

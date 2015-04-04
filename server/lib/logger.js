@@ -14,6 +14,7 @@ var opts = {
     res: bunyan.stdSerializers.res,
     req: function request(req) {
       return {
+        httpType: "Request",
         method: req.method,
         url: req.url,
         headers: req.headers,

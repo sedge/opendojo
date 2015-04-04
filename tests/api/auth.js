@@ -28,7 +28,7 @@ describe('The GET \'/token\' route', function() {
       password: "BAH"
     }
   };
-debugger;
+
   it('should respond with a 200 and a generated token object with valid user credentials', function(done) {
     utils.jwtSetup(options, function(err, res, body) {
       expect(err).to.not.exist;

@@ -29,10 +29,10 @@ module.exports = {
   // Helper function to wrap the token route and conveniently send back
   // relevant response data
   jwtSetup: function(options, callback) {
-    if (!callback) throw err;
+    if (!callback) expect(true, " [callback wasn't passed to jwtSetup] ").to.be.false;
 
     request.get(fullUrl + '/token', options, function(err, res, body) {
-      if (err) throw err;
+      if (err) expect(err).to.not.exist;
 
       // We don't want this JSON parser to err out if we're
       // trying to force a 401 with intentionally faulty data
@@ -48,7 +48,7 @@ module.exports = {
         }
       }
 
-      callback(err, res, body, authInfo);
+      callback(null, res, body, authInfo);
     });
   },
   // Helper function to access all server-side API routes

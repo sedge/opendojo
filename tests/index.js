@@ -20,3 +20,13 @@ require('./api/course.js')
 
 // Auth API
 require('./api/auth');
+
+
+/**
+ * The email API tests require sensitive information.
+ * They must only be run with a local .env file and not
+ * on deployment services like `travis-ci`.
+ */
+
+// Email API
+// require('./api/email');
