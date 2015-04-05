@@ -2,6 +2,7 @@ var React = require('react');
 var $ = require('jquery');
 var {
   isEmail,
+  isLength,
   normalizeEmail
 } = require('validator');
 
@@ -21,6 +22,13 @@ var FirstName = module.exports = React.createClass({
     var ref = this.refs[this.props.name];
     var value = ref.getValue().trim();
     var sanitized = normalizeEmail(value);
+
+    if (this.props.allowEmpty && isLength(value, 0, 0)) {
+      return this.setState({
+        valid: true,
+        value: value
+      });
+    }
 
     if (!isEmail(sanitized)) {
       return this.setState({
@@ -56,11 +64,15 @@ var FirstName = module.exports = React.createClass({
       ref: this.props.name,
       name: this.props.name,
       defaultValue: this.state.value,
-      placeholder: this.props.placeholer
+      placeholder: this.props.placeholder
     };
     if (this.validationState()) {
       props.bsStyle = this.validationState();
     }
+    if (this.props.disabled) {
+      props.disabled = true;
+    }
+
 
     var feedback;
     if (!this.state.valid) {

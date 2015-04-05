@@ -32,7 +32,7 @@ function sortByKey(property,desc) {
         var y = b[property];
       }
       return (x > y) ? -1 : (x< y) ? 1 : 0;
-    }   
+    }
   }
   return function (a, b) {
       if(typeof a[property] == "string"){
@@ -64,11 +64,12 @@ function bdateForEdit(date){
   var yyyy = bdate.getFullYear().toString();
   var mm = (bdate.getMonth()+1).toString();
   var dd  = (bdate.getDate()).toString();
- 
+  var dd  = bdate.getDate().toString();
+
   // CONVERT mm AND dd INTO chars
   var mmChars = mm.split('');
   var ddChars = dd.split('');
- 
+
   // CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
   return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
 }

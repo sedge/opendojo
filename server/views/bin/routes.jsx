@@ -14,22 +14,24 @@ var {
 
 var App = require('../components/app.jsx');
 
+// First level views
 var Welcome = require('../components/welcome.jsx');
+var Notify = require('../components/notify.jsx');
+var Students = require('../components/students.jsx');
+var Ranks = require('../components/ranks.jsx');
+var Classes = require('../components/classes.jsx');
 
 // Student child views
 var ListStudents = require('../components/studentList.jsx');
 var ViewStudent = require('../components/studentView.jsx');
 var AddStudent = require('../components/studentForm.jsx');
-var Students = require('../components/students.jsx');
 
 // Rank child views
 var ListRanks = require('../components/rankList.jsx');
 var ViewRank = require('../components/rankView.jsx');
 var AddRank = require('../components/rankForm.jsx');
-var Ranks = require('../components/ranks.jsx');
 
 // Class child views
-var Classes = require('../components/classes.jsx');
 var AddClass = require('../components/classForm.jsx');
 var EditClass = require('../components/editClass.jsx');
 var ListClasses = require('../components/classList.jsx')
@@ -53,11 +55,13 @@ var routes = (
 			<Route name="singleStudent" path=":id" handler={ViewStudent} />
 			<DefaultRoute handler={ListStudents} />
 		</Route>
+
 		<Route name='ranks' path='ranks' handler={Ranks}>
 			<Route name="addRank" path = "new" handler={AddRank}/>
 			<Route name="singleRank" path=":id" handler={ViewRank} />
 			<DefaultRoute handler={ListRanks} />
 		</Route>
+
 		<Route name='classes' path='classes' handler={Classes} >
 			<Route name="addClass" path="new" handler={AddClass} />
 			<Route name="editClass" path=":id" handler={EditClass} />
@@ -66,9 +70,15 @@ var routes = (
 		<Route name='attendances' path='attendances' handler={Attendances}>
 			<DefaultRoute handler={ListAttendance} />
 		</Route>
-        <Route name='guide' path='guide' handler={Guide}>
-            <DefaultRoute handler={Guide} />
-        </Route>
+    <Route name='guide' path='guide' handler={Guide}>
+        <DefaultRoute handler={Guide} />
+    </Route>
+
+		<Route name='welcome' path='welcome' handler={Welcome} />
+		<Route name='welcome4' path='welcome4' handler={Welcome} />
+
+		<Route name='notify' path='notify' handler={Notify} />
+
 		<DefaultRoute handler={Welcome} />
 		<NotFoundRoute handler={Welcome} />
 	</Route>

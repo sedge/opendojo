@@ -16,6 +16,7 @@ var app = module.exports = express();
 // render without jade for templating
 app.use(express.static(path.join(__dirname, './views')));
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/node_modules/quill/dist'));
 
 app.disable("x-powered-by");
 

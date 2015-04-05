@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var nodemailer = require('nodemailer');
+var sanitizer = require('sanitize-html');
 
 var env = require('../lib/environment');
 
@@ -36,9 +37,7 @@ module.exports = function() {
       var emailOptions = {
         from: env.get("EMAIL_ADDRESS"),
         subject: req.body.subject,
-        // This could be "html", but we must be careful to
-        // prevent XSS attacks
-        text: req.body.message
+        html: sanitizer(req.body.message)
       };
 
       // Choose between `to:` and `bcc:` fields for privacy

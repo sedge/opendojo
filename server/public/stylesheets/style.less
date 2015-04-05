@@ -13,6 +13,7 @@
 */
 
 @import (inline) "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import (inline) "../../../node_modules/quill/dist/quill.snow.css";
 
 // Common colors
 @bodyColor: #000;
@@ -198,7 +199,7 @@ button {
 }
 
 .red {
-  color: #ff9933; 
+  color: #ff9933;
 }
 
 .list-group .list-group-item {
@@ -323,3 +324,45 @@ a {
 .table>tbody>tr>td .rankName{
   white-space: pre;
 }
+
+// Editor
+#toolbar {
+  border: 1px solid #e5e5e5;
+  background-color: #FFFFFF;
+  width: 100%;
+  margin: 20px 0px;
+  box-shadow: 2px 1px 5px #FFFFFF;
+}
+#editor {
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #000000;
+  margin: 20px 0px;
+    box-shadow: 2px 1px 5px #FFFFFF;
+    border: 1px solid #e5e5e5;
+  height: 300px;
+}
+
+#studentFilter .control-label {
+  font-size: 15px;
+}
+
+#studentFilter .control-label,
+#studentFilter td,
+#studentFilter strong  {
+  font-size: 15px;
+}
+
+#filterResults {
+  height:200px;
+  overflow-y: scroll;
+}
+
+#studentFilter .panel-heading {
+  font-size:15px;
+}
+
+#notificationToField .btn-group {
+  color: black;
+}
+

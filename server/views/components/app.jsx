@@ -40,11 +40,13 @@ var {
 // Note, each route is actually a name
 // corresponding with the React-Router
 // configuration in router.jsx
-var nav = {
+var dashboardNav = {
   "Students": "students",
   "Ranks": "ranks",
   "Classes": "classes",
-  "Attendance": "attendances"
+  "Attendance": "attendances",
+  "Send Notifications": "notify",
+  "Switch to Terminal Mode": "welcome"
 };
 
 // Unique key for each link
@@ -127,14 +129,15 @@ var App = React.createClass({
   },
 
   render: function() {
-    var linkText = Object.keys(nav);
-    var links = linkText.map(function(linkText) {
+    var primaryLinksText = Object.keys(dashboardNav);
+    var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
       return (
-        <NavItemLink to = {nav[linkText]} key = {headerLinkId++}>
-          {linkText}
+        <NavItemLink to={dashboardNav[primaryLinksText]} key={headerLinkId++}>
+          {primaryLinksText}
         </NavItemLink>
       );
     });
+
     var view;
 
     /*
@@ -209,6 +212,7 @@ var App = React.createClass({
               <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
             </Nav>
           </Navbar>
+
           <Grid>
             {/* Main Content */}
             <Row>
@@ -217,14 +221,14 @@ var App = React.createClass({
                 <div className = "sidebar-nav">
                   <Navbar>
                     <Nav>
-                      {links}
+                      {primaryLinks}
                     </Nav>
                   </Navbar>
                 </div>
               </Col>
-              {/* Child View */}
-              <Col md = {9}>
-                <RouteHandler routerParams={this.props.routerParams} />
+              { /* Child View */ }
+              <Col md={9}>
+                <RouteHandler routerParams={this.props.routerParams}/>
               </Col>
             </Row>
             {/* Footer */}

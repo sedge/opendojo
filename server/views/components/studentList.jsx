@@ -75,7 +75,6 @@ var StudentList = module.exports = React.createClass({
 		});
 	},
 	nameSort:function(){
-		
 		var sortedArray;
 		if(this.state.sortname){
 			sortedArray = this.state.filtered.sort(sortByKey("lastName",1));
@@ -88,7 +87,6 @@ var StudentList = module.exports = React.createClass({
 	},
 
 	ageSort:function(){
-		
 		var sortedArray;
 		if(this.state.sortage){
 			sortedArray = this.state.filtered.sort(sortByKey("birthDate",0));
@@ -101,7 +99,6 @@ var StudentList = module.exports = React.createClass({
 	},
 
 	rankSort:function(){
-		
 		var sortedArray;
 		if(this.state.sortrank){
 			sortedArray = this.state.filtered.sort(sortByKey("rankId",1));
@@ -145,7 +142,7 @@ var StudentList = module.exports = React.createClass({
 		}
 		else{
 			nameOrder = (
-				<th>Student Name&nbsp; 
+				<th>Student Name&nbsp;
 					<OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last Name</strong></Tooltip>}>
 						<Button bsSize="xsmall" onClick={this.nameSort}>&#9650;</Button>
 					</OverlayTrigger>
@@ -228,12 +225,12 @@ var StudentList = module.exports = React.createClass({
        					<Link to="singleStudent" params={{id: student._id}}>
        						<Button bsSize="small">View</Button></Link>
       				</ButtonToolbar>
-      			</td>			
+      			</td>
 					</tr>
 				);
 			});
 
-			
+
 			view = (
 				<Table>
 					<thead>
