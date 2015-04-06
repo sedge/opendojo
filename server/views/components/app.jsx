@@ -36,7 +36,7 @@ var {
 // configuration in router.jsx
 var nav = {
   "Students": "students",
-  "Ranks": "welcome2",
+  "Ranks": "ranks",
   "Classes": "welcome3",
   "Attendance": "welcome4"
 };
