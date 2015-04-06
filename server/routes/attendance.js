@@ -24,7 +24,6 @@ module.exports = function() {
           });
           return;
         }
-
         res.status(200).json(records);
         log.info({
           req: req,

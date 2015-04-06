@@ -42,7 +42,7 @@ var nav = {
   "Students": "students",
   "Ranks": "ranks",
   "Classes": "classes",
-  "Attendance": "welcome4"
+  "Attendance": "attendances"
 };
 
 // Unique key for each link

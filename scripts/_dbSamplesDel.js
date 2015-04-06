@@ -29,10 +29,15 @@ function _clearSampleData() {
             return process.exit(1);
           }
           console.log('All class sample data removed');
-          process.exit();
+          models.Attendance.remove(function(err){
+            if(err){
+              console.log("Error removing! ",err);
+              return process.exit(1);
+            }
+            console.log('All attendance sample data removed');
+            process.exit();
+          });
         });
-
-        
       });
     });
   });

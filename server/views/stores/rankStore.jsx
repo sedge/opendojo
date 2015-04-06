@@ -180,7 +180,7 @@ var rankStore = Reflux.createStore({
         }
 
         // A delete returns 204 no matter what,
-        // so we attempt a get request on the student
+        // so we attempt a get request on the rank
         // to confirm it was deleted
         request
           .get(URL + "rank/" + id)

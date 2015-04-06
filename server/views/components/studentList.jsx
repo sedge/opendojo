@@ -127,7 +127,6 @@ var StudentList = module.exports = React.createClass({
 
 	render: function() {
 		var that = this;
-
 		var content;
 		var students = this.state.filtered;
 		var view;

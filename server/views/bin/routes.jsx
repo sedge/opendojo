@@ -34,6 +34,11 @@ var AddClass = require('../components/classForm.jsx');
 var EditClass = require('../components/editClass.jsx');
 var ListClasses = require('../components/classList.jsx')
 
+// Attendance child views
+var ListAttendance = require('../components/attendanceList.jsx');
+var Attendances = require('../components/attendances.jsx');
+
+
 // This:
 //   1. Sets up routing functionality
 //   2. Lays out the structure of the app clearly
@@ -57,8 +62,9 @@ var routes = (
 			<Route name="editClass" path=":id" handler={EditClass} />
 			<DefaultRoute handler={ListClasses} />
 		</Route>
-		<Route name='welcome4' path='welcome4' handler={Welcome} />
-
+		<Route name='attendances' path='attendances' handler={Attendances}>
+			<DefaultRoute handler={ListAttendance} />
+		</Route>
 		<DefaultRoute handler={Welcome} />
 		<NotFoundRoute handler={Welcome} />
 	</Route>
