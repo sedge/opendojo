@@ -29,7 +29,6 @@ var RankForm = module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    var that = this;
 
     this.listenTo(addRank.completed, this.addRankComplete);
     this.listenTo(addRank.failed, this.addRankFailed);
@@ -66,7 +65,6 @@ var RankForm = module.exports = React.createClass({
     if (!this.refs.name.getValue().trim()||
         !this.refs.color.getValue().trim()
         ){
-        console.log("empty");
         this.setState({
           emptyvalid:false
         })

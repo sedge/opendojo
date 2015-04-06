@@ -18,7 +18,6 @@ var RankList = module.exports = React.createClass({
   mixins: [ListenerMixin, Navigation],
   getInitialState: function(){
     return {
-      //intro ranks 
       ranks: null
     };
   },

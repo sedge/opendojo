@@ -1,5 +1,5 @@
 var React = require('react');
-var $ = require('jquery');
+
 var {
   isAlpha,
   isLength,
@@ -25,15 +25,7 @@ var RankColor = module.exports = React.createClass({
     // Allow whitespace
     var sanitized = blacklist(value, " ")
 
-    if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
-      return this.setState({
-        valid: false,
-        value: value
-      });
-    }
-
-    if (!isLength(sanitized, 1, 25))
-    {
+    if (!isLength(sanitized, 1, 25) || !isAlpha(sanitized)) {
       return this.setState({
         valid: false,
         value: value

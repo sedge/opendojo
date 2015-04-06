@@ -27,6 +27,7 @@ var ListRanks = require('../components/rankList.jsx');
 var ViewRank = require('../components/rankView.jsx');
 var AddRank = require('../components/rankForm.jsx');
 var Ranks = require('../components/ranks.jsx');
+
 // This:
 //   1. Sets up routing functionality
 //   2. Lays out the structure of the app clearly
