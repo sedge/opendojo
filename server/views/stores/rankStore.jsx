@@ -146,7 +146,7 @@ var rankStore = Reflux.createStore({
       });
   },
   editRankFailed: function() {
-    this.trigger(ranks)
+    this.trigger(ranks);
   },
   editRankCompleted: function() {
     this.trigger(ranks);
@@ -184,8 +184,10 @@ var rankStore = Reflux.createStore({
         // to confirm it was deleted
         request
           .get(URL + "rank/" + id)
+          .set(authInfo)
           .end(function(err, res) {
             if (err) {
+              var i = 0;
               return deleteRank.failed("API Error: " + err.toString());
             }
 

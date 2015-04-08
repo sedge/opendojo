@@ -18,14 +18,14 @@ var Ranks = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addRank"><Button>+</Button></Link>
+        <Link to="addRank"><Button bsSize='large'>+</Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-                <Col xs={6} md={4}><h4 className="text-center">RANK MANAGEMENT TOOLBAR</h4></Col>
-                <Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
+          <Col xs={12} md={8}><h4 className="pull-right">RANK MANAGEMENT TOOLBAR</h4></Col>
+          <Col xs={4} md={4}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>
     );
