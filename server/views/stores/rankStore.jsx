@@ -25,7 +25,7 @@ var {
 var authInfo;
 
 var rankStore = Reflux.createStore({
-  listenables: authActions,
+  listenables: [authActions, rankActions],
   mixins: [ListenerMixin],
 
   init: function() {
@@ -80,7 +80,7 @@ var rankStore = Reflux.createStore({
   },
 
   // `addRank` Action handling
-  addRank: function(data){
+  addRank: function(data){debugger;
     var that = this;
 
     var newRank = {
@@ -91,6 +91,7 @@ var rankStore = Reflux.createStore({
 
     request
       .post(URL + 'ranks')
+      .set(authInfo)
       .send(newRank)
       .end(function(err, res){
         if(err){
@@ -133,6 +134,7 @@ var rankStore = Reflux.createStore({
     }
     request
       .put(URL + "rank/" + updatedInfo._id)
+      .set(authInfo)
       .send(rankToSend)
       .end(function(err, res) {
         if(err){
@@ -171,6 +173,7 @@ var rankStore = Reflux.createStore({
 
     request
       .del(URL + "rank/" + id)
+      .set(authInfo)
       .end(function(err, res){
         if (err) {
           return deleteRank.failed("API Error: " + err.toString());

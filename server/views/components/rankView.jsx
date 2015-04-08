@@ -26,7 +26,7 @@ var RankView = module.exports = React.createClass({
   getInitialState: function() {
     return {
       editable: false,
-      valid: true, 
+      valid: true,
       deleteMessage: "",
       availableRanks: []
     };
@@ -41,7 +41,7 @@ var RankView = module.exports = React.createClass({
       that.showRank(ranks);
     });
 
-    // Listen to students to see what ranks the students have so that a rank wouldn't 
+    // Listen to students to see what ranks the students have so that a rank wouldn't
     // deleted if it's assigned to a student
     this.listenTo(studentStore, this.getStudentRanks, function(students){
       this.getStudentRanks(students);
@@ -55,22 +55,19 @@ var RankView = module.exports = React.createClass({
     this.listenTo(rankActions.editRank.failed, this.editRankFailed);
   },
 
-  getStudentRanks: function(students) {debugger;
+  getStudentRanks: function(students) {
     var usedRanks = [];
 
     students.forEach(function(student){
       usedRanks.push(student.rankId);
     });
-   /* students.map(function(student){
-      usedRanks[student._id] = student.rankId;
-    });
-*/
+
     this.setState({
       availableRanks: usedRanks
     });
   },
 
-  showRank: function(ranks) {debugger;
+  showRank: function(ranks) {
     var that = this;
     var id = that.props.routerParams.id;
 
@@ -89,7 +86,7 @@ var RankView = module.exports = React.createClass({
     });
     var highestSequence = rankStore.getSequence()+1;
     for (var i=1; i<highestSequence; i++) {
-      debugger;
+
       if (!that.presentInArray(rankSequence,i)){
         rankSequence.push(i);
       }
@@ -101,7 +98,7 @@ var RankView = module.exports = React.createClass({
   },
   presentInArray: function(array, searchElement) {
     for (var j=0; j<array.length; j++) {
-      if (searchElement == array[j]) {debugger;
+      if (searchElement == array[j]) {
         var whatever = 0;
         return true;
       }
@@ -115,7 +112,7 @@ var RankView = module.exports = React.createClass({
   },
 
   // `EditRank` Action Handling
-  onEditRank: function(e){debugger;
+  onEditRank: function(e){
     if (e) { e.preventDefault(); }
 
     var that = this;
@@ -166,7 +163,7 @@ var RankView = module.exports = React.createClass({
     });
   },
   // `DeleteRank` Action Handling
-  onDeleteRank: function(e){debugger;
+  onDeleteRank: function(e){
     var mayDelete=true;
     var rankIDBeingDeleted = this.props.routerParams.id;
     var availableRanks = this.state.availableRanks;
@@ -184,10 +181,10 @@ var RankView = module.exports = React.createClass({
       });
     }
   },
-  deleteRankComplete: function(ranks) {debugger;
+  deleteRankComplete: function(ranks) {
     this.transitionTo("ranks");
   },
-  deleteRankFailed: function(ranks) {debugger;
+  deleteRankFailed: function(ranks) {
     this.transitionTo("ranks");
   },
 
@@ -213,7 +210,7 @@ var RankView = module.exports = React.createClass({
           <Table bordered={true} striped={true}>
             <tr>
               <th colSpan="4">Viewing: {
-                rank.name 
+                rank.name
               }</th>
             </tr>
             <tr>

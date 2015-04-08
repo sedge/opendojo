@@ -68,7 +68,7 @@ var RankForm = module.exports = React.createClass({
         this.setState({
           emptyvalid:false
         })
-    }else{ 
+    }else{
       var sequenceToAdd = rankStore.getSequence();
       addRank({
         name: this.refs.name.getValue().trim(),
@@ -95,7 +95,7 @@ var RankForm = module.exports = React.createClass({
           <p><strong>Please fill all text boxes</strong></p>
         </Alert>
       )
-    } 
+    }
     return (
       <div className="addRank container">
         <form>
