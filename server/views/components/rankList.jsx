@@ -72,6 +72,7 @@ var RankList = module.exports = React.createClass({
             <th>Rank Title</th>
             <th>Rank Sequence</th>
             <th>Rank Color</th>
+            <th></th>
           </thead>
           <tbody>
             {rankRows}
