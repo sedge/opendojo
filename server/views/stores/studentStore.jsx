@@ -32,26 +32,7 @@ var studentStore = Reflux.createStore({
 	init: function(){
     var that = this;
 
-    this.listenTo(authStore, this.logInCompleted, function(latestToken){
-      this.logInCompleted(latestToken);
-      request
-        .get(URL + 'students')
-        .set(authInfo)
-        .end(function(err,res){
-          if (err) {
-            console.error("Error initializing the studentStore: ", err);
-          }
-
-          if(res.statusCode == 401 || res.text == "Access token has expired") {
-            return logIn.failed(res.text, res.statusCode);
-          }
-
-          if (res.body && res.body.length && res.body.length > 0) {
-            students = res.body;
-          }
-          that.trigger(students);
-      });
-    });
+    this.listenTo(authStore, this.authUpdate, this.authUpdate);
     request
       .get(URL + 'students')
       .set(authInfo)
@@ -208,10 +189,31 @@ var studentStore = Reflux.createStore({
     // Delete success handling goes here
     this.trigger(students);
   },
-  logInCompleted: function(latestToken) {
+
+  authUpdate: function(latestToken) {
+    var that = this;
+
     authInfo = {
         "x-access-token": latestToken
     };
+
+    request
+      .get(URL + 'students')
+      .set(authInfo)
+      .end(function(err,res){
+        if (err) {
+          console.error("Error initializing the studentStore: ", err);
+        }
+
+        if(res.statusCode == 401 || res.text == "Access token has expired") {
+          return logIn.failed(res.text, res.statusCode);
+        }
+
+        if (res.body && res.body.length && res.body.length > 0) {
+          students = res.body;
+        }
+        that.trigger(students);
+    });
   }
 });
 

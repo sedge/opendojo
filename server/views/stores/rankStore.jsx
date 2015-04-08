@@ -22,43 +22,41 @@ var rankStore = Reflux.createStore({
   mixins: [ListenerMixin],
 
   init: function() {
-    var that = this;
-    var processedRanks = {};
-
-    this.listenTo(authStore, this.logInCompleted, function(latestToken) {
-      this.logInCompleted(latestToken);
-
-      request
-        .get(URL + 'ranks')
-        .set(authInfo)
-        .end(function (err, res) {
-          if (err) {
-            console.error("Error initializing the rankStore: ", err);
-          }
-
-          // Force a re-render on app.jsx to the login screen in case of invalid auth
-          if (res.statusCode == 401 || res.text == "Access token has expired") {
-            return logIn.failed(res.text, res.statusCode);
-          }
-
-          if (res.body && res.body.length && res.body.length > 0) {
-            ranks = res.body;
-          }
-
-          that.trigger(ranks);
-      });
-    });
+    this.listenTo(authStore, this.authUpdated, this.authUpdated);
   },
+
   // Initial getter for anything listening to
   // this store
   getInitialState: function() {
     return ranks;
   },
 
-  logInCompleted: function(latestToken) {
+  authUpdated: function(latestToken) {
+    var that = this;
+
     authInfo = {
       "x-access-token": latestToken
     };
+
+    request
+      .get(URL + 'ranks')
+      .set(authInfo)
+      .end(function (err, res) {
+        if (err) {
+          console.error("Error initializing the rankStore: ", err);
+        }
+
+        // Force a re-render on app.jsx to the login screen in case of invalid auth
+        if (res.statusCode == 401 || res.text == "Access token has expired") {
+          return logIn.failed(res.text, res.statusCode);
+        }
+
+        if (res.body && res.body.length && res.body.length > 0) {
+          ranks = res.body;
+        }
+
+        that.trigger(ranks);
+    });
   }
 });
 

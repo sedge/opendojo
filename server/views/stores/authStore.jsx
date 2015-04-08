@@ -19,12 +19,14 @@ var authStore = Reflux.createStore({
   },
 
   init: function() {
-    this.listenTo(logIn.completed, function(latestToken) {
-      token = latestToken;
-      localStorage.setItem("token", token);
+    this.listenTo(logIn.completed, this.logInCompleted, this.logInCompleted);
+  },
 
-      this.trigger(token);
-    });
+  logInCompleted: function(latestToken) {
+    token = latestToken;
+    localStorage.setItem("token", token);
+
+    this.trigger(token);
   },
 
   logIn: function(auth) {
