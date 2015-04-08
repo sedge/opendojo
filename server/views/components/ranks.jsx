@@ -18,7 +18,7 @@ var Ranks = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addRank"><Button>+</Button></Link>
+        <Link to="addRank"><Button bsSize='large'>+</Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(
