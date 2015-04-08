@@ -64,8 +64,8 @@ body {
 }
 
 // LESSifying these wildly nested nav classes does not work at the moment
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-  background-color: transparent;
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background-color: @borderColor;
   color: @focusColor;
 }
 
@@ -123,6 +123,25 @@ body {
 .btn {
   background: @borderColor;
   color: #fff;
+  border-color: transparent;
+
+  &:hover {
+    color: #fff;
+    background-color: lighten(@borderColor, 10%);
+    border-color: transparent !important;
+  }
+}
+
+.alert {
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.alert-info {
+  background-color: @borderColor;
+  border-color: transparent;
+  color: lighten(#31708f, 40%);
 }
 
 .alert-success {
@@ -155,11 +174,11 @@ body {
 }
 
 .input-group {
-  margin-bottom: 1%;
+  margin-bottom: 0;
 }
 
 #loginForm {
-  padding-right: 10%;
+  padding-right: 11%;
 }
 
 #top {

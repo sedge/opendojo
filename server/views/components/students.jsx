@@ -29,7 +29,7 @@ var Students = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addStudent"><Button>+</Button></Link>
+        <Link to="addStudent"><Button bsSize='large'>+</Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(

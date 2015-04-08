@@ -12,7 +12,8 @@ var rankStore = require('../stores/rankStore.jsx');
 var {
   Alert,
   Table,
-  Button
+  Button,
+  Col
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./alertDismissable.jsx');
@@ -244,8 +245,11 @@ var StudentView = module.exports = React.createClass({
               <td colSpan="3">{student.healthInformation}</td>
             </tr>
           </Table>
-          <Button onClick={this.editToggle}>Edit</Button>
-          <Button onClick={this.onDeleteStudent}>Delete</Button>
+          <Col xs={6} xsOffset={4}>
+            <Button bsSize="large" onClick={this.onDeleteStudent}>Delete</Button>
+            &nbsp;
+            <Button bsSize="large" onClick={this.editToggle}>Edit</Button>
+          </Col>
         </div>
       );
     }
@@ -253,7 +257,6 @@ var StudentView = module.exports = React.createClass({
       <div className="studentView container">
         <form>
           <h2>Update Student Information:</h2>
-          c
           <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
           <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
           <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rank} />
@@ -265,10 +268,11 @@ var StudentView = module.exports = React.createClass({
           <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
 
           <AlertDismissable visable={!this.state.valid} />
-
-          <Button onClick={this.onEditStudent}>Save</Button>&nbsp;&nbsp;
-          <Button onClick={this.editToggle}>Cancel</Button>
-
+          <Col xs={6} xsOffset={4}>
+            <Button bsSize="large" onClick={this.onEditStudent}>Save</Button>
+            &nbsp;
+            <Button bsSize="large" onClick={this.editToggle}>Cancel</Button>
+          </Col>
         </form>
       </div>
     );

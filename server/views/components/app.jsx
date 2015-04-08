@@ -132,9 +132,12 @@ var App = React.createClass({
             fixedTop = {true}
             brand = {"OpenDojo CMS"}
           />
-          <Banner / >
-          <Grid >
-            <LoginUI / >
+          <Banner />
+          <Grid>
+            <Alert bsStyle="info">
+              Welcome! Please log in below to continue:
+            </Alert>
+            <LoginUI />
             {/* Footer */}
             <Row>
               <Navbar
@@ -208,7 +211,7 @@ var App = React.createClass({
             <Row>
               <Navbar
                 fixedBottom = {true}
-                brand = {[< span >&copy;< /span>, " 2015 Team Nariyuki & Seneca College"]}
+                brand = {[<span>&copy;</span>, " 2015 Team Nariyuki & Seneca College"]}
               />
             </Row>
           </Grid>

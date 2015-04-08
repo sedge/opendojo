@@ -51,20 +51,16 @@ var UserField = React.createClass({
   },
 
   render: function() {
-    return ( < Input type = 'text'
-      value = {
-        this.state.value
-      }
-      label = 'Username'
-      bsStyle = {
-        this.validationState()
-      }
-      ref = 'input'
-      groupClassName = 'input-group'
-      className = 'form-control'
-      onChange = {
-        this.handleChange
-      }
+    return (
+      <Input
+        type = 'text'
+        value = {this.state.value}
+        label = 'Username'
+        bsStyle = {this.validationState()}
+        ref = 'input'
+        groupClassName = 'input-group'
+        className = 'form-control'
+        onChange = {this.handleChange}
       />
     );
   }
@@ -104,20 +100,16 @@ var PasswordField = React.createClass({
   },
 
   render: function() {
-    return ( < Input type = 'password'
-      value = {
-        this.state.value
-      }
-      label = 'Password'
-      bsStyle = {
-        this.validationState()
-      }
-      ref = 'input'
-      groupClassName = 'input-group'
-      className = 'form-control'
-      onChange = {
-        this.handleChange
-      }
+    return (
+      <Input
+        type = 'password'
+        value = {this.state.value}
+        label = 'Password'
+        bsStyle = {this.validationState()}
+        ref = 'input'
+        groupClassName = 'input-group'
+        className = 'form-control'
+        onChange = {this.handleChange}
       />
     );
   }
@@ -133,6 +125,17 @@ var LoginUI = module.exports = React.createClass({
     });
   },
 
+  componentDidMount: function() {
+    window.addEventListener('keypress', this.handleKeyPress);
+  },
+
+  // Attempt to submit on 'ENTER' (keycode 13)
+  handleKeyPress: function(e) {
+    if(e.keyCode == 13) {
+      this.handleSubmit();
+    }
+  },
+
   logInCompleted: function() {
     this.transitionTo('/');
   },
@@ -142,13 +145,27 @@ var LoginUI = module.exports = React.createClass({
     this.transitionTo('/');
   },
 
+  componentWillUnmount: function() {
+    window.removeEventListener('keypress', this.handleKeyPress);
+  },
+
   render: function() {
     return (
-      <div id="loginForm">
+      <div id="loginForm" ref="loginComp">
+        <br />
         <Col xs={7} xsOffset={5}>
-          <UserField ref="userVal" / >
-          <PasswordField ref="passVal" / >
-          <Button onClick={this.handleSubmit}>Submit</Button>
+          <UserField ref="userVal" />
+          <PasswordField ref="passVal" />
+        </Col>
+        <Col xs={6} xsOffset={6}>
+          <br />
+          <Input
+            type='submit'
+            className='btn btn-default'
+            bsSize='large'
+            onClick={this.handleSubmit}
+            value='Submit'
+          />
         </Col>
       </div>
     );
