@@ -80,7 +80,7 @@ var rankStore = Reflux.createStore({
   },
 
   // `addRank` Action handling
-  addRank: function(data){debugger;
+  addRank: function(data){
     var that = this;
 
     var newRank = {

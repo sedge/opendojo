@@ -21,11 +21,11 @@ var RankSequence = module.exports = React.createClass({
   },
 
   // Get value from the ref
-  getValue: function() {debugger;
+  getValue: function() {
     return this.refs[this.props.name].getValue();
   },
 
-  render: function() {debugger;
+  render: function() {
     var sequences = this.props.sequences;
 
     var props = {
