@@ -24,8 +24,8 @@ var Ranks = module.exports = React.createClass({
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-                <Col xs={6} md={4}><h4 className="text-center">RANK MANAGEMENT TOOLBAR</h4></Col>
-                <Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
+          <Col xs={12} md={8}><h4 className="pull-right">RANK MANAGEMENT TOOLBAR</h4></Col>
+          <Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>
     );
