@@ -56,32 +56,39 @@ var App = React.createClass({
     var that = this;
     var tokenCheck;
 
-    this.listenTo(logIn.completed, function() {
+    this.listenTo(logIn.completed, function(token, validUser) {
       if(localStorage.getItem("token")){
         tokenCheck = true;
       }
 
       that.setState({
         loggedIn: tokenCheck,
-        tokenCheck: tokenCheck
+        tokenCheck: tokenCheck,
+        user: validUser
       });
     });
 
     this.listenTo(logIn.failed, function(err, code) {
       var logOut;
       var validCheck = true;
+      var alertText = 'Authentication Failed!';
 
       if(code == 205) {
         logOut = true;
       }
-      if(err || code == 401 || code == 400) {
+      if(err == 'Access token has expired' || code == 400) {
+        validCheck = false;
+        alertText = 'Your authentication window has expired! Please log in again:';
+      }
+      if(err || code == 401) {
         validCheck = false;
       }
 
       that.setState({
         tokenCheck: validCheck,
         loggedOut: logOut,
-        loggedIn: false
+        loggedIn: false,
+        alertText: alertText
       });
     });
   },
@@ -98,7 +105,8 @@ var App = React.createClass({
     return {
       loggedIn: loggedIn,
       loggedOut: loggedOut,
-      tokenCheck: true
+      tokenCheck: true,
+      user: ''
     };
   },
 
@@ -161,7 +169,7 @@ var App = React.createClass({
           <Banner />
           <Grid >
             <Alert bsStyle="danger">
-              Authentication failed!
+              {this.state.alertText}
             </Alert>
             <LoginUI />
             {/* Footer */}
@@ -185,7 +193,8 @@ var App = React.createClass({
             brand = {"OpenDojo CMS"}
           >
             <Nav right = {true}>
-              <NavItem onClick={this.handleLogout}>Log Out</NavItem>
+              <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
+              <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
             </Nav>
           </Navbar>
           <Banner />
