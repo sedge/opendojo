@@ -104,7 +104,7 @@ module.exports = function() {
         res.status(400).send('Invalid data!');
         return;
       }
-
+      
       var id = req.params.id;
 
       Object.keys(req.body).forEach(function(key) {
@@ -116,7 +116,7 @@ module.exports = function() {
         res.status(400).send('Invalid data!');
         return;
       }
-
+      
       Rank.findOneAndUpdate({"_id": id}, req.body, {new: true}, function(err, rank) {
         if (err) {
           log.warn({

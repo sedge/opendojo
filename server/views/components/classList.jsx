@@ -210,8 +210,8 @@ var ClassList = module.exports = React.createClass({
             <td>{day}</td>
             <td>{startTime} To {endTime} </td>
             <td className="rankName">{rankName}</td>
-            <td><Link to="editClass" params={{id: course._id}}><Button bsSize="xsmall">Edit</Button></Link>&nbsp;&nbsp;
-                <DeleteClassButton classId={course._id} onClick={that.onDeleteClass} bsSize="xsmall" />
+            <td><Link to="editClass" params={{id: course._id}}><Button bsSize="small">Edit</Button></Link>&nbsp;&nbsp;
+                <DeleteClassButton classId={course._id} onClick={that.onDeleteClass} bsSize="small" />
             </td>
           </tr>
         );

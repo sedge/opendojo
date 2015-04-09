@@ -11,8 +11,14 @@ var {
 
 var {
   Alert,
-  Table
+  Table,
+  ButtonToolbar,
+  Button
 } = require('react-bootstrap');
+
+var {
+  sortByKey
+} = require('../bin/utils.jsx');
 
 var RankList = module.exports = React.createClass({
   mixins: [ListenerMixin, Navigation],
@@ -26,14 +32,14 @@ var RankList = module.exports = React.createClass({
 
     //initial ranks are returned on line 38 of rankStore in getInitialState
     this.listenTo(rankStore, this.ranksUpdate, function(initialRanks) {
-      that.setState({
-        ranks: initialRanks
-      });
+      that.ranksUpdate(initialRanks);
     });
   },
   ranksUpdate: function(latestRanks) {
+    var sortedArray;
+    sortedArray = latestRanks.sort(sortByKey("sequence",0));
     this.setState({
-      ranks: latestRanks
+      ranks: sortedArray
     });
   },
 
@@ -59,9 +65,13 @@ var RankList = module.exports = React.createClass({
             <td>{rank.name}</td>
             <td>{rank.sequence}</td>
             <td>{rank.color}</td>
-            <td><Link to="singleRank" params={{
-              id: rank._id
-            }}>View</Link></td>
+            <td>
+              <ButtonToolbar>
+                <Link to="singleRank" params={{
+                  id: rank._id
+                }}><Button bsSize="small">View</Button></Link>
+              </ButtonToolbar>
+            </td>
           </tr>
         );
       });

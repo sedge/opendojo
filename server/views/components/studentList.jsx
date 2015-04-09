@@ -200,7 +200,7 @@ var StudentList = module.exports = React.createClass({
 						<td>
 							<ButtonToolbar>
        					<Link to="singleStudent" params={{id: student._id}}>
-       						<Button bsSize="xsmall">View</Button></Link>
+       						<Button bsSize="small">View</Button></Link>
       				</ButtonToolbar>
       			</td>			
 					</tr>

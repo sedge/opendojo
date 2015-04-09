@@ -12,7 +12,8 @@ var rankActions = require('../actions/rankActions.jsx');
 var {
   Alert,
   Table,
-  Button
+  Button,
+  Col
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./AlertDismissable.jsx');
@@ -225,13 +226,13 @@ var RankView = module.exports = React.createClass({
               <th>Rank Color:</th>
               <td colSpan="3">{rank.color}</td>
             </tr>
-            <tr>
-              <th className="red"> {message}</th>
-              <td><button onClick={this.onDeleteRank}>Delete</button>
-                <button onClick={this.editToggle}>Edit</button>
-              </td>
-            </tr>
           </Table>
+            <p colSpan="6" className="red"> {message} </p>
+          <Col xs={6} xsOffset={4}>
+              <Button bsSize="large" onClick={this.onDeleteRank}>Delete</Button>
+                &nbsp;
+              <Button bsSize="large" onClick={this.editToggle}>Edit</Button>
+          </Col>
         </div>
       );
     }
@@ -246,10 +247,11 @@ var RankView = module.exports = React.createClass({
           <RankColor label="Rank Color" ref="color" name="color" defaultValue={rank.color} />
 
           <AlertDismissable visable={!this.state.valid} />
-
-          <Button onClick={this.onEditRank}>Save</Button>
-          <Button onClick={this.editToggle}>Cancel</Button>
-
+          <Col xs={6} xsOffset={4}>
+            <Button bsSize="large" onClick={this.onEditRank}>Save</Button>
+            &nbsp;
+            <Button bsSize="large" onClick={this.editToggle}>Cancel</Button>
+          </Col>
         </form>
       </div>
     );
