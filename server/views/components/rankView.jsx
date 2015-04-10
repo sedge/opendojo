@@ -100,6 +100,8 @@ var RankView = module.exports = React.createClass({
         rankSequence.push(i);
       }
     }
+    
+    rankSequence.sort();
 
     this.setState({
       rankSequence:rankSequence
