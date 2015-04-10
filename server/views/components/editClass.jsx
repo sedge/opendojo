@@ -1,29 +1,30 @@
 var React = require('react');
 var Promise = require('bluebird');
-
 var { ListenerMixin } = require('reflux');
 var {
 	Navigation,
-	RouteHandler
+	RouteHandler,
+  Link
 } = require('react-router');
-
 var classActions = require('../actions/classActions.jsx');
 var classStore = require('../stores/classStore.jsx');
 var rankStore = require('../stores/rankStore.jsx');
-
 var AlertDismissable = require('./alertDismissable.jsx');
-
+var ClassTitle = require('./classTitle.jsx');
 var RankInput = require('./rankInputforClass.jsx');
-
+var {
+  timeFormatting
+} = require('../bin/utils.jsx')
 var {
   Alert,
   Button,
   Input,
   Row,
-  Col
+  Col,
+  Grid
 } = require('react-bootstrap');
 
-var EidtClass = module.exports = React.createClass({
+var EditClass = module.exports = React.createClass({
 	mixins: [Navigation, ListenerMixin],
   getInitialState: function() {
     return {
@@ -88,17 +89,26 @@ var EidtClass = module.exports = React.createClass({
 
     // For now, input only accepts one email so we
     // stuff it into an array
-
-    var newClass = {
-      _id: this.props.routerParams.id,
-      classTitle:this.refs.classTitle.getValue().trim(),
-      dayOfWeek:Number(this.refs.day.getValue()),
-      startTime:this.refs.startTime.getValue().trim(),
-      endTime:this.refs.endTime.getValue().trim(),
-      classType:this.refs.classtype.getValue().toString()
-    };
-    console.log(newClass);
-    classActions.editClass(newClass);
+    if(!this.refs.classTitle.getValue() ||
+      !this.refs.day.getValue()||
+      !this.refs.startTime.getValue()||
+      !this.refs.endTime.getValue()||
+      !this.refs.classtype.getValue()
+    ){
+      this.setState({
+        emptyvalid: false
+      });
+    }else{
+      var newClass = {
+        _id: this.props.routerParams.id,
+        classTitle:this.refs.classTitle.getValue().trim(),
+        dayOfWeek:Number(this.refs.day.getValue()),
+        startTime:this.refs.startTime.getValue().trim(),
+        endTime:this.refs.endTime.getValue().trim(),
+        classType:this.refs.classtype.getValue().toString()
+      };
+      classActions.editClass(newClass);
+    }
   },
   editClassFailed:function(err) {
     console.error("Editing a student failed: ", err);
@@ -113,6 +123,9 @@ var EidtClass = module.exports = React.createClass({
     var submitButton;
     var course = this.state.course;
     var classType = [];
+    var startTime;
+    var endTime;
+
     if (!this.state.emptyvalid){
       emptyWarn = (
         <Alert bsStyle="danger" id="alert">
@@ -121,6 +134,8 @@ var EidtClass = module.exports = React.createClass({
       )
     }if(this.state.course){
     	classType=course.classType.split(',');
+      startTime = timeFormatting(course.startTime);
+      endTime = timeFormatting(course.endTime);
     }else{
     	return(
     		<div/>
@@ -130,8 +145,8 @@ var EidtClass = module.exports = React.createClass({
       <div className="addClass container">
         <form>
           <h2> Update Class Information:</h2>
-          {emptyWarn}
-          <Input type="text" label="Class Title" ref="classTitle" name="classTitle" defaultValue={course.classTitle} />
+          
+          <ClassTitle label="Class Title" ref="classTitle" name="classTitle" defaultValue={course.classTitle} />
           <Input type="select" label="Day of Week" ref="day" name="day" defaultValue={course.dayOfWeek}>
             <option value="" disabled className="notDisplay">Select Day of Week</option>
             <option value="1">Monday</option>
@@ -145,18 +160,24 @@ var EidtClass = module.exports = React.createClass({
           <Input label="Class Time" wrapperClassName='wrapper'>
             <Row>
               <Col xs={6}>
-                <Input type='time' ref="startTime" name="startTime" defaultValue={course.startTime}/>
+                <Input type='time' ref="startTime" name="startTime" defaultValue={startTime}/>
               </Col>
               <Col xs={6}>
-                <Input type='time' ref="endTime" name="endTime" defaultValue={course.endTime} />
+                <Input type='time' ref="endTime" name="endTime" defaultValue={endTime} />
               </Col>
             </Row>
           </Input>
           <RankInput label="Class Type" ref="classtype" name="classtype" ranks={this.state.ranks} defaultValue ={classType} />
 
           <AlertDismissable visable={!this.state.valid} />
-
-          <Button onClick={this.onEditClass}>Save</Button>
+          {emptyWarn}
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditClass}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large" bsStyle="warning">Cancel</Button></Link></span></Col>
+            </Row>
+          </Grid>
         </form>
       </div>
     );

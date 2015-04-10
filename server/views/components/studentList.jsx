@@ -193,10 +193,8 @@ var StudentList = module.exports = React.createClass({
 					<tr key={key++}>
 						<td>{student.firstName + " " + student.lastName}</td>
 						<td>{student.phone}</td>
-						<td>{emails}</td>
 						<td>{rankName}</td>
 						<td>{age}</td>
-						<td>{student.guardianInformation}</td>
 						<td>
 							<ButtonToolbar>
        					<Link to="singleStudent" params={{id: student._id}}>
@@ -213,10 +211,8 @@ var StudentList = module.exports = React.createClass({
 					<thead>
 						{nameOrder}
 						<th>Phone #</th>
-						<th>Email</th>
 						{rankOrder}
 						{ageOrder}
-						<th>Guardian</th>
 						<th></th>
 					</thead>
 					<tbody>

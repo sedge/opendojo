@@ -2,7 +2,10 @@ var React = require('react');
 var Promise = require('bluebird');
 
 var { ListenerMixin } = require('reflux');
-var { Navigation } = require('react-router');
+var { 
+  Navigation,
+  Link
+} = require('react-router');
 
 //This is needed for the delete method
 var studentStore = require('../stores/studentStore.jsx');
@@ -13,7 +16,9 @@ var {
   Alert,
   Table,
   Button,
-  Col
+  Col,
+  Row,
+  Grid
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./AlertDismissable.jsx');
@@ -42,7 +47,7 @@ var RankView = module.exports = React.createClass({
       that.showRank(ranks);
     });
 
-    // Listen to students to see what ranks the students have so that a rank wouldn't
+    // Listen to students to see what ranks the students have so that a rank wouldn't 
     // deleted if it's assigned to a student
     this.listenTo(studentStore, this.getStudentRanks, function(students){
       this.getStudentRanks(students);
@@ -62,7 +67,10 @@ var RankView = module.exports = React.createClass({
     students.forEach(function(student){
       usedRanks.push(student.rankId);
     });
-
+   /* students.map(function(student){
+      usedRanks[student._id] = student.rankId;
+    });
+*/
     this.setState({
       availableRanks: usedRanks
     });
@@ -87,7 +95,7 @@ var RankView = module.exports = React.createClass({
     });
     var highestSequence = rankStore.getSequence()+1;
     for (var i=1; i<highestSequence; i++) {
-
+      
       if (!that.presentInArray(rankSequence,i)){
         rankSequence.push(i);
       }
@@ -227,12 +235,16 @@ var RankView = module.exports = React.createClass({
               <td colSpan="3">{rank.color}</td>
             </tr>
           </Table>
-            <p colSpan="6" className="red"> {message} </p>
-          <Col xs={6} xsOffset={4}>
-              <Button bsSize="large" onClick={this.onDeleteRank}>Delete</Button>
-                &nbsp;
-              <Button bsSize="large" onClick={this.editToggle}>Edit</Button>
-          </Col>
+          <p colSpan="6" className="red"> {message} </p>
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={6} md={4}><Button bsSize="large" onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+                <Button bsSize="large" onClick={this.onDeleteRank}>Delete</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="ranks">
+                <Button bsSize="large" bsStyle="warning">Back</Button></Link></span></Col>
+            </Row>
+          </Grid>
         </div>
       );
     }
@@ -247,11 +259,13 @@ var RankView = module.exports = React.createClass({
           <RankColor label="Rank Color" ref="color" name="color" defaultValue={rank.color} />
 
           <AlertDismissable visable={!this.state.valid} />
-          <Col xs={6} xsOffset={4}>
-            <Button bsSize="large" onClick={this.onEditRank}>Save</Button>
-            &nbsp;
-            <Button bsSize="large" onClick={this.editToggle}>Cancel</Button>
-          </Col>
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditRank}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" bsStyle="warning" onClick={this.editToggle}>Cancel</Button></span></Col>
+            </Row>
+          </Grid>
         </form>
       </div>
     );

@@ -2,7 +2,10 @@ var React = require('react');
 var Promise = require('bluebird');
 
 var { ListenerMixin } = require('reflux');
-var { Navigation } = require('react-router');
+var { 
+  Navigation,
+  Link
+ } = require('react-router');
 
 var studentStore = require('../stores/studentStore.jsx');
 var studentActions = require('../actions/studentActions.jsx');
@@ -13,7 +16,9 @@ var {
   Alert,
   Table,
   Button,
-  Col
+  Grid,
+  Col,
+  Row
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./alertDismissable.jsx');
@@ -141,7 +146,8 @@ var StudentView = module.exports = React.createClass({
       gender: this.refs.gender.getValue(),
       guardianInformation: this.refs.guardian.getValue(),
       healthInformation: this.refs.healthinfo.getValue(),
-      email: emails
+      email: emails,
+      emergencyphone: this.refs.emergencyphone.getValue()
     };
     studentActions.editStudent(newStudent);
   },
@@ -196,12 +202,19 @@ var StudentView = module.exports = React.createClass({
     var editBdate = bdateForEdit(student.birthDate);
     var ranks = this.state.ranks;
     var rankName;
-
+    var emergencyPhone = null;
     Object.keys(ranks).map(function(rankId) {
       if (rankId == student.rankId) {
         rankName = ranks[rankId];
       }
     });
+    if(student.emergencyphone){
+      emergencyPhone = (
+        <div>
+          Emergency Phone Number : {student.emergencyphone}
+        </div>
+      );
+    }
 
     if(!editable){
       return (
@@ -238,18 +251,24 @@ var StudentView = module.exports = React.createClass({
             </tr>
             <tr>
               <th>Guardian Information</th>
-              <td colSpan="3">{student.guardianInformation}</td>
+              <td colSpan="3">{student.guardianInformation}{emergencyPhone}
+              </td>
             </tr>
             <tr>
               <th>Health Information</th>
               <td colSpan="3">{student.healthInformation}</td>
             </tr>
           </Table>
-          <Col xs={6} xsOffset={4}>
-            <Button bsSize="large" onClick={this.onDeleteStudent}>Delete</Button>
-            &nbsp;
-            <Button bsSize="large" onClick={this.editToggle}>Edit</Button>
-          </Col>
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+                <Button bsSize="large" onClick={this.onDeleteStudent}>Delete</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Link to="students">
+                  <Button bsSize="large" bsStyle='warning'>Back</Button></Link></span></Col>
+            </Row>
+          </Grid>
+
         </div>
       );
     }
@@ -265,14 +284,17 @@ var StudentView = module.exports = React.createClass({
           <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
           <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
           <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+          <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
           <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
 
           <AlertDismissable visable={!this.state.valid} />
-          <Col xs={6} xsOffset={4}>
-            <Button bsSize="large" onClick={this.onEditStudent}>Save</Button>
-            &nbsp;
-            <Button bsSize="large" onClick={this.editToggle}>Cancel</Button>
-          </Col>
+          <Grid>
+            <Row className="show-grid">
+             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
+              <Col xs={6} md={4}></Col>
+              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" bsStyle="warning" onClick={this.editToggle}>Cancel</Button></span></Col>
+            </Row>
+          </Grid>
         </form>
       </div>
     );

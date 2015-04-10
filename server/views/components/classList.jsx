@@ -12,7 +12,8 @@ var {
 } = require('react-router');
 
 var {
-  sortByKey
+  sortByKey,
+  timeFormatting
 } = require('../bin/utils.jsx');
 
 var DeleteClassButton = require('./deleteClass.jsx');
@@ -158,8 +159,8 @@ var ClassList = module.exports = React.createClass({
         var rankName;
         var rankFromDb;
         rankFromDb = course.classType.split(',');
-        startTime = course.startTime.split(':')[0] +":" +course.startTime.split(':')[1];
-        endTime = course.endTime.split(':')[0] +":" +course.endTime.split(':')[1];
+        startTime = timeFormatting(course.startTime);
+        endTime = timeFormatting(course.endTime);
         switch(course.dayOfWeek){
           case 1:
             day="Monday"

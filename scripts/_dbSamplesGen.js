@@ -78,7 +78,8 @@ function _generateSampleData() {
         "membershipStatus": true,
         "membershipExpiry": "2009-04-12T20:44:55",
         "phone": "444-333-3333",
-        "birthDate": "2009-04-12T20:44:55"
+        "birthDate": "2009-04-12T20:44:55",
+        "emergencyphone" : "999-888-7777"
       });
       var newStud2 = new models.Student({
         "firstName": "Billy",
@@ -91,7 +92,9 @@ function _generateSampleData() {
         "membershipStatus": false,
         "membershipExpiry": "2009-04-12T20:44:55",
         "phone": "454-323-3312",
-        "birthDate": "2004-04-12T20:44:55"
+        "birthDate": "2004-04-12T20:44:55",
+
+        "emergencyphone" : "888-777-6666"
       });
 
       newStud.save(function (err, newStud) {
