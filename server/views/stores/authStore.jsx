@@ -48,7 +48,9 @@ var authStore = Reflux.createStore({
         }
 
         token = res.body.token;
-        logIn.completed(token);
+        var validUser = res.req.header.username;
+
+        logIn.completed(token, validUser);
       }
     );
   }
