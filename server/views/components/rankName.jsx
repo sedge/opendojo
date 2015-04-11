@@ -1,7 +1,7 @@
 var React = require('react');
 var $ = require('jquery');
 var {
-  isAlpha,
+  isAlphanumeric,
   isLength,
   blacklist
 } = require('validator');
@@ -25,7 +25,7 @@ var RankName = module.exports = React.createClass({
     // Allow whitespace
     var sanitized = blacklist(value, " ")
 
-    if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
+    if (!isLength(sanitized, 1) || !isAlphanumeric(sanitized)) {
       return this.setState({
         valid: false,
         value: value
@@ -75,7 +75,7 @@ var RankName = module.exports = React.createClass({
     var feedback;
     if (!this.state.valid) {
       feedback = (
-        <p><strong>A rank name is required, must only be letters and must be less then or equal to 30 characters.</strong></p>
+        <p><strong>A rank name is required, must contain only numbers and letters and must be less than or equal to 30 characters.</strong></p>
       );
     }
 
