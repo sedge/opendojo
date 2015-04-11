@@ -76,7 +76,7 @@ var UserField = React.createClass({
         placement="right"
         overlay={
           <Popover title='Invalid Username Format'>
-            <strong>Warning!</strong> Valid user credentials only contain alphanumeric characters, as well as heifens and underscores.
+            <strong className='warnText'>Warning!</strong> Valid user credentials only contain alphanumeric characters, as well as heifens and underscores.
           </Popover>
         }
       >
@@ -89,6 +89,7 @@ var UserField = React.createClass({
           groupClassName = 'input-group'
           className = 'form-control'
           onChange = {this.handleChange}
+          hasFeedback
         />
       </OverlayTrigger>
     );
@@ -152,7 +153,7 @@ var PasswordField = React.createClass({
         placement="left"
         overlay={
           <Popover title='Invalid Password Format'>
-            <strong>Warning!</strong> Valid passwords must be between 6 and 50 characters long, as cannot contain any whitespace.
+            <strong className='warnText'>Warning!</strong> Valid passwords must be between 6 and 50 characters long, and cannot contain any whitespace.
           </Popover>
         }
       >
@@ -165,6 +166,7 @@ var PasswordField = React.createClass({
           groupClassName = 'input-group'
           className = 'form-control'
           onChange = {this.handleChange}
+          hasFeedback
         />
       </OverlayTrigger>
     );
@@ -173,6 +175,12 @@ var PasswordField = React.createClass({
 
 var LoginUI = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
+
+  getInitialState: function() {
+    return {
+      invalid: false
+    }
+  },
 
   handleSubmit: function() {
     logIn({
@@ -209,7 +217,7 @@ var LoginUI = module.exports = React.createClass({
     return (
       <div id="loginForm" ref="loginComp">
         <br />
-        <Col xs={7} xsOffset={5}>
+        <Col xs={7} xsOffset={5} className="credContainer">
           <UserField ref="userVal" />
           <PasswordField ref="passVal" />
         </Col>
