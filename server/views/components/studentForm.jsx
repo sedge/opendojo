@@ -30,7 +30,8 @@ var {
 } = require('react-bootstrap');
 
 var {
-	capitalizeFirstLetter
+	capitalizeFirstLetter,
+	bdateForEdit
 } = require('../bin/utils.jsx');
 
 var StudentForm = module.exports = React.createClass({
@@ -105,6 +106,7 @@ var StudentForm = module.exports = React.createClass({
 				!this.refs.phone.getValue().trim() ||
 				!this.refs.rank.getValue().trim() ||
 				!this.refs.gender.getValue().trim() ||
+				!this.refs.expiryDate.getValue().trim()||
 				!this.refs.bday.getValue().trim() ||
 				!emails){
 			this.setState({
@@ -113,12 +115,15 @@ var StudentForm = module.exports = React.createClass({
 		}else{
 			var fName = capitalizeFirstLetter(this.refs.firstName.getValue().trim());
 			var lName = capitalizeFirstLetter(this.refs.lastName.getValue().trim());
+			var expiryDate = new Date(this.refs.expiryDate.getValue());
+			expiryDate.setDate(expiryDate.getDate()+1);
 			addStudent({
 				firstName: fName,
 				lastName: lName,
 				phone: this.refs.phone.getValue().trim(),
 				rankId: this.refs.rank.getValue().trim(),
 				gender: this.refs.gender.getValue().trim(),
+				expiryDate: expiryDate,
 				birthDate: this.refs.bday.getValue().trim(),
 				guardianInformation: this.refs.guardian.getValue().trim(),
 				healthInformation: this.refs.health.getValue().trim(),
@@ -139,6 +144,9 @@ var StudentForm = module.exports = React.createClass({
 	render: function() {
 		var emptyWarn;
 		var submitButton;
+		var currentDate = new Date();
+		var defaultExpiryDate = bdateForEdit(currentDate);
+		console.log(defaultExpiryDate);
 		if (!this.state.emptyvalid){
 			emptyWarn = (
 				<Alert bsStyle="danger" id="alert">
@@ -152,9 +160,10 @@ var StudentForm = module.exports = React.createClass({
 					<h2> Enter new student information:</h2>
 					<FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
 					<LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
-					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
+					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} />
+					<DateInput label="Expiry Date" ref="expiryDate" name="expiryDate" defaultValue={defaultExpiryDate} />
 					<PhoneInput label="Phone" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
-					<DateInput label="Birth Date" ref="bday" name="bday" placeholder="Age" />
+					<DateInput label="Birth Date" ref="bday" name="bday" placeholder="Birth Date" />
 					<GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />
 					<EmailInput label="Email" ref="emails" name="emails" placeholder="(comma delimited)" />
 					<GuardianInput label="Guardian Information" ref="guardian" name="guardian" placeholder="(Name of guardian)" />

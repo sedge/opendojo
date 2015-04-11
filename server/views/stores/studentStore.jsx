@@ -68,7 +68,7 @@ var studentStore = Reflux.createStore({
       healthInformation: data.healthInformation,
       guardianInformation: data.guardianInformation,
       email: data.email,
-      membershipExpiry: new Date(),
+      membershipExpiry: data.expiryDate,
       phone: data.phone,
       birthDate: data.birthDate,
       emergencyphone: data.emergencyphone

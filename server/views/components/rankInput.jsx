@@ -36,7 +36,7 @@ var LastName = module.exports = React.createClass({
     var feedback;
     if (!this.state.valid) {
       feedback = (
-        <p><strong>A last name is required, and must only be letters.</strong></p>
+        <p><strong>A rank is required.</strong></p>
       );
     }
 
@@ -51,6 +51,7 @@ var LastName = module.exports = React.createClass({
     return (
       <div>
         <Input {...props} onChange={this.onChange}>
+          <option value="" disabled defaultValue className="notDisplay">Select Rank</option>
           {ranks}
         </Input>
         {feedback}

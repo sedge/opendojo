@@ -66,9 +66,16 @@ var FirstName = module.exports = React.createClass({
 
     var feedback;
     if (!this.state.valid) {
-      feedback = (
-        <p><strong>A birth date is required.</strong></p>
-      );
+      if(this.props.name == "bday"){
+        feedback = (
+          <p><strong>A birth date is required.</strong></p>
+        );
+      }
+      else{
+        feedback = (
+          <p><strong>A expriey date is required.</strong></p>
+        );
+      }
     }
 
     return (

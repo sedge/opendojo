@@ -3,7 +3,8 @@ var $ = require('jquery');
 var {
   isAlpha,
   isLength,
-  blacklist
+  blacklist,
+  isNumeric
 } = require('validator');
 
 var {
@@ -25,11 +26,21 @@ var FirstName = module.exports = React.createClass({
     // Allow whitespace
     var sanitized = blacklist(value, " ")
 
-    if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
-      return this.setState({
-        valid: false,
-        value: value
-      });
+    if (this.props.name == "manualPeriod"){
+      if (!isNumeric(sanitized)) {
+        return this.setState({
+          valid: false,
+          value: value
+        });
+      }
+    }
+    else{
+      if (!isLength(sanitized, 1) || !isAlpha(sanitized)) {
+        return this.setState({
+          valid: false,
+          value: value
+        });
+      }
     }
 
     if (!this.state.valid) {
@@ -58,7 +69,8 @@ var FirstName = module.exports = React.createClass({
       type: "text",
       ref: this.props.name,
       name: this.props.name,
-      defaultValue: this.state.value
+      defaultValue: this.state.value,
+      placeholder: this.props.placeholer
     };
     if (this.validationState()) {
       props.bsStyle = this.validationState();
@@ -66,9 +78,16 @@ var FirstName = module.exports = React.createClass({
 
     var feedback;
     if (!this.state.valid) {
-      feedback = (
-        <p><strong>A first name is required, and must only be letters.</strong></p>
-      );
+      if (this.props.name == "manualPeriod"){
+        feedback = (
+          <p><strong>Period must only be numeric.</strong></p>
+        );
+      }
+      else{
+        feedback = (
+          <p><strong>A first name is required, and must only be letters.</strong></p>
+        );
+      }
     }
 
     return (

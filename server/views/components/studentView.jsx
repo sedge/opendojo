@@ -10,6 +10,8 @@ var {
 var studentStore = require('../stores/studentStore.jsx');
 var studentActions = require('../actions/studentActions.jsx');
 
+var { isNumeric } = require('validator');
+
 var rankStore = require('../stores/rankStore.jsx');
 
 var {
@@ -18,7 +20,8 @@ var {
   Button,
   Grid,
   Col,
-  Row
+  Row,
+  Input
 } = require('react-bootstrap');
 
 var AlertDismissable = require('./alertDismissable.jsx');
@@ -44,7 +47,11 @@ var StudentView = module.exports = React.createClass({
   getInitialState: function() {
     return {
       editable: false,
-      valid: true
+      settingMembership: false,
+      valid: true,
+      selectPeriod: 0,
+      periodAddButton: false,
+      daysadded: 0
     };
   },
 
@@ -103,6 +110,15 @@ var StudentView = module.exports = React.createClass({
     });
   },
 
+  settingMembershipToggle: function(e){
+    e.preventDefault();
+    this.setState({
+      settingMembership: !this.state.settingMembership,
+      selectPeriod: 0,
+      periodAddButton: false,
+      daysadded: 0
+    });
+  },
   // `EditStudent` Action Handling
   onEditStudent: function(e){
     if (e) { e.preventDefault(); }
@@ -113,7 +129,7 @@ var StudentView = module.exports = React.createClass({
     var keys = Object.keys(this.refs);
     keys.forEach(function(ref) {
       var child = that.refs[ref];
-
+    console.log(ref);
       // Is it in a valid state?
       if (!child.state.valid) {
         valid = false;
@@ -131,11 +147,9 @@ var StudentView = module.exports = React.createClass({
     this.setState({
       valid: true
     });
-
     // For now, input only accepts one email so we
     // stuff it into an array
     var emails = [this.refs.emails.getValue()];
-
     var newStudent = {
       _id: this.props.routerParams.id,
       firstName: this.refs.firstName.getValue(),
@@ -151,18 +165,92 @@ var StudentView = module.exports = React.createClass({
     };
     studentActions.editStudent(newStudent);
   },
+
+  onSettingMembership: function(e){
+    if (e) { e.preventDefault(); }
+
+    var expiryDate;
+
+    if (this.refs.period.getValue() == 2){
+      expiryDate = new Date(this.refs.expiryDate.getValue());
+      expiryDate.setDate(expiryDate.getDate()+1);
+    }
+    else{
+      expiryDate = new Date(this.state.student.membershipExpiry);
+      expiryDate.setDate(expiryDate.getDate()+this.state.daysadded);
+    }
+    var newStudent = {
+      _id: this.state.student._id,
+      firstName: this.state.student.firstName,
+      lastName: this.state.student.lastName,
+      phone: this.state.student.phone,
+      rankId: this.state.student.rankId,
+      birthDate: this.state.student.birthDate,
+      gender: this.state.student.gender,
+      guardianInformation: this.state.student.guardianInformation,
+      healthInformation: this.state.student.healthInformation,
+      email: this.state.student.email,
+      emergencyphone: this.refs.emergencyphone,
+      membershipExpiry: expiryDate
+    }
+    this.setState({
+      daysadded: 0,
+      selectPeriod: 0
+    });
+    studentActions.editStudent(newStudent);
+  },
+  addDays: function(){
+    if(this.refs.period.getValue() == 30){
+      this.setState({
+        daysadded: this.state.daysadded+30
+      });
+    }
+    else if(this.refs.period.getValue() == 90){
+      this.setState({
+        daysadded: this.state.daysadded+90
+      });
+    }
+    else if(this.refs.period.getValue() == 180){
+      this.setState({
+        daysadded: this.state.daysadded+180
+      });
+    }
+    else{
+      if(!isNumeric(Number(this.refs.manualPeriod.getValue()))){
+        return;
+      }
+      else{
+        this.setState({
+          daysadded: this.state.daysadded+Number(this.refs.manualPeriod.getValue())
+        });
+      }
+    }
+  },
   editStudentFailed:function(err) {
     console.error("Editing a student failed: ", err);
-    this.setState({
-      editable: false
-    });
+    if(this.state.editable){
+      this.setState({
+        editable: false
+      });
+    }
+    else{
+      this.setState({
+        settingMembership: false
+      });
+    }
   },
   editStudentComplete: function() {
-    this.setState({
-      editable: false
-    });
+    if(this.state.editable){
+      this.setState({
+        editable: false
+      });
+    }
+    else{
+      this.setState({
+        settingMembership: false
+      });
+    }
   },
-
   // `DeleteStudent` Action Handling
   onDeleteStudent: function(e){
     var deleteStudent = confirm("Do you want to delete the student?");
@@ -177,12 +265,45 @@ var StudentView = module.exports = React.createClass({
     console.error("Deleting a student failed: ", err);
     this.transitionTo("students");
   },
+  onChange: function(){
+    if (this.refs.period.getValue() != 0 || this.refs.period.getValue() != 2){
+      this.setState({
+        periodAddButton: true
+      });
+    }
+    else{
+      this.setState({
+        periodAddButton: false
+      });
+    }
+    if (this.refs.period.getValue() == 1){
+      this.setState({
+        selectPeriod: 1
+      });
+    }
+    else if(this.refs.period.getValue() == 2){
+      this.setState({
+        selectPeriod: 2,
+        daysadded: 0
+      });
+    }
+    else if(this.refs.period.getValue() != 0){
+      this.setState({
+        selectPeriod: 3
+      });
+    }
+    else{
+      this.setState({
+        selectPeriod: 0
+      });
+    }
+  },
 
   render: function() {
     var content;
     var student = this.state.student;
     var editable = this.state.editable;
-
+    var settingMembership = this.state.settingMembership;
     if (!student) {
       return (
         <div className="studentView container">
@@ -197,12 +318,63 @@ var StudentView = module.exports = React.createClass({
     student.email.forEach(function(email) {
       emails += email + " ";
     });
+    var membershipExpiryDate = bdateForEdit(student.membershipExpiry);
     var age = ageCalculator(student.birthDate);
     var membershipStatus = membershipStatusCalculator(student.membershipExpiry);
     var editBdate = bdateForEdit(student.birthDate);
     var ranks = this.state.ranks;
     var rankName;
     var emergencyPhone = null;
+    var periodAdd;
+    var periodAddforManul;
+    var daysDiplay = (
+        <div>
+          {this.state.daysadded} days will be added
+        </div>
+        );
+
+    if (this.state.selectPeriod == 1){
+      periodAdd = (
+        <div>
+          <FirstName label="Enter Days" ref="manualPeriod" name="manualPeriod" help="Enter number of days you want to add" />
+        </div>
+      );
+      periodAddforManul = (
+        <div>
+          <br/><Button onClick={this.addDays}>+</Button>
+        </div>
+      );
+    }
+    else if (this.state.selectPeriod == 2){
+      periodAdd = (
+        <div>
+          <DateInput label="Select Date" ref="expiryDate" name="expiryDate" defaultValue={membershipExpiryDate} />
+        </div>
+      );
+      daysDiplay = (
+        <div></div>
+      );
+    }
+    else if (this.state.selectPeriod == 3){
+      periodAdd = (
+        <div>
+          <br/><Button onClick={this.addDays}>+</Button>
+        </div>
+      );
+
+    }
+    else{
+      periodAdd = (
+        <div></div>
+      );
+      periodAddforManul = (
+        <div></div>
+      );
+      daysDiplay = (
+        <div></div>
+      );
+    }
+    
     Object.keys(ranks).map(function(rankId) {
       if (rankId == student.rankId) {
         rankName = ranks[rankId];
@@ -215,8 +387,7 @@ var StudentView = module.exports = React.createClass({
         </div>
       );
     }
-
-    if(!editable){
+    if(!editable && !settingMembership){
       return (
         <div className="studentView container">
           <Table bordered={true} striped={true}>
@@ -261,9 +432,9 @@ var StudentView = module.exports = React.createClass({
           </Table>
           <Grid>
             <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+             <Col xs={12} md={8}><Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+                <Button bsSize="large" bsStyle='primary' onClick={this.settingMembershipToggle}>Setting Membership</Button>&nbsp;&nbsp;
                 <Button bsSize="large" bsStyle='warning' onClick={this.onDeleteStudent}>Delete</Button></Col>
-              <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}><span className="pull-right"><Link to="students">
                   <Button bsSize="large">Back</Button></Link></span></Col>
             </Row>
@@ -272,31 +443,78 @@ var StudentView = module.exports = React.createClass({
         </div>
       );
     }
-    return (
-      <div className="studentView container">
-        <form>
-          <h2>Update Student Information:</h2>
-          <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
-          <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
-          <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rank} />
-          <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
-          <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={editBdate} />
-          <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
-          <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-          <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-          <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
-          <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
-
-          <AlertDismissable visable={!this.state.valid} />
-          <Grid>
-            <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
-              <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
-            </Row>
-          </Grid>
-        </form>
-      </div>
-    );
+    if(editable && !settingMembership){
+      return (
+        <div className="studentView container">
+          <form>
+            <h2>Update Student Information:</h2>
+            <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
+            <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
+            <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rankId} />
+            <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
+            <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={editBdate} />
+            <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
+            <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+            <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+            <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
+            <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+    
+            <AlertDismissable visable={!this.state.valid} />
+            <Grid>
+              <Row className="show-grid">
+               <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
+                <Col xs={6} md={4}></Col>
+                <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
+              </Row>
+            </Grid>
+          </form>
+        </div>
+      );
+    }
+    if(settingMembership && !editable){
+      return (
+        <div className="studentView container">
+          <h2>Setting Memebership</h2>
+          <Table bordered={true} striped={true}>
+            <tr>
+              <th width="40%">Membership Expiry Date:</th>
+              <td width="60%">{membershipExpiryDate}</td>
+            </tr>
+            <tr>
+              <th>Membership Status:</th>
+              <td>{membershipStatus}</td>
+            </tr>
+          </Table>
+          <form>
+            <Grid>
+              <Row className="show-grid">
+                <Col xs={6} md={4}>
+                  <Input type='select' label="Add Period" ref="period" name="period" onChange={this.onChange}>
+                    <option value="" disabled defaultValue className="notDisplay">Select Period</option>
+                    <option value="30">30 Days</option>
+                    <option value="90">90 Days</option>
+                    <option value="180">6 Month</option>
+                    <option value="1">Input Period Manually</option>
+                    <option value="2">Select Date from Calendar</option>
+                  </Input>
+                  {daysDiplay}
+                </Col>
+                <Col xs={6} md={4}>{periodAdd}</Col>
+                <Col xs={6} md={4}>{periodAddforManul}</Col>
+              </Row>
+            </Grid>
+            <AlertDismissable visable={!this.state.valid} />
+            <br/>
+            <Grid>
+              <Row className="show-grid">
+                <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onSettingMembership}>Save</Button></Col>
+                <Col xs={6} md={4}></Col>
+                <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.settingMembershipToggle}>Cancel</Button></span></Col>
+              </Row>
+            </Grid>
+          </form>
+        </div>
+      );
+    }
   }
 });
