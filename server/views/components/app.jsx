@@ -79,6 +79,7 @@ var App = React.createClass({
       if(err == 'Access token has expired' || code == 400) {
         validCheck = false;
         alertText = 'Your authentication window has expired! Please log in again:';
+        localStorage.removeItem("token");
       }
       if(err || code == 401) {
         validCheck = false;

@@ -120,6 +120,25 @@ body {
   background: @borderColor;
 }
 
+.popover {
+  margin-top: 1%;
+  background: @borderColor;
+  color: #ffffff;
+}
+
+.arrow, .popover-title {
+  background: transparent;
+  border-right-color: transparent;
+}
+
+.popover.right>.arrow:after {
+  border-right-color: @borderColor;
+}
+
+.popover.left>.arrow:after {
+  border-left-color: @borderColor;
+}
+
 .btn-default {
   background: @borderColor;
   color: #fff;

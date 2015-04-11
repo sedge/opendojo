@@ -15,7 +15,9 @@ var {
   Form,
   Input,
   Button,
-  Col
+  Col,
+  OverlayTrigger,
+  Popover
 } = require('react-bootstrap');
 
 var UserField = React.createClass({
@@ -45,23 +47,50 @@ var UserField = React.createClass({
   },
 
   handleChange: function() {
+    let valueCode = this.refs.input.getValue();
+
+    if (valueCode.length > 0) {
+      switch (valueCode.match(/^[A-Za-z0-9_-]+$/)) {
+        case null:
+          this.refs.userHint.show();
+          break;
+
+        default:
+          this.refs.userHint.hide();
+          break;
+      }
+    }
+    else {
+      this.refs.userHint.hide();
+    }
     this.setState({
-      value: this.refs.input.getValue()
+      value: valueCode
     });
   },
 
   render: function() {
     return (
-      <Input
-        type = 'text'
-        value = {this.state.value}
-        label = 'Username'
-        bsStyle = {this.validationState()}
-        ref = 'input'
-        groupClassName = 'input-group'
-        className = 'form-control'
-        onChange = {this.handleChange}
-      />
+      <OverlayTrigger
+        ref="userHint"
+        trigger="manual"
+        placement="right"
+        overlay={
+          <Popover title='Invalid Username Format'>
+            <strong>Warning!</strong> Valid user credentials only contain alphanumeric characters, as well as heifens and underscores.
+          </Popover>
+        }
+      >
+        <Input
+          type = 'text'
+          value = {this.state.value}
+          label = 'Username'
+          bsStyle = {this.validationState()}
+          ref = 'input'
+          groupClassName = 'input-group'
+          className = 'form-control'
+          onChange = {this.handleChange}
+        />
+      </OverlayTrigger>
     );
   }
 });
@@ -94,23 +123,50 @@ var PasswordField = React.createClass({
   },
 
   handleChange: function() {
+    let passValue = this.refs.input.getValue();
+
+    if (passValue.length > 0) {
+      switch (passValue.match(/^\S{6,50}$/)) {
+        case null:
+          this.refs.passHint.show();
+          break;
+
+        default:
+          this.refs.passHint.hide();
+          break;
+      }
+    }
+    else {
+      this.refs.passHint.hide();
+    }
     this.setState({
-      value: this.refs.input.getValue()
+      value: passValue
     });
   },
 
   render: function() {
     return (
-      <Input
-        type = 'password'
-        value = {this.state.value}
-        label = 'Password'
-        bsStyle = {this.validationState()}
-        ref = 'input'
-        groupClassName = 'input-group'
-        className = 'form-control'
-        onChange = {this.handleChange}
-      />
+      <OverlayTrigger
+        ref="passHint"
+        trigger="manual"
+        placement="left"
+        overlay={
+          <Popover title='Invalid Password Format'>
+            <strong>Warning!</strong> Valid passwords must be between 6 and 50 characters long, as cannot contain any whitespace.
+          </Popover>
+        }
+      >
+        <Input
+          type = 'password'
+          value = {this.state.value}
+          label = 'Password'
+          bsStyle = {this.validationState()}
+          ref = 'input'
+          groupClassName = 'input-group'
+          className = 'form-control'
+          onChange = {this.handleChange}
+        />
+      </OverlayTrigger>
     );
   }
 });
