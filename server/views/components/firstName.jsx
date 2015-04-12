@@ -23,7 +23,7 @@ var FirstName = module.exports = React.createClass({
     var value = ref.getValue().trim();
 
     // Allow whitespace
-    var sanitized = blacklist(value, " ")
+    var sanitized = blacklist(value, " \'-");
 
     if (!isLength(sanitized, 1, 30) || !isAlpha(sanitized)) {
       return this.setState({
@@ -67,7 +67,7 @@ var FirstName = module.exports = React.createClass({
     var feedback;
     if (!this.state.valid) {
       feedback = (
-        <p><strong>A first name is required, must only be letters and must not exceed 30 characters.</strong></p>
+        <p><strong>A first name is required, must only contain letters, apostrophes, and hyphens, and must not exceed 30 characters.</strong></p>
       );
     }
 
