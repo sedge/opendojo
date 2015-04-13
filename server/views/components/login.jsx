@@ -34,7 +34,7 @@ var UserField = React.createClass({
   validationState: function() {
     let valueCode = this.state.value;
     if (valueCode.length > 0) {
-      switch (valueCode.match(/^[A-Za-z0-9_-]+$/)) {
+      switch (valueCode.match(/^[A-Za-z0-9_-]{1,40}$/)) {
         case null:
           return 'warning';
           break;
@@ -50,7 +50,7 @@ var UserField = React.createClass({
     let valueCode = this.refs.input.getValue();
 
     if (valueCode.length > 0) {
-      switch (valueCode.match(/^[A-Za-z0-9_-]+$/)) {
+      switch (valueCode.match(/^[A-Za-z0-9_-]{1,40}$/)) {
         case null:
           this.refs.userHint.show();
           break;
@@ -76,7 +76,7 @@ var UserField = React.createClass({
         placement="right"
         overlay={
           <Popover title='Invalid Username Format'>
-            <strong className='warnText'>Warning!</strong> Valid user credentials only contain alphanumeric characters, as well as heifens and underscores.
+            <strong className='warnText'>Warning!</strong> Valid usernames must be between 1 and 40 characters. Characters can be alphanumeric, hyphens, and underscores.
           </Popover>
         }
       >
