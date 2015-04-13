@@ -8,19 +8,10 @@ var {
 var RankSequence = module.exports = React.createClass({
   getInitialState: function() {
     return {
-      value: this.props.defaultValue,
-      feedback: ""
+      value: this.props.defaultValue
     };
   },
 
-  onChange: function(e) {
-    var feedbackString = "Sequence has been changed.  Remember to change the corresponding duplicate sequence."
-    return this.setState({
-      feedback: feedbackString
-    });
-  },
-
-  // Get value from the ref
   getValue: function() {
     return this.refs[this.props.name].getValue();
   },
@@ -29,7 +20,6 @@ var RankSequence = module.exports = React.createClass({
     var sequences = this.props.sequences;
 
     var props = {
-      label: this.props.label,
       type: "select",
       ref: this.props.name,
       name: this.props.name,
@@ -46,10 +36,9 @@ var RankSequence = module.exports = React.createClass({
 
     return (
       <div>
-        <Input {...props} onChange={this.onChange}>
+        <Input {...props}>
           {sequences}
         </Input>
-           <p className="red"><strong>{this.state.feedback}</strong></p>
       </div>
     );
   }

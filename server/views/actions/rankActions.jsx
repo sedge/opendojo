@@ -8,6 +8,9 @@ var RankActions = module.exports = Reflux.createActions({
   editRank: {
     asyncResult: true
   },
+  editSequence: {
+    asyncResult: true
+  },
   deleteRank: {
     asyncResult: true
   }

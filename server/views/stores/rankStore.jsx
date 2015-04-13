@@ -6,7 +6,8 @@ var rankActions = require('../actions/rankActions.jsx');
 var {
   addRank,
   editRank,
-  deleteRank
+  deleteRank,
+  editSequence
 } = rankActions;
 
 var { URL } = require('../bin/constants.jsx');
@@ -151,7 +152,47 @@ var rankStore = Reflux.createStore({
   editRankCompleted: function() {
     this.trigger(ranks);
   },
+  // `editRank` Action handling
+  editSequence: function(updatedInfo){
+    var that = this;
 
+    var rank;
+    var index;
+
+    for(var i = 0; i < ranks.length; i++){
+      if(ranks[i]._id == updatedInfo._id) {
+        rank = ranks[i];
+        index = i;
+        break;
+       }
+    }
+
+      if(!rank) {
+      return editSequence.failed(ranks);
+    }
+    ranks[index].sequence = updatedInfo.sequence;
+    var rankToSend = {
+      sequence: updatedInfo.sequence,
+    }
+    request
+      .put(URL + "rank/" + updatedInfo._id)
+      .set(authInfo)
+      .send(rankToSend)
+      .end(function(err, res) {
+        if(err){
+          return editSequence.failed(err);
+        }
+       
+        console.log("ranks are: ", ranks);
+        editSequence.completed(ranks);
+      });
+  },
+  editSequenceFailed: function() {
+    this.trigger(ranks);
+  },
+  editSequenceCompleted: function() {
+    this.trigger(ranks);
+  },
   // `deleteRank` Action handling
   deleteRank: function(id){
     var that = this;

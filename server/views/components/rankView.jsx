@@ -24,7 +24,6 @@ var {
 var AlertDismissable = require('./AlertDismissable.jsx');
 
 var RankName = require('./rankName.jsx');
-var RankSequence = require('./rankSequence.jsx');
 var RankColor = require('./rankColor.jsx');
 
 var RankView = module.exports = React.createClass({
@@ -34,7 +33,8 @@ var RankView = module.exports = React.createClass({
       editable: false,
       valid: true,
       deleteMessage: "",
-      availableRanks: []
+      availableRanks: [],
+      ranks: []
     };
   },
 
@@ -72,6 +72,7 @@ var RankView = module.exports = React.createClass({
     });
 */
     this.setState({
+      //Used to determine which ranks are held by students and therefore can't be deleted
       availableRanks: usedRanks
     });
   },
@@ -80,65 +81,37 @@ var RankView = module.exports = React.createClass({
     var that = this;
     var id = that.props.routerParams.id;
 
-    var rankSequence = [];
-
     ranks.forEach(function(rank) {
-      if (!that.presentInArray(rankSequence, rank.sequence))
-      {
-        rankSequence.push(rank.sequence);
-      }
       if (id == rank._id) {
         that.setState({
-          rank: rank
+          rank: rank,
+          ranks:ranks
         });
       }
     });
-    var highestSequence = rankStore.getSequence()+1;
-    for (var i=1; i<highestSequence; i++) {
-
-      if (!that.presentInArray(rankSequence,i)){
-        rankSequence.push(i);
-      }
-    }
-
-    rankSequence.sort();
-
-    this.setState({
-      rankSequence:rankSequence
-    });
   },
-  presentInArray: function(array, searchElement) {
-    for (var j=0; j<array.length; j++) {
-      if (searchElement == array[j]) {
-        var whatever = 0;
-        return true;
-      }
-    }
-  },
+
   editToggle: function(e){
     e.preventDefault();
     this.setState({
       editable : !this.state.editable
     });
   },
-
   // `EditRank` Action Handling
   onEditRank: function(e){
     if (e) { e.preventDefault(); }
 
     var that = this;
     var valid = true;
+    var sequence = "";
 
     var keys = Object.keys(this.refs);
     keys.forEach(function(ref) {
-        var child = that.refs[ref];
-        var value = ref;
-        if (value != "sequence") {
-        // Is it in a valid state?
-          if (!child.state.valid) {
-            valid = false;
-          }
-        }
+      var child = that.refs[ref];
+      var value = ref;
+      if (!child.state.valid) {
+          valid = false;
+      }
     });
 
     if (!valid) {
@@ -152,12 +125,15 @@ var RankView = module.exports = React.createClass({
     this.setState({
       valid: true
     });
-
-    var parsedSequence = parseInt(this.refs.sequence.getValue().trim());
+    this.state.ranks.forEach(function (rank) {
+      if (that.props.routerParams.id == rank._id) {
+        sequence = rank.sequence;
+      }
+    });
     var newRank = {
       _id: this.props.routerParams.id,
       name: this.refs.name.getValue().trim(),
-      sequence: parsedSequence,
+      sequence: sequence,
       color: this.refs.color.getValue().trim()
     };
     rankActions.editRank(newRank);
@@ -257,13 +233,12 @@ var RankView = module.exports = React.createClass({
           <h2>Update rank information:</h2>
 
           <RankName label="Rank Name" ref="name" name="name" defaultValue={rank.name} />
-          <RankSequence label="Rank Sequence" ref="sequence" name="sequence" defaultValue={rank.sequence} sequences={this.state.rankSequence} />
           <RankColor label="Rank Color" ref="color" name="color" defaultValue={rank.color} />
 
           <AlertDismissable visable={!this.state.valid} />
           <Grid>
             <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditRank}>Save</Button></Col>
+              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditRank}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
             </Row>
