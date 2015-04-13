@@ -147,3 +147,13 @@ function blah() {
 }
 
 ```
+
+### Unit Tests
+
+All of our unit tests are required into 1 main test file - `/tests/index.js`.
+Please be sure to add in your new test suite to this file, since our automated
+test runners all point to this location.
+
+
+Any reusable helper functions that can be placed in a new module test should be added
+to `utils.js`, and all of the `api` route tests are logically placed in the `api` subfolder.
