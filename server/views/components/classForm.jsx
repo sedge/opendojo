@@ -128,10 +128,10 @@ var ClassForm = module.exports = React.createClass({
           <Input label="Class Time" wrapperClassName='wrapper'>
             <Row>
               <Col xs={6}>
-                <Input type='time' ref="startTime" name="startTime" />
+                <Input type='time' label="From:" ref="startTime" name="startTime" />
               </Col>
               <Col xs={6}>
-                <Input type='time' ref="endTime" name="endTime" />
+                <Input type='time' label="To:" ref="endTime" name="endTime" />
               </Col>
             </Row>
           </Input>
