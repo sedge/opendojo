@@ -56,7 +56,7 @@ var App = React.createClass({
     var tokenCheck;
 
     this.listenTo(logIn.completed, function(token, validUser) {
-      if(localStorage.getItem("token")){
+      if(localStorage.getItem("token")) {
         tokenCheck = true;
       }
 
@@ -71,6 +71,8 @@ var App = React.createClass({
       var logOut;
       var validCheck = true;
       var alertText = 'Authentication Failed!';
+
+      localStorage.removeItem("welcomed");
 
       if(code == 205) {
         logOut = true;
@@ -112,6 +114,8 @@ var App = React.createClass({
 
   handleLogout: function() {
     localStorage.removeItem("token");
+    localStorage.removeItem("welcomed");
+
     logIn.failed(null, 205);
   },
 

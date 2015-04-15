@@ -5,7 +5,15 @@ var {
 
 var Welcome = module.exports = React.createClass({
   getInitialState: function() {
-    return {modalOpen: true};
+    var checked = true;
+    if(localStorage.getItem("welcomed")) {
+      checked = false;
+    }
+    return {modalOpen: checked};
+  },
+
+  componentDidMount: function() {
+    localStorage.setItem("welcomed", "true");
   },
 
   handleHide: function() {
