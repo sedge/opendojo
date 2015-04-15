@@ -11,6 +11,7 @@ var {
 
 var authStore = require('../stores/authStore.jsx');
 
+var Loader = require('react-loader');
 var {
   Form,
   Input,
@@ -178,7 +179,8 @@ var LoginUI = module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      invalid: false
+      invalid: false,
+      loaded: true
     }
   },
 
@@ -186,7 +188,9 @@ var LoginUI = module.exports = React.createClass({
     logIn({
       username: this.refs.userVal.getValue(),
       password: this.refs.passVal.getValue()
-    });
+    }, this.setState({
+        loaded: false
+    }));
   },
 
   componentDidMount: function() {
@@ -201,10 +205,16 @@ var LoginUI = module.exports = React.createClass({
   },
 
   logInCompleted: function() {
+    this.setState({
+      loaded: true
+    });
     this.transitionTo('/');
   },
 
   logInFailed: function(err) {
+    this.setState({
+      loaded: true
+    });
     console.log('Log in failed! ', err);
     this.transitionTo('/');
   },
@@ -214,9 +224,27 @@ var LoginUI = module.exports = React.createClass({
   },
 
   render: function() {
+    var loaderOpts = {
+      lines: 20,
+      length: 10,
+      width: 9,
+      radius: 30,
+      corners: 1,
+      rotate: 0,
+      direction: 1,
+      color: '#fff',
+      speed: 1,
+      trail: 60,
+      shadow: true,
+      hwaccel: false,
+      zIndex: 2e9,
+      top: '50%',
+      left: '50%'
+    };
     return (
       <div id="loginForm" ref="loginComp">
-        <br />
+      <Loader loaded={this.state.loaded} options={loaderOpts}>
+      <br />
         <Col xs={7} xsOffset={5} className="credContainer">
           <UserField ref="userVal" />
           <PasswordField ref="passVal" />
@@ -231,6 +259,7 @@ var LoginUI = module.exports = React.createClass({
             value='Submit'
           />
         </Col>
+        </Loader>
       </div>
     );
   }
