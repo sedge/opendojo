@@ -147,30 +147,56 @@ var StudentForm = module.exports = React.createClass({
 			)
 		}
 		return (
-			<div className="addStudent container">
-				<form>
-					<h2> Enter new student information:</h2>
-					<FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
-					<LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
-					<RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
-					<PhoneInput label="Phone" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
-					<DateInput label="Birth Date" ref="bday" name="bday" placeholder="Age" />
-					<GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />
-					<EmailInput label="Email" ref="emails" name="emails" placeholder="(comma delimited)" />
-					<GuardianInput label="Guardian Information" ref="guardian" name="guardian" placeholder="(Name of guardian)" />
-					<PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" placeholder="XXX-XXX-XXXX" />
-					<HealthInput label="Health Informaion" ref="health" name="health" placeholder="(Health Information)"/>
-          <AlertDismissable visable={!this.state.valid} />
+		  <div className="addStudent container">
+            <form>
+              <h2> Enter new student information:</h2>
+              <Row>
+                <Col xs={6} md={6}>
+                  <FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
+                </Col>
+                <Col xs={6} md={6}>
+                  <LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4} md={4}>
+                  <RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
+                </Col>
+                <Col xs={4} md={4}>
+                  <PhoneInput label="Phone" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
+                </Col>
+                <Col xs={4} md={4}>
+                  <DateInput label="Birth Date" ref="bday" name="bday" placeholder="Age" />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} md={6}>
+                  <GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />
+                </Col>
+                <Col xs={6} md={6}>
+                  <EmailInput label="Email" ref="emails" name="emails" placeholder="(comma delimited)" />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} md={6}>
+                  <GuardianInput label="Guardian Information" ref="guardian" name="guardian" placeholder="(Name of guardian)" />
+                </Col>
+                <Col xs={6} md={6}>
+                  <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" placeholder="XXX-XXX-XXXX" />
+                </Col>
+              </Row>
+              <HealthInput label="Health Informaion" ref="health" name="health" placeholder="(Health Information)"/>
+              <AlertDismissable visable={!this.state.valid} />
 					{emptyWarn}
-					<Grid>
-            <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
-              <Col xs={6} md={4}></Col>
-              <Col xs={6} md={4}><span className="pull-right"><Link to="students"><Button bsSize="large" >Cancel</Button></Link></span></Col>
-            </Row>
-          </Grid>
-				</form>
-			</div>
+              <Grid>
+                <Row className="show-grid">
+                  <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.handleSubmit}>Save</Button></Col>
+                  <Col xs={6} md={4}></Col>
+                  <Col xs={6} md={4}><span className="pull-right"><Link to="students"><Button bsSize="large" >Cancel</Button></Link></span></Col>
+                </Row>
+              </Grid>
+            </form>
+		  </div>
 		);
 	}
 });

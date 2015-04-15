@@ -100,8 +100,14 @@ var RankForm = module.exports = React.createClass({
         <form>
 
           <h2> Enter new rank information:</h2>
-          <RankName label="Rank Name" ref="name" name="name" placeholder="e.g. Black" />
-          <RankColor label="Rank Color" ref="color" name="color" placeholder="e.g. Black" />
+          <Row>
+            <Col xs={6} md={6}>
+              <RankName label="Rank Name" ref="name" name="name" placeholder="e.g. Black" />
+            </Col>
+            <Col xs={6} md={6}>
+              <RankColor label="Rank Color" ref="color" name="color" placeholder="e.g. Black" />
+            </Col>
+          </Row>
 
           <AlertDismissable visable={!this.state.valid} />
           {emptyWarn}
