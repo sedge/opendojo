@@ -146,7 +146,6 @@ var ClassForm = module.exports = React.createClass({
               <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large">Cancel</Button></Link></span></Col>
             </Row>
           </Grid>
-
         </form>
       </div>
     );

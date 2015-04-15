@@ -60,7 +60,8 @@ var FirstName = module.exports = React.createClass({
       type: "text",
       ref: this.props.name,
       name: this.props.name,
-      defaultValue: this.state.value
+      defaultValue: this.state.value,
+      placeholder: this.props.placeholer
     };
     if (this.validationState()) {
       props.bsStyle = this.validationState();

@@ -63,7 +63,7 @@ function bdateForEdit(date){
   var bdate = new Date(date);
   var yyyy = bdate.getFullYear().toString();
   var mm = (bdate.getMonth()+1).toString();
-  var dd  = bdate.getDate().toString();
+  var dd  = (bdate.getDate()).toString();
  
   // CONVERT mm AND dd INTO chars
   var mmChars = mm.split('');

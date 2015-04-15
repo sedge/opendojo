@@ -145,7 +145,6 @@ var EditClass = module.exports = React.createClass({
       <div className="addClass container">
         <form>
           <h2> Update Class Information:</h2>
-
           <ClassTitle label="Class Title" ref="classTitle" name="classTitle" defaultValue={course.classTitle} />
           <Input type="select" label="Day of Week" ref="day" name="day" defaultValue={course.dayOfWeek}>
             <option value="" disabled className="notDisplay">Select Day of Week</option>

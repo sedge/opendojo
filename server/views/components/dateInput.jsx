@@ -10,10 +10,12 @@ var {
   Input
 } = require('react-bootstrap');
 
+var { ageCalculator } = require('../bin/utils.jsx');
 var FirstName = module.exports = React.createClass({
   getInitialState: function() {
     return {
       valid: true,
+      ageValid: true,
       value: this.props.defaultValue
     };
   },
@@ -23,18 +25,32 @@ var FirstName = module.exports = React.createClass({
     var value = ref.getValue().trim();
 
     // Allow dashes
-    var sanitized = blacklist(value, "-")
-
+    var sanitized = blacklist(value, "-");
+    var valueDate = new Date(value);
     if (!isLength(sanitized, 1) || !isNumeric(sanitized)) {
       return this.setState({
         valid: false,
         value: value
       });
     }
+    if(this.props.name == "bday"){
+      if(Number(ageCalculator(valueDate)) < 3 || Number(ageCalculator(valueDate) > 150)){
+        return this.setState({
+          ageValid: false,
+          value: value
+        });
+      }
+    }
 
     if (!this.state.valid) {
       this.setState({
         valid: true,
+        value: value
+      });
+    }
+    if (!this.state.ageValid){
+      this.setState({
+        ageValid: true,
         value: value
       });
     }
@@ -46,7 +62,7 @@ var FirstName = module.exports = React.createClass({
   },
 
   validationState: function() {
-    if (this.state.valid) {
+    if (this.state.valid && this.state.ageValid) {
       return;
     }
     return "error";
@@ -65,10 +81,22 @@ var FirstName = module.exports = React.createClass({
     }
 
     var feedback;
-    if (!this.state.valid) {
+    if(!this.state.ageValid && this.props.name == "bday") {
       feedback = (
-        <p><strong>A birth date is required.</strong></p>
+        <p><strong>Age must be between 3 and 150 years</strong></p>
       );
+    }
+    if (!this.state.valid) {
+      if(this.props.name == "bday"){
+        feedback = (
+          <p><strong>A birth date is required.</strong></p>
+        );
+      }
+      else{
+        feedback = (
+          <p><strong>A expriey date is required.</strong></p>
+        );
+      }
     }
 
     return (

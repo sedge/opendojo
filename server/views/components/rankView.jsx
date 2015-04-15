@@ -89,6 +89,27 @@ var RankView = module.exports = React.createClass({
         });
       }
     });
+    var highestSequence = rankStore.getSequence()+1;
+    for (var i=1; i<highestSequence; i++) {
+
+      if (!that.presentInArray(rankSequence,i)){
+        rankSequence.push(i);
+      }
+    }
+
+    rankSequence.sort();
+
+    this.setState({
+      rankSequence:rankSequence
+    });
+  },
+  presentInArray: function(array, searchElement) {
+    for (var j=0; j<array.length; j++) {
+      if (searchElement == array[j]) {
+        var whatever = 0;
+        return true;
+      }
+    }
   },
 
   editToggle: function(e){

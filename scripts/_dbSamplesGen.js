@@ -98,13 +98,11 @@ function _generateSampleData() {
               console.log("Error generating! ", err);
               return process.exit(1);
             }
-
             newStud2.save(function (err, newStud2) {
               if(err){
                 console.log("Error generating! ", err);
                 return process.exit(1);
               }
-
               console.log('All students generated happily!')
 
               var recordOne = new models.Attendance ({
