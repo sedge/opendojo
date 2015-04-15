@@ -36,7 +36,7 @@ var Students = module.exports = React.createClass({
       <Grid>
         <Row className="show-grid">
           <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by name..."/></Col>
-          <Col xs={8} md={8}><Panel><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Panel></Col>
+          <Col xs={8} md={8}><h4 className="text-center">STUDENT MANAGEMENT TOOLBAR</h4></Col>
           <Col xs={1} md={1}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>

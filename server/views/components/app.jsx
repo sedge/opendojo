@@ -13,7 +13,6 @@ var {
 } = Router;
 
 var LoginUI = require('./login.jsx');
-var Banner = require('./banner.jsx');
 
 var authActions = require('../actions/authActions.jsx');
 var {
@@ -139,9 +138,8 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {"OpenDojo CMS"}
+            brand = {<a href="/">OpenDojo</a>}
           />
-          <Banner />
           <Grid>
             <Alert bsStyle="info">
               Welcome! Please log in below to continue:
@@ -165,9 +163,8 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {"OpenDojo CMS"}
+            brand = {<a href="/">OpenDojo</a>}
           />
-          <Banner />
           <Grid >
             <Alert bsStyle="danger">
               {this.state.alertText}
@@ -191,14 +188,13 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {"OpenDojo CMS"}
+            brand = {<a href="/">OpenDojo</a>}
           >
             <Nav right = {true}>
               <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
               <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
             </Nav>
           </Navbar>
-          <Banner />
           <Grid>
             {/* Main Content */}
             <Row>
