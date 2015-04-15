@@ -34,6 +34,7 @@ var RankView = module.exports = React.createClass({
       valid: true,
       deleteMessage: "",
       availableRanks: [],
+      deletedSequence: 0,
       ranks: []
     };
   },
@@ -59,6 +60,10 @@ var RankView = module.exports = React.createClass({
     this.listenTo(rankActions.deleteRank.failed, this.deleteRankFailed);
     this.listenTo(rankActions.editRank.completed, this.editRankComplete);
     this.listenTo(rankActions.editRank.failed, this.editRankFailed);
+
+     //Listening for editing of sequences for the delete functionality --> sequences will be --
+    this.listenTo(rankActions.editSequence.completed, this.editSequenceComplete);
+    this.listenTo(rankActions.editSequence.failed, this.editSequenceFailed);
   },
 
   getStudentRanks: function(students) {
@@ -149,38 +154,77 @@ var RankView = module.exports = React.createClass({
       editable: false
     });
   },
+  editSequenceComplete: function() {
+    this.transitionTo("ranks");
+  },
+  editSequenceFailed: function (err) {
+    console.error("Editing a rank sequence failed: ", err);
+    this.setState({
+      editable: false
+    });
+  },
   // `DeleteRank` Action Handling
-  onDeleteRank: function(e){
+  onDeleteRank: function(e){debugger;
     var mayDelete=true;
+    var sequenceOfrank = 0;
+    var ranks = this.state.ranks;
     var rankIDBeingDeleted = this.props.routerParams.id;
     var availableRanks = this.state.availableRanks;
+    var deleteMessage = "";
+
+    ranks.forEach(function(rank){
+      if (rank._id == rankIDBeingDeleted) {
+        sequenceOfrank = rank.sequence;
+      }   
+    });
+
     availableRanks.forEach(function(rank){
-      var placer= 0;
       if (rank == rankIDBeingDeleted) {
-        mayDelete=false;
+        mayDelete = false;
       }
     });
+
     if (mayDelete) {
      rankActions.deleteRank(rankIDBeingDeleted);
     } else {
-      this.setState({
-        deleteMessage: "Can not delete this rank as it is being used."
-      });
+      var j = 0;
+      deleteMessage = "Can not delete this rank as it is being used."
     }
-  },
-  deleteRankComplete: function(ranks) {
-    var sequenceArray = [];
-    ranks.forEach(function(rank){
-      var newSequence = rank.sequence - 1;
-      sequenceArray[rank._id]=newSequence;
+    var i = 0;
+
+    this.setState({
+      deleteMessage: deleteMessage, 
+      deletedSequence: sequenceOfrank
     });
-    this.transitionTo("ranks");
+  },
+  //This will -- all available sequences 
+  deleteRankComplete: function(ranks) {debugger;
+  var that = this;
+
+    ranks.forEach(function(rank) {
+      if (rank.sequence > that.state.deletedSequence) {
+        if (rank.sequence != 1) {
+          var newSequence = rank.sequence - 1;
+          var newRank = {
+            _id: rank._id,
+            sequence: newSequence
+          }
+          rankActions.editSequence(newRank);
+        } else {
+          var newRank = {
+            _id: rank._id,
+            sequence: rank.sequence
+          }
+          rankActions.editSequence(newRank);
+        }
+      }  
+    });
   },
   deleteRankFailed: function(ranks) {
     this.transitionTo("ranks");
   },
 
-  render: function() {
+  render: function() {debugger;
     var content;
     var rank = this.state.rank;
     var editable = this.state.editable;
