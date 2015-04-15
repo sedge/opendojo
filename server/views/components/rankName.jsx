@@ -23,8 +23,7 @@ var RankName = module.exports = React.createClass({
     var value = ref.getValue().trim();
 
     // Allow whitespace
-    var sanitized = blacklist(value, " -");
-    
+    var sanitized = blacklist(value, "  -");
 
     if (!isLength(sanitized, 1) || !isAlphanumeric(sanitized)) {
       return this.setState({

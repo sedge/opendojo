@@ -34,6 +34,7 @@ var RankView = module.exports = React.createClass({
       valid: true,
       deleteMessage: "",
       availableRanks: [],
+      deletedSequence: 0,
       ranks: []
     };
   },
@@ -59,6 +60,10 @@ var RankView = module.exports = React.createClass({
     this.listenTo(rankActions.deleteRank.failed, this.deleteRankFailed);
     this.listenTo(rankActions.editRank.completed, this.editRankComplete);
     this.listenTo(rankActions.editRank.failed, this.editRankFailed);
+
+     //Listening for editing of sequences for the delete functionality --> sequences will be --
+    this.listenTo(rankActions.editSequence.completed, this.editSequenceComplete);
+    this.listenTo(rankActions.editSequence.failed, this.editSequenceFailed);
   },
 
   getStudentRanks: function(students) {
@@ -89,27 +94,27 @@ var RankView = module.exports = React.createClass({
         });
       }
     });
-    var highestSequence = rankStore.getSequence()+1;
-    for (var i=1; i<highestSequence; i++) {
+  //   var highestSequence = rankStore.getSequence()+1;
+  //   for (var i=1; i<highestSequence; i++) {
 
-      if (!that.presentInArray(rankSequence,i)){
-        rankSequence.push(i);
-      }
-    }
+  //     if (!that.presentInArray(rankSequence,i)){
+  //       rankSequence.push(i);
+  //     }
+  //   }
 
-    rankSequence.sort();
+  //   rankSequence.sort();
 
-    this.setState({
-      rankSequence:rankSequence
-    });
-  },
-  presentInArray: function(array, searchElement) {
-    for (var j=0; j<array.length; j++) {
-      if (searchElement == array[j]) {
-        var whatever = 0;
-        return true;
-      }
-    }
+  //   this.setState({
+  //     rankSequence:rankSequence
+  //   });
+  // },
+  // presentInArray: function(array, searchElement) {
+  //   for (var j=0; j<array.length; j++) {
+  //     if (searchElement == array[j]) {
+  //       var whatever = 0;
+  //       return true;
+  //     }
+  //   }
   },
 
   editToggle: function(e){
@@ -170,27 +175,71 @@ var RankView = module.exports = React.createClass({
       editable: false
     });
   },
+  editSequenceComplete: function() {
+    this.transitionTo("ranks");
+  },
+  editSequenceFailed: function (err) {
+    console.error("Editing a rank sequence failed: ", err);
+    this.setState({
+      editable: false
+    });
+  },
   // `DeleteRank` Action Handling
   onDeleteRank: function(e){
     var mayDelete=true;
+    var sequenceOfrank = 0;
+    var ranks = this.state.ranks;
     var rankIDBeingDeleted = this.props.routerParams.id;
     var availableRanks = this.state.availableRanks;
+    var deleteMessage = "";
+
+    ranks.forEach(function(rank){
+      if (rank._id == rankIDBeingDeleted) {
+        sequenceOfrank = rank.sequence;
+      }   
+    });
+
     availableRanks.forEach(function(rank){
-      var placer= 0;
       if (rank == rankIDBeingDeleted) {
-        mayDelete=false;
+        mayDelete = false;
       }
     });
+
     if (mayDelete) {
      rankActions.deleteRank(rankIDBeingDeleted);
     } else {
-      this.setState({
-        deleteMessage: "Can not delete this rank as it is being used."
-      });
+      var j = 0;
+      deleteMessage = "Can not delete this rank as it is being used."
     }
+    var i = 0;
+
+    this.setState({
+      deleteMessage: deleteMessage, 
+      deletedSequence: sequenceOfrank
+    });
   },
+  //This will -- all available sequences 
   deleteRankComplete: function(ranks) {
-    this.transitionTo("ranks");
+  var that = this;
+
+    ranks.forEach(function(rank) {
+      if (rank.sequence > that.state.deletedSequence) {
+        if (rank.sequence != 1) {
+          var newSequence = rank.sequence - 1;
+          var newRank = {
+            _id: rank._id,
+            sequence: newSequence
+          }
+          rankActions.editSequence(newRank);
+        } else {
+          var newRank = {
+            _id: rank._id,
+            sequence: rank.sequence
+          }
+          rankActions.editSequence(newRank);
+        }
+      }  
+    });
   },
   deleteRankFailed: function(ranks) {
     this.transitionTo("ranks");
