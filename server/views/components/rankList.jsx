@@ -58,7 +58,7 @@ var RankList = module.exports = React.createClass({
         }
       }
     });
-    rankSequences.sort();
+    rankSequences = rankSequences.sort();
     sortedArray = latestRanks.sort(sortByKey("sequence",0));
     this.setState({
       rankSequences:rankSequences,

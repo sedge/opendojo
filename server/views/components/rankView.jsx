@@ -169,6 +169,11 @@ var RankView = module.exports = React.createClass({
     }
   },
   deleteRankComplete: function(ranks) {
+    var sequenceArray = [];
+    ranks.forEach(function(rank){
+      var newSequence = rank.sequence - 1;
+      sequenceArray[rank._id]=newSequence;
+    });
     this.transitionTo("ranks");
   },
   deleteRankFailed: function(ranks) {
