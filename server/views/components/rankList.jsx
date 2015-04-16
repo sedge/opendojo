@@ -58,7 +58,7 @@ var RankList = module.exports = React.createClass({
         }
       }
     });
-    rankSequences.sort();
+    rankSequences = rankSequences.sort();
     sortedArray = latestRanks.sort(sortByKey("sequence",0));
     this.setState({
       rankSequences:rankSequences,
@@ -121,12 +121,15 @@ var RankList = module.exports = React.createClass({
       editing: true
     });
   },
-  editRankComplete: function(newRanks) {
-    var sortedArray;
-    sortedArray = newRanks.sort(sortByKey("sequence",0));
+  editRankComplete: function() {
     this.setState({
-      ranks: sortedArray,
       editing: false
+    });
+  },
+  editToggle: function(e){debugger;
+    e.preventDefault();
+    this.setState({
+      editing : !this.state.editing
     });
   },
   render: function() {
@@ -193,6 +196,8 @@ var RankList = module.exports = React.createClass({
             <Button bsSize="small" disabled={!this.state.editing} onClick={this.saveSequences}>
               Save
             </Button>
+            &nbsp;
+            <Button bsSize="small" disabled={!this.state.editing} onClick={this.editToggle}>Cancel</Button>
             </th>
             <th>Rank Color</th>
             <th></th>
