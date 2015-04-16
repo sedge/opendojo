@@ -46,7 +46,8 @@ var dashboardNav = {
   "Classes": "classes",
   "Attendance": "attendances",
   "Send Notifications": "notify",
-  "Switch to Terminal Mode": "welcome"
+  "Switch to Terminal Mode": "welcome",
+  "Custom Message": "message"
 };
 
 // Unique key for each link

@@ -32,6 +32,7 @@ app.use('/api', jwtAuth, jwtRegen, routes.course);
 app.use('/api', jwtAuth, jwtRegen, routes.rank);
 app.use('/api', jwtAuth, jwtRegen, routes.student);
 app.use('/api', jwtAuth, jwtRegen, routes.email);
+app.use('/api', jwtAuth, jwtRegen, routes.message);
 
 // Invoke our token secret
 app.set('jwtTokenSecret', env.get("AUTH_SECRET"));
