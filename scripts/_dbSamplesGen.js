@@ -35,19 +35,19 @@ function _generateSampleData() {
       var d = new Date();
 
       newClass = new models.Class({
-        "classTitle": "TestClass",
+        "classTitle": "Black Belt Class",
         "dayOfWeek": 3,
-        "startTime": d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
-        "endTime": d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+        "startTime": "4" + ":" + "00" + ":" + "00",
+        "endTime": "5" + ":" + "00" + ":" + "00",
         "classType": blackBelt._id,
         "RanksAllowed": ranksList
       });
 
       newClass2 = new models.Class({
-        "classTitle": "TestClass2",
+        "classTitle": "White Belt Class",
         "dayOfWeek": 5,
-        "startTime": d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
-        "endTime": d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),
+        "startTime": "5" + ":" + "00" + ":" + "00",
+        "endTime": "7" + ":" + "00" + ":" + "00",
         "classType": whiteBelt._id,
         "RanksAllowed": ranksList
       });
@@ -69,13 +69,13 @@ function _generateSampleData() {
             "lastName": "Salvatore",
             "gender": "M",
             "rankId": blackBelt._id,
-            "healthInformation":"healthy",
+            "healthInformation":"dead",
             "guardianInformation": "stephan",
             "email": "damon@salvatore.com",
             "membershipStatus": true,
             "membershipExpiry": "2009-04-12T20:44:55",
             "phone": "444-333-3333",
-            "birthDate": "2009-04-12T20:44:55",
+            "birthDate": "1930-04-12T20:44:55",
              "emergencyphone" : "999-888-7777"
           });
           newStud2 = new models.Student({
@@ -83,7 +83,7 @@ function _generateSampleData() {
             "lastName": "Madison",
             "gender": "F",
             "rankId": whiteBelt._id,
-            "healthInformation": "dead",
+            "healthInformation": "health",
             "guardianInformation": "bob",
             "email": "example@myface.com",
             "membershipStatus": false,
@@ -107,15 +107,15 @@ function _generateSampleData() {
 
               var recordOne = new models.Attendance ({
                 studentID: newStud._id,
-                classDate: "2015-04-15T20:44:55.000Z",
-                classTime: d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
+                classDate: "2015-04-15T04:00:00.000Z",
+                classTime: "4"+":"+"00"+":"+"00",
                 classID: newClass._id
               });
 
               var recordTwo = new models.Attendance ({
                 studentID: newStud2._id,
-                classDate: "2015-04-17T20:44:55.000Z",
-                classTime: d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
+                classDate: "2015-04-17T05:00:00.000Z",
+                classTime: "5"+":"+"00"+":"+"00",
                 classID: newClass2._id
               });
 
