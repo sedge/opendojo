@@ -34,9 +34,9 @@ var Classes = module.exports = React.createClass({
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-          <Col xs={6} md={4}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search Class by Title or Day"/></Col>
-          <Col xs={6} md={4}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
-          <Col xs={6} md={4}><span className="pull-right">{addButton}</span></Col>
+          <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by title or day..."/></Col>
+          <Col xs={8} md={8}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
+          <Col xs={1} md={1}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>
     );

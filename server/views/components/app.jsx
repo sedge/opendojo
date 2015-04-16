@@ -9,7 +9,8 @@ var {
 //   var RouteHandler = Router.RouteHandler;
 //   ...
 var {
-  RouteHandler
+  RouteHandler,
+  Navigation
 } = Router;
 
 var LoginUI = require('./login.jsx');
@@ -31,6 +32,8 @@ var {
   Nav,
   NavItem,
   Button,
+  DropdownButton,
+  MenuItem,
   Alert
 } = require('react-bootstrap');
 
@@ -48,7 +51,7 @@ var nav = {
 var headerLinkId = 0;
 
 var App = React.createClass({
-  mixins: [ListenerMixin],
+  mixins: [Navigation, ListenerMixin],
   listenables: [authActions],
 
   componentWillMount: function() {
@@ -110,6 +113,10 @@ var App = React.createClass({
       tokenCheck: true,
       user: ''
     };
+  },
+
+  handleGuide: function() {
+    this.transitionTo('/#/guide');
   },
 
   handleLogout: function() {
@@ -196,6 +203,9 @@ var App = React.createClass({
           >
             <Nav right = {true}>
               <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
+              <DropdownButton title='Extras'>
+                <NavItemLink to="/guide">Usage Guide</NavItemLink>
+              </DropdownButton>
               <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
             </Nav>
           </Navbar>

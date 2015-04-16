@@ -38,6 +38,7 @@ var ListClasses = require('../components/classList.jsx')
 var ListAttendance = require('../components/attendanceList.jsx');
 var Attendances = require('../components/attendances.jsx');
 
+var Guide = require('../components/guide.jsx')
 
 // This:
 //   1. Sets up routing functionality
@@ -65,6 +66,9 @@ var routes = (
 		<Route name='attendances' path='attendances' handler={Attendances}>
 			<DefaultRoute handler={ListAttendance} />
 		</Route>
+        <Route name='guide' path='guide' handler={Guide}>
+            <DefaultRoute handler={Guide} />
+        </Route>
 		<DefaultRoute handler={Welcome} />
 		<NotFoundRoute handler={Welcome} />
 	</Route>
