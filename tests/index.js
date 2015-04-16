@@ -20,3 +20,6 @@ require('./api/course.js')
 
 // Auth API
 require('./api/auth');
+
+// Custom message API
+require('./api/message')

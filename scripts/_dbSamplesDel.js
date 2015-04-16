@@ -35,7 +35,9 @@ function _clearSampleData() {
               return process.exit(1);
             }
             console.log('All attendance sample data removed');
+            models.Message.remove(function(err){
             process.exit();
+            });
           });
         });
       });
