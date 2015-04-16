@@ -172,7 +172,7 @@ var EditClass = module.exports = React.createClass({
           {emptyWarn}
           <Grid>
             <Row className="show-grid">
-             <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditClass}>Save</Button></Col>
+              <Col xs={6} md={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditClass}>Save</Button></Col>
               <Col xs={6} md={4}></Col>
               <Col xs={6} md={4}><span className="pull-right"><Link to="classes"><Button bsSize="large">Cancel</Button></Link></span></Col>
             </Row>

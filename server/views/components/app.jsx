@@ -48,7 +48,10 @@ var dashboardNav = {
   "Students": "students",
   "Ranks": "ranks",
   "Classes": "classes",
-  "Attendance": "attendances"
+  "Attendance": "attendances",
+  "Send Notifications": "notify",
+  "Switch to Terminal Mode": "classCheckin",
+  "Custom Message": "message"
 };
 
 // Unique key for each link
@@ -62,10 +65,13 @@ var App = React.createClass({
     var that = this;
     var tokenCheck;
 
+
     this.listenTo(logIn.completed, function(token, validUser) {
       if(localStorage.getItem("token")) {
         tokenCheck = true;
       }
+      //NEEDS TO BE CHANGED -- Logic needs to be introduced etc.
+
 
       that.setState({
         loggedIn: tokenCheck,
@@ -106,6 +112,7 @@ var App = React.createClass({
     var loggedIn = false;
     var loggedOut = false;
 
+
     // Add a /validate step
     if(localStorage.getItem("token")) {
       loggedIn = true;
@@ -131,6 +138,8 @@ var App = React.createClass({
   },
 
   render: function() {
+    var that = this;
+    var mode = localStorage.getItem("terminalMode");
     var primaryLinksText = Object.keys(dashboardNav);
     var currentGlyph;
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
@@ -218,7 +227,22 @@ var App = React.createClass({
     }
 
     // User has successfully logged in
-    else {
+    else if (mode == true) {
+      view = (
+       <div id = "main">
+         <Grid>
+            {/* Main Content */}
+            <Row>
+              { /* Child View */ }
+              <Col sm={9}>
+                <RouteHandler routerParams={this.props.routerParams}/>
+              </Col>
+            </Row>
+            {/* Footer */}
+          </Grid>
+       </div>
+      );
+    } else {
       view = (
         <div id = "main">
           <Navbar

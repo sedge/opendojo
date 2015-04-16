@@ -21,7 +21,6 @@ require('./api/course.js')
 // Auth API
 require('./api/auth');
 
-
 /**
  * The email API tests require sensitive information.
  * They must only be run with a local .env file and not
@@ -30,3 +29,6 @@ require('./api/auth');
 
 // Email API
 // require('./api/email');
+
+// Custom message API
+require('./api/message')
