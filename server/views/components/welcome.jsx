@@ -45,7 +45,9 @@ var Welcome = module.exports = React.createClass({
     }
 
     else {
-      return <span />;
+      return (
+        <span />
+      );
     }
   }
 });

@@ -231,6 +231,9 @@ var App = React.createClass({
                 <RouteHandler routerParams={this.props.routerParams}/>
               </Col>
             </Row>
+            <div id="welcome">
+              <span />
+            </div>
             {/* Footer */}
             <Row>
               <Navbar

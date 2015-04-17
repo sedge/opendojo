@@ -432,7 +432,7 @@ var StudentView = module.exports = React.createClass({
           <Grid>
             <Row className="show-grid">
              <Col xs={12} md={8}><Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-                <Button bsSize="large" bsStyle='primary' onClick={this.settingMembershipToggle}>Setting Membership</Button>&nbsp;&nbsp;
+                <Button bsSize="large" bsStyle='primary' onClick={this.settingMembershipToggle}>Membership Status</Button>&nbsp;&nbsp;
                 <Button bsSize="large" bsStyle='warning' onClick={this.onDeleteStudent}>Delete</Button></Col>
               <Col xs={6} md={4}><span className="pull-right"><Link to="students">
                   <Button bsSize="large">Back</Button></Link></span></Col>
@@ -447,17 +447,46 @@ var StudentView = module.exports = React.createClass({
         <div className="studentView container">
           <form>
             <h2>Update Student Information:</h2>
-            <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
-            <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
-            <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rankId} />
-            <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
-            <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={editBdate} />
-            <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
-            <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-            <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-            <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
-            <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
-
+            <Row>
+              <Col md={6}>
+                <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
+              </Col>
+              <Col md={6}>
+                <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={4}>
+                <DateInput label="Birth Date" ref="bday" name="bday" defaultValue={editBdate} />
+              </Col>
+              <Col md={4}>
+                <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
+              </Col>
+              <Col md={4}>
+                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+              </Col>
+              <Col md={6}>
+                <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <HealthInput label="Health Information" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+              </Col>
+              <Col md={6}>
+                <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={4}>
+                <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks}  defaultValue={student.rankId} />
+              </Col>
+            </Row>
             <AlertDismissable visable={!this.state.valid} />
             <Grid>
               <Row className="show-grid">

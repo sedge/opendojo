@@ -302,8 +302,14 @@ var RankView = module.exports = React.createClass({
         <form>
           <h2>Update rank information:</h2>
 
-          <RankName label="Rank Name" ref="name" name="name" defaultValue={rank.name} />
-          <RankColor label="Rank Color" ref="color" name="color" defaultValue={rank.color} />
+          <Row>
+            <Col xs={6} md={6}>
+              <RankName label="Rank Name" ref="name" name="name" defaultValue={rank.name} />
+            </Col>
+            <Col xs={6} md={6}>
+              <RankColor label="Rank Color" ref="color" name="color" defaultValue={rank.color} />
+            </Col>
+          </Row>
 
           <AlertDismissable visable={!this.state.valid} />
           <Grid>

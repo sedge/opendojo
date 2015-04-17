@@ -23,7 +23,8 @@ var {
 var UserField = React.createClass({
   getInitialState: function() {
     return {
-      value: ''
+      value: '',
+      invalid: false
     };
   },
 
@@ -52,20 +53,31 @@ var UserField = React.createClass({
     if (valueCode.length > 0) {
       switch (valueCode.match(/^[A-Za-z0-9_-]{1,40}$/)) {
         case null:
+          this.setState({
+            invalid: true,
+            value: valueCode
+          }, this.props.onChange);
+
           this.refs.userHint.show();
           break;
 
         default:
+          this.setState({
+            invalid: false,
+            value: valueCode
+          }, this.props.onChange);
+
           this.refs.userHint.hide();
           break;
       }
     }
     else {
+      this.setState({
+        value: valueCode
+      }, this.props.onChange);
+
       this.refs.userHint.hide();
     }
-    this.setState({
-      value: valueCode
-    });
   },
 
   render: function() {
@@ -99,7 +111,8 @@ var UserField = React.createClass({
 var PasswordField = React.createClass({
   getInitialState: function() {
     return {
-      value: ''
+      value: '',
+      invalid: false
     };
   },
 
@@ -129,20 +142,31 @@ var PasswordField = React.createClass({
     if (passValue.length > 0) {
       switch (passValue.match(/^\S{6,50}$/)) {
         case null:
+          this.setState({
+            invalid: true,
+            value: passValue
+          }, this.props.onChange);
+
           this.refs.passHint.show();
           break;
 
         default:
+          this.setState({
+            invalid: false,
+            value: passValue
+          }, this.props.onChange);
+
           this.refs.passHint.hide();
           break;
       }
     }
     else {
+      this.setState({
+        value: passValue
+      }, this.props.onChange);
+
       this.refs.passHint.hide();
     }
-    this.setState({
-      value: passValue
-    });
   },
 
   render: function() {
@@ -178,8 +202,32 @@ var LoginUI = module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      invalid: false
+      invalid: true
     }
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('keypress', this.handleKeyPress);
+  },
+
+  handleChange: function() {
+    var isInvalid = false;
+
+    var unameState = this.refs.userVal.state.invalid;
+    var pwordState = this.refs.passVal.state.invalid;
+    var unameLength = this.refs.userVal.getValue().length;
+    var pwordLength = this.refs.passVal.getValue().length;
+
+    if(unameState
+       || (unameLength == 0)
+       || pwordState
+       || (pwordLength == 0)) {
+      isInvalid = true;
+    }
+
+    this.setState({
+      invalid: isInvalid
+    });
   },
 
   handleSubmit: function() {
@@ -189,13 +237,13 @@ var LoginUI = module.exports = React.createClass({
     });
   },
 
-  componentDidMount: function() {
-    window.addEventListener('keypress', this.handleKeyPress);
-  },
-
   // Attempt to submit on 'ENTER' (keycode 13)
   handleKeyPress: function(e) {
     if(e.keyCode == 13) {
+      if(this.state.invalid == true){
+        return;
+      }
+
       this.handleSubmit();
     }
   },
@@ -218,8 +266,8 @@ var LoginUI = module.exports = React.createClass({
       <div id="loginForm" ref="loginComp">
         <br />
         <Col xs={7} xsOffset={5} className="credContainer">
-          <UserField ref="userVal" />
-          <PasswordField ref="passVal" />
+          <UserField ref="userVal" onChange={this.handleChange} />
+          <PasswordField ref="passVal" onChange={this.handleChange} />
         </Col>
         <Col xs={6} xsOffset={6}>
           <br />
@@ -228,7 +276,8 @@ var LoginUI = module.exports = React.createClass({
             className='btn btn-default'
             bsSize='large'
             onClick={this.handleSubmit}
-            value='Submit'
+            disabled={this.state.invalid}
+            value={this.state.invalid ? 'N/A' : 'Submit'}
           />
         </Col>
       </div>
