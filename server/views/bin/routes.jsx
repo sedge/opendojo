@@ -54,7 +54,6 @@ var ClassCheckin = require('../components/classCheckin.jsx');
 var routes = (
 	// Main view, will always be rendered
 	//  - `handler` responsible for all permanent UI.
-
 	<Route name="app" path='/' handler={App}>
 		<Route name="students" path="students" handler={Students}>
 			<Route name="addStudent" path="new" handler={AddStudent} />
@@ -80,7 +79,7 @@ var routes = (
 		<Route name="message" path='message' handler={EditMessage} >
 			<DefaultRoute handler={EditMessage} />
 		</Route>
-		<Route name="classCheckin" path='checkin/:classid/:studentid' handler={ClassCheckin} >
+		<Route name="classCheckin" path='checkin/classId/studentId' handler={ClassCheckin} >
 			<DefaultRoute handler={ClassCheckin} />
 		</Route>
 		<Route name='welcome' path='welcome' handler={Welcome} />
@@ -91,3 +90,6 @@ var routes = (
 );
 
 module.exports = routes;
+//NEED TO PUT THIS IN FOR THE CLASS CHECKIN ROOT AFTER KIERAN DOES HIS SCREEN
+//<Route name="classCheckin" path='checkin/:classId/:studentId' handler={ClassCheckin} >
+//

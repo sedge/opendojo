@@ -46,7 +46,7 @@ var dashboardNav = {
   "Classes": "classes",
   "Attendance": "attendances",
   "Send Notifications": "notify",
-  "Switch to Terminal Mode": "welcome",
+  "Switch to Terminal Mode": "classCheckin",
   "Custom Message": "message"
 };
 
@@ -60,6 +60,7 @@ var App = React.createClass({
   componentWillMount: function() {
     var that = this;
     var tokenCheck;
+
 
     this.listenTo(logIn.completed, function(token, validUser) {
       if(localStorage.getItem("token")) {
@@ -101,9 +102,13 @@ var App = React.createClass({
     });
   },
 
-  getInitialState: function() {
+  getInitialState: function() {debugger;
     var loggedIn = false;
     var loggedOut = false;
+    var mode;
+    //NEEDS TO BE CHANGED -- Logic needs to be introduced etc. 
+    localStorage.setItem("terminalMode", true);
+    mode = localStorage.getItem("terminalMode");
 
     // Add a /validate step
     if(localStorage.getItem("token")) {
@@ -111,6 +116,7 @@ var App = React.createClass({
     }
 
     return {
+      terminalMode:mode, 
       loggedIn: loggedIn,
       loggedOut: loggedOut,
       tokenCheck: true,
@@ -130,6 +136,7 @@ var App = React.createClass({
   },
 
   render: function() {
+    var that = this;
     var primaryLinksText = Object.keys(dashboardNav);
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
       return (
@@ -199,49 +206,67 @@ var App = React.createClass({
 
     // User has successfully logged in
     else {
-      view = (
-        <div id = "main">
-          <Navbar
-            fixedTop = {true}
-            brand = {<a href="/">OpenDojo</a>}
-          >
-            <Nav right = {true}>
-              <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
-              <DropdownButton title='Extras'>
-                <NavItemLink to="/guide">Usage Guide</NavItemLink>
-              </DropdownButton>
-              <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
-            </Nav>
-          </Navbar>
+      if (that.state.terminalMode) {
+        view = (
+         <div id = "main">
+           <Grid>
+              {/* Main Content */}
+              <Row>
+                { /* Child View */ }
+                <Col sm={9}>
+                  <RouteHandler routerParams={this.props.routerParams}/>
+                </Col>
+              </Row>
+              {/* Footer */}
+            </Grid>
+         </div>
+        );
+      }
+      else {
+        view = (
+          <div id = "main">
+            <Navbar
+              fixedTop = {true}
+              brand = {<a href="/">OpenDojo</a>}
+            >
+              <Nav right = {true}>
+                <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
+                <DropdownButton title='Extras'>
+                  <NavItemLink to="/guide">Usage Guide</NavItemLink>
+                </DropdownButton>
+                <NavItem onClick={this.handleLogout}><Button bsStyle="danger" bsSize="small">Log Out</Button></NavItem>
+              </Nav>
+            </Navbar>
 
-          <Grid>
-            {/* Main Content */}
-            <Row>
-              {/* Navbar */}
-              <Col md = {3}>
-                <div className = "sidebar-nav">
-                  <Navbar>
-                    <Nav>
-                      {primaryLinks}
-                    </Nav>
-                  </Navbar>
-                </div>
-              </Col>
-              { /* Child View */ }
-              <Col md={9}>
-                <RouteHandler routerParams={this.props.routerParams}/>
-              </Col>
-            </Row>
-            {/* Footer */}
-            <Row>
-              <Navbar
-                fixedBottom = {true}
-                brand = {[<span>&copy;</span>, " 2015 Team Nariyuki & Seneca College"]}
-              />
-            </Row>
-          </Grid>
-        </div>
-      );
+            <Grid>
+              {/* Main Content */}
+              <Row>
+                {/* Navbar */}
+                <Col md = {3}>
+                  <div className = "sidebar-nav">
+                    <Navbar>
+                      <Nav>
+                        {primaryLinks}
+                      </Nav>
+                    </Navbar>
+                  </div>
+                </Col>
+                { /* Child View */ }
+                <Col md={9}>
+                  <RouteHandler routerParams={this.props.routerParams}/>
+                </Col>
+              </Row>
+              {/* Footer */}
+              <Row>
+                <Navbar
+                  fixedBottom = {true}
+                  brand = {[<span>&copy;</span>, " 2015 Team Nariyuki & Seneca College"]}
+                />
+              </Row>
+            </Grid>
+          </div>
+        );
+      }
     }
 
     return view;
