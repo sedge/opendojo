@@ -3,7 +3,7 @@ module.exports = {
   course: require('./class'),
   rank: require('./rank'),
   student: require('./student'),
-
+  message: require('./message'),
   auth: require('./auth'),
   email: require('./email')
 };

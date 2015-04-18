@@ -7,7 +7,7 @@
 3. Environment
 4. API Reference
 5. Tests
-
+6. Data
 ---
 
 ## 1) Prerequisites
@@ -90,3 +90,7 @@ Tests are a `grunt` task that invoke the `mocha` test framework and provide Java
 $> grunt test
 ```
 For more information on how to implement unit tests for this app, refer to our `CONTRIBUTING.md` file.
+
+## 6) Data
+
+Scripts/_dbCustomMessage.js needs to be run to allow the user the ability to create a custom message for checking into class
