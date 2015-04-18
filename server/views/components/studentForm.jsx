@@ -149,7 +149,7 @@ var StudentForm = module.exports = React.createClass({
     if (!this.state.emptyvalid){
       emptyWarn = (
         <Alert bsStyle="danger" id="alert">
-          <p><strong>Please fill all information</strong></p>
+          <p><strong>Please fill in all the required information!</strong></p>
         </Alert>
       )
     }
@@ -159,26 +159,26 @@ var StudentForm = module.exports = React.createClass({
           <h2> Enter new student information:</h2>
           <Row>
             <Col md={6}>
-              <FirstName label="First Name" ref="firstName" name="firstName" placeholder="e.g. Bob" />
+              <FirstName label="First Name" ref="firstName" name="firstName" />
             </Col>
             <Col md={6}>
-              <LastName label="Last Name" ref="lastName" name="lastName" placeholder="e.g. Smith" />
+              <LastName label="Last Name" ref="lastName" name="lastName" />
             </Col>
           </Row>
           <Row>
             <Col md={4}>
-              <DateInput label="Birth Date" ref="bday" name="bday" placeholder="Age" />
+              <DateInput label="Birth Date" ref="bday" name="bday" />
             </Col>
             <Col md={4}>
-              <GenderInput label="Gender" ref="gender" name="gender" placeholder="Gender" />
+              <GenderInput label="Gender" ref="gender" name="gender" />
             </Col>
             <Col md={4}>
-              <GuardianInput label="Guardian's Name" ref="guardian" name="guardian" placeholder="(Name of guardian)" />
+              <GuardianInput label="Guardian Name" ref="guardian" name="guardian" placeholder="(Optional)" />
             </Col>
           </Row>
           <Row>
             <Col md={8}>
-              <EmailInput label="Email" ref="emails" name="emails" placeholder="(comma delimited)" />
+              <EmailInput label="Email" ref="emails" name="emails" />
             </Col>
             <Col md={4}>
               <PhoneInput label="Phone" ref="phone" name="phone" placeholder="XXX-XXX-XXXX" />
@@ -186,7 +186,7 @@ var StudentForm = module.exports = React.createClass({
           </Row>
           <Row>
             <Col md={8}>
-              <HealthInput label="Health Informaion" ref="health" name="health" placeholder="(Health Information)"/>
+              <HealthInput label="Health Information" ref="health" name="health" placeholder="(Optional)"/>
             </Col>
             <Col md={4}>
               <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" placeholder="XXX-XXX-XXXX" />
@@ -199,7 +199,7 @@ var StudentForm = module.exports = React.createClass({
           </Row>
           <Row>
             <Col md={4}>
-              <RankInput label="Rank" ref="rank" name="rank" placeholder="(colour)" ranks={this.state.ranks} formType="student"/>
+              <RankInput label="Rank" ref="rank" name="rank" ranks={this.state.ranks} formType="student"/>
             </Col>
           </Row>
           <AlertDismissable visable={!this.state.valid} />
@@ -213,6 +213,7 @@ var StudentForm = module.exports = React.createClass({
             </Row>
           </Grid>
         </form>
+        <br />
       </div>
     );
   }

@@ -146,7 +146,7 @@ var Notify = module.exports = React.createClass({
 
               <ButtonToolbar>
                 {submit}
-                <Button bsStyle="danger" onClick={this.handleReset}>
+                <Button bsStyle="warning" onClick={this.handleReset}>
                   Reset
                 </Button>
               </ButtonToolbar>

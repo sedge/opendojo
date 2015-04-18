@@ -10,7 +10,8 @@ var {
 //   ...
 var {
   RouteHandler,
-  Navigation
+  Navigation,
+  Link
 } = Router;
 
 var LoginUI = require('./login.jsx');
@@ -32,6 +33,8 @@ var {
   Nav,
   NavItem,
   Button,
+  Glyphicon,
+  Badge,
   DropdownButton,
   MenuItem,
   Alert
@@ -41,12 +44,11 @@ var {
 // corresponding with the React-Router
 // configuration in router.jsx
 var dashboardNav = {
+  "Summary": "welcome",
   "Students": "students",
   "Ranks": "ranks",
   "Classes": "classes",
-  "Attendance": "attendances",
-  "Send Notifications": "notify",
-  "Switch to Terminal Mode": "welcome"
+  "Attendance": "attendances"
 };
 
 // Unique key for each link
@@ -130,10 +132,29 @@ var App = React.createClass({
 
   render: function() {
     var primaryLinksText = Object.keys(dashboardNav);
+    var currentGlyph;
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
+      switch(primaryLinksText) {
+        case "Summary":
+          currentGlyph = 'globe';
+          break;
+        case "Students":
+          currentGlyph = 'user';
+          break;
+        case "Ranks":
+          currentGlyph = 'certificate';
+          break;
+        case "Classes":
+          currentGlyph = 'education';
+          break;
+        default:
+          currentGlyph = 'list-alt';
+          break;
+      }
+
       return (
         <NavItemLink to={dashboardNav[primaryLinksText]} key={headerLinkId++}>
-          {primaryLinksText}
+          <Glyphicon glyph={currentGlyph} /> {primaryLinksText}
         </NavItemLink>
       );
     });
@@ -152,7 +173,7 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {<a href="/">OpenDojo</a>}
+            brand = {<Link to="/welcome">OpenDojo</Link>}
           />
           <Grid>
             <Alert bsStyle="info">
@@ -177,7 +198,7 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {<a href="/">OpenDojo</a>}
+            brand = {<Link to="/welcome">OpenDojo</Link>}
           />
           <Grid >
             <Alert bsStyle="danger">
@@ -202,7 +223,7 @@ var App = React.createClass({
         <div id = "main">
           <Navbar
             fixedTop = {true}
-            brand = {<a href="/">OpenDojo</a>}
+            brand = {<Link to="/welcome">OpenDojo</Link>}
           >
             <Nav right = {true}>
               <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>
@@ -219,9 +240,21 @@ var App = React.createClass({
               {/* Navbar */}
               <Col md = {3}>
                 <div className = "sidebar-nav">
-                  <Navbar>
+                  <Badge>Data Modules</Badge>
+                  <Navbar id="ModMenu">
                     <Nav>
                       {primaryLinks}
+                    </Nav>
+                  </Navbar>
+                  <Badge>Services</Badge>
+                  <Navbar id="ModMenu">
+                    <Nav>
+                      <NavItemLink to="/notify" key={headerLinkId++}>
+                        <Glyphicon glyph="envelope" /> Send Notifications
+                      </NavItemLink>
+                      <NavItemLink to="/welcome" key={headerLinkId++}>
+                        <Glyphicon glyph="check" /> Mobile Terminal Mode
+                      </NavItemLink>
                     </Nav>
                   </Navbar>
                 </div>

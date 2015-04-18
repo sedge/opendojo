@@ -6,6 +6,7 @@ var {
 } = require('react-router');
 var {
   Button,
+  Glyphicon,
   Grid,
   ButtonToolbar,
   Row,
@@ -18,7 +19,7 @@ var Ranks = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addRank"><Button bsSize='large'>+</Button></Link>
+        <Link to="addRank"><Button bsSize='large'><Glyphicon glyph='plus' /></Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(

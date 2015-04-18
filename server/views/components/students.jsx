@@ -6,6 +6,7 @@ var {
 } = require('react-router');
 var {
 	Button,
+    Glyphicon,
 	Grid,
 	ButtonToolbar,
 	Row,
@@ -18,6 +19,7 @@ var Students = module.exports = React.createClass({
   getInitialState: function(){
     return {
       query:'',
+      mainView: true
     };
   },
   doSearch:function(){
@@ -29,7 +31,7 @@ var Students = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addStudent"><Button bsSize='large'>+</Button></Link>
+        <Link to="addStudent"><Button bsSize='large'><Glyphicon glyph='plus' /></Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(

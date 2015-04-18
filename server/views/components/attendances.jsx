@@ -29,7 +29,7 @@ var Attendances = module.exports = React.createClass({
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-          <Col xs={7} md={5}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by student name or class title..."/></Col>
+          <Col md={5} id="attendance"><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by student name or class title..."/></Col>
           <Col xs={10} md={7}><h4 className="text-center">ATTENDANCE MANAGEMENT TOOLBAR</h4></Col>
         </Row>
       </Grid>

@@ -277,7 +277,7 @@ var LoginUI = module.exports = React.createClass({
             bsSize='large'
             onClick={this.handleSubmit}
             disabled={this.state.invalid}
-            value={this.state.invalid ? 'N/A' : 'Submit'}
+            value='Submit'
           />
         </Col>
       </div>

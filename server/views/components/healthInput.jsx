@@ -30,7 +30,7 @@ var HealthInput = module.exports = React.createClass({
       ref: this.props.name,
       name: this.props.name,
       defaultValue: this.state.value,
-      placeholder: this.props.placeholer
+      placeholder: this.props.placeholder
     };
 
     var feedback;

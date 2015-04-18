@@ -6,6 +6,7 @@ var {
 } = require('react-router');
 var {
   Button,
+  Glyphicon,
   Grid,
   ButtonToolbar,
   Row,
@@ -28,7 +29,7 @@ var Classes = module.exports = React.createClass({
   render: function(){
     var addButton= (
       <ButtonToolbar>
-        <Link to="addClass"><Button bsSize="large">+</Button></Link>
+        <Link to="addClass"><Button bsSize="large"><Glyphicon glyph='plus' /></Button></Link>
       </ButtonToolbar>
     );
     var toolbar =(

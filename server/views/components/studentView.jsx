@@ -327,7 +327,7 @@ var StudentView = module.exports = React.createClass({
     var emergencyPhone = null;
     var periodAdd;
     var periodAddForManual;
-    var daysDiplay = (
+    var daysDisplay = (
         <div>
           {this.state.daysadded} days will be added
         </div>
@@ -351,7 +351,7 @@ var StudentView = module.exports = React.createClass({
           <DateInput label="Select Date" ref="expiryDate" name="expiryDate" defaultValue={membershipExpiryDate} />
         </div>
       );
-      daysDiplay = (
+      daysDisplay = (
         <div></div>
       );
     }
@@ -370,7 +370,7 @@ var StudentView = module.exports = React.createClass({
       periodAddForManual = (
         <div></div>
       );
-      daysDiplay = (
+      daysDisplay = (
         <div></div>
       );
     }
@@ -438,7 +438,7 @@ var StudentView = module.exports = React.createClass({
                   <Button bsSize="large">Back</Button></Link></span></Col>
             </Row>
           </Grid>
-
+          <br />
         </div>
       );
     }
@@ -463,7 +463,7 @@ var StudentView = module.exports = React.createClass({
                 <GenderInput label="Gender" ref="gender" name="gender" defaultValue={student.gender} />
               </Col>
               <Col md={4}>
-                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} placeholder="(Optional)" />
               </Col>
             </Row>
             <Row>
@@ -476,7 +476,7 @@ var StudentView = module.exports = React.createClass({
             </Row>
             <Row>
               <Col md={6}>
-                <HealthInput label="Health Information" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+                <HealthInput label="Health Information" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation} placeholder="(Optional)" />
               </Col>
               <Col md={6}>
                 <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
@@ -496,13 +496,14 @@ var StudentView = module.exports = React.createClass({
               </Row>
             </Grid>
           </form>
+          <br />
         </div>
       );
     }
     if(settingMembership && !editable){
       return (
         <div className="studentView container">
-          <h2>Setting Memebership</h2>
+          <h2>Membership Setting</h2>
           <Table bordered={true} striped={true}>
             <tr>
               <th width="40%">Membership Expiry Date:</th>
@@ -521,11 +522,11 @@ var StudentView = module.exports = React.createClass({
                     <option value="" disabled defaultValue className="notDisplay">Select Period</option>
                     <option value="30">30 Days</option>
                     <option value="90">90 Days</option>
-                    <option value="180">6 Month</option>
+                    <option value="180">6 Months</option>
                     <option value="1">Input Period Manually</option>
                     <option value="2">Select Date from Calendar</option>
                   </Input>
-                  {daysDiplay}
+                  {daysDisplay}
                 </Col>
                 <Col xs={6} md={4}>{periodAdd}</Col>
                 <Col xs={6} md={4}>{periodAddForManual}</Col>
@@ -541,6 +542,7 @@ var StudentView = module.exports = React.createClass({
               </Row>
             </Grid>
           </form>
+          <br />
         </div>
       );
     }

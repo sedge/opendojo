@@ -1,5 +1,4 @@
 var React = require('react');
-var $ = require('jquery');
 var {
   isNumeric,
   isLength,
@@ -34,7 +33,7 @@ var FirstName = module.exports = React.createClass({
       });
     }
     if(this.props.name == "bday"){
-      if(Number(ageCalculator(valueDate)) < 3 || Number(ageCalculator(valueDate) > 150)){
+      if(Number(ageCalculator(valueDate)) < 3 || Number(ageCalculator(valueDate) > 100)){
         return this.setState({
           ageValid: false,
           value: value
@@ -83,10 +82,10 @@ var FirstName = module.exports = React.createClass({
     var feedback;
     if(!this.state.ageValid && this.props.name == "bday") {
       feedback = (
-        <p><strong>Age must be between 3 and 150 years</strong></p>
+        <p><strong>Age must be between 3 and 100 years</strong></p>
       );
     }
-    if (!this.state.valid) {
+    else if (!this.state.valid) {
       if(this.props.name == "bday"){
         feedback = (
           <p><strong>A birth date is required.</strong></p>
@@ -94,7 +93,7 @@ var FirstName = module.exports = React.createClass({
       }
       else{
         feedback = (
-          <p><strong>A expriey date is required.</strong></p>
+          <p><strong>An expiry date is required.</strong></p>
         );
       }
     }
