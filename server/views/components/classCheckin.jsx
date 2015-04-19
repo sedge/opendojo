@@ -38,13 +38,14 @@ var HealthInput = require('./healthInput.jsx');
 
 var StudentView = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
-  getInitialState: function() {
+  getInitialState: function() {debugger;
+     localStorage.setItem("terminalMode", true);
     //THIS NEEDS TO BE ERASED AFTER KIERAN DOES HIS SCREEN
     //this.props.routerParams.classID or studentID
     //for current db 
     //5532a49bec494b4844c41522 classID
     //5532a49bec494b4844c41526 studentID
-
+    //Basically the parameters should be studentID and classID
     return {
       studentID: this.props.routerParams.studentID,
       classID: this.props.routerParams.classID,
@@ -70,8 +71,8 @@ var StudentView = module.exports = React.createClass({
     this.listenTo(studentActions.editStudent.completed, this.editStudentComplete);
     this.listenTo(studentActions.editStudent.failed, this.editStudentFailed);
       // For edit succes vs failure
-    this.listenTo(attendanceActions.editAttendance.completed, this.editAttendanceComplete);
-    this.listenTo(attendanceActions.editAttendance.failed, this.editAttendanceFailed);
+    this.listenTo(attendanceActions.addAttendance.completed, this.addAttendanceComplete);
+    this.listenTo(attendanceActions.addAttendance.failed, this.addAttendanceFailed);
   },
 
   showStudent: function(students) {
@@ -106,11 +107,17 @@ var StudentView = module.exports = React.createClass({
       editable : !this.state.editable
     });
   },
-  editAttendanceComplete: function() {
+  addAttendanceComplete: function() {
+    //here it needs to transition to Kieran's screen
 
   },
-  editAttendanceFailed: function() {
-
+  addAttendanceFailed: function() {
+    console.error("adding an attendance failed: ", err);
+    if(this.state.editable){
+      this.setState({
+        editable: false
+      });
+    }
   },
   // `EditStudent` Action Handling
   onEditStudent: function(e){debugger;
@@ -118,6 +125,7 @@ var StudentView = module.exports = React.createClass({
 
     var that = this;
     var valid = true;
+    var stu = this.state.student;
 
     var keys = Object.keys(this.refs);
     keys.forEach(function(ref) {
@@ -142,12 +150,19 @@ var StudentView = module.exports = React.createClass({
     });
     // For now, input only accepts one email so we
     // stuff it into an array
+    //THIS SHOULD BE PUT IN INSTEAD OF THE ID
+    // _id:this.props.routerParams.studentID
+    //THE CURRENT ID BELOW SHOULD BE SWITCHED TO ABOVE
     var emails = [this.refs.emails.getValue()];
     var newStudent = {
-      _id: this.props.routerParams.id,
+      _id: "5532a49bec494b4844c41526",
       firstName: this.refs.firstName.getValue(),
       lastName: this.refs.lastName.getValue(),
       phone: this.refs.phone.getValue(),
+      rankId: stu.rankId,
+      gender: stu.gender,
+      expiryDate: stu.expiryDate,
+      birthDate: stu.birthDate,
       guardianInformation: this.refs.guardian.getValue(),
       healthInformation: this.refs.healthinfo.getValue(),
       email: emails,
@@ -171,10 +186,10 @@ var StudentView = module.exports = React.createClass({
       });
     }
   },
-  //This is meant to take it out of terminal mode
+  //This is meant to take it out of terminal mode TEMPORARY --> since Kieran ur screens shld do this
   changeMode: function() {debugger;
    localStorage.setItem("terminalMode", false);
-   this.transitionTo('/app');
+   this.transitionTo('/students');
   },
   getDay: function(day){
     var dayOfWeek;
@@ -208,13 +223,15 @@ var StudentView = module.exports = React.createClass({
   },
   saveAttendance: function() {debugger
     var today = new Date();
+    var stu = this.state.student;
+    var cls = this.state.course;
      var newAttendance = ({
-        studentID: this.student._id,
+        studentID: stu._id,
         classDate: today,
-        classTime: this.course.startTime,
-        classID: this.course._id
+        classTime: cls.startTime,
+        classID: cls._id
       });
-    attendanceActions.editAttendance(newAttendance);
+    attendanceActions.addAttendance(newAttendance);
   },
   render: function() {
     var content;

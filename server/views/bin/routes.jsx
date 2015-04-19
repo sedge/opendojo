@@ -79,7 +79,7 @@ var routes = (
 		<Route name="message" path='message' handler={EditMessage} >
 			<DefaultRoute handler={EditMessage} />
 		</Route>
-		<Route name="classCheckin" path='checkin/classId/studentId' handler={ClassCheckin} >
+		<Route name="classCheckin" path='checkin/classID/studentID' handler={ClassCheckin} >
 			<DefaultRoute handler={ClassCheckin} />
 		</Route>
 		<Route name='welcome' path='welcome' handler={Welcome} />

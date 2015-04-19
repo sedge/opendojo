@@ -57,15 +57,17 @@ var App = React.createClass({
   mixins: [Navigation, ListenerMixin],
   listenables: [authActions],
 
-  componentWillMount: function() {
+  componentWillMount: function() {debugger;
     var that = this;
     var tokenCheck;
-
+   
 
     this.listenTo(logIn.completed, function(token, validUser) {
       if(localStorage.getItem("token")) {
         tokenCheck = true;
       }
+      //NEEDS TO BE CHANGED -- Logic needs to be introduced etc. 
+      
 
       that.setState({
         loggedIn: tokenCheck,
@@ -105,10 +107,7 @@ var App = React.createClass({
   getInitialState: function() {debugger;
     var loggedIn = false;
     var loggedOut = false;
-    var mode;
-    //NEEDS TO BE CHANGED -- Logic needs to be introduced etc. 
-    localStorage.setItem("terminalMode", true);
-    mode = localStorage.getItem("terminalMode");
+   
 
     // Add a /validate step
     if(localStorage.getItem("token")) {
@@ -116,7 +115,6 @@ var App = React.createClass({
     }
 
     return {
-      terminalMode:mode, 
       loggedIn: loggedIn,
       loggedOut: loggedOut,
       tokenCheck: true,
@@ -135,8 +133,9 @@ var App = React.createClass({
     logIn.failed(null, 205);
   },
 
-  render: function() {
+  render: function() {debugger;
     var that = this;
+    var mode = localStorage.getItem("terminalMode");
     var primaryLinksText = Object.keys(dashboardNav);
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
       return (
@@ -206,7 +205,7 @@ var App = React.createClass({
 
     // User has successfully logged in
     else {
-      if (that.state.terminalMode) {
+      if (mode == true) {
         view = (
          <div id = "main">
            <Grid>
@@ -221,8 +220,7 @@ var App = React.createClass({
             </Grid>
          </div>
         );
-      }
-      else {
+      } else {
         view = (
           <div id = "main">
             <Navbar
