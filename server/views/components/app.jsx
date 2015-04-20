@@ -48,10 +48,7 @@ var dashboardNav = {
   "Students": "students",
   "Ranks": "ranks",
   "Classes": "classes",
-  "Attendance": "attendances",
-  "Send Notifications": "notify",
-  "Switch to Terminal Mode": "classCheckin",
-  "Custom Message": "message"
+  "Attendance": "attendances"
 };
 
 // Unique key for each link
@@ -273,11 +270,14 @@ var App = React.createClass({
                   <Badge>Services</Badge>
                   <Navbar id="ModMenu">
                     <Nav>
-                      <NavItemLink to="/notify" key={headerLinkId++}>
+                      <NavItemLink to="notify" key={headerLinkId++}>
                         <Glyphicon glyph="envelope" /> Send Notifications
                       </NavItemLink>
-                      <NavItemLink to="/welcome" key={headerLinkId++}>
-                        <Glyphicon glyph="check" /> Mobile Terminal Mode
+                      <NavItemLink to="welcome" key={headerLinkId++}>
+                        <Glyphicon glyph="phone" /> Mobile Terminal Mode
+                      </NavItemLink>
+                      <NavItemLink to="message" key={headerLinkId++}>
+                        <Glyphicon glyph="wrench" /> Configure Terminal
                       </NavItemLink>
                     </Nav>
                   </Navbar>
