@@ -19,7 +19,26 @@ var Classes = module.exports = React.createClass({
   getInitialState: function(){
     return {
       query:'',
+      mainView: true
     };
+  },
+  componentWillMount: function() {
+    if(this.props.routerParams.id) {
+      return this.setState({
+        mainView: false
+      });
+    }
+  },
+  componentWillReceiveProps: function(nextProps) {
+    var isMainView = true;
+
+    if(nextProps.routerParams.id) {
+      isMainView = false;
+    }
+
+    return this.setState({
+      mainView: isMainView
+    });
   },
   doSearch:function(){
     this.setState({
@@ -32,11 +51,18 @@ var Classes = module.exports = React.createClass({
         <Link to="addClass"><Button bsSize="large"><Glyphicon glyph='plus' /></Button></Link>
       </ButtonToolbar>
     );
+    var searchBar;
+    if(this.state.mainView) {
+      searchBar = (
+        <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by title or day..."/></Col>
+      );
+    }
+
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-          <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by title or day..."/></Col>
-          <Col xs={8} md={8}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
+          {searchBar}
+          <Col xs={8} md={this.state.mainView ? 8 : 11}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
           <Col xs={1} md={1}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>

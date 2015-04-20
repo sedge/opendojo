@@ -128,10 +128,13 @@ var App = React.createClass({
   },
 
   handleLogout: function() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("welcomed");
+    var confirmLogout = confirm("Do you really want to log out of OpenDojo?");
+    if (confirmLogout){
+      localStorage.removeItem("token");
+      localStorage.removeItem("welcomed");
 
-    logIn.failed(null, 205);
+      logIn.failed(null, 205);
+    }
   },
 
   render: function() {
