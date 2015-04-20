@@ -43,7 +43,7 @@ var Attendances = require('../components/attendances.jsx');
 var Guide = require('../components/guide.jsx');
 
 // Custom message child view
-var EditMessage = require('../components/editMessage.jsx');
+var TerminalSettings = require('../components/terminalSettings.jsx');
 
 // Class check in handler for Student check in and info confirm
 var ClassCheckin = require('../components/classCheckin.jsx');
@@ -76,8 +76,8 @@ var routes = (
     <Route name='guide' path='guide' handler={Guide}>
        <DefaultRoute handler={Guide} />
     </Route>
-		<Route name="message" path='message' handler={EditMessage} >
-			<DefaultRoute handler={EditMessage} />
+		<Route name="terminalSettings" path='/settings' handler={TerminalSettings} >
+			<DefaultRoute handler={TerminalSettings} />
 		</Route>
 		<Route name="classCheckin" path='checkin/classID/studentID' handler={ClassCheckin} >
 			<DefaultRoute handler={ClassCheckin} />

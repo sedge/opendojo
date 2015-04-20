@@ -67,8 +67,6 @@ var App = React.createClass({
       if(localStorage.getItem("token")) {
         tokenCheck = true;
       }
-      //NEEDS TO BE CHANGED -- Logic needs to be introduced etc.
-
 
       that.setState({
         loggedIn: tokenCheck,
@@ -139,7 +137,7 @@ var App = React.createClass({
 
   render: function() {
     var that = this;
-    var mode = localStorage.getItem("terminalMode");
+    var terminalMode = localStorage.getItem("terminalMode");
     var primaryLinksText = Object.keys(dashboardNav);
     var currentGlyph;
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
@@ -209,7 +207,7 @@ var App = React.createClass({
             fixedTop = {true}
             brand = {<Link to="/welcome">OpenDojo</Link>}
           />
-          <Grid >
+          <Grid>
             <Alert bsStyle="danger">
               {this.state.alertText}
             </Alert>
@@ -226,19 +224,17 @@ var App = React.createClass({
       );
     }
 
-    // User has successfully logged in
-    else if (mode == true) {
+    // User has successfully logged in, and we're in
+    // terminal mode
+    else if (terminalMode == true) {
       view = (
        <div id = "main">
          <Grid>
-            {/* Main Content */}
             <Row>
-              { /* Child View */ }
-              <Col sm={9}>
+              <Col sm={12}>
                 <RouteHandler routerParams={this.props.routerParams}/>
               </Col>
             </Row>
-            {/* Footer */}
           </Grid>
        </div>
       );
@@ -279,7 +275,7 @@ var App = React.createClass({
                       <NavItemLink to="welcome" key={headerLinkId++}>
                         <Glyphicon glyph="phone" /> Mobile Terminal Mode
                       </NavItemLink>
-                      <NavItemLink to="message" key={headerLinkId++}>
+                      <NavItemLink to="terminalSettings" key={headerLinkId++}>
                         <Glyphicon glyph="wrench" /> Configure Terminal
                       </NavItemLink>
                     </Nav>

@@ -54,9 +54,9 @@ var messageStore = Reflux.createStore({
     return messages;
   },
 
- 
+
   // `editMessage` Action handling
-  editMessage: function(updatedInfo){debugger;
+  editMessage: function(updatedInfo){
     var that = this;
     if (!messages){
       return editMessage.failed(messages);
