@@ -2,7 +2,8 @@ var React = require('react');
 var Reflux = require('reflux');
 var {
   RouteHandler,
-  Link
+  Link,
+  Navigation
 } = require('react-router');
 var {
   Button,
@@ -13,9 +14,10 @@ var {
   Col
 } = require('react-bootstrap');
 
+var TerminalCheck = require('../mixins/terminalCheck.jsx')
 
 var Ranks = module.exports = React.createClass({
-  
+  mixin: [Navigation, TerminalCheck],
   render: function(){
     var addButton= (
       <ButtonToolbar>

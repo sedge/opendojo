@@ -46,7 +46,7 @@ var Guide = require('../components/guide.jsx');
 var TerminalSettings = require('../components/terminalSettings.jsx');
 
 // Class check in handler for Student check in and info confirm
-var ClassCheckin = require('../components/classCheckin.jsx');
+var ClassCheckIn = require('../components/classCheckin.jsx');
 
 // This:
 //   1. Sets up routing functionality
@@ -76,12 +76,10 @@ var routes = (
     <Route name='guide' path='guide' handler={Guide}>
        <DefaultRoute handler={Guide} />
     </Route>
-		<Route name="terminalSettings" path='/settings' handler={TerminalSettings} >
+		<Route name="terminalSettings" path='settings' handler={TerminalSettings} >
 			<DefaultRoute handler={TerminalSettings} />
 		</Route>
-		<Route name="classCheckin" path='checkin/classID/studentID' handler={ClassCheckin} >
-			<DefaultRoute handler={ClassCheckin} />
-		</Route>
+			<Route name="terminal" path='classID/studentID' handler={ClassCheckIn} />
 		<Route name='welcome' path='welcome' handler={Welcome} />
 		<Route name='notify' path='notify' handler={Notify} />
 		<DefaultRoute handler={Welcome} />
@@ -91,5 +89,5 @@ var routes = (
 
 module.exports = routes;
 //NEED TO PUT THIS IN FOR THE CLASS CHECKIN ROOT AFTER KIERAN DOES HIS SCREEN
-//<Route name="classCheckin" path='checkin/:classId/:studentId' handler={ClassCheckin} >
+//<Route name="checkIn" path=':classID/:studentID' handler={ClassCheckIn}>
 //

@@ -3,7 +3,12 @@ var {
   Modal
 } = require('react-bootstrap');
 
+var { Navigation } = require('react-router');
+var TerminalCheck = require('../mixins/terminalCheck.jsx')
+
 var Welcome = module.exports = React.createClass({
+  mixin: [Navigation, TerminalCheck],
+
   getInitialState: function() {
     var checked = true;
     if(localStorage.getItem("welcomed")) {
