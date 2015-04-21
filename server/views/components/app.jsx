@@ -106,7 +106,7 @@ var App = React.createClass({
   getInitialState: function() {
     var loggedIn = false;
     var loggedOut = false;
-
+    var terminalMode = localStorage.getItem("terminalMode");
 
     // Add a /validate step
     if(localStorage.getItem("token")) {
@@ -117,7 +117,8 @@ var App = React.createClass({
       loggedIn: loggedIn,
       loggedOut: loggedOut,
       tokenCheck: true,
-      user: ''
+      user: '',
+      terminalMode: !!terminalMode
     };
   },
 
@@ -130,14 +131,22 @@ var App = React.createClass({
     if (confirmLogout){
       localStorage.removeItem("token");
       localStorage.removeItem("welcomed");
+      localStorage.removeItem("terminalMode");
 
       logIn.failed(null, 205);
     }
   },
 
+  toggleTerminalMode: function() {
+    localStorage.setItem('terminalMode', true);
+    this.setState({
+      terminalMode: true
+    });
+    this.transitionTo("terminal");
+  },
+
   render: function() {
     var that = this;
-    var terminalMode = localStorage.getItem("terminalMode");
     var primaryLinksText = Object.keys(dashboardNav);
     var currentGlyph;
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
@@ -177,7 +186,7 @@ var App = React.createClass({
     */
     if (!this.state.loggedIn && this.state.tokenCheck) {
       view = (
-        <div id = "main">
+        <div id="main">
           <Navbar
             fixedTop = {true}
             brand = {<Link to="/welcome">OpenDojo</Link>}
@@ -202,7 +211,7 @@ var App = React.createClass({
     // View for authentication failure at any point
     else if(this.state.tokenCheck == false) {
       view = (
-        <div id = "main">
+        <div id="main">
           <Navbar
             fixedTop = {true}
             brand = {<Link to="/welcome">OpenDojo</Link>}
@@ -226,12 +235,13 @@ var App = React.createClass({
 
     // User has successfully logged in, and we're in
     // terminal mode
-    else if (terminalMode == true) {
+    else if (this.state.terminalMode == true) {
       view = (
-       <div id = "main">
+       <div id="main">
          <Grid>
             <Row>
               <Col sm={12}>
+                <Button onClick={this.handleLogout} bsStyle="danger" bsSize="small">Log Out</Button>
                 <RouteHandler routerParams={this.props.routerParams}/>
               </Col>
             </Row>
@@ -240,7 +250,7 @@ var App = React.createClass({
       );
     } else {
       view = (
-        <div id = "main">
+        <div id="main">
           <Navbar
             fixedTop = {true}
             brand = {<Link to="/welcome">OpenDojo</Link>}
@@ -272,9 +282,9 @@ var App = React.createClass({
                       <NavItemLink to="notify" key={headerLinkId++}>
                         <Glyphicon glyph="envelope" /> Send Notifications
                       </NavItemLink>
-                      <NavItemLink to="welcome" key={headerLinkId++}>
+                      <NavItem to="welcome" onClick={this.toggleTerminalMode} key={headerLinkId++}>
                         <Glyphicon glyph="phone" /> Mobile Terminal Mode
-                      </NavItemLink>
+                      </NavItem>
                       <NavItemLink to="terminalSettings" key={headerLinkId++}>
                         <Glyphicon glyph="wrench" /> Configure Terminal
                       </NavItemLink>
@@ -284,7 +294,7 @@ var App = React.createClass({
               </Col>
               { /* Child View */ }
               <Col md={9}>
-                <RouteHandler routerParams={this.props.routerParams}/>
+                <RouteHandler terminalMode={this.state.terminalMode} routerParams={this.props.routerParams}/>
               </Col>
             </Row>
             <div id="welcome">
