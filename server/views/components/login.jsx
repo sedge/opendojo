@@ -45,6 +45,7 @@ var UserField = React.createClass({
           break;
       }
     }
+    return '';
   },
 
   handleChange: function() {
@@ -81,28 +82,34 @@ var UserField = React.createClass({
   },
 
   render: function() {
+    var overlayProps = {
+      ref: "userHint",
+      trigger: "manual",
+      placement: "right",
+      overlay: (
+        <Popover title='Invalid Username Format'>
+          <strong className='warnText'>Warning!</strong> Valid usernames must be between 1 and 40 characters. Characters can be alphanumeric, hyphens, and underscores.
+        </Popover>
+      )
+    };
+    var inputProps = {
+      type: 'text',
+      value: this.state.value,
+      label: 'Username',
+      ref: 'input',
+      groupClassName: 'input-group',
+      className: 'form-control',
+      onChange: this.handleChange,
+      hasFeedback: true
+    };
+
+    if (this.validationState().length !== 0) {
+      inputProps.bsStyle = this.validationState();
+    }
+
     return (
-      <OverlayTrigger
-        ref="userHint"
-        trigger="manual"
-        placement="right"
-        overlay={
-          <Popover title='Invalid Username Format'>
-            <strong className='warnText'>Warning!</strong> Valid usernames must be between 1 and 40 characters. Characters can be alphanumeric, hyphens, and underscores.
-          </Popover>
-        }
-      >
-        <Input
-          type = 'text'
-          value = {this.state.value}
-          label = 'Username'
-          bsStyle = {this.validationState()}
-          ref = 'input'
-          groupClassName = 'input-group'
-          className = 'form-control'
-          onChange = {this.handleChange}
-          hasFeedback
-        />
+      <OverlayTrigger {...overlayProps}>
+        <Input {...inputProps} />
       </OverlayTrigger>
     );
   }
@@ -265,11 +272,11 @@ var LoginUI = module.exports = React.createClass({
     return (
       <div id="loginForm" ref="loginComp">
         <br />
-        <Col xs={7} xsOffset={5} className="credContainer">
+        <Col sm={7} smOffset={5} className="credContainer">
           <UserField ref="userVal" onChange={this.handleChange} />
           <PasswordField ref="passVal" onChange={this.handleChange} />
         </Col>
-        <Col xs={6} xsOffset={6}>
+        <Col sm={6} smOffset={6}>
           <br />
           <Input
             type='submit'
