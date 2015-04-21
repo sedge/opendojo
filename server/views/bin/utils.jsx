@@ -78,11 +78,38 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Template logic source: https://gist.github.com/James1x0/8443042
+function getGreetingTime (moment) {
+  var greeting = null;
+
+  //if we can't find a valid or filled moment, we return.
+  if(!moment || !moment.isValid()) {
+    return;
+  }
+
+  var split_afternoon = 12 //24hr time to split the afternoon
+  var split_evening = 18 //24hr time to split the evening
+  var currentHour = parseFloat(moment.format("HH"));
+
+  if(currentHour >= split_afternoon && currentHour <= split_evening) {
+    greeting = "afternoon";
+  }
+  else if(currentHour >= split_evening) {
+    greeting = "evening";
+  }
+  else {
+    greeting = "morning";
+  }
+
+  return greeting;
+}
+
 module.exports = {
   ageCalculator: ageCalculator,
   membershipStatusCalculator: membershipStatusCalculator,
   bdateForEdit: bdateForEdit,
   sortByKey: sortByKey,
   capitalizeFirstLetter: capitalizeFirstLetter,
-  timeFormatting: timeFormatting
+  timeFormatting: timeFormatting,
+  getGreetingTime: getGreetingTime
 };
