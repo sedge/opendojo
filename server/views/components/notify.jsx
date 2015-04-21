@@ -22,9 +22,12 @@ var SubjectField = require('./notifications/subjectField.jsx');
 var BodyField = require('./notifications/bodyField.jsx');
 var StudentFilter = require('./notifications/studentFilter.jsx');
 
+var TerminalCheck = require('../mixins/terminalCheck.jsx')
+
 var Notify = module.exports = React.createClass({
   mixins: [
     Navigation,
+    TerminalCheck,
 
     // Action listeners
     Reflux.listenTo(notificationStore, "handleNotificationUpdate")
@@ -119,6 +122,11 @@ var Notify = module.exports = React.createClass({
   },
 
   render: function() {
+    // Force a blank render to make the transition prettier
+    if (this.props.terminalMode) {
+      return (<div/>);
+    }
+
     var submit;
 
     if (this.state.valid) {

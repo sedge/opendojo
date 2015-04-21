@@ -7,7 +7,7 @@ var { Navigation } = require('react-router');
 var TerminalCheck = require('../mixins/terminalCheck.jsx')
 
 var Welcome = module.exports = React.createClass({
-  mixin: [Navigation, TerminalCheck],
+  mixins: [Navigation, TerminalCheck],
 
   getInitialState: function() {
     var checked = true;
@@ -26,6 +26,11 @@ var Welcome = module.exports = React.createClass({
   },
 
   render: function() {
+    // Force a blank render to make the transition prettier
+    if (this.props.terminalMode) {
+      return (<div/>);
+    }
+
     if (this.state.modalOpen) {
       return (
         <div className="Welcome container">

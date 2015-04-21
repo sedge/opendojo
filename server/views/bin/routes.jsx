@@ -79,7 +79,9 @@ var routes = (
 		<Route name="terminalSettings" path='settings' handler={TerminalSettings} >
 			<DefaultRoute handler={TerminalSettings} />
 		</Route>
-			<Route name="terminal" path='classID/studentID' handler={ClassCheckIn} />
+
+		<Route name="terminal" path='classID/studentID' handler={ClassCheckIn} />
+
 		<Route name='welcome' path='welcome' handler={Welcome} />
 		<Route name='notify' path='notify' handler={Notify} />
 		<DefaultRoute handler={Welcome} />

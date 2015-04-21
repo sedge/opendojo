@@ -36,13 +36,13 @@ var EmailInput = require('./emailInput.jsx');
 var GuardianInput = require('./guardianInput.jsx');
 var HealthInput = require('./healthInput.jsx');
 
-var StudentView = module.exports = React.createClass({
+var ClassCheckIn = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
-  getInitialState: function() {debugger;
+  getInitialState: function() {
      localStorage.setItem("terminalMode", true);
     //THIS NEEDS TO BE ERASED AFTER KIERAN DOES HIS SCREEN
     //this.props.routerParams.classID or studentID
-    //for current db 
+    //for current db
     //5532a49bec494b4844c41522 classID
     //5532a49bec494b4844c41526 studentID
     //Basically the parameters should be studentID and classID
@@ -55,6 +55,10 @@ var StudentView = module.exports = React.createClass({
   },
 
   componentWillMount: function() {
+    if (!this.props.terminalMode) {
+      return this.transitionTo('welcome');
+    }
+
     var that = this;
 
     // Listen for changes to student model state, immediately showing the latest students
@@ -62,12 +66,12 @@ var StudentView = module.exports = React.createClass({
     this.listenTo(studentStore, this.showStudent, function(students) {
       that.showStudent(students);
     });
-    
+
     this.listenTo(classStore, this.showClass, function(classes) {
       that.showClass(classes);
     });
 
- 
+
     this.listenTo(studentActions.editStudent.completed, this.editStudentComplete);
     this.listenTo(studentActions.editStudent.failed, this.editStudentFailed);
       // For edit succes vs failure
@@ -120,7 +124,7 @@ var StudentView = module.exports = React.createClass({
     }
   },
   // `EditStudent` Action Handling
-  onEditStudent: function(e){debugger;
+  onEditStudent: function(e){
     if (e) { e.preventDefault(); }
 
     var that = this;
@@ -187,9 +191,9 @@ var StudentView = module.exports = React.createClass({
     }
   },
   //This is meant to take it out of terminal mode TEMPORARY --> since Kieran ur screens shld do this
-  changeMode: function() {debugger;
+  changeMode: function() {
    localStorage.setItem("terminalMode", false);
-   this.transitionTo('/students');
+   this.transitionTo('welcome');
   },
   getDay: function(day){
     var dayOfWeek;
@@ -221,19 +225,24 @@ var StudentView = module.exports = React.createClass({
     }
     return dayOfWeek;
   },
-  saveAttendance: function() {debugger
+  saveAttendance: function() {
     var today = new Date();
     var stu = this.state.student;
     var cls = this.state.course;
-     var newAttendance = ({
-        studentID: stu._id,
-        classDate: today,
-        classTime: cls.startTime,
-        classID: cls._id
-      });
+    var newAttendance = ({
+      studentID: stu._id,
+      classDate: today,
+      classTime: cls.startTime,
+      classID: cls._id
+    });
     attendanceActions.addAttendance(newAttendance);
   },
   render: function() {
+    // Force a blank render to make the transition prettier
+    if (!this.props.terminalMode) {
+      return (<div/>);
+    }
+
     var content;
     var student = this.state.student;
     var checkinClass = this.state.course;
@@ -269,10 +278,10 @@ var StudentView = module.exports = React.createClass({
     student.email.forEach(function(email) {
       emails += email + " ";
     });
-   
+
     var emergencyPhone = null;
-  
-   
+
+
     if(student.emergencyphone){
       emergencyPhone = (
         <div>
@@ -353,7 +362,7 @@ var StudentView = module.exports = React.createClass({
               </Row>
                <Row className="show-grid">
                 <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}> 
+                <Col xs={6} sm={4}>
                   <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
                 </Col>
                 <Col xs={6} sm={4}></Col>

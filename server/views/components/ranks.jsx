@@ -17,8 +17,13 @@ var {
 var TerminalCheck = require('../mixins/terminalCheck.jsx')
 
 var Ranks = module.exports = React.createClass({
-  mixin: [Navigation, TerminalCheck],
+  mixins: [Navigation, TerminalCheck],
   render: function(){
+    // Force a blank render to make the transition prettier
+    if (this.props.terminalMode) {
+      return (<div/>);
+    }
+
     var addButton= (
       <ButtonToolbar>
         <Link to="addRank"><Button bsSize='large'><Glyphicon glyph='plus' /></Button></Link>

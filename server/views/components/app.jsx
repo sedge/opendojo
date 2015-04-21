@@ -192,7 +192,7 @@ var App = React.createClass({
         <div id="main">
           <Navbar
             fixedTop = {true}
-            brand = {<Link to="/welcome">OpenDojo</Link>}
+            brand = {<Link to="welcome">OpenDojo</Link>}
           />
           <Grid>
             <Alert bsStyle="info">
@@ -217,7 +217,7 @@ var App = React.createClass({
         <div id="main">
           <Navbar
             fixedTop = {true}
-            brand = {<Link to="/welcome">OpenDojo</Link>}
+            brand = {<Link to="welcome">OpenDojo</Link>}
           />
           <Grid>
             <Alert bsStyle="danger">
@@ -245,7 +245,7 @@ var App = React.createClass({
             <Row>
               <Col sm={12}>
                 <Button onClick={this.handleLogout} bsStyle="danger" bsSize="small">Log Out</Button>
-                <RouteHandler routerParams={this.props.routerParams}/>
+                <RouteHandler terminalMode={this.state.terminalMode} routerParams={this.props.routerParams}/>
               </Col>
             </Row>
           </Grid>
@@ -256,7 +256,7 @@ var App = React.createClass({
         <div id="main">
           <Navbar
             fixedTop = {true}
-            brand = {<Link to="/welcome">OpenDojo</Link>}
+            brand = {<Link to="welcome">OpenDojo</Link>}
           >
             <Nav right = {true}>
               <NavItem disabled={true}><small>Hi, {this.state.user ? this.state.user : 'welcome back'}!</small></NavItem>

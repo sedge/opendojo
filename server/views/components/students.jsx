@@ -1,6 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var {
+  Navigation,
   RouteHandler,
   Link
 } = require('react-router');
@@ -15,7 +16,10 @@ var {
     Panel
 } = require('react-bootstrap');
 
+var TerminalCheck = require('../mixins/terminalCheck.jsx')
+
 var Students = module.exports = React.createClass({
+  mixins: [Navigation, TerminalCheck],
   getInitialState: function(){
     return {
       query:'',
@@ -47,6 +51,11 @@ var Students = module.exports = React.createClass({
   },
 
   render: function(){
+    // Force a blank render to make the transition prettier
+    if (this.props.terminalMode) {
+      return (<div/>);
+    }
+
     var addButton= (
       <ButtonToolbar>
         <Link to="addStudent"><Button bsSize='large'><Glyphicon glyph='plus' /></Button></Link>
@@ -58,7 +67,6 @@ var Students = module.exports = React.createClass({
          <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by name..."/></Col>
        );
     }
-
     var toolbar =(
       <Grid>
         <Row className="show-grid">
