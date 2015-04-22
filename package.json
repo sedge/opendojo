@@ -19,7 +19,7 @@
     "express": "~4.11.1",
     "habitat": "^3.1.2",
     "jwt-simple": "^0.2.0",
-    "moment": "^2.9.0",
+    "moment": "2.9.0",
     "mongoose": "3.8.22",
     "mongoose-id-validator": "0.1.7",
     "morgan": "~1.5.1",
@@ -61,7 +61,7 @@
     "superagent": "^1.1.0",
     "time-grunt": "^1.1.0",
     "validator": "^3.36.0",
-    "zepto": "0.0.4"
+    "zeptojs": "^1.1.4"
   },
   "browser": {
     "react": "./node_modules/react/dist/react.js"

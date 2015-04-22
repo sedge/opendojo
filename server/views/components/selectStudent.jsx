@@ -1,6 +1,9 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Router = require('react-router');
+var $ = require('zeptojs');
+
+var moment = require('moment');
 
 var {
   ListenerMixin
@@ -18,93 +21,81 @@ var {
 var {
   Row,
   Col,
-  Button,
-  Input
+  Jumbotron
 } = require('react-bootstrap');
+
+var {
+  timeFormatting,
+  sortByKey,
+  momentForTime,
+  timeToMilliseconds
+} = require('../bin/utils.jsx');
 
 var studentStore = require('../stores/studentStore.jsx');
 var classStore = require('../stores/classStore.jsx');
+
+var ClassPicker = require('./classPicker.jsx')
 
 var SelectStudent = React.createClass({
   mixins: [
     Navigation,
     Reflux.connectFilter(studentStore, "students", function(students) {
-      var processedStudents = {};
-
-      students.map(function(student){
-        processedStudents[student._id] = student.lastName + ", " + student.firstName;
+      return students.map(function(student){
+        return {
+          _id: student._id,
+          name: student.lastName + ", " + student.firstName
+        };
       });
-
-      return processedStudents;
     }),
     Reflux.connectFilter(classStore, "classes", function(classes) {
-      var processedClasses = {};
+      var processedClasses = [];
 
       classes.map(function(course){
-        processedClasses[course._id] = course.classTitle;
+        processedClasses.push({
+          _id: course._id,
+          title: course.classTitle,
+          startTime: course.startTime,
+          endTime: course.endTime,
+          dayOfWeek: course.dayOfWeek
+        });
       });
+
+      processedClasses.sort(sortByKey("startTime", 0));
 
       return processedClasses;
     })
   ],
 
   componentWillMount: function() {
+    // Prevent the view from rendering if it isn't in
+    // terminal mode
     if (!this.props.terminalMode) {
       return this.transitionTo('welcome');
     }
   },
 
-  getInitialState: function() {
-    return {}
-  },
-  proceedToCheckIn: function(e) {
-    if (e && e.preventDefault) e.preventDefault();
-
-    var students = this.refs.students;
-    var classes = this.refs.classes;
-
-    var studentSelection = students.getValue();
-    var classSelection = classes.getValue();
-
-    this.transitionTo('checkIn', {
-      classID: classSelection,
-      studentID: studentSelection
-    });
-  },
   render: function() {
     var students = this.state.students;
     var classes = this.state.classes;
 
-    var studentOptions = [];
-    var classOptions = [];
+    var studentKey = 0;
+    var classKey = 0;
 
-    Object.keys(students).forEach(function(studentId) {
-      studentOptions.push((
-        <option value={studentId}>{students[studentId]}</option>
-      ));
-    });
+    var view;
 
-    Object.keys(classes).forEach(function(classId) {
-      classOptions.push((
-        <option value={classId}>{classes[classId]}</option>
-      ));
-    });
+    if (!students.length || !classes.length) {
+      return (
+        <div id="terminal" />
+      );
+    }
 
     return (
       <div id="terminal">
         <Row>
           <Col>
-            <Input type="select" label="Select Student:" ref="students" name="students">
-              {studentOptions}
-            </Input>
-            <Input type="select" label="Select Class:" ref="classes" name="classes">
-              {classOptions}
-            </Input>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button bsSize="large" bsStyle='primary' onClick={this.proceedToCheckIn}>Proceed to check-in</Button>
+            <Jumbotron>
+              <ClassPicker students={students} classes={classes} />
+            </Jumbotron>
           </Col>
         </Row>
       </div>

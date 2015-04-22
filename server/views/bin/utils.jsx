@@ -1,3 +1,23 @@
+var moment = require('moment');
+
+function momentForTime(time) {
+  time = time.split(":");
+  var hours = time[0];
+  var minutes = time[1];
+
+  var timeInMoment = moment();
+  timeInMoment.hours(hours);
+  timeInMoment.minutes(minutes);
+
+  if (time.length === 3) {
+    timeInMoment.seconds(time[2]);
+  } else {
+    timeInMoment.seconds("00");
+  }
+
+  return timeInMoment;
+}
+
 function ageCalculator(bday){
   var birthDate = new Date(bday);
   var today = new Date();
@@ -124,5 +144,6 @@ module.exports = {
   sortByKey: sortByKey,
   capitalizeFirstLetter: capitalizeFirstLetter,
   timeFormatting: timeFormatting,
-  getGreetingTime: getGreetingTime
+  getGreetingTime: getGreetingTime,
+  momentForTime: momentForTime
 };
