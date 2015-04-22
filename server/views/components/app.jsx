@@ -140,7 +140,9 @@ var App = React.createClass({
     }
   },
 
-  toggleTerminalMode: function() {
+  toggleTerminalMode: function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
     localStorage.setItem('terminalMode', true);
     this.setState({
       terminalMode: true
@@ -244,8 +246,7 @@ var App = React.createClass({
          <Grid>
             <Row>
               <Col sm={12}>
-                <Button onClick={this.handleLogout} bsStyle="danger" bsSize="small">Log Out</Button>
-                <RouteHandler terminalMode={this.state.terminalMode} routerParams={this.props.routerParams}/>
+                <RouteHandler handleLogout={this.handleLogout} terminalMode={this.state.terminalMode} routerParams={this.props.routerParams}/>
               </Col>
             </Row>
           </Grid>

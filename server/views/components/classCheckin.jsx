@@ -39,13 +39,6 @@ var HealthInput = require('./healthInput.jsx');
 var ClassCheckIn = module.exports = React.createClass({
   mixins: [Navigation, ListenerMixin],
   getInitialState: function() {
-     localStorage.setItem("terminalMode", true);
-    //THIS NEEDS TO BE ERASED AFTER KIERAN DOES HIS SCREEN
-    //this.props.routerParams.classID or studentID
-    //for current db
-    //5532a49bec494b4844c41522 classID
-    //5532a49bec494b4844c41526 studentID
-    //Basically the parameters should be studentID and classID
     return {
       studentID: this.props.routerParams.studentID,
       classID: this.props.routerParams.classID,
@@ -81,9 +74,8 @@ var ClassCheckIn = module.exports = React.createClass({
 
   showStudent: function(students) {
     var that = this;
-    //This needs to be commented in LATER hard coding id for now
-    //var id = this.props.routerParams.studentID;
-    var id = "5532a49bec494b4844c41526";
+
+    var id = this.props.routerParams.studentID;
     students.forEach(function(student) {
       if (id == student._id) {
         that.setState({
@@ -94,9 +86,8 @@ var ClassCheckIn = module.exports = React.createClass({
   },
   showClass: function(classes) {
     var that = this;
-    //This needs to be commented in LATER hard coding id for now
-    //var id = this.props.routerParams.classID;
-    var id = "5532a49bec494b4844c41525";
+
+    var id = this.props.routerParams.classID;
     classes.forEach(function(course) {
       if (id == course._id) {
         that.setState({
@@ -152,14 +143,10 @@ var ClassCheckIn = module.exports = React.createClass({
     this.setState({
       valid: true
     });
-    // For now, input only accepts one email so we
-    // stuff it into an array
-    //THIS SHOULD BE PUT IN INSTEAD OF THE ID
-    // _id:this.props.routerParams.studentID
-    //THE CURRENT ID BELOW SHOULD BE SWITCHED TO ABOVE
+
     var emails = [this.refs.emails.getValue()];
     var newStudent = {
-      _id: "5532a49bec494b4844c41526",
+      _id: this.props.routerParams.studentID,
       firstName: this.refs.firstName.getValue(),
       lastName: this.refs.lastName.getValue(),
       phone: this.refs.phone.getValue(),
@@ -321,82 +308,76 @@ var ClassCheckIn = module.exports = React.createClass({
               <td colSpan="3">{student.healthInformation}</td>
             </tr>
           </Table>
-          <Grid>
-            <Row className="show-grid">
-             <Col xs={12} md={8}>
-              <Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-              <Button bsSize="large" onClick={this.changeMode}>Cancel</Button>
-             </Col>
-             <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.saveAttendance}>Checkin</Button></span></Col>
-            </Row>
-          </Grid>
+          <Row className="show-grid">
+           <Col xs={12} md={8}>
+            <Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+            <Button bsSize="large" onClick={this.changeMode}>Cancel</Button>
+           </Col>
+           <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.saveAttendance}>Checkin</Button></span></Col>
+          </Row>
         </div>
       );
     }
     if(editable && !settingMembership){
       return (
-        <div className="studentView container">
+        <div className="studentView">
           <form>
             <h2>Update Student Information:</h2>
-            <Grid>
+            <Row className="show-grid">
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
+            <Row className="show-grid">
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
               <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
+             <Row className="show-grid">
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
               <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-                <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-               <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-                <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-                <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-                <Row className="show-grid">
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}>
-                  <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
-                </Col>
-                <Col xs={6} sm={4}></Col>
-              </Row>
-            </Grid>
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
+              <Row className="show-grid">
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
+              <Row className="show-grid">
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}>
+                <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+              </Col>
+              <Col xs={6} sm={4}></Col>
+            </Row>
             <AlertDismissable visable={!this.state.valid} />
-            <Grid>
-              <Row className="show-grid">
-                <Col xs={6} sm={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
-                <Col xs={6} sm={4}></Col>
-                <Col xs={6} sm={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
-              </Row>
-            </Grid>
+            <Row className="show-grid">
+              <Col xs={6} sm={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
+              <Col xs={6} sm={4}></Col>
+              <Col xs={6} sm={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
+            </Row>
           </form>
         </div>
       );
