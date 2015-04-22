@@ -88,6 +88,7 @@ var App = React.createClass({
         validCheck = false;
         alertText = 'Your authentication window has expired! Please log in again:';
         localStorage.removeItem("token");
+        localStorage.removeItem("terminalMode");
       }
       if(err || code == 401) {
         validCheck = false;
@@ -97,7 +98,8 @@ var App = React.createClass({
         tokenCheck: validCheck,
         loggedOut: logOut,
         loggedIn: false,
-        alertText: alertText
+        alertText: alertText,
+        terminalMode: false
       });
     });
   },
