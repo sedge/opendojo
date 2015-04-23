@@ -139,7 +139,6 @@ module.exports = function() {
         res.status(400).send('Invalid data!');
         return;
       }
-
       Student.findOneAndUpdate({"_id": id}, req.body, {new: true}, function(err, student) {
         if (err && err.name === "CastError") {
           log.warn({
