@@ -58,6 +58,7 @@ var LastName = module.exports = React.createClass({
       type: "text",
       ref: this.props.name,
       name: this.props.name,
+      readOnly: this.props.readOnly,
       defaultValue: this.state.value,
       placeholder: this.props.placeholder
     };
@@ -74,7 +75,7 @@ var LastName = module.exports = React.createClass({
 
     return (
       <div>
-        <Input {...props} onChange={this.onChange} />
+        <Input className="form-disabled" {...props} onChange={this.onChange} />
         {feedback}
       </div>
     );

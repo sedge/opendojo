@@ -44,6 +44,7 @@ var ClassCheckIn = module.exports = React.createClass({
       classID: this.props.routerParams.classID,
       editable: false,
       valid: true,
+      message:""
     };
   },
 
@@ -54,20 +55,20 @@ var ClassCheckIn = module.exports = React.createClass({
 
     var that = this;
 
-    // Listen for changes to student model state, immediately showing the latest students
-    // through the callback
+    // To pick the right student need to look through the current students
     this.listenTo(studentStore, this.showStudent, function(students) {
       that.showStudent(students);
     });
 
+    // To pick the right class need to look through the current classes
     this.listenTo(classStore, this.showClass, function(classes) {
       that.showClass(classes);
     });
 
-
+     // For edit succes vs failure for student edit and attendance generation
     this.listenTo(studentActions.editStudent.completed, this.editStudentComplete);
     this.listenTo(studentActions.editStudent.failed, this.editStudentFailed);
-      // For edit succes vs failure
+     
     this.listenTo(attendanceActions.addAttendance.completed, this.addAttendanceComplete);
     this.listenTo(attendanceActions.addAttendance.failed, this.addAttendanceFailed);
   },
@@ -115,7 +116,7 @@ var ClassCheckIn = module.exports = React.createClass({
     }
   },
   // `EditStudent` Action Handling
-  onEditStudent: function(e){
+  onEditStudent: function(e){debugger;
     if (e) { e.preventDefault(); }
 
     var that = this;
@@ -164,23 +165,22 @@ var ClassCheckIn = module.exports = React.createClass({
 
   editStudentFailed:function(err) {
     console.error("Editing a student failed: ", err);
+    var error = "Editing did not suceed";
     if(this.state.editable){
       this.setState({
-        editable: false
+        editable: false,
+        message: error
       });
     }
   },
   editStudentComplete: function() {
+    var success="Your information has been updated."
     if(this.state.editable){
       this.setState({
+        message: success,
         editable: false
       });
     }
-  },
-  //This is meant to take it out of terminal mode TEMPORARY --> since Kieran ur screens shld do this
-  changeMode: function() {
-   localStorage.setItem("terminalMode", false);
-   this.transitionTo('welcome');
   },
   getDay: function(day){
     var dayOfWeek;
@@ -236,13 +236,14 @@ var ClassCheckIn = module.exports = React.createClass({
     var classDay;
     var classTime;
     var classTitle;
+    var expiryDate;
     if (checkinClass){
       classDay = this.getDay(checkinClass.dayOfWeek);
       classTime = timeFormatting(checkinClass.startTime);
       classTitle=checkinClass.classTitle;
     }
     var editable = this.state.editable;
-    var settingMembership = this.state.settingMembership;
+   
     if (!student) {
       return (
         <div className="studentView container">
@@ -261,125 +262,111 @@ var ClassCheckIn = module.exports = React.createClass({
         </div>
       );
     }
+    if (student && checkinClass)
+    {
+    var expiryDateUnmodified = student.membershipExpiry.split('T');
+    var expiryDate = expiryDateUnmodified[0];
     var emails = "";
     student.email.forEach(function(email) {
       emails += email + " ";
     });
-
-    var emergencyPhone = null;
-
-
-    if(student.emergencyphone){
-      emergencyPhone = (
-        <div>
-          Emergency Phone Number : {student.emergencyphone}
-        </div>
-      );
-    }
-    if(!editable){
       return (
-        <div className="studentView container">
-          <Table bordered={true} striped={true}>
-            <tr>
-               <th colSpan="4">Checking into: {
-                classTitle + " " + classDay + ", " + classTime
-              }</th>
-            </tr>
-            <tr>
-              <th colSpan="4">Name: {
-                student.firstName + " " + student.lastName
-              }</th>
-            </tr>
-            <tr>
-              <th>Phone:</th>
-              <td colSpan="3">{student.phone}</td>
-            </tr>
-            <tr>
-              <th>Emails:</th>
-              <td colSpan="3">{emails}</td>
-            </tr>
-            <tr>
-              <th>Guardian Information</th>
-              <td colSpan="3">{student.guardianInformation}{emergencyPhone}
-              </td>
-            </tr>
-            <tr>
-              <th>Health Information</th>
-              <td colSpan="3">{student.healthInformation}</td>
-            </tr>
-          </Table>
+      <div className="studentView">
+        <form>
           <Row className="show-grid">
-           <Col xs={12} md={8}>
-            <Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-            <Button bsSize="large" onClick={this.changeMode}>Cancel</Button>
-           </Col>
-           <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.saveAttendance}>Checkin</Button></span></Col>
+            <Col xs={18} sm={12}></Col>
           </Row>
-        </div>
-      );
-    }
-    if(editable && !settingMembership){
-      return (
-        <div className="studentView">
-          <form>
-            <h2>Update Student Information:</h2>
+          <Row className="show-grid">
+            <Col xs={18} md={12}>
+              <span className="pull-left">
+                  <Link to="terminal">
+                    <Button bsSize="large">Back</Button>
+                  </Link>
+              </span>
+              <span className="pull-right">
+                  <Link to="terminal">
+                    <Button bsSize="large" onClick={this.saveAttendance}>Check-in</Button>
+                  </Link>
+              </span>
+            </Col>
+          </Row>
+          <h2><b>Checking into: {
+              classTitle + " " + classDay + ", " + classTime
+            }
+          </b></h2>
+          <Row className="show-grid">
+            <Col xs={6} className="rightLabel" sm={4}>First Name:</Col>
+            <Col xs={6} sm={4}>
+              <FirstName ref="firstName" name="firstName" readOnly={!this.state.editable} defaultValue={student.firstName} />
+            </Col>
+             <Col xs={6} sm={4}></Col>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={6} className="rightLabel" sm={4}>Last Name:</Col>
+            <Col xs={6} sm={4}>
+              <LastName ref="lastName" name="lastName" readOnly={!this.state.editable} defaultValue={student.lastName} />
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
             <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
+            <Col xs={6} className="rightLabel" sm={4}>Phone:</Col>
+            <Col xs={6} sm={4}>
+              <PhoneInput ref="phone" name="phone" readOnly={!this.state.editable} defaultValue={student.phone} />
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
+           <Row className="show-grid">
+            <Col xs={6} className="rightLabel" sm={4}>Emails:</Col>
+            <Col xs={6} sm={4}>
+              <EmailInput type="text" ref="emails" name="emails" readOnly={!this.state.editable} defaultValue={emails} />
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
             <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-             <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-            <AlertDismissable visable={!this.state.valid} />
+            <Col xs={6} className="rightLabel" sm={4}>Guardian Information:</Col>
+            <Col xs={6} sm={4}>
+              <GuardianInput type="text" ref="guardian" readOnly={!this.state.editable} name="guardian" defaultValue={student.guardianInformation} />
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
             <Row className="show-grid">
-              <Col xs={6} sm={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
-            </Row>
-          </form>
-        </div>
+            <Col xs={6} className="rightLabel" sm={4}>Emergency Phone:</Col>
+            <Col xs={6} sm={4}>
+              <PhoneInput ref="emergencyphone" readOnly={!this.state.editable} name="emergencyphone" defaultValue={student.emergencyphone} />
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={6} className="rightLabel" sm={4}>Health Information:</Col>
+            <Col xs={6} sm={4}>
+              <HealthInput type="text" ref="healthinfo" readOnly={!this.state.editable} name="healthinfo" defaultValue={student.healthInformation}/>
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={6} className="rightLabel" sm={4}>Your membership expires on:</Col>
+            <Col xs={6} sm={4} className="red">
+              {expiryDate}
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
+          <AlertDismissable visable={!this.state.valid} />
+          <Row className="show-grid">
+            <Col xs={6} sm={4}></Col>
+            <Col xs={6} md={4} className="red">
+               {this.state.message}
+            </Col>
+            <Col xs={6} sm={4}></Col>
+          </Row>
+          <Row className="show-grid">
+            <Col xs={12} md={8}>
+              <Button bsSize="large" bsStyle='primary' disabled={this.state.editable} onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+              <Button bsSize="large" disabled={!this.state.editable} onClick={this.editToggle}>Cancel</Button>
+            </Col>
+            <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" bsStyle='primary' disabled={!this.state.editable} onClick={this.onEditStudent}>Save</Button></span></Col>
+          </Row>
+        </form>
+      </div>
       );
     }
   }
