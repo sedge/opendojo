@@ -9,17 +9,22 @@ var {
   Input
 } = require('react-bootstrap');
 
-var { ageCalculator } = require('../bin/utils.jsx');
-var FirstName = module.exports = React.createClass({
+var {
+  ageCalculator,
+  validateExpiryDate
+} = require('../bin/utils.jsx');
+
+var DateInput = module.exports = React.createClass({
   getInitialState: function() {
     return {
-      valid: true,
+      valid: false,
       ageValid: true,
+      expValid: true,
       value: this.props.defaultValue
     };
   },
 
-  onChange: function(e) {
+  onChange: function() {
     var ref = this.refs[this.props.name];
     var value = ref.getValue().trim();
 
@@ -29,6 +34,7 @@ var FirstName = module.exports = React.createClass({
     if (!isLength(sanitized, 1) || !isNumeric(sanitized)) {
       return this.setState({
         valid: false,
+        expValid: false,
         value: value
       });
     }
@@ -38,6 +44,14 @@ var FirstName = module.exports = React.createClass({
           ageValid: false,
           value: value
         });
+      }
+    }
+    if(this.props.name == "expiryDate") {
+      if(!validateExpiryDate(value)) {
+        return this.setState({
+          expValid: false,
+          value: value
+        })
       }
     }
 
@@ -50,6 +64,12 @@ var FirstName = module.exports = React.createClass({
     if (!this.state.ageValid){
       this.setState({
         ageValid: true,
+        value: value
+      });
+    }
+    if (!this.state.expValid){
+      this.setState({
+        expValid: true,
         value: value
       });
     }
@@ -66,6 +86,12 @@ var FirstName = module.exports = React.createClass({
     }
     return "error";
   },
+  expValidationState: function() {
+    if (this.state.expValid) {
+      return;
+    }
+    return "error";
+  },
 
   render: function() {
     var props = {
@@ -75,8 +101,15 @@ var FirstName = module.exports = React.createClass({
       name: this.props.name,
       defaultValue: this.state.value
     };
-    if (this.validationState()) {
-      props.bsStyle = this.validationState();
+    if(this.expValidationState()) {
+      if(this.props.name == "expiryDate") {
+        props.bsStyle = this.expValidationState();
+      }
+    }
+    if(this.validationState()) {
+      if(this.props.name == "bday") {
+        props.bsStyle = this.validationState();
+      }
     }
 
     var feedback;
@@ -85,15 +118,15 @@ var FirstName = module.exports = React.createClass({
         <p><strong>Age must be between 3 and 100 years</strong></p>
       );
     }
-    else if (!this.state.valid) {
-      if(this.props.name == "bday"){
+    else if (this.props.name == "expiryDate" && !this.state.expValid) {
+      feedback = (
+        <p><strong>A non-default expiry date is recommended, and must be scheduled between today and 2 years from now</strong></p>
+      );
+    }
+    else {
+      if(!this.state.valid && this.props.name == "bday" && this.state.ageValid){
         feedback = (
-          <p><strong>A birth date is required.</strong></p>
-        );
-      }
-      else{
-        feedback = (
-          <p><strong>An expiry date is required.</strong></p>
+          <p><strong>A complete birth date field is required</strong></p>
         );
       }
     }

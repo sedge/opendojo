@@ -11,6 +11,18 @@ function ageCalculator(bday){
   return years;
 }
 
+function validateExpiryDate(memdate) {
+  var today = new Date();
+  var expiry = new Date(memdate);
+  var maxYear =  today.getFullYear() + 2;
+  var aDay = 24 * 60 * 60 * 1000;
+
+  if(Date.parse(memdate) < Date.now() - aDay || expiry.getFullYear() > maxYear) {
+    return false;
+  }
+  else return true;
+}
+
 function timeFormatting(time){
   if(time.split(':')[1].length == 1){
         return time.split(":")[0]+":0" + time.split(':')[1];
@@ -106,6 +118,7 @@ function getGreetingTime (moment) {
 
 module.exports = {
   ageCalculator: ageCalculator,
+  validateExpiryDate: validateExpiryDate,
   membershipStatusCalculator: membershipStatusCalculator,
   bdateForEdit: bdateForEdit,
   sortByKey: sortByKey,
