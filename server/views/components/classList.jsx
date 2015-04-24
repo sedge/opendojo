@@ -35,7 +35,7 @@ var ClassList = module.exports = React.createClass({
       editable: true
     };
   },
-  doSearch:function(queryText){
+  doSearch:function(queryText){debugger;
     var queryResult=[];
     var day;
     this.state.classes.forEach(function(course){

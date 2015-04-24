@@ -34,75 +34,26 @@ var AttendanceList = module.exports = React.createClass({
       filtered: null,
       students: null,
       classes: null,
-      sortdate: null
+      sortdate: false,
+      sortName: false
     };
   },
-  doSearch:function(queryText){
-    var queryResult=[];
-    var students = this.state.students;
-    var classes = this.state.classes;
-
-    this.state.attendances.forEach(function(attendance){
-      var studentName;
-      var className;
-
-      if (students)
-        {
-          Object.keys(students).map(function(studentID){
-            if (studentID == attendance.studentID) {
-              studentName = students[studentID].firstName+' '+students[studentID].lastName;
-            }
-          });
-        }
-      if (classes)
-        {
-          Object.keys(classes).map(function(classID) {
-           if (classID == attendance.classID) {
-              className = classes[classID].classTitle;
-            }
-          });
-        }
-
-      if(studentName.toLowerCase().indexOf(queryText.toLowerCase())!= -1 || className.toLowerCase().indexOf(queryText.toLowerCase())!= -1)
-        queryResult.push(attendance);
-    });
-    this.setState({
-      filtered:queryResult
-    });
-  },
-  dateSort:function(){
-  var sortedArray;
-
-    if(this.state.sortdate){
-      sortedArray = this.state.filtered.sort(sortByKey("classDate",1));
-    }else{
-      sortedArray = this.state.filtered.sort(sortByKey("classDate",0));
-    }
-    this.setState({
-      sortdate: !this.state.sortdate
-    });
-  },
-  componentWillMount: function() {
+  componentWillMount: function() {debugger;
     var that = this;
 
-    // Listing to the attendance store for latest changes
-    this.listenTo(attendanceStore, this.attendanceUpdate, function(initiaAttendances) {
-      that.setState({
-        attendances: initiaAttendances,
-        filtered: initiaAttendances,
-      });
-    });
-
-    //Getting the latest students to determine the student name from id
+    
     this.listenTo(studentStore, this.updateStudents, function(students) {
       that.updateStudents(students);
     });
 
-    //Getting the latest classes to get the class information by class Id
     this.listenTo(classStore, this.updateClasses, function(classes) {
       that.updateClasses(classes);
+    }); 
+    // Listing to the attendance store for latest changes
+    this.listenTo(attendanceStore, this.attendanceUpdate, function(initiaAttendances) {
+      that.attendanceUpdate(initiaAttendances);
     });
-
+     
      // For deletion succes vs failure
     this.listenTo(attendanceActions.deleteAttendance.completed, this.deleteAttendanceComplete);
     this.listenTo(attendanceActions.deleteAttendance.failed, this.deleteAttendanceFailed);
@@ -112,15 +63,15 @@ var AttendanceList = module.exports = React.createClass({
     this.doSearch(newProps.query);
   },
 
-  attendanceUpdate: function(latestAttendance) {
+  attendanceUpdate: function(latestAttendance) {debugger;
     this.setState({
       attendances: latestAttendance,
       filtered: latestAttendance
     });
   },
 
-  updateStudents: function(students) {
-    var processedStudents = [];
+  updateStudents: function(students) {debugger;
+    var processedStudents = {};
 
     students.map(function(student){
       processedStudents[student._id] = student;
@@ -131,8 +82,8 @@ var AttendanceList = module.exports = React.createClass({
     });
   },
 
-  updateClasses: function(classes) {
-    var processedClasses = [];
+  updateClasses: function(classes) {debugger;
+    var processedClasses = {};
 
     classes.map(function(course){
       processedClasses[course._id] = course;
@@ -142,6 +93,83 @@ var AttendanceList = module.exports = React.createClass({
       classes: processedClasses
     });
   },
+  hydrateAttendance: function(){
+    var latestAttendance = this.state.attendances;
+    var that = this;
+    if (this.state.students && this.state.classes && this.state.filtered) {  
+        var filteredAttendance = latestAttendance.map ( function (record) {
+          var student = that.state.students[record.studentID];
+          var course = that.state.classes[record.classID];
+          return {
+            "studentID":record.studentID,
+            "lastName": student.lastName,
+            "firstName": student.firstName,
+            "classTime": record.classTime,
+            "classDate": record.classDate,
+            "classTitle":course.classTitle,
+            "classID": record.classID
+          }
+        });
+      return filteredAttendance;
+    }
+  },
+  doSearch:function(queryText){debugger;
+    var queryResult=[];
+    var students = this.state.students;
+    var classes = this.state.classes;
+    var hydratedAttendance = this.hydrateAttendance();
+
+    hydratedAttendance.forEach(function(record){
+      var studentName = record.firstName+' '+record.lastName;
+      if(studentName.toLowerCase().indexOf(queryText.toLowerCase())!= -1 || record.classTitle.toLowerCase().indexOf(queryText.toLowerCase())!= -1)
+        queryResult.push(record);
+    });
+
+    this.setState({
+      filtered:queryResult
+    });
+  },
+  dateSort:function(){
+    var sortedArray;
+
+    if(this.state.sortdate){
+      sortedArray = this.state.filtered.sort(sortByKey("classDate",1));
+    }else{
+      sortedArray = this.state.filtered.sort(sortByKey("classDate",0));
+    }
+    this.setState({
+      sortdate: !this.state.sortdate
+    });
+  },
+  studentSort: function() {
+    var sortedArray;
+    var filteredAttendance=this.hydrateAttendance();
+
+    if(this.state.sortName){
+      sortedArray = filteredAttendance.sort(sortByKey("lastName",1));
+    }else{
+      sortedArray = filteredAttendance.sort(sortByKey("lastName",0));
+    }
+    this.setState({
+      filtered: sortedArray,
+      sortName: !this.state.sortName
+    });
+  },
+  classSort: function() {
+    var sortedArray;
+    var filteredAttendance=this.hydrateAttendance();
+    
+    if(this.state.sortClass){
+      sortedArray = filteredAttendance.sort(sortByKey("classTitle",1));
+    }else{
+      sortedArray = filteredAttendance.sort(sortByKey("classTitle",0));
+    }
+    this.setState({
+      filtered: sortedArray,
+      sortClass: !this.state.sortClass
+    });
+  },
+
   //`Delete attendance` Action Handling
   handleDelete: function(e, attendanceId) {
     // Confirm delete
@@ -192,11 +220,14 @@ var AttendanceList = module.exports = React.createClass({
     }
     return dayOfWeek;
   },
-  render: function() {
+  render: function() {debugger;
     var that = this;
     var content;
     var attendances = this.state.filtered;
     var dateOrder;
+    var nameOrder;
+    var classOrder;
+    var view;
 
     if (this.state.sortdate){
       dateOrder = 
@@ -212,7 +243,34 @@ var AttendanceList = module.exports = React.createClass({
       </th>
     }
 
-    var view;
+    if (this.state.sortName) {
+      nameOrder = 
+      <th>Student Name&nbsp; 
+        <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by Last name</strong></Tooltip>}>
+        <Button bsSize="xsmall" onClick={this.studentSort}>&#9660;</Button>
+        </OverlayTrigger>
+      </th>
+    }else{
+      nameOrder = 
+      <th>Student Name&nbsp; 
+        <Button bsSize="xsmall" onClick={this.studentSort}>&#9650;</Button>
+      </th>
+    }
+
+    if (this.state.sortClass) {
+      classOrder = 
+      <th>Class Title&nbsp; 
+        <OverlayTrigger placement='top' overlay={<Tooltip><strong>Sort by class title</strong></Tooltip>}>
+        <Button bsSize="xsmall" onClick={this.classSort}>&#9660;</Button>
+        </OverlayTrigger>
+      </th>
+    }else{
+      classOrder = 
+      <th>Class Title&nbsp; 
+        <Button bsSize="xsmall" onClick={this.classSort}>&#9650;</Button>
+      </th>
+    }
+
     if (!attendances) {
       view = (
         <Alert bsStyle="danger">
@@ -267,8 +325,8 @@ var AttendanceList = module.exports = React.createClass({
       view = (
         <Table>
           <thead>
-            <th>Student Name</th>
-            <th>Class Title</th>
+            {nameOrder}
+            {classOrder}
             {dateOrder}
             <th>Class time</th>
             <th></th>
@@ -279,7 +337,6 @@ var AttendanceList = module.exports = React.createClass({
         </Table>
       );
     }
-
     return (
       <div attendanceRows="attendanceView container">
         {view}
