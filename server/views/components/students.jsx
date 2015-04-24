@@ -64,7 +64,7 @@ var Students = module.exports = React.createClass({
     var searchBar;
     if(this.state.mainView) {
        searchBar = (
-         <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by name..."/></Col>
+         <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by name or rank..."/></Col>
        );
     }
     var toolbar =(

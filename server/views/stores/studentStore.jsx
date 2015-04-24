@@ -117,11 +117,25 @@ var studentStore = Reflux.createStore({
     if(!student) {
       return editStudent.failed(students);
     }
+     var studentToSend = {
+      firstName: updatedInfo.firstName,
+      lastName: updatedInfo.lastName,
+      gender: updatedInfo.gender,
+      rankId: updatedInfo.rankId,
+      healthInformation: updatedInfo.healthInformation,
+      emergencyphone: updatedInfo.emergencyphone,
+      guardianInformation: updatedInfo.guardianInformation,
+      email: updatedInfo.email,
+      membershipStatus: updatedInfo.membershipStatus,
+      membershipExpiry: updatedInfo.membershipExpiry,
+      phone: updatedInfo.phone,
+      birthDate: updatedInfo.birthDate
+    }
 
     request
       .put(URL + "student/" + updatedInfo._id)
       .set(authInfo)
-      .send(updatedInfo)
+      .send(studentToSend)
       .end(function(err, res) {
   			if(err){
           return editStudent.failed(err);

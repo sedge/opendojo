@@ -39,11 +39,13 @@ var StudentList = module.exports = React.createClass({
 	},
 	doSearch:function(queryText){
 		var queryResult=[];
+		var hydratedStudent = this.hydrateStudent();
 
-		this.state.students.forEach(function(person){
+		hydratedStudent.forEach(function(person){
 			var studentName = person.firstName+' '+person.lastName;
-      if(studentName.toLowerCase().indexOf(queryText)!=-1)
+      if((studentName.toLowerCase().indexOf(queryText)!=-1) || (person.rankTitle.toLowerCase().indexOf(queryText.toLowerCase())!= -1)) {
        	queryResult.push(person);
+      }
 		});
     this.setState({
     	filtered:queryResult
@@ -68,12 +70,36 @@ var StudentList = module.exports = React.createClass({
 	},
 	studentsUpdate: function(latestStudents) {
 		this.setState({
-			students: latestStudents
-		});
-		this.setState({
-			filtered: this.state.students
+			students: latestStudents,
+			filtered: latestStudents
 		});
 	},
+	 hydrateStudent: function(){
+    var latestStudents = this.state.students;
+    var that = this;
+    if (this.state.ranks && this.state.students) {  
+        var filteredStudents = latestStudents.map ( function (student) {
+          var rank = that.state.ranks[student.rankId];
+          return {
+          	"_id":student._id,
+            "firstName":student.firstName,
+            "lastName": student.lastName,
+            "gender": student.gender,
+            "rankId": student.rankId,
+            "rankTitle": rank,
+            "healthInformation":student.healthInformation,
+            "emergencyphone": student.emergencyphone,
+            "guardianInformation":student.guardianInformation,
+            "email":student.email,
+            "membershipStatus":student.membershipStatus,
+            "membershipExpiry":student.membershipExpiry,
+            "phone":student.phone,
+            "birthDate":student.birthDate
+          }
+        });
+      return filteredStudents;
+    }
+  },
 	nameSort:function(){
 		var sortedArray;
 		if(this.state.sortname){
@@ -100,12 +126,14 @@ var StudentList = module.exports = React.createClass({
 
 	rankSort:function(){
 		var sortedArray;
+		var filteredStudent = this.hydrateStudent();
 		if(this.state.sortrank){
-			sortedArray = this.state.filtered.sort(sortByKey("rankId",1));
+			sortedArray = filteredStudent.sort(sortByKey("rankTitle",1));
 		}else{
-			sortedArray = this.state.filtered.sort(sortByKey("rankId",0));
+			sortedArray = filteredStudent.sort(sortByKey("rankTitle",0));
 		}
 		this.setState({
+			filtered: sortedArray,
 			sortrank: !this.state.sortrank
 		});
 	},
