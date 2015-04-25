@@ -40,6 +40,8 @@ var {
   Alert
 } = require('react-bootstrap');
 
+var AnimateMixin = require('react-animate');
+
 // Note, each route is actually a name
 // corresponding with the React-Router
 // configuration in router.jsx
@@ -55,7 +57,7 @@ var dashboardNav = {
 var headerLinkId = 0;
 
 var App = React.createClass({
-  mixins: [Navigation, ListenerMixin],
+  mixins: [Navigation, ListenerMixin, AnimateMixin],
   listenables: [authActions],
 
   componentWillMount: function() {
@@ -152,10 +154,21 @@ var App = React.createClass({
     this.transitionTo("terminal");
   },
 
+  fadeIn: function() {
+    this.animate(
+      'fade-in', // animation name
+      { opacity: 0 }, // initial style
+      { opacity: 1 }, // final style
+      400, // animation duration (in ms)
+      {easing: 'linear'} // other options
+    );
+  },
+
   render: function() {
     var that = this;
     var primaryLinksText = Object.keys(dashboardNav);
     var currentGlyph;
+    var includeAnimation = that.fadeIn;
     var primaryLinks = primaryLinksText.map(function(primaryLinksText) {
       switch(primaryLinksText) {
         case "Summary":
@@ -172,11 +185,12 @@ var App = React.createClass({
           break;
         default:
           currentGlyph = 'list-alt';
+          includeAnimation = null;
           break;
       }
 
       return (
-        <NavItemLink to={dashboardNav[primaryLinksText]} key={headerLinkId++}>
+        <NavItemLink to={dashboardNav[primaryLinksText]} key={headerLinkId++} onClick={includeAnimation}>
           <Glyphicon glyph={currentGlyph} /> {primaryLinksText}
         </NavItemLink>
       );
@@ -299,7 +313,7 @@ var App = React.createClass({
                 </div>
               </Col>
               { /* Child View */ }
-              <Col md={9}>
+              <Col md={9} style={this.getAnimatedStyle('fade-in')}>
                 <RouteHandler terminalMode={this.state.terminalMode} routerParams={this.props.routerParams}/>
               </Col>
             </Row>
