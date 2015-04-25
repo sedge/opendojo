@@ -29,7 +29,8 @@ var ClassForm = module.exports = React.createClass({
   getInitialState: function() {
     return {
       emptyvalid: true,
-      valid: true
+      valid: true,
+      timeValid: true
     };
   },
 
@@ -56,6 +57,59 @@ var ClassForm = module.exports = React.createClass({
     this.setState({
       ranks: processedRanks
     });
+  },
+
+  timeValidation: function() { debugger;
+    var start = this.refs.startTime.getValue();
+    var end = this.refs.endTime.getValue();
+    if(start.length > 1 && end.length > 1) {
+      var startArray = start.split(":");
+      var startHour = startArray[0];
+      var startMinute = startArray[1];
+      var endArray = end.split(":");
+      var endHour = endArray[0];
+      var endMinute = endArray[1];
+      var startDate = new Date(1996, 6, 6, startHour, startMinute);
+      var endDate = new Date(1996, 6, 6, endHour, endMinute);
+      var threeHours = 1000 * 60 * 60 * 3;
+      var fiveMinutes = 1000 * 300;
+
+      if (Date.parse(startDate) >= Date.parse(endDate)
+          || Date.parse(endDate) - Date.parse(startDate) > threeHours
+          || Date.parse(endDate) - Date.parse(startDate) < fiveMinutes) {
+        return this.setState({
+          valid: false,
+          timeValid: false
+        })
+      }
+      if (!this.state.valid) {
+        this.setState({
+          valid: true
+        });
+      }
+      if (!this.state.timeValid) {
+        this.setState({
+          timeValid: true
+        });
+      }
+    }
+    if (!this.state.valid) {
+      this.setState({
+        valid: true
+      });
+    }
+    if (!this.state.timeValid) {
+      this.setState({
+        timeValid: true
+      });
+    }
+  },
+
+  validationState: function() {
+    if (this.state.valid && this.state.timeValid) {
+      return;
+    }
+    return "error";
   },
 
   handleSubmit: function(e) {
@@ -94,18 +148,16 @@ var ClassForm = module.exports = React.createClass({
   render: function() {
     var emptyWarn;
     var submitButton;
-    if (!this.state.emptyvalid){
-      emptyWarn = (
-        <Alert bsStyle="danger" id="alert">
-          <p><strong>Please fill all text box</strong></p>
-        </Alert>
-      )
+    var timeFeedback;
+    if(!this.state.timeValid) {
+      timeFeedback = (
+        <p><strong>The start time and end time of the class cannot be the same. A class must be at least 5 minutes long and 3 hours long at most.</strong></p>
+      );
     }
-
-    if (!this.state.emptyvalid){
+    if (!this.state.emptyvalid) {
       emptyWarn = (
         <Alert bsStyle="danger" id="alert">
-          <p><strong>Please fill all information</strong></p>
+          <p><strong>Please fill in all of the required information</strong></p>
         </Alert>
       )
     }
@@ -128,12 +180,14 @@ var ClassForm = module.exports = React.createClass({
           <Input label="Class Time" wrapperClassName='wrapper'>
             <Row>
               <Col xs={6}>
-                <Input type='time' label="From:" ref="startTime" name="startTime" />
+                <Input type='time' label="From:" ref="startTime" name="startTime" onChange={this.timeValidation} bsStyle={this.validationState()} />
               </Col>
               <Col xs={6}>
-                <Input type='time' label="To:" ref="endTime" name="endTime" />
+                <Input type='time' label="To:" ref="endTime" name="endTime" onChange={this.timeValidation} bsStyle={this.validationState()} />
               </Col>
+              {timeFeedback}
             </Row>
+
           </Input>
           <RankInput label="Class Type" ref="classtype" name="classtype" ranks={this.state.ranks} />
 

@@ -131,7 +131,7 @@ var StudentView = module.exports = React.createClass({
       var child = that.refs[ref];
 
       // Is it in a valid state?
-      if (!child.state.valid) {
+      if (!child.state.valid || (child.state.expValid && child.state.expValid == false)) {
         valid = false;
       }
     });

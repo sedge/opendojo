@@ -7,6 +7,7 @@ var {
 var {
   Button,
   Grid,
+  Glyphicon,
   ButtonToolbar,
   Row,
   Col,
@@ -25,11 +26,12 @@ var Attendances = module.exports = React.createClass({
       query: this.refs.searchInput.getValue()
     });
   },
-  render: function(){
+  render: function() {
+    var searchGlyph = <Glyphicon glyph='search' />;
     var toolbar =(
       <Grid>
         <Row className="show-grid">
-          <Col md={5} id="attendance"><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by student name or class title..."/></Col>
+          <Col md={5} id="attendance"><Input type="text" ref="searchInput" onChange={this.doSearch} addonBefore={searchGlyph} placeholder="Enter student or class name..."/></Col>
           <Col xs={10} md={7}><h4 className="text-center">ATTENDANCE MANAGEMENT TOOLBAR</h4></Col>
         </Row>
       </Grid>

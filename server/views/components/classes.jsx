@@ -26,7 +26,7 @@ var Classes = module.exports = React.createClass({
     };
   },
   componentWillMount: function() {
-    if(this.props.routerParams.id) {
+    if(this.props.routerParams.id || window.location.hash == "#/classes/new") {
       return this.setState({
         mainView: false
       });
@@ -53,23 +53,27 @@ var Classes = module.exports = React.createClass({
     if (this.props.terminalMode) {
       return (<div/>);
     }
-
+    var isNewView = false;
+    if(window.location.hash == "#/classes/new") {
+      isNewView = true;
+    }
     var addButton= (
       <ButtonToolbar>
         <Link to="addClass"><Button bsSize="large"><Glyphicon glyph='plus' /></Button></Link>
       </ButtonToolbar>
     );
     var searchBar;
-    if(this.state.mainView) {
+    if(this.state.mainView && !isNewView) {
+      var searchGlyph = <Glyphicon glyph='search' />;
       searchBar = (
-        <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} placeholder="Search by title or day..."/></Col>
+        <Col xs={6} md={3}><Input type="text" ref="searchInput" onChange={this.doSearch} addonBefore={searchGlyph} placeholder="Enter title or day..."/></Col>
       );
     }
-    var toolbar =(
+    var toolbar = (
       <Grid>
         <Row className="show-grid">
           {searchBar}
-          <Col xs={8} md={this.state.mainView ? 8 : 11}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
+          <Col xs={8} md={this.state.mainView && !isNewView ? 8 : 11}><h4 className="text-center">CLASS MANAGEMENT TOOLBAR</h4></Col>
           <Col xs={1} md={1}><span className="pull-right">{addButton}</span></Col>
         </Row>
       </Grid>
