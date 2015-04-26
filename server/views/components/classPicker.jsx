@@ -89,7 +89,7 @@ var ClassPicker = module.exports = React.createClass({
     // "7" like we expect. Dirty hack to work around this:
     today = today === "0" ? "7" : today;
 
-    var now = moment().hours(16).minutes(15);
+    var now = moment();
     var timeNow = now.format("HH:mm");
 
     // Bail out early if there are no classes
