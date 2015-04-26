@@ -17,7 +17,7 @@ var {
 var DateInput = module.exports = React.createClass({
   getInitialState: function() {
     return {
-      valid: false,
+      valid: true,
       ageValid: true,
       expValid: true,
       value: this.props.defaultValue
