@@ -95,6 +95,10 @@ var Welcome = module.exports = React.createClass({
     var today = moment().format("d");
     var thisHour = moment().subtract(1, "hours").format("HH:mm");
 
+    // Moment uses "0" to represent Sunday instead of
+    // "7" like we expect. Dirty hack to work around this:
+    today = today === "0" ? "7" : today;
+
     // Filter the classes to only show ones in the same day and at the same time, or later
     filteredClasses = this.state.classes.filter(function(course) {
       return course.dayOfWeek == today && timeFormatting(course.startTime) >= thisHour;
