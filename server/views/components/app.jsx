@@ -72,6 +72,7 @@ var App = React.createClass({
     var tokenCheck;
 
     this.listenTo(validate.completed, function(){
+      localStorage.removeItem("terminalMode");
       this.setState({
         terminalMode: false
       });
