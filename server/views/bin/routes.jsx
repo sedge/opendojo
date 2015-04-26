@@ -46,7 +46,7 @@ var Attendances = require('../components/attendances.jsx');
 
 // Terminal child views
 var ClassCheckIn = require('../components/classCheckin.jsx');
-var SelectStudent = require('../components/selectStudent.jsx')
+var ClassPicker = require('../components/classPicker.jsx')
 
 // This:
 //   1. Sets up routing functionality
@@ -56,10 +56,10 @@ var routes = (
 	//  - `handler` responsible for all permanent UI.
 	<Route name="app" path='/' handler={App}>
 		<Route name="terminal" path='terminal' handler={Terminal}>
-			<Route name="selectStudent" path='derp' handler={SelectStudent} />
+			<Route name="classPicker" handler={ClassPicker} />
 			<Route name="checkIn" path=':classID/:studentID' handler={ClassCheckIn} />
 
-			<DefaultRoute handler={SelectStudent} />
+			<DefaultRoute handler={ClassPicker} />
 		</Route>
 
 		<Route name='welcome' path='welcome' handler={Welcome} />

@@ -1,8 +1,10 @@
 var React = require('react');
 var Router = require('react-router');
+var Reflux = require('reflux');
+
 var {
   ListenerMixin
-} = require('reflux');
+} = Reflux;
 
 // EcmaScript6 destructuring assignment syntax.
 // Equivalent to:
@@ -14,13 +16,63 @@ var {
 } = Router;
 
 var {
+  sortByKey
+} = require('../bin/utils.jsx');
+
+var studentStore = require('../stores/studentStore.jsx');
+var classStore = require('../stores/classStore.jsx');
+var messageStore = require('../stores/messageStore.jsx');
+
+var {
+  Grid,
   Row,
   Col,
-  Button
+  Button,
+  Nav,
+  Navbar,
+  NavItem
 } = require('react-bootstrap');
 
 var Terminal = React.createClass({
-  mixins: [Navigation, ListenerMixin],
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
+  mixins: [
+    Navigation,
+    Reflux.connectFilter(studentStore, "students", function(students) {
+      var filteredStudents = students.map(function(student){
+        return {
+          _id: student._id,
+          name: student.lastName + ", " + student.firstName
+        };
+      });
+
+      // We ensure the array of students is pre-sorted by name
+      // before we return it
+      return filteredStudents.sort(sortByKey("name", 0));
+    }),
+    Reflux.connectFilter(classStore, "classes", function(classes) {
+      var processedClasses = [];
+
+      classes.map(function(course){
+        processedClasses.push({
+          _id: course._id,
+          title: course.classTitle,
+          startTime: course.startTime,
+          endTime: course.endTime,
+          dayOfWeek: course.dayOfWeek
+        });
+      });
+
+      processedClasses.sort(sortByKey("startTime", 0));
+
+      return processedClasses;
+    }),
+    Reflux.connect(messageStore, "message")
+  ],
 
   componentWillMount: function() {
     if (!this.props.terminalMode) {
@@ -33,16 +85,36 @@ var Terminal = React.createClass({
   },
 
   render: function() {
+    var handlerProps = {
+      terminalMode: this.props.terminalMode,
+      routerParams: this.props.routerParams,
+      students: this.state.students,
+      classes: this.state.classes
+    };
+    var customMessage = "";
+
+    if (this.state.message && this.state.message.length > 0) {
+      customMessage = this.state.message[0].messageText;
+    }
+
     return (
       <div id="terminal">
-        <Row>
-          <Button onClick={this.props.handleLogout} bsStyle="danger" bsSize="small">Log Out</Button>
-        </Row>
-        <Row>
-          <Col sm={12}>
-            <RouteHandler terminalMode={this.props.terminalMode} routerParams={this.props.routerParams} />
-          </Col>
-        </Row>
+        <Grid fluid>
+          <Navbar fixedTop fluid>
+            <Row>
+              <Col md={12}>
+                <Button bsStyle="danger" block>
+                  {customMessage}
+                </Button>
+              </Col>
+            </Row>
+          </Navbar>
+          <Row>
+            <Col sm={12}>
+              <RouteHandler {...handlerProps} />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

@@ -18,8 +18,11 @@ var LoginUI = require('./login.jsx');
 
 var authActions = require('../actions/authActions.jsx');
 var {
-  logIn
+  logIn,
+  validate
 } = authActions;
+
+var authStore = require('../stores/authStore.jsx');
 
 var {
   NavItemLink
@@ -55,12 +58,27 @@ var dashboardNav = {
 var headerLinkId = 0;
 
 var App = React.createClass({
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   mixins: [Navigation, ListenerMixin],
   listenables: [authActions],
 
   componentWillMount: function() {
     var that = this;
     var tokenCheck;
+
+    this.listenTo(validate.completed, function(){
+      this.setState({
+        terminalMode: false
+      });
+    });
+    this.listenTo(validate.failed, function(err){
+      console.error("Validation failure... \n", err);
+    });
 
     this.listenTo(logIn.completed, function(token, validUser) {
       if(localStorage.getItem("token")) {

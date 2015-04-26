@@ -21,11 +21,14 @@ var Timestamp = module.exports = React.createClass({
     var timeRightNow = moment().format("h:mm:ss a");
     var message;
     var currentCourseTitle = this.props.courseTitle;
+    var customContent = this.props.contents;
 
     if (currentCourseTitle) {
-      message = '<h2>Check-in for <strong>' + this.props.courseTitle + '</strong> (' + this.props.courseTime + ') | <strong>' +  timeRightNow + '</strong></h2>';
+      message = '<h1>Check-in for <strong>' + this.props.courseTitle + '</strong> (' + this.props.courseTime + ') | <strong>' +  timeRightNow + '</strong></h1>';
+    } else if (customContent) {
+      message = '<h1>' + customContent + ' | <strong>' +  timeRightNow + '</strong></h1>';
     } else {
-      message = '<h2>The time is <strong>' +  timeRightNow + '</strong></h2>';
+      message = '<h1>The time is <strong>' +  timeRightNow + '</strong></h1>';
     }
 
     $("#timestamp")

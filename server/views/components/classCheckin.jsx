@@ -1,11 +1,13 @@
 var React = require('react');
 var Promise = require('bluebird');
 
+var Timestamp = require('./timestamp.jsx');
+
 var { ListenerMixin } = require('reflux');
 var {
   Navigation,
   Link
- } = require('react-router');
+} = require('react-router');
 
 var studentStore = require('../stores/studentStore.jsx');
 var studentActions = require('../actions/studentActions.jsx');
@@ -20,11 +22,14 @@ var {
   Grid,
   Col,
   Row,
-  Input
+  Input,
+  Navbar,
+  Jumbotron
 } = require('react-bootstrap');
 
 var {
-  timeFormatting
+  timeFormatting,
+  membershipStatusCalculator
 } = require('../bin/utils.jsx');
 
 var AlertDismissable = require('./alertDismissable.jsx');
@@ -37,6 +42,12 @@ var GuardianInput = require('./guardianInput.jsx');
 var HealthInput = require('./healthInput.jsx');
 
 var ClassCheckIn = module.exports = React.createClass({
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   mixins: [Navigation, ListenerMixin],
   getInitialState: function() {
     return {
@@ -44,6 +55,7 @@ var ClassCheckIn = module.exports = React.createClass({
       classID: this.props.routerParams.classID,
       editable: false,
       valid: true,
+      expired: false
     };
   },
 
@@ -74,14 +86,23 @@ var ClassCheckIn = module.exports = React.createClass({
 
   showStudent: function(students) {
     var that = this;
+    var student;
 
     var id = this.props.routerParams.studentID;
-    students.forEach(function(student) {
-      if (id == student._id) {
-        that.setState({
-          student: student
-        });
+    students.forEach(function(person) {
+      if (id == person._id) {
+        student = person;
       }
+    });
+
+    var expired = false;
+    if (student) {
+      expired = this.calculateExpiry(student).indexOf('Expired') !== -1;
+    }
+
+    this.setState({
+      student: student,
+      expired: expired
     });
   },
   showClass: function(classes) {
@@ -103,8 +124,7 @@ var ClassCheckIn = module.exports = React.createClass({
     });
   },
   addAttendanceComplete: function() {
-    //here it needs to transition to Kieran's screen
-
+    this.transitionTo("classPicker");
   },
   addAttendanceFailed: function() {
     console.error("adding an attendance failed: ", err);
@@ -114,7 +134,7 @@ var ClassCheckIn = module.exports = React.createClass({
       });
     }
   },
-  // `EditStudent` Action Handling
+
   onEditStudent: function(e){
     if (e) { e.preventDefault(); }
 
@@ -147,12 +167,12 @@ var ClassCheckIn = module.exports = React.createClass({
     var emails = [this.refs.emails.getValue()];
     var newStudent = {
       _id: this.props.routerParams.studentID,
-      firstName: this.refs.firstName.getValue(),
-      lastName: this.refs.lastName.getValue(),
+      firstName: stu.firstName,
+      lastName: stu.lastName,
       phone: this.refs.phone.getValue(),
       rankId: stu.rankId,
       gender: stu.gender,
-      expiryDate: stu.expiryDate,
+      membershipExpiry: stu.membershipExpiry,
       birthDate: stu.birthDate,
       guardianInformation: this.refs.guardian.getValue(),
       healthInformation: this.refs.healthinfo.getValue(),
@@ -176,11 +196,6 @@ var ClassCheckIn = module.exports = React.createClass({
         editable: false
       });
     }
-  },
-  //This is meant to take it out of terminal mode TEMPORARY --> since Kieran ur screens shld do this
-  changeMode: function() {
-   localStorage.setItem("terminalMode", false);
-   this.transitionTo('welcome');
   },
   getDay: function(day){
     var dayOfWeek;
@@ -224,6 +239,28 @@ var ClassCheckIn = module.exports = React.createClass({
     });
     attendanceActions.addAttendance(newAttendance);
   },
+  backToClassPicker: function() {
+    this.transitionTo('classPicker');
+  },
+  calculateExpiry: function(student) {
+    student = student || this.state.student;
+
+    if (!student) {
+      return;
+    }
+
+    var expiryObject = student.membershipExpiry;
+    var expiryDate = expiryObject.split("T")[0]
+
+    var valid = membershipStatusCalculator(expiryObject).indexOf('Available') !== -1;
+
+    if (!valid) {
+      return "Expired! Talk to Sensei before class!";
+    } else {
+      return expiryDate;
+    }
+
+  },
   render: function() {
     // Force a blank render to make the transition prettier
     if (!this.props.terminalMode) {
@@ -236,6 +273,8 @@ var ClassCheckIn = module.exports = React.createClass({
     var classDay;
     var classTime;
     var classTitle;
+    var checkInButton;
+
     if (checkinClass){
       classDay = this.getDay(checkinClass.dayOfWeek);
       classTime = timeFormatting(checkinClass.startTime);
@@ -245,7 +284,7 @@ var ClassCheckIn = module.exports = React.createClass({
     var settingMembership = this.state.settingMembership;
     if (!student) {
       return (
-        <div className="studentView container">
+        <div className="terminal">
           <Alert bsStyle="danger">
             The student associated with <strong>ID {this.props.routerParams.studentId}</strong> does not exist.
           </Alert>
@@ -254,7 +293,7 @@ var ClassCheckIn = module.exports = React.createClass({
     }
     if (!checkinClass) {
       return (
-        <div className="studentView container">
+        <div className="terminal">
           <Alert bsStyle="danger">
             The class associated with <strong>ID {this.props.routerParams.classID}</strong> does not exist.
           </Alert>
@@ -266,119 +305,159 @@ var ClassCheckIn = module.exports = React.createClass({
       emails += email + " ";
     });
 
-    var emergencyPhone = null;
-
-
-    if(student.emergencyphone){
-      emergencyPhone = (
-        <div>
-          Emergency Phone Number : {student.emergencyphone}
-        </div>
+    if (this.state.expired || editable) {
+      checkInButton = (
+        <div />
+      );
+    } else {
+      checkInButton = (
+        <Button bsStyle="success" block onClick={this.saveAttendance}>
+          Confirm Check-in
+        </Button>
       );
     }
+
     if(!editable){
       return (
-        <div className="studentView container">
-          <Table bordered={true} striped={true}>
-            <tr>
-               <th colSpan="4">Checking into: {
-                classTitle + " " + classDay + ", " + classTime
-              }</th>
-            </tr>
-            <tr>
-              <th colSpan="4">Name: {
-                student.firstName + " " + student.lastName
-              }</th>
-            </tr>
-            <tr>
-              <th>Phone:</th>
-              <td colSpan="3">{student.phone}</td>
-            </tr>
-            <tr>
-              <th>Emails:</th>
-              <td colSpan="3">{emails}</td>
-            </tr>
-            <tr>
-              <th>Guardian Information</th>
-              <td colSpan="3">{student.guardianInformation}{emergencyPhone}
-              </td>
-            </tr>
-            <tr>
-              <th>Health Information</th>
-              <td colSpan="3">{student.healthInformation}</td>
-            </tr>
-          </Table>
-          <Row className="show-grid">
-           <Col xs={12} md={8}>
-            <Button bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
-            <Button bsSize="large" onClick={this.changeMode}>Cancel</Button>
-           </Col>
-           <Col xs={6} md={4}><span className="pull-right"><Button bsSize="large" onClick={this.saveAttendance}>Checkin</Button></span></Col>
-          </Row>
+        <div className="terminal">
+          <Navbar fixedBottom fluid>
+            <Row>
+              <Col md={4}>
+                <Button block onClick={this.backToClassPicker}>
+                  Go Back
+                </Button>
+              </Col>
+              <Col md={4}>
+                <Timestamp id="navbar-timestamp" />
+              </Col>
+              <Col md={4}>
+                {checkInButton}
+              </Col>
+            </Row>
+          </Navbar>
+
+          <Jumbotron>
+            <Row id="single-student">
+              <Table>
+                <tr>
+                  <th colSpan="4">Name: <span>{
+                    student.firstName + " " + student.lastName
+                  }</span></th>
+                </tr>
+                <tr>
+                  <th>Phone:</th>
+                  <td colSpan="3">
+                    <Input disabled type="text" value={student.phone} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Emails:</th>
+                  <td colSpan="3"><Input disabled type="text" value={emails} /></td>
+                </tr>
+                <tr>
+                  <th>Guardian Information</th>
+                  <td colSpan="3">
+                    <Input disabled type="text" value={student.guardianInformation} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Emergency Phone:</th>
+                  <td colSpan="3">
+                    <Input disabled type="text" value={student.emergencyphone} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Health Information</th>
+                  <td colSpan="3">
+                    <Input disabled type="text" value={student.healthInformation} />
+                  </td>
+                </tr>
+              </Table>
+              <Row>
+               <Col id="expiryDate" md={8}>
+                  Your membership expires on: <br />
+                  <Button bsStyle='primary'>{this.calculateExpiry()}</Button>&nbsp;&nbsp;
+               </Col>
+               <Col md={3}>
+                <br />
+                <Button block bsSize="large" bsStyle='primary' onClick={this.editToggle}>Edit</Button>&nbsp;&nbsp;
+               </Col>
+              </Row>
+            </Row>
+          </Jumbotron>
         </div>
       );
     }
     if(editable && !settingMembership){
       return (
-        <div className="studentView">
-          <form>
-            <h2>Update Student Information:</h2>
-            <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <FirstName label="First Name" ref="firstName" name="firstName" defaultValue={student.firstName} />
+        <div className="terminal">
+          <Navbar fixedBottom fluid>
+            <Row>
+              <Col md={4}>
+                <Button block onClick={this.backToClassPicker}>
+                  Go Back
+                </Button>
               </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-            <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <LastName label="Last Name" ref="lastName" name="lastName" defaultValue={student.lastName} />
+              <Col md={4}>
+                <Timestamp id="navbar-timestamp" />
               </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <PhoneInput label="Phone" ref="phone" name="phone" defaultValue={student.phone} />
+              <Col md={4}>
+                {checkInButton}
               </Col>
-              <Col xs={6} sm={4}></Col>
             </Row>
-             <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <EmailInput label="Emails" type="text" ref="emails" name="emails" defaultValue={emails} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
+          </Navbar>
+
+          <Jumbotron>
+            <Row id="single-student">
+              <Table>
+                <tr>
+                  <th colSpan="4">Name: <span>{
+                    student.firstName + " " + student.lastName
+                  }</span></th>
+                </tr>
+                <tr>
+                  <th>Phone:</th>
+                  <td colSpan="3">
+                    <PhoneInput ref="phone" name="phone" defaultValue={student.phone} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Emails:</th>
+                  <td colSpan="3">
+                    <EmailInput type="text" ref="emails" name="emails" defaultValue={emails} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Guardian Information</th>
+                  <td colSpan="3">
+                    <GuardianInput type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Emergency Phone:</th>
+                  <td colSpan="3">
+                    <PhoneInput ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Health Information</th>
+                  <td colSpan="3">
+                    <HealthInput type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
+                  </td>
+                </tr>
+              </Table>
+              <Row>
+               <Col id="expiryDate" md={8}>
+                  Your membership expires on: <br />
+                  <Button bsStyle='primary'>{this.calculateExpiry()}</Button>&nbsp;&nbsp;
+               </Col>
+               <Col md={3}>
+                <br />
+                <Button block bsSize="large" bsStyle='success' onClick={this.onEditStudent}>Save</Button>&nbsp;&nbsp;
+               </Col>
+              </Row>
             </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <GuardianInput label="Guardian Information" type="text" ref="guardian" name="guardian" defaultValue={student.guardianInformation} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <PhoneInput label="Emergency Phone" ref="emergencyphone" name="emergencyphone" defaultValue={student.emergencyphone} />
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-              <Row className="show-grid">
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}>
-                <HealthInput label="Health Informaion" type="text" ref="healthinfo" name="healthinfo" defaultValue={student.healthInformation}/>
-              </Col>
-              <Col xs={6} sm={4}></Col>
-            </Row>
-            <AlertDismissable visable={!this.state.valid} />
-            <Row className="show-grid">
-              <Col xs={6} sm={4}><Button bsSize="large" bsStyle='primary' onClick={this.onEditStudent}>Save</Button></Col>
-              <Col xs={6} sm={4}></Col>
-              <Col xs={6} sm={4}><span className="pull-right"><Button bsSize="large" onClick={this.editToggle}>Cancel</Button></span></Col>
-            </Row>
-          </form>
+          </Jumbotron>
         </div>
       );
     }

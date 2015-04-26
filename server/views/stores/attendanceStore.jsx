@@ -4,7 +4,8 @@ var { ListenerMixin } = require('reflux');
 
 var attendanceActions = require('../actions/attendanceActions.jsx');
 var {
-  deleteAttendance
+  deleteAttendance,
+  addAttendance
 } = attendanceActions;
 
 var { URL } = require('../bin/constants.jsx');
@@ -118,7 +119,7 @@ var attendanceStore = Reflux.createStore({
     if(!attendance) {
       return editAttendance.failed(attendances);
     }
-    
+
     var attendanceToSend = {
       studentID: updatedInfo.studentID,
       classDate: updatedInfo.classDate,

@@ -20,6 +20,12 @@ var classStore = require('../stores/classStore.jsx');
 var rankStore = require('../stores/rankStore.jsx');
 
 var Welcome = module.exports = React.createClass({
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   mixins: [ListenerMixin, Navigation, TerminalCheck],
 
   getInitialState: function() {

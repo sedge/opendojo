@@ -1,10 +1,15 @@
 var React = require("react");
 var Reflux = require("reflux");
 
-var { Navigation } = require("react-router");
-
 var $ = require('zeptojs');
 var moment = require('moment');
+
+var { blacklist } = require('validator');
+
+var authStore = require('../stores/authStore.jsx');
+var authActions = require('../actions/authActions.jsx');
+
+var { Navigation } = require("react-router");
 
 var {
   timeFormatting,
@@ -15,17 +20,47 @@ var {
   Row,
   Col,
   Input,
-  Button
+  Button,
+  Jumbotron,
+  Navbar,
+  Table,
+  Panel
 } = require('react-bootstrap');
 
 var Timestamp = require('./timestamp.jsx');
+
+function filterByName(students, name) {
+  if (!name || blacklist(name, " ").length === 0) {
+    return students;
+  }
+
+  var filteredStudents = [];
+
+  students.forEach(function(person){
+    if(person.name.toLowerCase().indexOf(name.toLowerCase())!== -1)
+      filteredStudents.push(person);
+  });
+
+  return filteredStudents;
+}
 
 var ClassPicker = module.exports = React.createClass({
   mixins: [Navigation],
   getInitialState: function() {
     return {
-      endOfDay: false
+      endOfDay: false,
+      searchResults: []
     };
+  },
+
+  doSearch: function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    var name = this.refs.search.getValue();
+
+    this.setState({
+      search: name
+    });
   },
 
   updateCurrentClass: function(course) {
@@ -37,6 +72,10 @@ var ClassPicker = module.exports = React.createClass({
     };
   },
 
+  returnToDashboard: function() {
+    authActions.validate(this.refs.password.getValue());
+  },
+
   setTimers: function(classes) {
     var that = this;
     var timeouts = [];
@@ -46,8 +85,17 @@ var ClassPicker = module.exports = React.createClass({
 
     var today = moment().format("d");
 
-    var now = moment();
+    // Moment uses "0" to represent Sunday instead of
+    // "7" like we expect. Dirty hack to work around this:
+    today = today === "0" ? "7" : today;
+
+    var now = moment().hours(16).minutes(15);
     var timeNow = now.format("HH:mm");
+
+    // Bail out early if there are no classes
+    if (classes.length === 0) {
+      return;
+    }
 
     // Determine the classes for the day, from this moment
     var filteredClasses = classes.filter(function(course) {
@@ -61,6 +109,10 @@ var ClassPicker = module.exports = React.createClass({
       }
       return true;
     });
+
+    if (filteredClasses.length === 0) {
+      return;
+    }
 
     // Set up component rerendering as each class occurs
     filteredClasses.forEach(function(course) {
@@ -105,6 +157,11 @@ var ClassPicker = module.exports = React.createClass({
 
     this.setTimers(newProps.classes);
   },
+  componentWillMount: function(){
+    this.componentWillUnmount();
+
+    this.setTimers(this.props.classes);
+  },
   componentWillUnmount: function() {
     if (this.state.timeouts) {
       this.state.timeouts.forEach(function(timeoutKey) {
@@ -112,21 +169,21 @@ var ClassPicker = module.exports = React.createClass({
       });
     }
   },
-  proceedToCheckIn: function(e) {
-    if (e && e.preventDefault) e.preventDefault();
+  proceedToCheckIn: function(studentID) {
+    var that = this;
 
-    var students = this.refs.students;
-    var classes = this.refs.classes;
+    return function(e) {
+      if (e && e.preventDefault) e.preventDefault();
 
-    var studentSelection = students.getValue();
-    var classSelection = classes.getValue();
-
-    this.transitionTo('checkIn', {
-      classID: classSelection,
-      studentID: studentSelection
-    });
+      that.transitionTo('checkIn', {
+        classID: that.state.currentCourse._id,
+        studentID: studentID
+      });
+    }
   },
   render: function() {
+    var that = this;
+
     var classes = this.props.classes;
     var students = this.props.students;
 
@@ -142,8 +199,20 @@ var ClassPicker = module.exports = React.createClass({
     if (this.state.endOfDay) {
       return (
         <div id='classPicker'>
-          <h3><strong>Tomorrow's a new day!</strong></h3>
-          <p>Today's classes are done. Rest up, you've earned it!</p>
+          <Navbar fixedBottom fluid>
+            <Col md={2}>
+              <Button bsStyle="primary" block onClick={this.returnToDashboard}>
+                Dashboard
+              </Button>
+            </Col>
+            <Col md={3}>
+              <Input type="password" placeholder="Password" ref="password" />
+            </Col>
+          </Navbar>
+          <Jumbotron>
+            <h3><strong>Tomorrow's a new day!</strong></h3>
+            <p>Today's classes are done. Rest up, you've earned it!</p>
+          </Jumbotron>
         </div>
       );
     }
@@ -151,8 +220,20 @@ var ClassPicker = module.exports = React.createClass({
     if (!currentCourse && !(timeouts && timeouts.length > 0)) {
       return (
         <div id='classPicker'>
-          <Timestamp />
-          <h3>There are no classes today!</h3>
+          <Navbar fixedBottom fluid>
+            <Col md={2}>
+              <Button bsStyle="primary" block onClick={this.returnToDashboard}>
+                Dashboard
+              </Button>
+            </Col>
+            <Col md={3}>
+              <Input type="password" placeholder="Password" ref="password" />
+            </Col>
+          </Navbar>
+          <Jumbotron>
+            <Timestamp />
+            <h3>There are no classes today!</h3>
+          </Jumbotron>
         </div>
       );
     }
@@ -166,37 +247,93 @@ var ClassPicker = module.exports = React.createClass({
 
       return (
         <div id='classPicker'>
-          <Timestamp />
-          <p>Check-in for {className} will open at <strong>{timeAsMoment.subtract(15, "minutes").format("HH:mm")}</strong></p>
+          <Navbar fixedBottom fluid>
+            <Col md={2}>
+              <Button bsStyle="primary" block onClick={this.returnToDashboard}>
+                Dashboard
+              </Button>
+            </Col>
+            <Col md={3}>
+              <Input type="password" placeholder="Password" ref="password" />
+            </Col>
+          </Navbar>
+
+          <Jumbotron>
+            <Timestamp />
+            <p>Check-in for {className} will open at <strong>{timeAsMoment.subtract(15, "minutes").format("HH:mm")}</strong></p>
+          </Jumbotron>
         </div>
       );
     }
 
-    var studentKey = 0;
-    var studentOptions = students.map(function(student) {
+    students = filterByName(students, this.state.search);
+
+    var searchResults = students.map(function(student) {
+      var buttonProps = {
+        key: student._id,
+        onClick: that.proceedToCheckIn(student._id),
+        bsStyle: 'warning',
+        block: true
+      };
+      var button = (
+        <Button {...buttonProps}>
+          Check In
+        </Button>
+      );
+
       return (
-        <option key={studentKey++} value={student._id}>{student.name}</option>
+        <tr key={student._id}>
+          <td><span>{student.name}</span></td>
+          <td>{button}</td>
+        </tr>
       );
     });
 
     return (
       <div id='classPicker'>
-        <Timestamp courseTitle={currentCourse.title} courseTime={timeFormatting(currentCourse.startTime)}/>
-        <Row>
-          <Col>
-            <Input type="select" label="Select Student:" ref="students" name="students">
-              {studentOptions}
-            </Input>
-            <Input type="select" label="Select Class:" defaultValue={currentCourse._id} ref="classes" name="classes">
-              <option value={currentCourse._id}>{currentCourse.title}</option>
-            </Input>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button bsSize="large" bsStyle='primary' onClick={this.proceedToCheckIn}>Proceed to check-in</Button>
-          </Col>
-        </Row>
+        <Navbar fixedBottom fluid>
+          <Row>
+            <Col md={2}>
+              <Button bsStyle="primary" block onClick={this.returnToDashboard}>
+                Dashboard
+              </Button>
+            </Col>
+            <Col md={3}>
+              <Input type="password" placeholder="Password" ref="password" />
+            </Col>
+            <Col md={5}>
+              <Button id="titleBlock" block>{this.state.currentCourse.title}</Button>
+            </Col>
+            <Col md={2}>
+              <Button block>@ {timeFormatting(this.state.currentCourse.startTime)}</Button>
+            </Col>
+          </Row>
+        </Navbar>
+
+        <Jumbotron>
+          <Row>
+            <Col>
+              <Timestamp contents={"Checking in?"} />
+            </Col>
+          </Row>
+          <Row>
+            <Panel header={(
+              <Row id="checkinSearch">
+                <Col md={12}>
+                  <Input onChange={this.doSearch} type="text" ref="search" placeholder="Search by name" />
+                </Col>
+              </Row>
+            )}>
+              <Col>
+                <Table>
+                  <tbody>
+                    {searchResults}
+                  </tbody>
+                </Table>
+              </Col>
+            </Panel>
+          </Row>
+        </Jumbotron>
       </div>
     );
   }

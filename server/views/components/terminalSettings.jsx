@@ -65,6 +65,11 @@ var TerminalSettings = module.exports = React.createClass({
       newState.messageToUser = "Please provide a message";
     }
 
+    if (value.trim().length > 75) {
+      newState.empty = true;
+      newState.messageToUser = "A maximum of 75 characters is allowed!"
+    }
+
     this.setState(newState);
   },
   editMessageFailed:function(err) {
@@ -79,6 +84,12 @@ var TerminalSettings = module.exports = React.createClass({
       saved:true
     });
   },
+
+  componentWillMount: function() {
+    if (this.props.terminalMode) {
+      return this.transitionTo("/");
+    }
+  },
   render: function() {
     var response;
     var submitButton;
@@ -92,6 +103,10 @@ var TerminalSettings = module.exports = React.createClass({
       placeholder: "Put your message here!",
       onChange: this.onChange
     };
+
+    if (this.props.terminalMode) {
+      return (<div />);
+    }
 
     if (this.state.empty){
       response = (

@@ -27,6 +27,12 @@ var {
 } = require('react-bootstrap');
 
 var StudentList = module.exports = React.createClass({
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
 	mixins: [ListenerMixin, Navigation],
 	getInitialState: function(){
 		return {
@@ -77,7 +83,7 @@ var StudentList = module.exports = React.createClass({
 	 hydrateStudent: function(){
     var latestStudents = this.state.students;
     var that = this;
-    if (this.state.ranks && this.state.students) {  
+    if (this.state.ranks && this.state.students) {
         var filteredStudents = latestStudents.map ( function (student) {
           var rank = that.state.ranks[student.rankId];
           return {

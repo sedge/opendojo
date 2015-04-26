@@ -19,6 +19,12 @@ var {
 var TerminalCheck = require('../mixins/terminalCheck.jsx')
 
 var Students = module.exports = React.createClass({
+  // Provides access to the router context object,
+  // containing route-aware state (URL info etc.)
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   mixins: [Navigation, TerminalCheck],
   getInitialState: function(){
     return {

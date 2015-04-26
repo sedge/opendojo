@@ -21,7 +21,9 @@ var {
 var {
   Row,
   Col,
-  Jumbotron
+  Jumbotron,
+  Navbar,
+  Button
 } = require('react-bootstrap');
 
 var {
@@ -31,40 +33,8 @@ var {
   timeToMilliseconds
 } = require('../bin/utils.jsx');
 
-var studentStore = require('../stores/studentStore.jsx');
-var classStore = require('../stores/classStore.jsx');
-
-var ClassPicker = require('./classPicker.jsx')
-
 var SelectStudent = React.createClass({
-  mixins: [
-    Navigation,
-    Reflux.connectFilter(studentStore, "students", function(students) {
-      return students.map(function(student){
-        return {
-          _id: student._id,
-          name: student.lastName + ", " + student.firstName
-        };
-      });
-    }),
-    Reflux.connectFilter(classStore, "classes", function(classes) {
-      var processedClasses = [];
-
-      classes.map(function(course){
-        processedClasses.push({
-          _id: course._id,
-          title: course.classTitle,
-          startTime: course.startTime,
-          endTime: course.endTime,
-          dayOfWeek: course.dayOfWeek
-        });
-      });
-
-      processedClasses.sort(sortByKey("startTime", 0));
-
-      return processedClasses;
-    })
-  ],
+  mixins: [Navigation],
 
   componentWillMount: function() {
     // Prevent the view from rendering if it isn't in
@@ -75,8 +45,8 @@ var SelectStudent = React.createClass({
   },
 
   render: function() {
-    var students = this.state.students;
-    var classes = this.state.classes;
+    var students = this.props.students;
+    var classes = this.props.classes;
 
     var studentKey = 0;
     var classKey = 0;
@@ -91,13 +61,7 @@ var SelectStudent = React.createClass({
 
     return (
       <div id="terminal">
-        <Row>
-          <Col>
-            <Jumbotron>
-              <ClassPicker students={students} classes={classes} />
-            </Jumbotron>
-          </Col>
-        </Row>
+        <RouteHandler students={students} classes={classes} />
       </div>
     );
   }

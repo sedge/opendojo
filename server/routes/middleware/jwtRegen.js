@@ -17,6 +17,7 @@ module.exports = function(req, res, next) {
 
       var token = jwt.encode({
         iss: req.user._id,
+        username: req.user.username,
         exp: expiry
       }, env.get('AUTH_SECRET'));
 

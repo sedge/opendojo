@@ -65,11 +65,16 @@ module.exports = function(grunt){
             : "./server/public/stylesheets/style.less"
         }
       }
+    },
+    watch: {
+      files: "./server/public/stylesheets/style.less",
+      tasks: ["less:dev"]
     }
   });
 
   // Default is the same as test, for travis-ci
   grunt.registerTask('default', ['test', 'build']);
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
+  grunt.registerTask('build-less', ['watch']);
   grunt.registerTask('build', ['jshint', 'clean', 'less:dev', 'browserify:dev']);
 };

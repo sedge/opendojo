@@ -91,6 +91,15 @@ function membershipStatusCalculator(exDate){
   return status;
 }
 
+function daysToExpiry(exDate){
+  var status;
+  var expireDate = new Date(exDate);
+  var today = new Date();
+  var restDays = Math.floor((expireDate.getTime()-today.getTime())/(24 * 60 * 60 * 1000));
+
+  return restDays;
+}
+
 function bdateForEdit(date){
   var bdate = new Date(date);
   var yyyy = bdate.getFullYear().toString();
@@ -145,5 +154,6 @@ module.exports = {
   capitalizeFirstLetter: capitalizeFirstLetter,
   timeFormatting: timeFormatting,
   getGreetingTime: getGreetingTime,
-  momentForTime: momentForTime
+  momentForTime: momentForTime,
+  daysToExpiry: daysToExpiry
 };
