@@ -6,6 +6,7 @@ var env = require('./lib/environment');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compression = require('compression')();
 
 var routes = require('./routes');
 var jwtAuth = require('./routes/middleware/jwtAuth');
@@ -13,7 +14,8 @@ var jwtRegen = require('./routes/middleware/jwtRegen');
 
 var app = module.exports = express();
 
-// render without jade for templating
+app.use(compression);
+
 app.use(express.static(path.join(__dirname, './views')));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/node_modules/quill/dist'));
@@ -34,10 +36,8 @@ app.use('/api', jwtAuth, jwtRegen, routes.student);
 app.use('/api', jwtAuth, jwtRegen, routes.email);
 app.use('/api', jwtAuth, jwtRegen, routes.message);
 
-// Invoke our token secret
 app.set('jwtTokenSecret', env.get("AUTH_SECRET"));
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

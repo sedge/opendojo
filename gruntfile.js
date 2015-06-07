@@ -55,6 +55,18 @@ module.exports = function(grunt){
           keepAlive: true,
           debug: true
         }
+      },
+      prod: {
+        files: {
+          './server/public/app.js': ['./server/views/index.jsx']
+        },
+        options: {
+          alias: [
+            "react:react", "React:react"
+          ],
+          transform: [babelify,reactify],
+          debug: true
+        }
       }
     },
     clean: ['server/public/app.js', 'server/public/stylesheets/style.css'],
@@ -69,6 +81,13 @@ module.exports = function(grunt){
     watch: {
       files: "./server/public/stylesheets/style.less",
       tasks: ["less:dev"]
+    },
+    uglify: {
+      prod: {
+        files: {
+          'server/public/app.js': 'server/public/app.js'
+        }
+      }
     }
   });
 
@@ -76,5 +95,6 @@ module.exports = function(grunt){
   grunt.registerTask('default', ['test', 'build']);
   grunt.registerTask('test', ['jshint', 'exec:run_mocha']);
   grunt.registerTask('build-less', ['watch']);
-  grunt.registerTask('build', ['jshint', 'clean', 'less:dev', 'browserify:dev']);
+  grunt.registerTask('build-dev', ['jshint', 'clean', 'less:dev', 'browserify:dev']);
+  grunt.registerTask('build', ['jshint', 'clean', 'less:dev', 'browserify:prod', 'uglify:prod']);
 };
