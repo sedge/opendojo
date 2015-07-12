@@ -4,15 +4,23 @@ var sanitizer = require('sanitize-html');
 
 var env = require('../lib/environment');
 
-var username = env.get("EMAIL_USER");
-var password = env.get("EMAIL_PASS");
+var emailOpts = env.get("EMAIL") || {
+  port: 1234,
+  host: 'abc123',
+  secure: true,
+  user: 'foo',
+  pass: 'foo'
+};
 
 // Configure email module
 var transporter = nodemailer.createTransport({
-  service: "Gmail",
+  port: emailOpts.port,
+  host: emailOpts.host,
+  secure: emailOpts.secure,
+  authMethod: "LOGIN",
   auth: {
-    user: username,
-    pass: password
+    user: emailOpts.user,
+    pass: emailOpts.pass
   }
 });
 
