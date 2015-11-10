@@ -1,5 +1,15 @@
 ![Test status](https://magnum.travis-ci.com/sedge/opendojo.svg?token=Pq9BJTQsrUUEcKjEssNY&branch=master)
 
+# Welcome to OpenDojo!
+
+This is an open-source student check-in and class management system for small to medium sized traditional martial arts clubs. Features include:
+
+* **A class management console**, where classes can be created, assigned a day and time and restricted to certain ranks
+* **A rank management console**, where ranks can be defined
+* **A student management console**, where students can have their contact, membership expiry and rank information stored
+* **A live, browser-based check-in system**, where students can see the current class, see a custom message from the instructor, modify their contact information and check-in
+* **A simple email client**, where the instructor can send individual or mass emails to their students based on rank or other criteria
+
 # Table of Contents
 
 1. Prerequisites
@@ -8,6 +18,7 @@
 4. API Reference
 5. Tests
 6. Data
+
 ---
 
 ## 1) Prerequisites
@@ -19,7 +30,7 @@ The following global dependencies are required for this application:
 4. Grunt (npm module)
 5. Mocha (npm module)
 
-  **NOTE:** This app has only been thoroughly tested on the most recent versions of Google Chrome (38+), and as of this writing, browser compatibility is not guaranteed for any other platform or version except the ones aforementioned here.
+  **NOTE:** This app has only been thoroughly tested on the most recent versions of Google Chrome (38+), and as of this writing, browser compatibility is not guaranteed for any other platform or version.
 
 ---
 
