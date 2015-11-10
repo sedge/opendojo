@@ -20,7 +20,7 @@ function hooks() {
 var authCredentials = {
   headers: {
     username: "admin",
-    password: "iliketoSmokeandr1nk"
+    password: "passW0rd"
   }
 };
 

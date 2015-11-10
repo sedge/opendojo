@@ -7,7 +7,7 @@ var rankId = "";
 var options = {
   headers: {
     username: "admin",
-    password: "iliketoSmokeandr1nk"
+    password: "passW0rd"
   }
 };
 

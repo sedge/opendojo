@@ -4,7 +4,7 @@ var models = require("../server/models")(db.connection);
 function _generateUserData() {
   var u1 = new models.User({
     username: "admin",
-    password: "iliketoSmokeandr1nk"
+    password: "passW0rd"
   });
 
   u1.save(function(err, u1) {
