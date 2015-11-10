@@ -1,7 +1,7 @@
 {
   "name": "nariyuki",
   "version": "1.0.0",
-  "private": true,
+  "license": "MPL-2.0",
   "scripts": {
     "start": "node ./server/start",
     "test": "grunt test"

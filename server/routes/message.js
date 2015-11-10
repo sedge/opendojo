@@ -1,3 +1,10 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2015 ChiYoung Choi, Yoav Gurevich, Kieran Sedgwick,
+ *                    Alina Shtramwasser, Seneca College */
+
 var router = require('express').Router();
 var log = require('../lib/logger');
 var models = require('../models')(require('../lib/db'));
@@ -5,7 +12,6 @@ var models = require('../models')(require('../lib/db'));
 var Message = models.Message;
 
 module.exports = function() {
- 
   router.route('/message')
     /* GET '/message/' accepts:
             - Auth/Session tokens required from successful user sign-in to check for appropriate role/claim
@@ -106,6 +112,6 @@ module.exports = function() {
         });
       });
     });
-      
+
     return router;
 }();

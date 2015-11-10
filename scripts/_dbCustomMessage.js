@@ -1,9 +1,16 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Copyright (c) 2015 ChiYoung Choi, Yoav Gurevich, Kieran Sedgwick,
+ *                    Alina Shtramwasser, Seneca College */
+
 var db = require("../server/lib/db");
 var models = require("../server/models")(db.connection);
 
 function _generateMessageData() {
   var m1 = new models.Message({
-    messageText: 'Please enter your text' 
+    messageText: 'Please enter your text'
   });
 
   models.Message.find({}, function(err, messages) {
@@ -12,7 +19,7 @@ function _generateMessageData() {
         return process.exit(1);
     }
     if (messages.length === 0)
-    { 
+    {
       m1.save(function(err, m1) {
         if (err) {
           console.error(err);
