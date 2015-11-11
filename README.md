@@ -1,4 +1,4 @@
-![Test status](https://magnum.travis-ci.com/sedge/opendojo.svg?token=Pq9BJTQsrUUEcKjEssNY&branch=master)
+[![Build Status](https://travis-ci.org/sedge/opendojo.svg?branch=master)](https://travis-ci.org/sedge/opendojo)
 
 # Welcome to OpenDojo!
 
